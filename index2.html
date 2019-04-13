@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: #727a87;
+        }
+
+        .main {
+            overflow-y: auto;
+        }
+
+        .grow {
+            flex: 1;
+        }
+
+        #headerbar{
+            text-align:right;
+        }
+
+        .header-items {
+            display: inline-block;
+        }
+
+        .header-items,
+        .header-items a {
+            color: white;
+
+        }
+
+        .carousel {
+            text-align: center;
+            max-width: 1200px;
+            max-height: 450px;
+            margin:auto;
+        }
+
+        .carousel img {
+            max-width: 600px;
+            max-height: 300px;
+        }
+
+        .carousel-item a{
+            color: black;
+            background-color:white;
+            
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            background-color: black;
+        }
+
+        .container{
+            margin: 5px;
+        }
+
+        .content{
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!--Header-->
+        <div id="header" class="row">
+            <!--headbar-->
+            <div id="headerbar" class="col-sm-12 bg-dark">
+                <div class="header-items">
+                    <a href="#">
+                        <i class="fas fa-rss-square"></i>
+                    </a>
+                </div>
+                <div class="header-items">
+                    <a href="#" class="badge badge-dark">
+                        <span>Đăng nhập</span>
+                        <i class="fas fa-sign-in-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <!--Nav bar-->
+            <div class="col-sm-12 navbar navbar-light bg-light navbar-expand-sm">
+                <a class="navbar-brand" href="#">TH16-News</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                    aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbar">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Thời sự</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Thể thao</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Đời sống</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Khoa học</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Content-->
+        <div class="row">
+            <div id="hightlight-container" class="content col-sm-12">
+                <div id="highlight" class="carousel slide container align-self-center" data-ride="carousel">
+                    <!-- index-->
+                    <ul class="carousel-indicators">
+                        <li data-target="#highlight" data-slide-to="0" class="active"></li>
+                        <li data-target="#highlight" data-slide-to="1"></li>
+                        <li data-target="#highlight" data-slide-to="2"></li>
+                    </ul>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="#">
+                                <img src="images/highlight1.png"
+                                    alt="">
+                            </a>
+                            <div class="carousel-caption">
+                                <h6><a href="#" class="">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức chơi hết mình,
+                                        về ngủ dậy lại quay cuồng, thế là đủ đam mê</a></h6>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#"><img src="images/highlight2.png" alt=""></a>
+                            <div class="carousel-caption">
+                                <h6><a class="" href="#">BTS chính thức phá vỡ thành tích của Ariana Grande, lập kỉ lục thế giới mới rồi đây!</a></h6>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#"><img src="images/highlight3.png" alt=""></a>
+                            <div class="carousel-caption">
+                                <h6><a class="" href="#">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ Khoa Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Left and right controls-->
+                    <a class="carousel-control-prev" href="#highlight" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#highlight" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="content col-sm-12">
+                <h3>Thông tin mới</h3>
+                <hr/>
+            </div>
+        </div>
+        <div id="footer" class="content     row">
+            Footer
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
