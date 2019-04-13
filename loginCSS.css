@@ -1,5 +1,5 @@
 body{
-	background: #82b3c9;
+	background-image: linear-gradient(#82b3c9, #bdbdbd);
 	font-family: Arial, Helvetica, sans-serif;
 }
 .btn_ls{
@@ -34,10 +34,22 @@ form>div{
 	margin-right: 10%;
 	margin-top: 10%;
 }
+#btn_forgot_pass{
+	font-size: normal;
+	font-weight: normal;
+	background: white;
+}
+#btn_forgot_pass:hover{
+	color: #c4001d;
+}
 #btn_logins>button{
 	background: white;
 	border: 2px solid #eeeeee;
 	border-radius: 2.4rem;
+}
+#btn_login{
+	background: #c4001d !important;
+	color: white;
 }
 #span_or{
 	text-align: center;
@@ -53,4 +65,10 @@ form>div{
 }
 #span_or>span{
 	vertical-align: top;
+}
+
+#btn_sign_up_free{
+	background: white;
+	border: 2px solid #eeeeee;
+	border-radius: 2.4rem;
 }
