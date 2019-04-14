@@ -26,8 +26,8 @@
             flex: 1;
         }
 
-        #headerbar{
-            text-align:right;
+        #headerbar {
+            text-align: right;
         }
 
         .header-items {
@@ -44,7 +44,7 @@
             text-align: center;
             max-width: 1200px;
             max-height: 450px;
-            margin:auto;
+            margin: auto;
         }
 
         .carousel img {
@@ -52,22 +52,35 @@
             max-height: 300px;
         }
 
-        .carousel-item a{
+        .carousel-item a {
             color: black;
-            background-color:white;
-            
+            background-color: white;
+
         }
 
-        .carousel-control-prev, .carousel-control-next {
+        .carousel-control-prev,
+        .carousel-control-next {
             background-color: black;
         }
 
-        .container{
+        .container {
             margin: 5px;
         }
 
-        .content{
+        .content {
             background-color: white;
+        }
+
+        /*single post css*/
+        .post-thumbnail {
+            height: 180px;
+            width: 300px;
+        }
+
+        .post-thumbnail img {
+            height: 180px;
+            width: 300px;
+            object-fit: cover;
         }
     </style>
 </head>
@@ -121,7 +134,7 @@
         </div>
         <!--Content-->
         <div class="row">
-            <div id="hightlight-container" class="content col-sm-10 mx-auto">
+            <div id="hightlight-container" class="content col-sm-11 mx-auto">
                 <div id="highlight" class="carousel slide container align-self-center" data-ride="carousel">
                     <!-- index-->
                     <ul class="carousel-indicators">
@@ -132,23 +145,25 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="#">
-                                <img src="images/highlight1.png"
-                                    alt="">
+                                <img src="images/highlight1.png" alt="">
                             </a>
                             <div class="carousel-caption">
-                                <h6><a href="#" class="">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức chơi hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a></h6>
+                                <h6><a href="#" class="">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức chơi
+                                        hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a></h6>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <a href="#"><img src="images/highlight2.png" alt=""></a>
                             <div class="carousel-caption">
-                                <h6><a class="" href="#">BTS chính thức phá vỡ thành tích của Ariana Grande, lập kỉ lục thế giới mới rồi đây!</a></h6>
+                                <h6><a class="" href="#">BTS chính thức phá vỡ thành tích của Ariana Grande, lập kỉ lục
+                                        thế giới mới rồi đây!</a></h6>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <a href="#"><img src="images/highlight3.png" alt=""></a>
                             <div class="carousel-caption">
-                                <h6><a class="" href="#">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ Khoa Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a></h6>
+                                <h6><a class="" href="#">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ Khoa
+                                        Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a></h6>
                             </div>
                         </div>
                     </div>
@@ -162,7 +177,7 @@
                 </div>
             </div>
             <!--Bai viet moi-->
-            <div id="page-news" class="content col-12 col-sm-10 mx-auto my-2">
+            <div id="page-news" class="content col-12 col-sm-11 mx-auto my-2">
                 <div class="archive-catagory-view">
                     <h4><i class="fas fa-rss"></i>Bài viết mới nhất</h4>
                     <hr>
@@ -176,7 +191,8 @@
                             </div>
                             <div class="post-abstract">
                                 <h6><a href="#">Ông Phạm Nhật Vũ bị bắt với cáo buộc đưa hối lộ</a></h6>
-                                <p>Bộ Công an khởi tố bị can, quyết định bắt ông Phạm Nhật Vũ (Chủ tịch Công ty Cổ phần Nghe Nhìn Toàn cầu – AVG).</p>
+                                <p>Bộ Công an khởi tố bị can, quyết định bắt ông Phạm Nhật Vũ (Chủ tịch Công ty Cổ phần
+                                    Nghe Nhìn Toàn cầu – AVG).</p>
                             </div>
                         </div>
                     </div>
@@ -187,11 +203,108 @@
                             </div>
                             <div class="post-abstract">
                                 <h6><a href="#">Nhà xưởng đổ sập trong vụ cháy làm 8 người chết ở Hà Nội </a></h6>
-                                <p>Cảnh sát điều động hàng chục xe cứu hỏa cùng hơn 300 người đến dập lửa, tuy nhiên khu xưởng bị thiêu rụi sau gần 2 giờ bốc cháy.</p>
+                                <p>Cảnh sát điều động hàng chục xe cứu hỏa cùng hơn 300 người đến dập lửa, tuy nhiên khu
+                                    xưởng bị thiêu rụi sau gần 2 giờ bốc cháy.</p>
                             </div>
                         </div>
                     </div>
- 
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-3.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Đền Hùng thất thủ ngày giổ tổ</a></h6>
+                                <p>Em nhỏ hoảng sợ khóc thét, được người nhà lôi kéo chen chúc giữa biển người tiến vào
+                                    đền Hùng</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-4.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Vén màn bí mật: Đằng sau loạt ảnh đẹp như bìa tạp chí là hậu trường đơn
+                                        sơ lầy lội không tưởng</a></h6>
+                                <p>2019 rồi, với sự sáng tạo vô bờ và một chút khả năng Photoshop, ai cũng có thể chụp
+                                    ảnh đẹp "ngàn like" mà không cần đến studio.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-5.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Thống kê chống lại Liverpool trước đại chiến với Chelsea</a></h6>
+                                <p>Thầy trò HLV Jurgen Klopp thường gặp khó khăn ngay cả khi được chơi trên sân nhà tiếp
+                                    đón Chelsea.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-6.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Nhiều phụ huynh Hong Kong cho con học tại nhà</a></h6>
+                                <p>Nhận thấy nhiều học sinh không hứng thú khi học ở trường, chị Tse Lai-man quyết định
+                                    cho con trai học ở nhà với lịch trình linh hoạt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-7.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Bà Diệp Thảo: 'Tòa thiên vị anh Vũ'</a></h6>
+                                <p>Nguyên đơn cho rằng HĐXX chấp nhận cho ly hôn là "cưỡng ép" không cho gia đình đoàn
+                                    tụ và có phần thiên vị ông Vũ.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-8.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Kim Jong-un nói thế lực thù địch 'chưa từ bỏ dã tâm xâm lược Triều
+                                        Tiên'</a></h6>
+                                <p>Chủ tịch Triều Tiên khẳng định nước này sẽ tiếp tục tăng cường năng lực quân sự nhằm
+                                    đối phó với các nguy cơ đe dọa chủ quyền.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-9.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Chi phí sống ở Sài Gòn so với Singapore, Bangkok ra sao?</a></h6>
+                                <p>Giá nhà bình quân ở TP HCM rẻ hơn Bangkok, Kuala Lumpur và Singapore, trong khi chi
+                                    phí ăn uống cũng được xem là "dễ chịu" hơn.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-single-post col-12 col-sm-6">
+                        <div class="single-post-arena mb-50">
+                            <div class="post-thumbnail">
+                                <img src="images/home-new-post-10.jpg" alt="post">
+                            </div>
+                            <div class="post-abstract">
+                                <h6><a href="#">Phương pháp dùng nước chữa bệnh tâm thần của bác sĩ thế kỷ 19</a></h6>
+                                <p>Hai trăm năm trước, để chữa bệnh tâm thần, bác sĩ đổ nước trực tiếp lên đầu bệnh nhân.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
