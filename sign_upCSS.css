@@ -1,0 +1,78 @@
+body{
+	background: #ffe0b2;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.btn_ls{
+	background-color: #ffe0b2;
+	color: #212121;	
+	font-weight: bold;
+	font-size: larger;
+}
+.btn_ls:hover{
+	color: white;
+}
+#div_form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  	align-items: center;
+
+}
+#div_form>p{
+	color: #212121;
+}
+#div_form>h2{
+	color: #212121;
+}
+form{
+	background: white;
+	border: none;
+	border-radius: 5px;
+}
+form>div{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 10%;
+}
+#btn_forgot_pass{
+	font-size: normal;
+	font-weight: normal;
+	background: white;
+}
+#btn_forgot_pass:hover{
+	color: #c4001d;
+}
+#btn_logins>button{
+	background: white;
+	border: 2px solid #eeeeee;
+	border-radius: 2.4rem;
+}
+#btn_sign_up{
+	background: #c4001d !important;
+	color: white;
+}
+#span_or{
+	text-align: center;
+	line-height: 0;
+	margin: 2em;
+	color: #616161;
+}
+#span_or:before{
+	content: " ";
+	display: block;
+	border-top: 2px solid #eeeeee;
+	box-sizing: inherit;
+}
+#span_or>span{
+	vertical-align: top;
+}
+
+#btn_sign_up_free{
+	background: white;
+	border: 2px solid #eeeeee;
+	border-radius: 2.4rem;
+}
+#div_footer{
+	margin: -5em 0 0 0;
+	background: #f5f5f5;
+}
