@@ -13,117 +13,346 @@
     <style>
         html,
         body {
+            background-color: #e8eaed;
             height: 100%;
         }
 
-        .main {
-            overflow-y: auto;
+        .content {
+            background-color: white;
+            /*margin-top: 5px;
+            margin-bottom: 5px;*/
+            margin:5px;
         }
 
-        .grow {
-            flex: 1;
-        }
-
-        .header-items,
-        .header-items a {
+        .header-item * {
             color: white;
-
         }
 
-        .carousel-inner img {
-            width: 100%;
-            height: 100%;
+        .user-area {
+            text-align: right;
+        }
+
+        .sticker-menu {
+            position: sticky;
+            top: 0;
+        }
+
+        /* High light content*/
+        .carousel {
+            text-align: center;
+        }
+
+        .carousel img {
+            max-width: 600px;
+            max-height: 300px;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            background-color: black;
+        }
+
+        /*single post css*/
+        .post-thumbnail {
+            height: 180px;
+            width: 300px;
+        }
+
+        .post-thumbnail img {
+            height: 180px;
+            width: 300px;
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-column h-100 align-items-center px-0">
-
-        <div class="row grow h-100 w-100">
-            <div class="col-12 bg-dark">
-                <div class="header-items">
-                    <a href="index.html" class="d-inline-block">
-                        <i class="fas fa-rss-square"></i>
-                    </a>
-                    <a href="#" class="badge badge-dark">
-                        <span>Đăng nhập</span>
-                        <i class="fas fa-sign-in-alt"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="navbar navbar-light bg-light col-12 navbar-expand-sm">
-                <a class="navbar-brand" href="#">TH16-News</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-                    aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Thời sự</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Thể thao</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Đời sống</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Khoa học</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-
-            </div>
-            <div class="main col-12 h-100 py-3">
-                <div id="high-light-content" class="carousel slide w-50 h-50" data-ride="carousel" >
-                    <!-- Indicators(index)-->
-                    <ul class="carousel-indicators">
-                        <li data-target="#high-light-content" data-slide-to="0" class="active"></li>
-                        <li data-target="#high-light-content" data-slide-to="1"></li>
-                        <li data-target="#high-light-content" data-slide-to="2"></li>
-                    </ul>
-                    <!-- The slideshow -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="https://news.nationalgeographic.com/content/dam/news/2018/05/17/you-can-train-your-cat/02-cat-training-NationalGeographic_1484324.jpg"
-                                alt="Los Angeles">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://r.hswstatic.com/w_907/gif/tesla-cat.jpg" alt="Chicago">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://i.kinja-img.com/gawker-media/image/upload/s--kHrQ8nr7--/c_scale,f_auto,fl_progressive,q_80,w_800/18huxz4bvnfjbjpg.jpg"
-                                alt="New York">
+    <!--### Header Area ###-->
+    <header class="header-area">
+        <div>
+            <div class="container-fluid">
+                <div class="row align-items-center bg-dark">
+                    <div class="col-sm-6">
+                        <!--Logo area-->
+                        <div class="header-item">
+                            <a href="#">
+                                <i class="fas fa-kiwi-bird"></i>
+                            </a>
                         </div>
                     </div>
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#high-light-content" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#high-light-content" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
+                    <div class="col-sm-6 header-item user-area">
+                        <!--User area-->
+                        <a href="#" class="badge badge-dark">
+                            <span>Đăng nhập</span>
+                            <i class="fas fa-sign-in-alt"></i>
+                        </a>
+                        <a href="#" class="badge badge-dark">
+                            <span>Đăng ký</span>
+                            <i class="fas fa-user"></i>
+                        </a>
+                    </div>
                 </div>
-                <h1>Main</h1>
-                <p class="mb-5">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit facere quidem debitis, dolorem,
-                    exercitationem sed ducimus quibusdam minima facilis maiores explicabo libero quas cum reprehenderit
-                    molestiae adipisci dolorum repellendus deleniti.
-                </p>
             </div>
         </div>
-        <div class=" w-100">
-            <div class="col-12 bg-danger">
-                Footer
+        <!-- ### Navbar Area ###-->
+        <div class="main-menu" id="sticker-menu">
+            <div class="container-fluid">
+                <!--Menu-->
+                <div class="row">
+                    <nav class="navbar navbar-light bg-light col-sm-12 navbar-expand-sm">
+                        <a class="navbar-brand" href="#">TH16-News</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                            aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse " id="navbar">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Thời sự</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Thể thao</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Đời sống</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Khoa học</a>
+                                </li>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Bai viet Noi Bat Trong Tuan-->
+    <div class="high-light-area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="content col-sm-11 mx-auto">
+                    <div id="high-light-content" class="carousel slide container align-self-center"
+                        data-ride="carousel">
+                        <!-- index-->
+                        <ul class="carousel-indicators">
+                            <li data-target="#high-light-content" data-slide-to="0" class="active"></li>
+                            <li data-target="#high-light-content" data-slide-to="1"></li>
+                            <li data-target="#high-light-content" data-slide-to="2"></li>
+                        </ul>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="#">
+                                    <img src="images/highlight1.png" alt="">
+                                </a>
+                                <div class="carousel-caption">
+                                    <h6><a href="#" class="">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức
+                                            chơi
+                                            hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a></h6>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="#"><img src="images/highlight2.png" alt=""></a>
+                                <div class="carousel-caption">
+                                    <h6><a class="" href="#">BTS chính thức phá vỡ thành tích của Ariana Grande, lập kỉ
+                                            lục
+                                            thế giới mới rồi đây!</a></h6>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="#"><img src="images/highlight3.png" alt=""></a>
+                                <div class="carousel-caption">
+                                    <h6><a class="" href="#">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ
+                                            Khoa
+                                            Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a></h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Left and right controls-->
+                        <a class="carousel-control-prev" href="#high-light-content" data-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </a>
+                        <a class="carousel-control-next" href="#high-light-content" data-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!--Bài viết mới nhất mọi chuyên mục, bài viết mỗi chuyên mục-->
+    <div class="main-area">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-sm-11">
+                    <div class="row">
+                        <!--Bài viết mới nhất mọi chuyên mục.-->
+                        <div class="col-12 col-sm-8 content">
+                            <div class="archive-catagory-view">
+                                <h4><i class="fas fa-rss"></i>Bài viết mới nhất</h4>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <!--Single post-->
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-1.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Ông Phạm Nhật Vũ bị bắt với cáo buộc đưa hối lộ</a></h6>
+                                            <p>Bộ Công an khởi tố bị can, quyết định bắt ông Phạm Nhật Vũ (Chủ tịch Công
+                                                ty Cổ phần
+                                                Nghe Nhìn Toàn cầu – AVG).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-2.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Nhà xưởng đổ sập trong vụ cháy làm 8 người chết ở Hà Nội
+                                                </a></h6>
+                                            <p>Cảnh sát điều động hàng chục xe cứu hỏa cùng hơn 300 người đến dập lửa,
+                                                tuy nhiên khu
+                                                xưởng bị thiêu rụi sau gần 2 giờ bốc cháy.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-3.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Đền Hùng thất thủ ngày giổ tổ</a></h6>
+                                            <p>Em nhỏ hoảng sợ khóc thét, được người nhà lôi kéo chen chúc giữa biển
+                                                người tiến vào
+                                                đền Hùng</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-4.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Vén màn bí mật: Đằng sau loạt ảnh đẹp như bìa tạp chí là hậu
+                                                    trường đơn
+                                                    sơ lầy lội không tưởng</a></h6>
+                                            <p>2019 rồi, với sự sáng tạo vô bờ và một chút khả năng Photoshop, ai cũng
+                                                có thể chụp
+                                                ảnh đẹp "ngàn like" mà không cần đến studio.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-5.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Thống kê chống lại Liverpool trước đại chiến với Chelsea</a>
+                                            </h6>
+                                            <p>Thầy trò HLV Jurgen Klopp thường gặp khó khăn ngay cả khi được chơi trên
+                                                sân nhà tiếp
+                                                đón Chelsea.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-6.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Nhiều phụ huynh Hong Kong cho con học tại nhà</a></h6>
+                                            <p>Nhận thấy nhiều học sinh không hứng thú khi học ở trường, chị Tse Lai-man
+                                                quyết định
+                                                cho con trai học ở nhà với lịch trình linh hoạt.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-7.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Bà Diệp Thảo: 'Tòa thiên vị anh Vũ'</a></h6>
+                                            <p>Nguyên đơn cho rằng HĐXX chấp nhận cho ly hôn là "cưỡng ép" không cho gia
+                                                đình đoàn
+                                                tụ và có phần thiên vị ông Vũ.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-8.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Kim Jong-un nói thế lực thù địch 'chưa từ bỏ dã tâm xâm lược
+                                                    Triều
+                                                    Tiên'</a></h6>
+                                            <p>Chủ tịch Triều Tiên khẳng định nước này sẽ tiếp tục tăng cường năng lực
+                                                quân sự nhằm
+                                                đối phó với các nguy cơ đe dọa chủ quyền.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-9.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Chi phí sống ở Sài Gòn so với Singapore, Bangkok ra sao?</a>
+                                            </h6>
+                                            <p>Giá nhà bình quân ở TP HCM rẻ hơn Bangkok, Kuala Lumpur và Singapore,
+                                                trong khi chi
+                                                phí ăn uống cũng được xem là "dễ chịu" hơn.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page-single-post col-12 col-sm-6">
+                                    <div class="single-post-arena mb-50">
+                                        <div class="post-thumbnail">
+                                            <img src="images/home-new-post-10.jpg" alt="post">
+                                        </div>
+                                        <div class="post-abstract">
+                                            <h6><a href="#">Phương pháp dùng nước chữa bệnh tâm thần của bác sĩ thế kỷ
+                                                    19</a></h6>
+                                            <p>Hai trăm năm trước, để chữa bệnh tâm thần, bác sĩ đổ nước trực tiếp lên
+                                                đầu bệnh nhân.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- bài viết mỗi chuyên mục-->
+                        <div class="col-12 col-sm-4 content">
+                            <!--1 chuyen muc-->
+                            <div class="col-sm-12">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
