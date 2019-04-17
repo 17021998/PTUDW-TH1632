@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<link type="text/css" href="sample/css/sample.css" rel="stylesheet" media="screen" />
+	<title>Documentindex</title>
+</head>
+<body>
+	<div class="panel-primary">
+		<div class="panel-heading">
+			header
+		</div>
+		<div>
+			<main>
+					<div class="message">
+						<div class="centered">
+							<h1>Tạo Bài Viết Mới</h1>
+
+							<p>
+								một số thông tin chú ý hoặc gì cũng đc
+							</p>
+						</div>
+					</div>
+					
+					<div class="centered"  style="background-color: #EDE8E8;">
+						<br>
+						<div class="input-group-lg">
+						<input  type="text" placeholder="Nhập Tiêu Đề."  class="form-control mb-2 input-group-lg" >
+						</div>
+						<input  type="text" placeholder="Tóm Tắt Nội Dung." class="form-control mb-2" >
+						
+						<textarea name="writer"></textarea>
+						<div class="input-group mb-3 mt-5">
+						  	<div class="input-group-prepend">
+							    <div class="input-group-text">
+							      <input type="checkbox" aria-label="Checkbox for following text input">Tôi đồng ý với các điều khoản bên bạn.
+							    </div>
+						  	</div>
+						  	<a href="#" class="btn btn-primary btn-lg active ml-auto" role="button" aria-pressed="true">Gữi Bài Viết</a>
+						</div>
+					</div>
+			</main>
+		</div>
+	</div>
+<script src="ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+	CKEDITOR.replace('writer');
+</script>
+
+</body>
+</html>
