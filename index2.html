@@ -10,308 +10,392 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-    <style>
-        html,
-        body {
-            height: 100%;
-            background-color: #e8eaed;
-        }
-
-        .main {
-            overflow-y: auto;
-        }
-
-        .grow {
-            flex: 1;
-        }
-
-        #headerbar {
-            text-align: right;
-        }
-
-        .header-items {
-            display: inline-block;
-        }
-
-        .header-items,
-        .header-items a {
-            color: white;
-
-        }
-
-        .carousel {
-            text-align: center;
-            max-width: 1200px;
-            max-height: 450px;
-            margin: auto;
-        }
-
-        .carousel img {
-            max-width: 600px;
-            max-height: 300px;
-        }
-
-        .carousel-item a {
-            color: black;
-            background-color: white;
-
-        }
-
-        .carousel-control-prev,
-        .carousel-control-next {
-            background-color: black;
-        }
-
-        .container {
-            margin: 5px;
-        }
-
-        .content {
-            background-color: white;
-        }
-
-        /*single post css*/
-        .post-thumbnail {
-            height: 180px;
-            width: 300px;
-        }
-
-        .post-thumbnail img {
-            height: 180px;
-            width: 300px;
-            object-fit: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="index-style.css" type="text/css">
 </head>
 
 <body>
-    <div class="container-fluid">
-        <!--Header-->
-        <div id="header" class="row">
-            <!--headbar-->
-            <div id="headerbar" class="col-sm-12 bg-dark">
-                <div class="header-items">
+    <!-- ### Top-header ###-->
+    <section class="top-header bg-dark">
+        <!--full width color-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
                     <a href="#">
-                        <i class="fas fa-rss-square"></i>
+                        <i class="fas fa-kiwi-bird"></i>
                     </a>
                 </div>
-                <div class="header-items">
+                <div class="col-md-6 text-right">
+                    <!--Login/Logout-->
                     <a href="#" class="badge badge-dark">
                         <span>Đăng nhập</span>
                         <i class="fas fa-sign-in-alt"></i>
                     </a>
-                </div>
-            </div>
-            <!--Nav bar-->
-            <div class="col-sm-12 navbar navbar-light bg-light navbar-expand-sm">
-                <a class="navbar-brand" href="#">TH16-News</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-                    aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Thời sự</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Thể thao</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Đời sống</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Khoa học</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--Content-->
-        <div class="row">
-            <div id="hightlight-container" class="content col-sm-11 mx-auto">
-                <div id="highlight" class="carousel slide container align-self-center" data-ride="carousel">
-                    <!-- index-->
-                    <ul class="carousel-indicators">
-                        <li data-target="#highlight" data-slide-to="0" class="active"></li>
-                        <li data-target="#highlight" data-slide-to="1"></li>
-                        <li data-target="#highlight" data-slide-to="2"></li>
-                    </ul>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="#">
-                                <img src="images/highlight1.png" alt="">
-                            </a>
-                            <div class="carousel-caption">
-                                <h6><a href="#" class="">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức chơi
-                                        hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a></h6>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#"><img src="images/highlight2.png" alt=""></a>
-                            <div class="carousel-caption">
-                                <h6><a class="" href="#">BTS chính thức phá vỡ thành tích của Ariana Grande, lập kỉ lục
-                                        thế giới mới rồi đây!</a></h6>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="#"><img src="images/highlight3.png" alt=""></a>
-                            <div class="carousel-caption">
-                                <h6><a class="" href="#">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ Khoa
-                                        Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Left and right controls-->
-                    <a class="carousel-control-prev" href="#highlight" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#highlight" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
+                    <a href="#" class="badge badge-dark">
+                        <span>Đăng ký</span>
+                        <i class="fas fa-user"></i>
                     </a>
                 </div>
             </div>
-            <!--Bai viet moi-->
-            <div id="page-news" class="content col-12 col-sm-11 mx-auto my-2">
-                <div class="archive-catagory-view">
-                    <h4><i class="fas fa-rss"></i>Bài viết mới nhất</h4>
-                    <hr>
-                </div>
-                <div class="row">
-                    <!--1 bai viet-->
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-1.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Ông Phạm Nhật Vũ bị bắt với cáo buộc đưa hối lộ</a></h6>
-                                <p>Bộ Công an khởi tố bị can, quyết định bắt ông Phạm Nhật Vũ (Chủ tịch Công ty Cổ phần
-                                    Nghe Nhìn Toàn cầu – AVG).</p>
-                            </div>
+        </div>
+    </section>
+    <!-- ### Navigation Bar ###-->
+    <section class="navigation bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-light navbar-expand-md">
+                        <a class="navbar-brand" href="#">TH16-News</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                            aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse " id="navbar">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Thời sự</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Thể thao</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Đời sống</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Khoa học</a>
+                                </li>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-2.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Nhà xưởng đổ sập trong vụ cháy làm 8 người chết ở Hà Nội </a></h6>
-                                <p>Cảnh sát điều động hàng chục xe cứu hỏa cùng hơn 300 người đến dập lửa, tuy nhiên khu
-                                    xưởng bị thiêu rụi sau gần 2 giờ bốc cháy.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-3.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Đền Hùng thất thủ ngày giổ tổ</a></h6>
-                                <p>Em nhỏ hoảng sợ khóc thét, được người nhà lôi kéo chen chúc giữa biển người tiến vào
-                                    đền Hùng</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-4.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Vén màn bí mật: Đằng sau loạt ảnh đẹp như bìa tạp chí là hậu trường đơn
-                                        sơ lầy lội không tưởng</a></h6>
-                                <p>2019 rồi, với sự sáng tạo vô bờ và một chút khả năng Photoshop, ai cũng có thể chụp
-                                    ảnh đẹp "ngàn like" mà không cần đến studio.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-5.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Thống kê chống lại Liverpool trước đại chiến với Chelsea</a></h6>
-                                <p>Thầy trò HLV Jurgen Klopp thường gặp khó khăn ngay cả khi được chơi trên sân nhà tiếp
-                                    đón Chelsea.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-6.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Nhiều phụ huynh Hong Kong cho con học tại nhà</a></h6>
-                                <p>Nhận thấy nhiều học sinh không hứng thú khi học ở trường, chị Tse Lai-man quyết định
-                                    cho con trai học ở nhà với lịch trình linh hoạt.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-7.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Bà Diệp Thảo: 'Tòa thiên vị anh Vũ'</a></h6>
-                                <p>Nguyên đơn cho rằng HĐXX chấp nhận cho ly hôn là "cưỡng ép" không cho gia đình đoàn
-                                    tụ và có phần thiên vị ông Vũ.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-8.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Kim Jong-un nói thế lực thù địch 'chưa từ bỏ dã tâm xâm lược Triều
-                                        Tiên'</a></h6>
-                                <p>Chủ tịch Triều Tiên khẳng định nước này sẽ tiếp tục tăng cường năng lực quân sự nhằm
-                                    đối phó với các nguy cơ đe dọa chủ quyền.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-9.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Chi phí sống ở Sài Gòn so với Singapore, Bangkok ra sao?</a></h6>
-                                <p>Giá nhà bình quân ở TP HCM rẻ hơn Bangkok, Kuala Lumpur và Singapore, trong khi chi
-                                    phí ăn uống cũng được xem là "dễ chịu" hơn.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-single-post col-12 col-sm-6">
-                        <div class="single-post-arena mb-50">
-                            <div class="post-thumbnail">
-                                <img src="images/home-new-post-10.jpg" alt="post">
-                            </div>
-                            <div class="post-abstract">
-                                <h6><a href="#">Phương pháp dùng nước chữa bệnh tâm thần của bác sĩ thế kỷ 19</a></h6>
-                                <p>Hai trăm năm trước, để chữa bệnh tâm thần, bác sĩ đổ nước trực tiếp lên đầu bệnh nhân.</p>
-                            </div>
-                        </div>
-                    </div>
+                    </nav>
                 </div>
             </div>
         </div>
-        <div id="footer" class="content row">
-            Footer
+    </section>
+    <!-- ### Week High light ###-->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8 pr-lg-0">
+                    <article class="post">
+                        <div class="hl-item feature-post" style="background-image: url(images/highlight1.png);">
+                            <a href="#" class="post-link"></a>
+                            <div class="post-content">
+                                <a href="#" class="post-cata">Giải trí</a>
+                                <a href="#" class="post-title">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức
+                                    chơi hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a>
+                                <div class="post-meta">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1 gio truoc</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-lg-4 pl-0">
+                    <article class="post">
+                        <div class="hl-item sub-post" style="background-image: url(images/highlight2.png);">
+                            <a href="#" class="post-link"></a>
+                            <div class="post-content">
+                                <a href="#" class="post-cata">Giải trí</a>
+                                <a href="#" class="post-title">BTS chính thức phá vỡ thành tích của Ariana Grande, lập
+                                    kỉ lục thế giới mới rồi đây!</a>
+                                <div class="post-meta">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1 gio truoc</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <div class="hl-item sub-post" style="background-image: url(images/highlight3.png);">
+                            <a href="#" class="post-link"></a>
+                            <div class="post-content">
+                                <a href="#" class="post-cata">Giải trí</a>
+                                <a href="#" class="post-title">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ
+                                    Khoa Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a>
+                                <div class="post-meta">
+                                    <i class="fas fa-clock"></i>
+                                    <span>1 gio truoc</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- ### Content ### -->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="grid-box">
+                        <div class="grid-header row">
+                            <div class="col-6">
+                                <h2 class="grid-title"><i class="fas fa-crown"></i>Xem nhiều nhất</h2>
+                            </div>
+                            <div class="col-6 text-right">
+                                <a href="#most-view" role="button" data-slide="prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                                <i class="fas fa-grip-lines-vertical"></i>
+                                <a href="#most-view" role="button" data-slide="next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="most-view" class="carousel slide container align-self-center mx-auto"
+                            data-ride="carousel" data-interval="9000">
+                            <div class="carousel-inner row">
+                                <div class="carousel-item col-md-4 active">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_1.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Thời sự
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Thượng nghị sĩ Mỹ và 30 năm dọn hậu quả chiến tranh Việt Nam.
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_2.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Thế giới
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Cháy Nhà thờ Đức Bà - khi 'tượng đài không thể lay chuyển' sụp đổ.
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_3.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Kinh doanh
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Cần Thơ khai thác tuyến bay quốc tế, có đánh thức miền Tây?
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_4.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Công nghệ
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Apple bất ngờ làm hòa Qualcomm, khóa sổ vụ kiện tỷ USD
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_5.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Sức khỏe
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Sai lầm phổ biến khi uống thuốc nhiều người mắc phải
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_6.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Giáo dục
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Sẽ ra sao nếu cô giáo, bác sĩ tương lai là 'thủ khoa gian dối'?
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_7.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Pháp luật
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Hàng xóm bất ngờ khi cảnh sát phát hiện 600 kg ma túy ở nhà ông Phi
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_8.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Thể thao
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Truyền thông ngỡ ngàng khi Ronaldo thành cựu vương Champions League
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_9.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                Phim ảnh
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                'Avengers: Endgame sẽ hoành tráng ngang với phần kết Chúa Nhẫn'
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="carousel-item col-md-4">
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="#">
+                                                <img src="images/catalog-thumb_10.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="#" class="post-cata">
+                                                CNTT
+                                            </a>
+                                            <a href="#" class="post-title">
+                                                Amazon Alexa được cập nhật thêm các tính năng chăm sóc sức khỏe
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>1 gio truoc</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $('#most-view').on('slide.bs.carousel', function (e) {
+            var $e = $(e.relatedTarget);
+            var idx = $e.index();
+            var itemsPerSlide = 3;
+            var totalItems = $('.carousel-item').length;
+
+            if (idx >= totalItems - (itemsPerSlide - 1)) {
+                var it = itemsPerSlide - (totalItems - idx);
+                for (var i = 0; i < it; i++) {
+                    // append slides to end
+                    if (e.direction == "left") {
+                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                    }
+                    else {
+                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                    }
+                }
+            }
+        });
+    </script>
+    <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
