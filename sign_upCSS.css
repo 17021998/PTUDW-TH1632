@@ -51,21 +51,6 @@ form>div{
 	background: #c4001d !important;
 	color: white;
 }
-#span_or{
-	text-align: center;
-	line-height: 0;
-	margin: 2em;
-	color: #616161;
-}
-#span_or:before{
-	content: " ";
-	display: block;
-	border-top: 2px solid #eeeeee;
-	box-sizing: inherit;
-}
-#span_or>span{
-	vertical-align: top;
-}
 
 #btn_sign_up_free{
 	background: white;
