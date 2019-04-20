@@ -179,3 +179,24 @@ a, a:hover, a:focus {
         visibility: visible;
     }
 }
+
+.section-title{
+    background: #fff;
+}
+
+.single-post{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/*single post css*/
+        .post-thumbnail {
+            height: 180px;
+            width: 300px;
+        }
+
+        .post-thumbnail img {
+            height: 180px;
+            width: 300px;
+            object-fit: cover;
+        }
