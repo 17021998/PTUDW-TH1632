@@ -16,6 +16,19 @@ a, a:hover, a:focus {
     transition-duration: 500ms;
 }
 
+/*Navigation bar*/
+.drop-down:hover .drop-down-content{
+    display: block;
+}
+
+.drop-down-content{
+    display: none;
+    position:absolute;
+    z-index: 60 ;
+    background: #f9f9f9;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
 /* Week high light group*/
 
 .wrapper {
