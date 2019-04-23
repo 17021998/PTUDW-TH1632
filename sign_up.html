@@ -10,40 +10,88 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="sign_upCSS.css"> 
+    <link rel="stylesheet" type="text/css" href="footerCSS.css"> 
 </head>
 <body>
-	<!--button-->
-	<div class="d-flex justify-content-end">
-		<button type="button" class="btn btn-link btn_ls" >Home</button>
-		<button type="button" class="btn btn-link btn_ls" id="btn_login">Login</button>
-	</div>
-	<!--Login-->
-	<div id="div_form">
-		<h2>Đăng nhập để thêm nhiều thông tin bạn nhé!</h2>
-		<p>Đăng nhập bằng tài khoản của bạn!!!</p>
-		<form class="w-50">
-		  <div class="form-group input-group-lg">
-		    <label for="inputEmail">Email address</label>
-		    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
-		  </div>
-		  <div class="form-group input-group-lg mt-4">
-		    <label for="inputPassword">Password</label>
-		    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-		  </div>
-		  <div class="mt-4">
-				<button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Forgot password?</button>
-		  </div>
-		  <div id="btn_logins" class="mt-4 mb-5">
-		  	<button type="button" class="btn w-100 mb-3" id="btn_sign_up">SIGN UP</button>
-		  	<button type="button" class="btn w-100" id="btn_login_google">SIGN UP WITH GOOGLE</button>
-		  </div>
-		</form>
-	</div>
-	<div id="div_footer" class="d-flex justify-content-center ">
-		<div class="d-flex flex-column my-5">
+	<!--div content-->
+	<div id="div_content">
+		<div class="row">
+	        <div class="col-md-11 text-right btn_ls">
+	       		<!--Login/Logout-->
+	                <a href="#" class="badge">
+	                    <span>Đăng nhập</span>
+	                    <i class="fas fa-sign-in-alt"></i>
+	                </a>
+	                <a href="#" class="badge">
+	                    <span>Đăng ký</span>
+	                    <i class="fas fa-user"></i>
+	                </a>
+	        </div>
+		</div>
+			<!--Login-->
+		<div id="div_form">
+			<h2>Đăng ký để sử dụng thêm nhiều tính năng bạn nhé!</h2>
+			<p>Cùng đăng ký nào!!!</p>
+			<form>
+			  <div class="form-group input-group-lg">
+			    <label for="inputEmail">Địa chỉ email:</label>
+			    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+			  </div>
+			  <div class="form-group input-group-lg mt-4">
+			    <label for="inputPassword">Nhập mật khẩu:</label>
+			    <input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu">
+			  </div>
+			  <div class="form-group input-group-lg mt-4">
+			    <label for="inputConfirmPassword">Nhập lại mật khẩu:</label>
+			    <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Nhập lại mật khẩu">
+			  <div class="form-check mt-4">
+			    <input type="checkbox" class="form-check-input" id="checkAgree">
+			    <label class="form-check-label" for="checkAgree">Bạn đồng ý với các điều khoản và chính sách của chúng tôi?</label>
+			  </div>
+			  </div>
+			  <div id="btn_logins" class="mt-4">
+			  	<button type="button" class="btn w-100 mb-3" id="btn_sign_up">ĐĂNG KÝ</button>
+			  	<button type="button" class="btn w-100" id="btn_login_google">ĐĂNG KÝ BẰNG GOOGLE</button>
+			  </div>
+			</form>
 		</div>
 	</div>
 
+    <!-- ### Footer ### -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4 left">
+
+                    <p>TH16-News <i class="far fa-copyright"></i> 2019</p>
+                </div>
+                <div class="col-12 col-lg-4 center">
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p><span>227 Nguyen Van Cu St. Ward 4</span> District 5, Ho Chi Minh City</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <p>+84848484848</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <p>548.533.552@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 right">
+                    <h3>About us</h3>
+                    <p>We are a group with three people.</p>
+                    <div>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-github"></i>
+                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

@@ -6,6 +6,7 @@ body{
     background-image: linear-gradient(#82b3c9, #bdbdbd);
     width: 100%;
     padding-bottom: 3%;	
+   	font-weight: bold;
 }
 .btn_ls>a{
 	background-color: #82b3c9;
@@ -48,6 +49,9 @@ form>div{
 }
 form>button{
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+p{
+	text-align: center;
 }
 #btn_forgot_pass{
 	font-size: normal;
@@ -102,10 +106,10 @@ form>button{
 		margin-right: 5%;
 		margin-top: 5%;
 	}
-#div_form>p{
-	font-size: 100%;
-}
-#div_form>h2{
-	font-size: 150%;
-}
+	#div_form>p{
+		font-size: 100%;
+	}
+	#div_form>h2{
+		font-size: 150%;
+	}
 }
