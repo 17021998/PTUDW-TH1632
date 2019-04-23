@@ -12,7 +12,7 @@
 body, html {
 	padding: 0;
 	margin: 0;
-
+	
 	font-family: sans-serif, Arial, Verdana, "Trebuchet MS", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-size: 16px;
 	line-height: 22px;
@@ -21,6 +21,8 @@ body, html {
 body {
 	height: 100%;
 	color: #2D3A4A;
+	font-size: 20px;
+	background: #e8eaed;
 	background-image: url(../img/bg.png);
 	background-repeat: no-repeat;
 	background-position: 50% 100%;
@@ -353,4 +355,130 @@ footer {
 	main #references {
 		grid-template-columns: repeat( auto-fit, minmax(240px, 1fr) );
 	}
+}
+/* code them */
+a, a:hover, a:focus {
+    text-decoration: none;
+    font-weight: 500;
+    color: #a6a6a6;
+    transition-duration: 500ms;
+}
+.drop-down:hover .drop-down-content{
+    display: block;
+}
+
+.drop-down-content{
+    display: none;
+    position:absolute;
+    z-index: 60 ;
+    background: #f9f9f9;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+.center-block{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.menu{
+	display: flex;
+	margin: 3px auto;
+    width: 1150px;
+    position: relative;
+}
+
+.breadcrumb li a{
+
+	text-align: center;
+    background: #D3D3D3;
+    padding: 6px 8px 0 15px;
+    text-decoration: none;
+    height: 36px;
+    display: block;
+    float: left;
+    font: 400 18px/25px arial;
+    white-space: nowrap;
+    position: relative;
+    color: #000;
+}
+
+.breadcrumb li a:after {
+	height: 36px;
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 0;
+    border-left: 18px solid #D3D3D3;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    z-index: 999;
+}
+.breadcrumb .start a {
+	height: 36px;
+    font-weight: 700;
+    color: #9f224e;
+    background: #eceeed;
+    border-left: 3px solid #9F224E;
+    margin-left: 0;
+    z-index: 99;
+}
+.breadcrumb .start a:after {
+	height: 36px;
+    border-left: 18px solid #eceeed !important;
+}
+.menu .breadcrumb li.start a {
+    color: #E17100;
+    border-color: #E17100;
+}
+.breadcrumb li+li:before{
+	content: none;
+}
+#headerbar{
+    text-align:right;
+}
+.header-items {
+    display: inline-block;
+}
+/* footer*/
+.footer{
+    background: #292c2f;
+    color: #fff;
+}
+
+.footer .left, .footer .right{
+    text-align: center;
+}
+
+.footer .center i{
+    background: #33383b;
+    color: #fff;
+    font-size: 25px;
+    width:38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 42px;
+    margin: 10px 15px;
+}
+
+.footer .right i{
+    background: #33383b;
+    color: #fff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 42px;
+}
+
+.footer .center p{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer .center p span{
+    display: block;
+    line-height: 2;
 }
