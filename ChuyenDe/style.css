@@ -1,0 +1,75 @@
+
+/*Catagory menu*/
+.cata-menu{
+    display: flex;
+    background: #fff;
+    align-items: center;
+}
+
+.breadcrumb{
+    align-self: center;
+    width: auto;
+    background: #fff !important;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.breadcrumb li a {
+    text-align: center;
+    height: 26px;
+    background: #D3D3D3;
+	padding: 2px 8px 2px 15px;
+	display: block;
+	float: left;
+	font: 400 18px/25px arial;
+	white-space: nowrap;
+	position: relative;
+	color: #000;
+}
+
+.breadcrumb li a:after {
+	content: "";
+	position: absolute;
+	right: -13px;
+	top: 0;
+	border-left: 13px solid #D3D3D3;
+	border-top: 13px solid transparent;
+	border-bottom: 13px solid transparent;
+    z-index: 999;
+    transition-delay: 500ms;
+}
+
+.breadcrumb .start a {
+	font-weight: 700;
+	color: #9f224e;
+    background:linear-gradient(to left,#eceeed 50%, #9f224e 50%);
+    background-position: right bottom;
+    background-size: 200% 100%;
+	border-left: 3px solid #9F224E;
+	margin-left: 0;
+	z-index: 99;
+}
+
+.breadcrumb .start a:after {
+	border-left: 13px solid #eceeed;
+}
+
+
+.breadcrumb li+li:before {
+	content: none;
+}
+
+.breadcrumb a:hover{
+    background-position: left bottom;
+    color: #000;
+}
+
+.breadcrumb a:hover::after{
+    border-left-color: #9F224E;
+}
+
+.start a:hover::after{
+    border-left-color: #9F224E !important;
+}
+
+/*Content*/

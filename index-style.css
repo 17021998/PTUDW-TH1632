@@ -2,7 +2,7 @@ body {
     background: #e8eaed;
 }
 
-article, .cata-post, .card, .grid-box{
+article, .cata-post, .card, .grid-box,.cata-menu{
     box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
 }
@@ -17,6 +17,12 @@ a, a:hover, a:focus {
 }
 
 /*Navigation bar*/
+.navigation{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 .drop-down:hover .drop-down-content{
     display: block;
 }
