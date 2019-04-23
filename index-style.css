@@ -21,6 +21,7 @@ a, a:hover, a:focus {
 
 .wrapper {
     padding: 15px 0;
+
 }
 /*Post*/
 
@@ -212,14 +213,12 @@ a, a:hover, a:focus {
 /*single post css*/
 
 .post-thumbnail {
-    height: 180px;
-    width: 100%;
     overflow: hidden;
 }
 
 .post-thumbnail img {
-    height: 180px;
-    width: 100%;
+    height: 30px;
+    width: 30px;
     object-fit: cover;
 }
 
