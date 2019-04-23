@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style type="text/css">.center {
 	width: 1200px;
 	height: 600;
@@ -21,11 +22,35 @@
 }
 
 .panel-heading li {
+=======
+.center{
+	width: 1200px;
+	height: 600;
+}
+.noidung{
+	margin-top: -150px;
+  	width: 900px;
+  	background: #fff;
+  	height: auto;
+  	z-index: 1;
+  	position: relative;
+}
+.hagtag{
+  	margin-bottom: 20px;
+}
+
+
+.panel-heading ul{
+	margin-right: 100px;
+}
+.panel-heading li{
+>>>>>>> f31598da2a312f43d3ef1f7af13f0ddee35415fd
 	display: inline-block;
 	margin-left: 20px;
 	float: right;
 	font-size: 18px;
 }
+<<<<<<< HEAD
 
 .panel-heading li a {
 	color: black;
@@ -38,28 +63,51 @@
 }
 
 .noidung h1 a {
+=======
+.panel-heading li a{
+	color: black;
+	text-decoration: none;
+}
+.backgroundcolor{
+	background-color: #FAF6F6;
+	margin-top: 1px;
+}
+.noidung h1 a{
+>>>>>>> f31598da2a312f43d3ef1f7af13f0ddee35415fd
 	margin-top: 20px;
 	text-decoration: none;
 	color: black;
 }
 
+<<<<<<< HEAD
 .noidung h1 a:hover {
 	color: #39CC31;
 }
 
 .noidung h1 {
+=======
+.noidung h1 a:hover{
+	color: #39CC31;
+}
+.noidung h1{
+>>>>>>> f31598da2a312f43d3ef1f7af13f0ddee35415fd
 	display: flex;
 	color: black;
 	align-content: center;
 	justify-content: center;
 }
+<<<<<<< HEAD
 
 .panel-heading {
+=======
+.panel-heading{
+>>>>>>> f31598da2a312f43d3ef1f7af13f0ddee35415fd
 	position: relative;
 	margin-top: 0px;
 	margin-left: 0px;
 	height: 50px;
 }
+<<<<<<< HEAD
 
 .noidung div {
 	margin-left: 20px;
@@ -84,10 +132,38 @@
 	white-space: nowrap;
 	position: relative;
 	color: #000;
+=======
+.noidung div{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.menu{
+	display: flex;
+	margin: 3px auto;
+    padding-top: 3px;
+    width: 1150px;
+    position: relative;
+}
+
+.breadcrumb li a{
+
+	text-align: center;
+    background: #D3D3D3;
+    padding: 6px 8px 0 15px;
+    text-decoration: none;
+    height: 36px;
+    display: block;
+    float: left;
+    font: 400 18px/25px arial;
+    white-space: nowrap;
+    position: relative;
+    color: #000;
+>>>>>>> f31598da2a312f43d3ef1f7af13f0ddee35415fd
 }
 
 .breadcrumb li a:after {
 	height: 36px;
+<<<<<<< HEAD
 	content: "";
 	position: absolute;
 	right: -18px;
@@ -144,3 +220,131 @@
 }
 
 </style>
+=======
+    content: "";
+    position: absolute;
+    right: -18px;
+    top: 0;
+    border-left: 18px solid #D3D3D3;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    z-index: 999;
+}
+.breadcrumb .start a {
+	height: 36px;
+    font-weight: 700;
+    color: #9f224e;
+    background: #eceeed;
+    border-left: 3px solid #9F224E;
+    margin-left: 0;
+    z-index: 99;
+}
+.breadcrumb .start a:after {
+	height: 36px;
+    border-left: 18px solid #eceeed !important;
+}
+.menu .breadcrumb li.start a {
+    color: #E17100;
+    border-color: #E17100;
+}
+.breadcrumb li+li:before{
+	content: none;
+}
+.hagtag .tagitem{
+	display: inline-block;
+	color: #656565;
+	background: #f1f1f1;
+    padding: 0 10px;
+    height: 20px;
+    color: #939393;
+    float: left;
+    margin: 0 5px 5px 0;
+    font: 400 11px/20px arial;
+}
+body{
+	font-size: 20px;
+	background: #e8eaed;
+}
+.styleBaiLienQuan{
+	width: 1200px;
+	margin-top: 60px;
+}
+.styleBaiLienQuan ul, li{
+	list-style-type: none;
+}
+#headerbar{
+    text-align:right;
+}
+.header-items {
+    display: inline-block;
+}
+.panel-heading{
+	height: auto;
+}
+a, a:hover, a:focus {
+    text-decoration: none;
+    font-weight: 500;
+    color: #a6a6a6;
+    transition-duration: 500ms;
+}
+.drop-down:hover .drop-down-content{
+    display: block;
+}
+
+.drop-down-content{
+    display: none;
+    position:absolute;
+    z-index: 60 ;
+    background: #f9f9f9;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+.center-block{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*footer*/
+.footer{
+    background: #292c2f;
+    color: #fff;
+}
+
+.footer .left, .footer .right{
+    text-align: center;
+}
+
+.footer .center i{
+    background: #33383b;
+    color: #fff;
+    font-size: 25px;
+    width:38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 42px;
+    margin: 10px 15px;
+}
+
+.footer .right i{
+    background: #33383b;
+    color: #fff;
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 42px;
+}
+
+.footer .center p{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer .center p span{
+    display: block;
+    line-height: 2;
+}
+>>>>>>> f31598da2a312f43d3ef1f7af13f0ddee35415fd

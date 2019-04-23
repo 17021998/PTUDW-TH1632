@@ -23,11 +23,14 @@ body{
 }
 #div_form>h2{
 	color: white;
+	text-align: center;
 }
 form{
+	width: 50%;
 	background: white;
 	border: none;
 	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 form>div{
 	margin-left: 10%;
@@ -71,4 +74,18 @@ form>div{
 	background: white;
 	border: 2px solid #eeeeee;
 	border-radius: 2.4rem;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@media screen and (max-width: 600px) {
+
+	form{
+		width: 90%;	
+		margin: auto;
+	}
+	form>div{
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-top: 5%;
+	}
+
 }

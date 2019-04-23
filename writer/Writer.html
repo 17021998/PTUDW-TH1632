@@ -5,21 +5,171 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 -->
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	<link type="text/css" href="sample/css/sample.css" rel="stylesheet" media="screen" />
-	<title>Documentindex</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<title>Writer</title>
+	<style type="text/css">
+		.menu{
+			display: flex;
+			margin: 3px auto;
+		    width: 1150px;
+		    position: relative;
+		}
+
+		.breadcrumb li a{
+
+			text-align: center;
+		    background: #D3D3D3;
+		    padding: 6px 8px 0 15px;
+		    text-decoration: none;
+		    height: 36px;
+		    display: block;
+		    float: left;
+		    font: 400 18px/25px arial;
+		    white-space: nowrap;
+		    position: relative;
+		    color: #000;
+		}
+
+		.breadcrumb li a:after {
+			height: 36px;
+		    content: "";
+		    position: absolute;
+		    right: -18px;
+		    top: 0;
+		    border-left: 18px solid #D3D3D3;
+		    border-top: 18px solid transparent;
+		    border-bottom: 18px solid transparent;
+		    z-index: 999;
+		}
+		.breadcrumb .start a {
+			height: 36px;
+		    font-weight: 700;
+		    color: #9f224e;
+		    background: #eceeed;
+		    border-left: 3px solid #9F224E;
+		    margin-left: 0;
+		    z-index: 99;
+		}
+		.breadcrumb .start a:after {
+			height: 36px;
+		    border-left: 18px solid #eceeed !important;
+		}
+		.menu .breadcrumb li.start a {
+		    color: #E17100;
+		    border-color: #E17100;
+		}
+		.breadcrumb li+li:before{
+			content: none;
+		}
+		#headerbar{
+            text-align:right;
+        }
+        .header-items {
+            display: inline-block;
+        }
+	</style>
 </head>
 <body>
 	<div class="panel-primary">
-		<div class="panel-heading">
-			header
+		
+		<div>
+			<section class="top-header bg-dark">
+		        <!--full width color-->
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-md-6">
+		                    <a href="#">
+		                        <i class="fas fa-kiwi-bird"></i>
+		                    </a>
+		                </div>
+		                <div class="col-md-6 text-right">
+		                    <!--Login/Logout-->
+		                    <a href="#" class="badge badge-dark">
+		                        <span>Đăng nhập</span>
+		                        <i class="fas fa-sign-in-alt"></i>
+		                    </a>
+		                    <a href="#" class="badge badge-dark">
+		                        <span>Đăng ký</span>
+		                        <i class="fas fa-user"></i>
+		                    </a>
+		                </div>
+		            </div>
+		        </div>
+		    </section>
+		    <!-- ### Navigation Bar ###-->
+		    <section class="navigation bg-light">
+		        <div class="container">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <nav class="navbar navbar-light navbar-expand-md">
+		                        <a class="navbar-brand" href="#">TH16-News</a>
+		                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+		                            aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+		                            <span class="navbar-toggler-icon"></span>
+		                        </button>
+		                        <div class="collapse navbar-collapse " id="navbar">
+		                            <ul class="navbar-nav mr-auto">
+		                                <li class="nav-item dropdown">
+		                                    <a class="nav-link" href="#">Thời sự <i class="fas fa-caret-down"></i></a>
+		                                    <div class="drop-down-content">
+		                                        <a href="#" class="drop-down-item nav-link">Quân sự</a>
+		                                        <a href="#" class="drop-down-item nav-link">Chuyển động 24h</a>
+		                                    </div>
+		                                </li>
+		                                <li class="nav-item drop-down">
+		                                    <a class="nav-link" href="#">Thể thao <i class="fas fa-caret-down"></i></a>
+		                                    <div class="drop-down-content">
+		                                        <a href="#" class="drop-down-item nav-link">Bóng đá</a>
+		                                    </div>
+		                                </li>
+		                                <li class="nav-item drop-down">
+		                                    <a class="nav-link" href="#">Đời sống <i class="fas fa-caret-down"></i></a>
+		                                    <div class="drop-down-content">
+		                                        <a href="#" class="drop-down-item nav-link">Du lịch</a>
+		                                        <a href="#" class="drop-down-item nav-link">Sức khỏe</a>
+		                                        <a href="#" class="drop-down-item nav-link">Giáo dục</a>
+		                                    </div>
+		                                </li>
+		                                <li class="nav-item drop-down">
+		                                    <a class="nav-link" href="#">Khoa học <i class="fas fa-caret-down"></i></a>
+		                                    <div class="drop-down-content">
+		                                        <a href="#" class="drop-down-item nav-link">CNTT</a>
+		                                        <a href="#" class="drop-down-item nav-link">Chuyện đó đây</a>
+		                                        <a href="#" class="drop-down-item nav-link">Công nghệ</a>
+		                                    </div>
+		                                </li>
+		                            </ul>
+		                            <form class="form-inline my-2 my-lg-0">
+		                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+		                                    aria-label="Search">
+		                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		                            </form>
+		                        </div>
+		                    </nav>
+		                </div>
+		            </div>
+		        </div>
+		    </section>
+
 		</div>
 		<div>
+			<section class="menu container">
+				<ul class="breadcrumb left">
+					<li class="start">
+						<h4><a href="#">Phóng Viên</a></h4>
+					</li>
+					<li >
+						<h4><a href="#">Đăng Bài Viết</a></h4>
+					</li>
+				</ul>
+			</section>
 			<main>
 					<div class="message">
 						<div class="centered">
@@ -50,7 +200,42 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 					</div>
 			</main>
 		</div>
+		<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-4 left">
+
+                    <p>TH16-News <i class="far fa-copyright"></i> 2019</p>
+                </div>
+                <div class="col-12 col-lg-4 center">
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p><span>227 Nguyen Van Cu St. Ward 4</span> District 5, Ho Chi Minh City</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i>
+                        <p>+84848484848</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-envelope"></i>
+                        <p>548.533.552@gmail.com</p>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4 right">
+                    <h3>About us</h3>
+                    <p>We are a group with three people.</p>
+                    <div>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-github"></i>
+                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 	</div>
+
 <script src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
 	CKEDITOR.replace('writer');
