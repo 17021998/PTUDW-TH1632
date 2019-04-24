@@ -214,11 +214,12 @@ a, a:hover, a:focus {
 
 .post-thumbnail {
     overflow: hidden;
+    text-align: center;
 }
 
 .post-thumbnail img {
-    height: 30px;
-    width: 30px;
+    height: 150px;
+    width: 100%;
     object-fit: cover;
 }
 
