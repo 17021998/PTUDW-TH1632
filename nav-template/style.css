@@ -337,3 +337,25 @@ body.offcanvas .toggle {
     -o-transform: translateX(270px);
     transform: translateX(270px);
 }
+
+/* Phần chính*/
+
+#page-main {
+    width: 80%;
+    float: right;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+@media screen and (max-width: 1200px) {
+    #page-main {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #page-main {
+        width: 100%;
+    }
+}
