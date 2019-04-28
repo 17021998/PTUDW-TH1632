@@ -201,7 +201,6 @@ h1, h2, h3, h4, h5, h6 {
     display: -moz-inline-stack;
     display: inline-block;
     zoom: 1;
-    display: inline;
     width: 30px;
     height: 2px;
     color: #000;
@@ -298,6 +297,12 @@ h1, h2, h3, h4, h5, h6 {
     .toggle {
         opacity: 1;
         visibility: visible;
+    }
+
+    #page-aside{
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;   
     }
 }
 

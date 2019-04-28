@@ -1,0 +1,90 @@
+ol,ul{
+    list-style: none;
+}
+
+#hash-tag-info {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #fff;
+    padding: 20px;  
+    -webkit-box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+#hash-tag-info .hash-label{
+    color: #ccc;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+#hash-tag-info .hash-name{
+    color: #fb6942;
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-weight: 500;    
+}
+
+.fr{
+    float: right;
+}
+
+/*clear fix*/
+#hash-tag-info::after{
+    content: "";
+    display: block;
+    clear: both;
+    
+}
+
+#hash-tag-info .related-cata{
+    position: relative;
+}
+
+#hash-tag-info .related-cata .related-cata-label{
+    border-radius: 2px;
+    background: #f1f1f1;
+    padding:5px 20px;
+    color: #888;
+    transition-duration: 2s;
+}
+
+.related-cata-label span:after{
+    content: '';
+    position: absolute;
+    z-index: 1;
+    right: 2px;
+    top: 10px;
+    border-top: 7px solid #d3d3d3;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    transition-duration: 2s;
+}
+
+.related-cata:hover .related-cata-label span:after{
+    border-top-color: #000;
+}
+
+#hash-tag-info .related-cata:hover .related-cata-label{
+    color: #000;
+    background: #fb6942;
+}
+
+#hash-tag-info .related-cata:hover .related-cata-filter{
+    display: block;
+}
+
+#hash-tag-info .related-cata .related-cata-filter{
+    position: absolute;
+    z-index: 1;
+    width: 180px;
+    top: 32px;
+    right: 0;
+    display: none;
+    background: #fff;
+    box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 2px;
+}
