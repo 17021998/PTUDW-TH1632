@@ -47,6 +47,27 @@
 		});
 	};
 
+	var menuToggle = function () {
+		$('.js-menu-toggle').on('click', function (event) {
+			event.preventDefault();
+			var $this = $(this);
+
+
+
+			if ($this.hasClass('active')) {
+				$this.removeClass('active');
+			}
+			else {
+				$this.addClass('active');
+			}
+		});
+
+		$(".js-menu-toggle ul").click(function (e) {
+			e.stopPropagation();
+		});
+	};
+
+
 	var mobileMenuOutsideClick = function () {
 
 		$(document).click(function (e) {
@@ -77,6 +98,7 @@
 	$(function () {
 		fullHeight();
 		burgerMenu();
+		menuToggle();
 		mobileMenuOutsideClick();
 	});
 }());

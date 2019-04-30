@@ -14,6 +14,7 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--StyleSheet-->
     <link rel="stylesheet" href="editor-style.css">
+    <link rel="stylesheet" href="edit-area-style.css">
     <!--JQuery-->
     <script src="jquery.min.js"></script>
     <!--Main Script-->
@@ -23,29 +24,75 @@
 <body>
     <div id="page">
         <section id="page-nav">
-                <a href="#" class="js-toggle toggle"><i></i></a>
-                <aside id="page-aside" role="complementary" class="js-fullheight">
-                    <div id="page-logo">
-                        <img src="../images/company-logo.png" alt="company-logo">
-                    </div>
-                    <nav id="page-main-menu" role="navigation">
-                        <ul>
-                            <li><a href="#">Thông tin cá nhân</a></li>
-                            <li class="active"><a href="#">Xét duyệt bài viết</a></li>
-                            
-                        </ul>
-                    </nav>
-                    <div id="page-footer">
+            <a href="#" class="js-toggle toggle"><i></i></a>
+            <aside id="page-aside" role="complementary" class="js-fullheight">
+                <div id="page-logo">
+                    <img src="../images/company-logo.png" alt="company-logo">
+                </div>
+                <nav id="page-main-menu" role="navigation">
+                    <ul>
+                        <li><a href="#">Thông tin cá nhân</a></li>
+                        <li class="js-menu-toggle">
+                            <a href="#sub-menu" data-toggle="collapse" role="button" aria-expanded="false"
+                                aria-controls="sub-menu">Xét duyệt bài viết</a>
+                            <ul class="collapse" id="sub-menu">
+                                <li><a href="#">Du lịch</a></li>
+                                <li><a href="#">Đời sống</a></li>
+                                <li><a href="#">Thời sự</a></li>
+                                <li><a href="#">Khoa học</a></li>
+                            </ul>
+                        </li>
 
+                    </ul>
+                </nav>
+                <div id="page-footer" class="text-right">
+                    <p>TH16-News <i class="far fa-copyright"></i> 2019</p>
+                    <p><i class="fas fa-map-marker-alt"></i><span> 227 Nguyen Van Cu St. Ward 4</span> District 5, Ho
+                        Chi Minh City</p>
+                    <p><i class="fas fa-phone"></i> +84848484848</p>
+                    <p><i class="fas fa-envelope"></i> 548.533.552@gmail.com</p>
+                    <h3>About us</h3>
+                    <p>We are a group with three people.</p>
+                    <div>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-github"></i>
+                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-twitter"></i>
                     </div>
-                </aside>
+                </div>
+            </aside>
         </section>
         <section id="page-main-content">
             <div class="container">
-                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box">
+                            <h1>Chuyên mục: <span id="cata-name">Du lịch</span></h1>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box">
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+
+                    </div>
+                </div>
             </div>
         </section>
     </div>
+
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

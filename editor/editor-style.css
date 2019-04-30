@@ -57,13 +57,14 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
     -moz-box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
     box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
-@media screen and (max-width: 1200px) {
-    #page-aside {
-        width: 30%;
-    }
+#page-aside::-webkit-scrollbar{
+    display: none;
 }
+
 
 /*Sẽ cho aside rút vào màn hình*/
 @media screen and (max-width: 768px) {
@@ -111,6 +112,10 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+ul>li{
+    margin-top:10px !important;
+}
+
 #page-aside #page-main-menu ul li {
     margin: 0 0 10px 0;
     padding: 0;
@@ -121,12 +126,16 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 1px;
 }
 
+<<<<<<< HEAD
 #page-main-menu ul>li>a>span {
     font-style: normal;
     text-transform: lowercase;
 }
 
 #page-aside #page-main-menu ul li a {
+=======
+ul li a, ul li a:active, ul li a:focus, ul li a:visited {
+>>>>>>> 31dc16a08e46c9ba68f51430594a6c710ec415dd
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     position: relative;
@@ -137,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s;
 }
 
-#page-aside #page-main-menu ul li a:after {
+ul li a:after {
     content: "";
     position: absolute;
     height: 1px;
@@ -158,12 +167,12 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-#page-aside #page-main-menu ul li a:hover {
+ul li a:hover {
     text-decoration: none;
     color: #fff;
 }
 
-#page-aside #page-main-menu ul li a:hover:after {
+ul li a:hover:after {
     visibility: visible;
     -webkit-transform: scaleX(1);
     -moz-transform: scaleX(1);
@@ -172,11 +181,11 @@ h1, h2, h3, h4, h5, h6 {
     transform: scaleX(1);
 }
 
-#page-aside #page-main-menu ul li.active a {
+ul li.active>a {
     color: #fff;
 }
 
-#page-aside #page-main-menu ul li.active a:after {
+ul li.active>a:after {
     visibility: visible;
     -webkit-transform: scaleX(1);
     -moz-transform: scaleX(1);
@@ -358,9 +367,11 @@ body.offcanvas .toggle {
 
 #page-footer{
     color: #fff;
+
 }
 #page-footer p {
     margin-bottom: 5px;
+    font-size:12px;
 }
 #page-footer h3{
     color: #fff;
