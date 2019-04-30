@@ -4,7 +4,7 @@ body {
     font-size: 15px;
     line-height: 1.8;
     color: rgba(0, 0, 0, 0.7);
-    background: #e8eaed;
+    background: #fafafa;
 }
 
 #page {
@@ -88,10 +88,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #page-aside #page-logo img {
-    width: 78%;
+    width: 75%;
     height: 50%;
     transform: scale(2);
-    transform-origin: 20% 20%;
+    transform-origin: 10% 20%;
 }
 
 @media screen and (max-width: 768px) {
@@ -124,6 +124,11 @@ ul>li{
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+#page-main-menu ul>li>a>span {
+    font-style: normal;
+    text-transform: lowercase;
 }
 
 ul li a, ul li a:active, ul li a:focus, ul li a:visited {
@@ -386,4 +391,14 @@ body.offcanvas #page-main-content, body.offcanvas .toggle {
     color: #fff;
     margin-top: 20px;
     margin-bottom: 15px;
+}
+
+.nav-img img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;  
+}
+.main-menu-hidden{
+    display: none;
 }

@@ -1,17 +1,12 @@
-.nav-img img{
-	height: 60px;
-	width: 60px;
-	border-radius: 50%;
-	object-fit: cover;	
-}
-
 .head-content{
-	width: 100%;
-
+	background: #eeeeee;
 }
 .head-item{
 	margin-right: 20px;
-	color: white;
+	color: #102027;
+}
+.head-item: hover{
+	color: #db4437;
 }
 .head-item img{
 	height: 50px;
@@ -23,6 +18,6 @@
 
 @media screen and (max-width: 600px){
 	.head-content{
-		visibility: hidden;
+		display: none;
 	}
 }

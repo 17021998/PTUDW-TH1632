@@ -14,7 +14,6 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--StyleSheet-->
     <link rel="stylesheet" href="../editor/editor-style.css">
-    <link rel="stylesheet" type="text/css" href="../footer-nav-headerCSS.css">
     <link rel="stylesheet" type="text/css" href="profile-user-normalCSS.css">
     <!--JQuery-->
     <script src="../editor/jquery.min.js"></script>
@@ -32,13 +31,17 @@
                     </div>
                     <nav id="page-main-menu" role="navigation">
                         <ul>
-                            <li><a href="#" class="nav-img"><img src="../images/account.jpg"></a></li>
+                            <li class="nav-img">
+                                <img src="../images/account.jpg">
+                                <a href="#"><span>ntquyen98@gmail.com</span></a></li>
                             <li class="active"><a href="#">Thông tin cá nhân</a></li>
-                            <li><a href="#">Xét duyệt bài viết</a></li>
+                            <li><a href="#">Bảo mật</a></li>
+                            <li><a href="#" class="main-menu-hidden">Premium</a></li>
+                            <li><a href="#" class="main-menu-hidden">Đăng xuất</a></li>
                         </ul>
                     </nav>
                     <div id="page-footer" class="text-right">
-                        <p>TH16-News <i class="far fa-copyright"></i> 2019</p>                        
+                        <p class="mt-5">TH16-News <i class="far fa-copyright"></i> 2019</p>                        
                         <p><i class="fas fa-map-marker-alt"></i><span> 227 Nguyen Van Cu St. Ward 4</span> District 5, Ho Chi Minh City</p>
                         <p><i class="fas fa-phone"></i> +84848484848</p>
                         <p><i class="fas fa-envelope"></i> 548.533.552@gmail.com</p>
@@ -56,6 +59,7 @@
         <section id="page-main-content">
             <div class="head-content row">
                 <div class="col-md-12 text-right my-auto">
+                    <a href="#" class="head-item"><span>Premium</span></a>
                     <a href="#" class="head-item"><img src="../images/account.jpg"></a>
                     <a href="#" class="head-item">
                         <span>Đăng xuất</span>
