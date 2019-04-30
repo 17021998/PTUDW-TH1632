@@ -358,9 +358,11 @@ body.offcanvas .toggle {
 
 #page-footer{
     color: #fff;
+
 }
 #page-footer p {
     margin-bottom: 5px;
+    font-size:12px;
 }
 #page-footer h3{
     color: #fff;
