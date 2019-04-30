@@ -126,16 +126,12 @@ ul>li{
     letter-spacing: 1px;
 }
 
-<<<<<<< HEAD
 #page-main-menu ul>li>a>span {
     font-style: normal;
     text-transform: lowercase;
 }
 
-#page-aside #page-main-menu ul li a {
-=======
 ul li a, ul li a:active, ul li a:focus, ul li a:visited {
->>>>>>> 31dc16a08e46c9ba68f51430594a6c710ec415dd
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     position: relative;
