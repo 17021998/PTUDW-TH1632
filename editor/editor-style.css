@@ -188,6 +188,10 @@ ul li.active>a:after {
 .toggle {
     cursor: pointer;
     text-decoration: none;
+    background-color:#fff;
+    position: sticky;
+    top: 0;
+    width: 100%;
 }
 
 .toggle.active i::before, .toggle.active i::after {
@@ -330,7 +334,7 @@ body.offcanvas #page-aside {
     position: fixed;
 }
 
-body.offcanvas .toggle {
+body.offcanvas #page-main-content, body.offcanvas .toggle {
     top: 0;
     -moz-transform: translateX(270px);
     -webkit-transform: translateX(270px);
@@ -352,6 +356,7 @@ body.offcanvas .toggle {
 
 @media screen and (max-width: 768px) {
     #page-main-content {
+        padding-top: 70px;
         width: 100%;
     }
 }
