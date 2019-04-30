@@ -1,0 +1,28 @@
+.nav-img img{
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	object-fit: cover;	
+}
+
+.head-content{
+	width: 100%;
+
+}
+.head-item{
+	margin-right: 20px;
+	color: white;
+}
+.head-item img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+
+@media screen and (max-width: 600px){
+	.head-content{
+		visibility: hidden;
+	}
+}
