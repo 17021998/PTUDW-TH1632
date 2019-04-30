@@ -59,11 +59,6 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
 }
 
-@media screen and (max-width: 1200px) {
-    #page-aside {
-        width: 30%;
-    }
-}
 
 /*Sẽ cho aside rút vào màn hình*/
 @media screen and (max-width: 768px) {
@@ -121,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 1px;
 }
 
-#page-aside #page-main-menu ul li a {
+ul li a {
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     position: relative;
@@ -132,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s;
 }
 
-#page-aside #page-main-menu ul li a:after {
+ul li a:after {
     content: "";
     position: absolute;
     height: 1px;
@@ -153,12 +148,12 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-#page-aside #page-main-menu ul li a:hover {
+ul li a:hover {
     text-decoration: none;
     color: #fff;
 }
 
-#page-aside #page-main-menu ul li a:hover:after {
+ul li a:hover:after {
     visibility: visible;
     -webkit-transform: scaleX(1);
     -moz-transform: scaleX(1);
@@ -167,11 +162,11 @@ h1, h2, h3, h4, h5, h6 {
     transform: scaleX(1);
 }
 
-#page-aside #page-main-menu ul li.active a {
+ul li.active>a {
     color: #fff;
 }
 
-#page-aside #page-main-menu ul li.active a:after {
+ul li.active>a:after {
     visibility: visible;
     -webkit-transform: scaleX(1);
     -moz-transform: scaleX(1);
@@ -344,14 +339,9 @@ body.offcanvas .toggle {
     transition: 0.5s;
 }
 
-@media screen and (max-width: 1200px) {
-    #page-main-content {
-        width: 70%;
-    }
-}
 
 @media screen and (max-width: 768px) {
-    #page-main {
+    #page-main-content {
         width: 100%;
     }
 }
