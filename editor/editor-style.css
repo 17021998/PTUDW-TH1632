@@ -1,9 +1,10 @@
-.body {
+body {
     font-family: "Montserrat", Arial, sans-serif;
     font-weight: 300;
     font-size: 15px;
     line-height: 1.8;
     color: rgba(0, 0, 0, 0.7);
+    background: #e8eaed;
 }
 
 #page {
