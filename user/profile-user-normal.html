@@ -19,6 +19,7 @@
     <script src="../editor/jquery.min.js"></script>
     <!--Main Script-->
     <script src="../editor/main.js"></script>
+
 </head>
 
 <body>
@@ -66,12 +67,88 @@
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
-
             </div>
 
+            <div class="card col-md-8">
+              <div class="card-header">
+                <h1>Trang cá nhân</h1>
+              </div>
+               <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+              </ul>
+            </div>
+            <div id="content">
+                <h1>Trang cá nhân</h1>
+                <hr>
+                <form class="d-flex flex-row content-form content-form-view">
+                    <div class="col-md-8">
+                        <div id="content-form-img">
+                            <div>
+                                <span>Ảnh đại diện</span>
+                            </div>
+                            <div id="profile-picture">
+                                <img src="../images/account.jpg">
+                            </div>
+                        </div>
+                        <div class="form-group row w-75">
+                            <label for="inputHoTen">Họ tên:</label>
+                            <input type="text" class="form-control" id="inputHoTen" placeholder="Họ tên">
+                        </div>
+                        <div class="form-group row w-75">
+                            <label for="input">Email liên lạc:</label>                  
+                            <input type="email" class="form-control" id="inputMaSo" placeholder="name@example.com">     
+                        </div>  
+                        <div class="row w-100">
+                            <legend class="col-form-label col-sm-2 pl-0">Ngày sinh:</legend> 
+                            <div class="custom-control-inline w-50">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center w-75 mt-4">
+                            <button type="button" class="btn">Chỉnh sửa</button>       
+                        </div>                  
+                    </div>              
+                </form>
+
+                <form class="d-flex flex-row content-form content-form-edit">
+                    <div class="col-md-8">
+                        <div id="content-form-img">
+                            <div>
+                                <span>Ảnh đại diện</span>
+                            </div>
+                            <div id="profile-picture">
+                                <img src="../images/account.jpg">
+                            </div>
+                        </div>
+                        <div class="form-group row w-75">
+                            <label for="inputHoTen">Họ tên:</label>
+                            <input type="text" class="form-control" id="inputHoTen" placeholder="Họ tên">
+                        </div>
+                        <div class="form-group row w-75">
+                            <label for="input">Email liên lạc:</label>                  
+                            <input type="email" class="form-control" id="inputMaSo" placeholder="name@example.com">     
+                        </div>  
+                        <div class="row w-100">
+                            <legend class="col-form-label col-sm-2 pl-0">Ngày sinh:</legend> 
+                            <div class="custom-control-inline w-50">
+                                <select class="custom-select mr-3" id="day"></select>
+
+                                <select class="custom-select mr-3" id="month"></select>
+
+                                <select class="custom-select" id="year"></select>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center w-75 mt-4">
+                            <button type="button" class="btn">Lưu</button>       
+                        </div>                  
+                    </div>              
+                </form>
+            </div>
 
         </section>
     </div>
+    <script src="profile-userJS.js"></script>
 </body>
 
 </html>

@@ -14,6 +14,28 @@
 	border-radius: 50%;
 	object-fit: cover;
 }
+#content{
+	padding-left: 20px;
+}
+.content-form{
+	padding-left: 50px;
+	background: #fff;
+	margin-right: 30px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	box-shadow: 1px 1px 5px #62727b;
+}
+.content-form-img{
+	height: 100px;
+	width: 100px;
+}
+#profile-picture img{
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+    object-fit: cover;  
+}
+
 
 
 @media screen and (max-width: 600px){
