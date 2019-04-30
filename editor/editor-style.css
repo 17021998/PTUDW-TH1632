@@ -64,6 +64,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/*Sẽ cho aside rút vào màn hình*/
 @media screen and (max-width: 768px) {
     #page-aside {
         width: 270px;
@@ -310,6 +311,7 @@ body.offcanvas {
     overflow-x: hidden;
 }
 
+/*đưa page aside trở về vị trí cũ*/
 body.offcanvas #page-aside {
     -moz-transform: translateX(0);
     -webkit-transform: translateX(0);
