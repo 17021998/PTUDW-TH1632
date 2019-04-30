@@ -57,6 +57,12 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
     -moz-box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
     box-shadow: 7px 7px 10px 0px rgba(0, 0, 0, 0.51);
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+#page-aside::-webkit-scrollbar{
+    display: none;
 }
 
 
@@ -106,6 +112,10 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+ul>li{
+    margin-top:10px !important;
+}
+
 #page-aside #page-main-menu ul li {
     margin: 0 0 10px 0;
     padding: 0;
@@ -116,7 +126,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 1px;
 }
 
-ul li a {
+ul li a, ul li a:active, ul li a:focus, ul li a:visited {
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     position: relative;
