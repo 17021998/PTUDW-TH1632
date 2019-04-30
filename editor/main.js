@@ -47,19 +47,26 @@
 		});
 	};
 
-	var menuToggle = function() {
-		$('.js-menu-toggle').on('click', function(event){
+	var menuToggle = function () {
+		$('.js-menu-toggle').on('click', function (event) {
 			event.preventDefault();
 			var $this = $(this);
 
-			if($this.hasClass('active')){
+
+
+			if ($this.hasClass('active')) {
 				$this.removeClass('active');
 			}
-			else{
+			else {
 				$this.addClass('active');
 			}
 		});
+
+		$(".js-menu-toggle ul").click(function (e) {
+			e.stopPropagation();
+		});
 	};
+
 
 	var mobileMenuOutsideClick = function () {
 
