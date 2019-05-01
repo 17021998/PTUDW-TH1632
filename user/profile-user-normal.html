@@ -68,23 +68,12 @@
                     </a>
                 </div>
             </div>
-
-            <div class="card col-md-8">
-              <div class="card-header">
-                <h1>Trang cá nhân</h1>
-              </div>
-               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-            </div>
             <div id="content">
                 <h1>Trang cá nhân</h1>
                 <hr>
                 <form class="d-flex flex-row content-form content-form-view">
-                    <div class="col-md-8">
-                        <div id="content-form-img">
+                    <div class="col-md-12">
+                        <div id="content-form-img" class="text-center">
                             <div>
                                 <span>Ảnh đại diện</span>
                             </div>
@@ -92,63 +81,113 @@
                                 <img src="../images/account.jpg">
                             </div>
                         </div>
-                        <div class="form-group row w-75">
-                            <label for="inputHoTen">Họ tên:</label>
-                            <input type="text" class="form-control" id="inputHoTen" placeholder="Họ tên">
+                        <div class="form-group col-md-12 row form-disable">
+                            <label for="inputHoTen" class="col-sm-2 col-form-label">Họ tên:</label>
+                            <input type="text" class="input-feild col-md-8" id="inputHoTen" value="Nguyễn Thị Thu Quyền" disabled>
+                            <div class="js-group-edit col-md-2 js-an">
+                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
+                            </div>
+                            <div class="col-md-2 js-group-sc class-disable">
+                                 <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                 <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                            </div>
                         </div>
-                        <div class="form-group row w-75">
-                            <label for="input">Email liên lạc:</label>                  
-                            <input type="email" class="form-control" id="inputMaSo" placeholder="name@example.com">     
+                        <div class="form-group col-md-12 row form-disable">
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Email liên lạc:</label>             
+                            <input type="email" class="input-feild col-md-8" id="inputEmail" value="ntquyen98@gmail.com" disabled>
+                            <div class="js-group-edit col-md-2 js-an">
+                                <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
+                            </div>
+                            <div class="col-md-2 js-group-sc class-disable">
+                                 <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                 <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                            </div> 
                         </div>  
-                        <div class="row w-100">
-                            <legend class="col-form-label col-sm-2 pl-0">Ngày sinh:</legend> 
-                            <div class="custom-control-inline w-50">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-center w-75 mt-4">
-                            <button type="button" class="btn">Chỉnh sửa</button>       
-                        </div>                  
-                    </div>              
-                </form>
+                        <div class="col-md-12 row form-disable">
+                            <legend class="col-form-label col-sm-2">Ngày sinh:</legend>
+                            <div class="date-edit custom-control-inline col-md-7 class-disable row">
+                                <select class="col-md-2 custom-select mr-3" id="day"></select>
 
-                <form class="d-flex flex-row content-form content-form-edit">
-                    <div class="col-md-8">
-                        <div id="content-form-img">
-                            <div>
-                                <span>Ảnh đại diện</span>
-                            </div>
-                            <div id="profile-picture">
-                                <img src="../images/account.jpg">
-                            </div>
-                        </div>
-                        <div class="form-group row w-75">
-                            <label for="inputHoTen">Họ tên:</label>
-                            <input type="text" class="form-control" id="inputHoTen" placeholder="Họ tên">
-                        </div>
-                        <div class="form-group row w-75">
-                            <label for="input">Email liên lạc:</label>                  
-                            <input type="email" class="form-control" id="inputMaSo" placeholder="name@example.com">     
-                        </div>  
-                        <div class="row w-100">
-                            <legend class="col-form-label col-sm-2 pl-0">Ngày sinh:</legend> 
-                            <div class="custom-control-inline w-50">
-                                <select class="custom-select mr-3" id="day"></select>
+                                <select class="col-md-2 custom-select mr-3" id="month"></select>
 
-                                <select class="custom-select mr-3" id="month"></select>
-
-                                <select class="custom-select" id="year"></select>
+                                <select class="col-md-2 custom-select" id="year"></select>
+                            </div> 
+                            <input type="text" class=" col-md-8" id="showDate" value="01/08/1998" disabled>
+                            <div class="js-group-edit-date col-md-2">
+                                 <a href="#" class="form-a-edit w-75 js-edit-date">Edit</a>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-center w-75 mt-4">
-                            <button type="button" class="btn">Lưu</button>       
-                        </div>                  
+                            <div class="col-md-2 js-group-sc-date class-disable custom-control-inline">
+                                 <a href="#" class="form-a-save w-50 pr-3 js-save-date">Save</a>
+                                 <a href="#" class="form-a-cancel w-50 js-cancel-date">Cancel</a>
+                            </div>                        
+                            
+                        </div>           
                     </div>              
                 </form>
             </div>
-
         </section>
     </div>
+
     <script src="profile-userJS.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $( ".js-edit" ).each(function( index ) {
+                $(this).click(function(e){
+                    $('.input-feild').eq(index).prop('disabled',false);
+                    $('.js-group-edit').eq(index).addClass('class-disable');
+                    $('.js-group-sc').eq(index).addClass('class-enable');
+                    $('.js-group-sc').eq(index).removeClass('class-disable');
+                })
+            }); 
+            $( ".js-save" ).each(function( index ) {
+                $(this).click(function(e){
+                    $('.input-feild').eq(index).prop('disabled',true);
+                    $('.js-group-edit').eq(index).addClass('class-enable');
+                    $('.js-group-edit').eq(index).removeClass('class-disable');
+                    $('.js-group-sc').eq(index).removeClass('class-enable');
+                    $('.js-group-sc').eq(index).addClass('class-disable');
+                })
+            }); 
+            $( ".js-cancel" ).each(function( index ) {
+                $(this).click(function(e){
+                    $('.input-feild').eq(index).prop('disabled',true);
+                    $('.js-group-edit').eq(index).addClass('class-enable');
+                    $('.js-group-edit').eq(index).removeClass('class-disable');
+                    $('.js-group-sc').eq(index).removeClass('class-enable');
+                    $('.js-group-sc').eq(index).addClass('class-disable');
+                })
+            }); 
+            $('.js-edit-date').click(function(e){
+                $('#showDate').addClass('class-disable');
+                $('.date-edit').addClass('class-enable');
+                $('.date-edit').removeClass('class-disable');
+                $('.js-group-edit-date').addClass('class-disable');
+                $('.js-group-sc-date').addClass('class-enable');
+                $('.js-group-sc-date').removeClass('class-disable');
+            });
+            $('.js-save-date').click(function(e){
+                $('.date-edit').addClass('class-disable');
+                $('.date-edit').removeClass('class-enable');
+                $('#showDate').addClass('class-enable');
+                $('#showDate').removeClass('class-disable');
+                $('.js-group-edit-date').removeClass('class-disable');
+                $('.js-group-edit-date').addClass('class-enable');
+                $('.js-group-sc-date').addClass('class-disable');
+                $('.js-group-sc-date').removeClass('class-enable');
+            });
+            $('.js-cancel-date').click(function(e){
+                $('.date-edit').removeClass('class-enable');
+                $('.date-edit').addClass('class-disable');
+                $('#showDate').addClass('class-enable');
+                $('#showDate').removeClass('class-disable');
+                $('.js-group-edit-date').removeClass('class-disable');
+                $('.js-group-edit-date').addClass('class-enable');
+                $('.js-group-sc-date').addClass('class-disable');
+                $('.js-group-sc-date').removeClass('class-enable');
+            });
+        })
+        
+    </script>
 </body>
 
 </html>

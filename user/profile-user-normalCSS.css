@@ -1,5 +1,6 @@
 .head-content{
 	background: #eeeeee;
+	box-shadow: 1px 1px 5px #62727b;
 }
 .head-item{
 	margin-right: 20px;
@@ -28,13 +29,58 @@
 .content-form-img{
 	height: 100px;
 	width: 100px;
+	margin-bottom: 20px;
 }
 #profile-picture img{
 	height: 200px;
 	width: 200px;
 	border-radius: 50%;
     object-fit: cover;  
+    margin-bottom: 30px;
 }
+
+
+input:disabled {
+  background: #fff !important;
+}
+
+.form-disable{
+	margin-bottom: 20px;
+}
+
+input[type=text], input[type=email] {
+	border-radius: 0px;
+	  width: 100%;
+	  box-sizing: border-box;
+	  border: none;
+	  border-bottom: 1px solid #102027;
+}
+input[type=text]:focus, input[type=email]:focus{
+  outline : 0;
+}
+.class-disable{
+	display: none !important;
+}
+.class-enable{
+	display: inline-block;
+}
+
+.form-a-edit{
+	color: #102027 !important;
+}
+.form-a-save{
+	color: #1faa00 !important;
+}
+.form-a-cancel{
+	color: #c4001d !important;
+}
+.form-a-edit ,.form-a-save, .form-a-cancel{
+	vertical-align: center;
+}
+.form-a-edit:hover ,.form-a-save:hover, .form-a-cancel:hover{
+	color: #db4437 !important;
+}
+
 
 
 
