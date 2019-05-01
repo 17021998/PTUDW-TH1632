@@ -26,17 +26,17 @@
 	margin-bottom: 20px;
 	box-shadow: 1px 1px 5px #62727b;
 }
-.content-form-img{
-	height: 100px;
-	width: 100px;
-	margin-bottom: 20px;
+#content-form-img{
+    margin-left: 15%;  
+    margin-bottom: 30px;	
 }
+
 #profile-picture img{
 	height: 200px;
 	width: 200px;
 	border-radius: 50%;
-    object-fit: cover;  
-    margin-bottom: 30px;
+    object-fit: cover;
+
 }
 
 
@@ -83,9 +83,6 @@ input[type=text]:focus, input[type=email]:focus{
 
 
 
+@media screen and (max-width: 768px){
 
-@media screen and (max-width: 600px){
-	.head-content{
-		display: none;
-	}
 }
