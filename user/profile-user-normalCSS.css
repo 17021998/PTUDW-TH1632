@@ -17,16 +17,19 @@
 }
 #content{
 	padding-left: 20px;
+		height: 90% !important;
 }
-.content-form{
+.content-form-view{
 	padding-left: 50px;
 	background: #fff;
 	margin-right: 30px;
 	margin-left: 20px;
 	margin-bottom: 20px;
 	box-shadow: 1px 1px 5px #62727b;
+
 }
 #content-form-img{
+	margin-top: 30px;
     margin-left: 15%;  
     margin-bottom: 30px;	
 }
@@ -84,5 +87,36 @@ input[type=text]:focus, input[type=email]:focus{
 
 
 @media screen and (max-width: 768px){
+	#content{
+		padding-left: 0px;
+}
 
+	.content-form-view{
+		padding-left: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.input-feild, #showDate, .date-edit{
+		width: 80% !important;
+	}
+	#day, #month{
+		width: 25%;
+		margin-right: 3px !important;
+	}
+	#year{
+		width: 40%;
+	}
+	.js-group-edit, .js-group-edit-date{
+		width: 20% !important;
+	}
+	.js-group-sc, .js-group-sc-date{
+		width: 20% !important;
+	}
+	.date-edit{
+		margin-right: 0px !important;
+	}
+	.js-group-sc-date{
+		margin-right: 0px !important;
+	}
 }
