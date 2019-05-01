@@ -404,3 +404,32 @@ body.offcanvas #page-main-content, body.offcanvas .toggle {
 .main-menu-hidden{
     display: none;
 }
+
+
+/*Head content style*/
+.head-content{
+	background: #eeeeee;
+	box-shadow: 1px 1px 5px #62727b;
+}
+.head-item{
+	margin-right: 20px;
+	color: #102027;
+}
+.head-item:hover{
+	color: #db4437;
+}
+.head-item img{
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+@media screen and (max-width: 768px){
+	.head-content{
+		display: none;
+    }
+    .main-menu-hidden{
+        display: inline-block;
+    }
+}
