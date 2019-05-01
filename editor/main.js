@@ -52,8 +52,6 @@
 			event.preventDefault();
 			var $this = $(this);
 
-
-
 			if ($this.hasClass('active')) {
 				$this.removeClass('active');
 			}
