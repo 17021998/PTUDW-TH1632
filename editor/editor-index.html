@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Editor</title>
+    <!--Font-->
+    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -149,10 +151,7 @@
                                 <text-area name="editor" id="editor" rows="100" cols="80" disabled>
                                 </text-area>
                                 <script>
-                                    CKEDITOR.replace('editor', {
-                                        width: '100%',
-                                        height: 500
-                                    });
+                                    CKEDITOR.replace('editor');
                                 </script>
                             </form>
                             <div class="d-flex mt-3 justify-content-around col-12">

@@ -1,0 +1,56 @@
+
+.page-header .box h2{
+    position: relative;
+    margin-bottom: 0;
+}
+
+.page-header .box h2:before{
+    content: "";
+    position: absolute;
+    left:-15px;
+    background: black;
+    width:3px;
+    height: 100%;
+}
+
+#card-header-title h5{
+    position: relative;
+    margin-bottom: 0;
+}
+
+#card-header-title h5:before{
+    position: absolute;
+    left: -1.25rem;
+    width: 3px;
+    background: #000;
+    content: "";
+    height: 100%;
+}
+
+.btn-white{
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.btn-white:hover, .form-control:hover{
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.4);
+}
+
+.btn.btn-white{
+    border: 1px solid #e1e5eb;
+    color: #3d5170;
+    margin-left: -1px;
+}
+
+.cata-list li{
+    border: 1px solid #e1e5eb;
+}
+
+.cata-list>li{
+    border-radius: 5px;
+    height: fit-content;
+}
+
+input:disabled{
+    cursor: not-allowed;
+}
