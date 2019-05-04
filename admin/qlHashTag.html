@@ -9,15 +9,18 @@
     <!--Font-->
     <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
     <!--Bootstrap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css"> -->
     <!--Font awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--StyleSheet-->
     <link rel="stylesheet" href="../editor/editor-style.css">
     <link rel="stylesheet" href="admin-style.css">
-    </script>
+    <link rel="stylesheet" href="bootstrap-tagsinput.css">
+    <script src="bootstrap-tagsinput.min.js"></script>
 </head>
 
 <body>
@@ -93,15 +96,13 @@
                                             <h5>Danh sách Tags</h5>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="input-group w-100">
-                                            
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="card body">
-                                
+                                <center>
+                                    
+                                    <input type="text" value="" data-role="tagsinput" placeholder="Add tags" />
+                                </center>
                             </div>
                         </div>
                     </div>
