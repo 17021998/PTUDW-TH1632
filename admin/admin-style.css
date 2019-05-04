@@ -68,3 +68,18 @@ input:disabled{
     border-radius: 50%;
     object-fit: cover;
 }
+
+
+/*DD/MM/YYYY*/
+.month, .year{
+    color: #868e96;
+}
+
+.month:before, .year:before{
+    display: inline-block;
+    padding-right: .5rem;
+    padding-left: .5rem;
+    color: #868e96;
+    content: "/";
+}
+
