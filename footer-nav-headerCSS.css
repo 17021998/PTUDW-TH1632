@@ -138,3 +138,8 @@
 }
 
 
+@media (max-width: 991px){
+    .footer .center{
+        text-align: center;
+    }
+}
