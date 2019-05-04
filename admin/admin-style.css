@@ -71,7 +71,7 @@ input:disabled{
 
 
 /*DD/MM/YYYY*/
-.month, .year{
+.day, .month, .year{
     color: #868e96;
 }
 

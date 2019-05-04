@@ -88,26 +88,101 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col my-auto">
+                                    <div class="col-4 my-auto">
                                         <div id="card-header-title">
                                             <h5>Danh sách bài viết</h5>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="input-group w-100">
-                                            
+                                    <div class="col-8">
+                                        <div class="btn-toolbar justify-content-between flex-nowrap">
+                                            <button type="button" class="btn btn-secondary">
+                                                Thêm bài viết <span><i class="fas fa-plus"></i></span>
+                                            </button>
+                                            <select name="" id="" class="custom-select mx-auto w-50">
+                                                <option>
+                                                    Trang thái bài viết
+                                                </option>
+                                                <option value="publish">Đã phát hành</option>
+                                                <option value="draft">Chưa duyện</option>
+                                                <option value="unpublish">Bị từ chối</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card body">
-                                
+                                <div class="table-responsive-xl">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Danh mục</th>
+                                                <th scope="col">Tiêu đề</th>
+                                                <th scope="col">Loại</th>
+                                                <th scope="col">Tác giả</th>
+                                                <th scope="col">Trạng thái</th>
+                                                <th scope="col">Ngày xuất bản</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Thời sử</td>
+                                                <td>Bộ Lao động Thương binh và Xã hội đề xuất giờ làm việc từ 8h30</td>
+                                                <td>Thường</td>
+                                                <td>Xuân Diệu</td>
+                                                <td class="text-success">Đã xuất bản</td>
+                                                <td>
+                                                    <span class="date">15</span>
+                                                    <span class="month">10</span>
+                                                    <span class="year">2017</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Đời sống</td>
+                                                <td>7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của
+                                                    ENDGAME
+                                                </td>
+                                                <td>Premium</td>
+                                                <td>Tô Lịch</td>
+                                                <td class="text-warning">Chưa Duyệt</td>
+                                                <td>
+                                                    <span class="day">1</span>
+                                                    <span class="month">4</span>
+                                                    <span class="year">2019</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Chuyển động 24h</td>
+                                                <td>'Giá xăng có thể tăng cao hơn nhiều nếu không dùng Quỹ bình ổn'</td>
+                                                <td>Thường</td>
+                                                <td>Xuân Xiu</td>
+                                                <td class="text-danger">Bị từ chối</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <ul class="pagination mx-auto justify-content-center">
+                                    <li class="page-item disabled"><a href="#" class="page-link"><i
+                                                class="fas fa-chevron-left"></i></a></li>
+                                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                    <li class="page-item"><a href="#" class="page-link"><i
+                                                class="fas fa-chevron-right"></i></a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
     </div>
 
     <!--JQuery-->
