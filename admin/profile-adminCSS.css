@@ -81,7 +81,7 @@ input[type=text]:focus, input[type=email]:focus{
 		margin-right: 10px;
 	}
 	.input-feild, #showDate, .date-edit{
-		width: 80% !important;
+		width: 100% !important;
 	}
 	#day, #month{
 		width: 25%;
@@ -101,6 +101,9 @@ input[type=text]:focus, input[type=email]:focus{
 	}
 	.js-group-sc-date{
 		margin-right: 0px !important;
+	}
+	#btnGiaHan{
+		width: 40%;
 	}
 }
 
