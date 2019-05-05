@@ -14,7 +14,7 @@
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!--StyleSheet-->
     <link rel="stylesheet" href="../editor/editor-style.css">
-    <link rel="stylesheet" type="text/css" href="securityCSS.css">
+    <link rel="stylesheet" type="text/css" href="../writer/securityCSS.css">
     <!--JQuery-->
     <script src="../editor/jquery.min.js"></script>
     <!--Main Script-->
@@ -40,12 +40,17 @@
                             <li class="nav-img">
                                 <img src="../images/account.jpg">
                                 <a href="#"><span>ntquyen98@gmail.com</span></a></li>
-                            <li><a href="profile-writer.html">Thông tin cá nhân</a></li>
-                            <li><a href="Writer.html">Thêm bài viết</a></li>
-                            <li><a href="baivietduocduyet.html">Các bài đã duyệt</a></li>
-                            <li><a href="baivietduocduyet.html">Các bài đã xuất bản</a></li>
-                            <li><a href="baivietduocduyet.html">Các bài bị từ chối</a></li>
-                            <li><a href="baivietduocduyet.html">Các bài chưa duyệt</a></li>
+                            <li><a href="profile-editor.html">Thông tin cá nhân</a></li>
+                            <li class="js-menu-toggle">
+                                <a href="#sub-menu" data-toggle="collapse" role="button" aria-expanded="true"
+                                    aria-controls="sub-menu">Xét duyệt bài viết</a>
+                                <ul class="collapse show" id="sub-menu">
+                                    <li><a href="editor-index.html">Du lịch</a></li>
+                                    <li><a href="#">Đời sống</a></li>
+                                    <li><a href="#">Thời sự</a></li>
+                                    <li><a href="#">Khoa học</a></li>
+                                </ul>
+                            </li>
                             <li class="active"><a href="#">Bảo mật</a></li>
                             <li><a href="../index.html" class="main-menu-hidden">Đăng xuất</a></li>
                         </ul>
@@ -69,8 +74,8 @@
         <section id="page-main-content">
             <div class="head-content row">
                 <div class="col-md-12 text-right my-auto">
-                    <a href="#" class="head-item"><img src="../images/account.jpg"></a>
-                    <a href="#" class="head-item">
+                    <a href="profile-editor.html" class="head-item"><img src="../images/account.jpg"></a>
+                    <a href="../index.html" class="head-item">
                         <span>Đăng xuất</span>
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
