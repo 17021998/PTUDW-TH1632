@@ -1,4 +1,8 @@
 (function () {
+	$(".clickable-row").click(function() {
+		window.location = $(this).data("href");
+	});
+	
 	var isMobile = {
 		Android: function () {
 			return navigator.userAgent.match(/Android/i);

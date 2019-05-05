@@ -86,3 +86,10 @@ input:disabled{
 .content-form-view{
     margin-top: 10px;
 }
+.display-none{
+    display: none !important;
+}
+
+tr:hover{
+    cursor: pointer;
+}
