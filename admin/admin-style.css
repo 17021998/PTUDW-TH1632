@@ -88,6 +88,6 @@ input:disabled{
     display: none !important;
 }
 
-tr:hover{
+tr.clickable-row:hover{
     cursor: pointer;
 }
