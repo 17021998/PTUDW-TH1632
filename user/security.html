@@ -31,36 +31,37 @@
                     <h1 class="m-0">TH16-News</h1>
                 </div>
             </div>
-                <aside id="page-aside" role="complementary" class="js-fullheight">
-                    <div id="page-logo">
-                        <img src="../images/company-logo.png" alt="company-logo">
+            <aside id="page-aside" role="complementary" class="js-fullheight">
+                <div id="page-logo">
+                    <img src="../images/company-logo.png" alt="company-logo">
+                </div>
+                <nav id="page-main-menu" role="navigation">
+                    <ul>
+                        <li class="nav-img">
+                            <img src="../images/account.jpg">
+                            <a href="#"><span>ntquyen98@gmail.com</span></a></li>
+                        <li><a href="profile-user-normal.html">Thông tin cá nhân</a></li>
+                        <li class="active"><a href="#">Bảo mật</a></li>
+                        <li><a href="#" class="main-menu-hidden">Premium</a></li>
+                        <li><a href="../index.html" class="main-menu-hidden">Đăng xuất</a></li>
+                    </ul>
+                </nav>
+                <div id="page-footer" class="text-right">
+                    <p class="mt-5">TH16-News <i class="far fa-copyright"></i> 2019</p>
+                    <p><i class="fas fa-map-marker-alt"></i><span> 227 Nguyen Van Cu St. Ward 4</span> District 5, Ho
+                        Chi Minh City</p>
+                    <p><i class="fas fa-phone"></i> +84848484848</p>
+                    <p><i class="fas fa-envelope"></i> 548.533.552@gmail.com</p>
+                    <h3>About us</h3>
+                    <p>We are a group with three people.</p>
+                    <div>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-github"></i>
+                        <i class="fab fa-linkedin"></i>
+                        <i class="fab fa-twitter"></i>
                     </div>
-                    <nav id="page-main-menu" role="navigation">
-                        <ul>
-                            <li class="nav-img">
-                                <img src="../images/account.jpg">
-                                <a href="#"><span>ntquyen98@gmail.com</span></a></li>
-                            <li><a href="profile-user-normal.html">Thông tin cá nhân</a></li>
-                            <li class="active"><a href="#">Bảo mật</a></li>
-                            <li><a href="#" class="main-menu-hidden">Premium</a></li>
-                            <li><a href="../index.html" class="main-menu-hidden">Đăng xuất</a></li>
-                        </ul>
-                    </nav>
-                    <div id="page-footer" class="text-right">
-                        <p class="mt-5">TH16-News <i class="far fa-copyright"></i> 2019</p>                        
-                        <p><i class="fas fa-map-marker-alt"></i><span> 227 Nguyen Van Cu St. Ward 4</span> District 5, Ho Chi Minh City</p>
-                        <p><i class="fas fa-phone"></i> +84848484848</p>
-                        <p><i class="fas fa-envelope"></i> 548.533.552@gmail.com</p>
-                        <h3>About us</h3>
-                        <p>We are a group with three people.</p>
-                        <div>
-                            <i class="fab fa-facebook-f"></i>
-                            <i class="fab fa-github"></i>
-                            <i class="fab fa-linkedin"></i>
-                            <i class="fab fa-twitter"></i>
-                        </div>
-                    </div>
-                </aside>
+                </div>
+            </aside>
         </section>
         <section id="page-main-content">
             <div class="head-content row">
@@ -88,11 +89,13 @@
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="cbShowP" onclick="showPassword()">
+                                    <input class="form-check-input" type="checkbox" id="cbShowP"
+                                        onclick="showPassword()">
                                     <label class="form-check-label" for="cbShowP">Xem mật khẩu.</label>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật khẩu?</button>
+                            <button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật
+                                khẩu?</button>
                             <div class="form-group">
                                 <label for="new1Password">Mật khẩu mới:</label>
                                 <input type="password" class="form-control col-md-9" id="new1Password">
@@ -102,36 +105,38 @@
                                 <input type="password" class="form-control col-md-9" id="new2Password">
                             </div>
                             <div class="btn-gray">
-                                <button type="button" class="btn" id="change-btn" onclick="changePasswordSuccet()">Thay đổi mật khẩu</button>
-                                <button type="button" class="btn" id="cancel-btn" onclick="cancleChangePassword()">Hủy</button>
-                            </div>                       
+                                <button type="button" class="btn" id="change-btn" onclick="changePasswordSuccet()">Thay
+                                    đổi mật khẩu</button>
+                                <button type="button" class="btn" id="cancel-btn"
+                                    onclick="cancleChangePassword()">Hủy</button>
+                            </div>
                         </div>
-                    </div>              
+                    </div>
 
                 </form>
             </div>
-            
+
         </section>
     </div>
 
     <script type="text/javascript">
         function showPassword() {
-          var x = document.getElementById('oldPassword');
-          if (x.type === 'password') {
-            x.type = 'text';
-          } else {
-            x.type = 'password';       
-          }
+            var x = document.getElementById('oldPassword');
+            if (x.type === 'password') {
+                x.type = 'text';
+            } else {
+                x.type = 'password';
+            }
         }
 
-        function changePassword(){
+        function changePassword() {
             $('#change-pasword').removeClass('class-disable');
         }
 
-        function cancleChangePassword(){
+        function cancleChangePassword() {
             $('#change-pasword').addClass('class-disable');
         }
-        function changePasswordSuccet(){
+        function changePasswordSuccet() {
             $('#change-pasword').addClass('class-disable');
         }
     </script>
