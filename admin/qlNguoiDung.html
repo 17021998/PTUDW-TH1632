@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="input-group w-100">
-                                            <select name="" id="user-type-selector" class="custom-select">
+                                            <select name="" id="js-user-type-selector" class="custom-select">
                                                 <option value="user">Người dùng</option>
                                                 <option value="writer">Phóng Viên</option>
                                                 <option value="editor">Biên tập viên</option>
@@ -105,11 +105,13 @@
                                 </div>
                             </div>
                             <div class="card body">
-                                <div class="table-responsive-xl">
+                                <!-- ### Subcriber table ###-->
+                                <div id="js-subcriber-table" class="table-responsive-xl">
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
+                                                <th scope="col">Tên</th>
                                                 <th scope="col">Avatar</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Tình Trạng Premium</th>
@@ -119,8 +121,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr class="clickable-row" data-href="#">
                                                 <th scope="row">1</th>
+                                                <td>ABC</td>
                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
                                                 <td>ntquyen98@gmail.com</td>
                                                 <td class="text-primary">Còn hiệu lực</td>
@@ -146,8 +149,9 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="clickable-row" data-href="#">
                                                 <th scope="row">2</th>
+                                                <td>ABC</td>
                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
                                                 <td>ntquyen98@gmail.com</td>
                                                 <td class="text-danger">Hết hạn</td>
@@ -173,8 +177,9 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="clickable-row" data-href="#">
                                                 <th scope="row">3</th>
+                                                <td>ABC</td>
                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
                                                 <td>ntquyen98@gmail.com</td>
                                                 <td class="text-primary">Còn hiệu lực</td>
@@ -200,8 +205,9 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <tr class="clickable-row" data-href="#">
                                                 <th scope="row">4</th>
+                                                <td>ABC</td>
                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
                                                 <td>ntquyen98@gmail.com</td>
                                                 <td class="text-danger">Hết hạn</td>
@@ -230,14 +236,170 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <!-- ### Writer table ### -->
+                                <div id="js-writer-table" class="table-responsive-xl display-none">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Tên</th>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Bút danh</th>
+                                                <th scope="col">Số bài đăng</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">1</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td class="text-primary">Đại biến thái</td>
+                                                <td>5</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">1</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td class="text-primary">Thor</td>
+                                                <td>5</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">1</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td class="text-primary">Lão Đệ</td>
+                                                <td>5</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">1</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td class="text-primary">Đại biến thái</td>
+                                                <td>5</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- ### Editor table ### -->
+                                <div id="js-editor-table" class="table-responsive-xl display-none">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Tên</th>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">1</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">2</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">3</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="#">
+                                                <th scope="row">4</th>
+                                                <td>ABC</td>
+                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                <td>ntquyen98@gmail.com</td>
+                                                <td style="white-space:nowrap; width:1%;">
+                                                    <div class="btn-toolbar">
+                                                        <div class="btn-group btn-group-md">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-toggle="button" aria-pressed="false">Xóa</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div class="card-footer text-center">
                                 <ul class="pagination mx-auto justify-content-center">
-                                    <li class="page-item disabled"><a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+                                    <li class="page-item disabled"><a href="#" class="page-link"><i
+                                                class="fas fa-chevron-left"></i></a></li>
                                     <li class="page-item active"><a href="#" class="page-link">1</a></li>
                                     <li class="page-item"><a href="#" class="page-link">2</a></li>
                                     <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                                    <li class="page-item"><a href="#" class="page-link"><i
+                                                class="fas fa-chevron-right"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -251,6 +413,8 @@
     <script src="../editor/jquery.min.js"></script>
     <!--Main Script-->
     <script src="../editor/main.js"></script>
+    <!--User script-->
+    <script src="user.js"></script>
     <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

@@ -83,3 +83,11 @@ input:disabled{
     content: "/";
 }
 
+
+.display-none{
+    display: none !important;
+}
+
+tr:hover{
+    cursor: pointer;
+}
