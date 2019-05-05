@@ -15,3 +15,4 @@ function generateDate(start, end, select){
 generateDate(1,31,selecteDay);
 generateDate(1,12,selectMonth);
 generateDate(1980, 2000, selectYear);
+

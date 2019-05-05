@@ -83,7 +83,9 @@ input:disabled{
     content: "/";
 }
 
-
+.content-form-view{
+    margin-top: 10px;
+}
 .display-none{
     display: none !important;
 }
