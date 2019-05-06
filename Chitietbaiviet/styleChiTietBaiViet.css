@@ -13,8 +13,6 @@
 .hagtag{
   	margin-bottom: 20px;
 }
-
-
 .panel-heading ul{
 	margin-right: 100px;
 }
@@ -31,6 +29,10 @@
 .backgroundcolor{
 	background-color: #FAF6F6;
 	margin-top: 1px;
+}
+.backgroundcolor ._img{
+    width: 1200px;
+    height: 700px;
 }
 .noidung h1 a{
 	margin-top: 20px;
@@ -57,60 +59,7 @@
 	margin-left: 20px;
 	margin-right: 20px;
 }
-.menu{
-	display: flex;
-	margin: 3px auto;
-    padding-top: 3px;
-    width: 1150px;
-    position: relative;
-}
 
-.breadcrumb li a{
-
-	text-align: center;
-    background: #D3D3D3;
-    padding: 6px 8px 0 15px;
-    text-decoration: none;
-    height: 36px;
-    display: block;
-    float: left;
-    font: 400 18px/25px arial;
-    white-space: nowrap;
-    position: relative;
-    color: #000;
-}
-
-.breadcrumb li a:after {
-	height: 36px;
-    content: "";
-    position: absolute;
-    right: -18px;
-    top: 0;
-    border-left: 18px solid #D3D3D3;
-    border-top: 18px solid transparent;
-    border-bottom: 18px solid transparent;
-    z-index: 999;
-}
-.breadcrumb .start a {
-	height: 36px;
-    font-weight: 700;
-    color: #9f224e;
-    background: #eceeed;
-    border-left: 3px solid #9F224E;
-    margin-left: 0;
-    z-index: 99;
-}
-.breadcrumb .start a:after {
-	height: 36px;
-    border-left: 18px solid #eceeed !important;
-}
-.menu .breadcrumb li.start a {
-    color: #E17100;
-    border-color: #E17100;
-}
-.breadcrumb li+li:before{
-	content: none;
-}
 .hagtag .tagitem{
 	display: inline-block;
 	color: #656565;
@@ -121,10 +70,6 @@
     float: left;
     margin: 0 5px 5px 0;
     font: 400 11px/20px arial;
-}
-body{
-	font-size: 20px;
-	background: #e8eaed;
 }
 .styleBaiLienQuan{
 	width: 1200px;
@@ -164,53 +109,7 @@ a, a:hover, a:focus {
     margin-left: auto;
     margin-right: auto;
 }
-/*footer*/
-.footer{
-    background: #292c2f;
-    color: #fff;
-}
-
-.footer .left, .footer .right{
-    text-align: center;
-}
-
-.footer .center i{
-    background: #33383b;
-    color: #fff;
-    font-size: 25px;
-    width:38px;
-    height: 38px;
-    border-radius: 50%;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 42px;
-    margin: 10px 15px;
-}
-
-.footer .right i{
-    background: #33383b;
-    color: #fff;
-    font-size: 25px;
-    width: 38px;
-    height: 38px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 42px;
-}
-
-.footer .center p{
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0;
-}
-
-.footer .center p span{
-    display: block;
-    line-height: 2;
-}
-
 /* comment*/
-body{margin-top:20px;}
 
 .comment-wrapper .panel-body {
     max-height:650px;
