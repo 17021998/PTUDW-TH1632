@@ -1,0 +1,128 @@
+.center{
+	width: 1200px;
+	height: 600;
+}
+.noidung{
+	margin-top: -150px;
+  	width: 900px;
+  	background: #fff;
+  	height: auto;
+  	z-index: 1;
+  	position: relative;
+}
+.hagtag{
+  	margin-bottom: 20px;
+}
+.panel-heading ul{
+	margin-right: 100px;
+}
+.panel-heading li{
+	display: inline-block;
+	margin-left: 20px;
+	float: right;
+	font-size: 18px;
+}
+.panel-heading li a{
+	color: black;
+	text-decoration: none;
+}
+.backgroundcolor{
+	background-color: #FAF6F6;
+	margin-top: 1px;
+}
+.backgroundcolor ._img{
+    width: 1200px;
+    height: 700px;
+}
+.noidung h1 a{
+	margin-top: 20px;
+	text-decoration: none;
+	color: black;
+}
+
+.noidung h1 a:hover{
+	color: #39CC31;
+}
+.noidung h1{
+	display: flex;
+	color: black;
+	align-content: center;
+	justify-content: center;
+}
+.panel-heading{
+	position: relative;
+	margin-top: 0px;
+	margin-left: 0px;
+	height: 50px;
+}
+.noidung div{
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.hagtag .tagitem{
+	display: inline-block;
+	color: #656565;
+	background: #f1f1f1;
+    padding: 0 10px;
+    height: 20px;
+    color: #939393;
+    float: left;
+    margin: 0 5px 5px 0;
+    font: 400 11px/20px arial;
+}
+.styleBaiLienQuan{
+	width: 1200px;
+	margin-top: 60px;
+}
+.styleBaiLienQuan ul, li{
+	list-style-type: none;
+}
+#headerbar{
+    text-align:right;
+}
+.header-items {
+    display: inline-block;
+}
+.panel-heading{
+	height: auto;
+}
+a, a:hover, a:focus {
+    text-decoration: none;
+    font-weight: 500;
+    color: #a6a6a6;
+    transition-duration: 500ms;
+}
+.drop-down:hover .drop-down-content{
+    display: block;
+}
+
+.drop-down-content{
+    display: none;
+    position:absolute;
+    z-index: 60 ;
+    background: #f9f9f9;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+.center-block{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* comment*/
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}

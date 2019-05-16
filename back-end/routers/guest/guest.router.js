@@ -10,4 +10,16 @@ router.get('/hash-tag', (req,res)=>{
     res.render('guest/hash-tag');
 })
 
+router.get('/login', (req,res)=>{
+    res.render('guest/login');
+})
+
+router.get('/search-result', (req,res)=>{
+    res.render('guest/search-result');
+})
+
+router.get('/sign_up', (req,res)=>{
+    res.render('guest/sign_up');
+})
+
 module.exports = router;

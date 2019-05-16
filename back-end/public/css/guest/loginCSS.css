@@ -1,0 +1,118 @@
+::-webkit-scrollbar { 
+    display: none; 
+}
+body{
+	background: #292c2f;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#div_content{
+    background-image: linear-gradient(#82b3c9, #bdbdbd);
+    width: 100%;
+    padding-bottom: 3%;	
+   	font-weight: bold;
+}
+.btn_ls>a{
+	background-color: #82b3c9;
+	color: #212121;	
+	font-weight: bold;
+}
+.btn_ls>a:hover{
+	color: white;
+}
+#div_form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  	align-items: center;
+}
+#div_form>p{
+	color: white;
+	margin-bottom: 5%;
+	font-weight: bold;
+	font-size: 150%;
+}
+#div_form>h2{
+	color: white;
+	text-align: center;
+	margin-top: 7%;
+	font-weight: bold;
+	font-size: 300%;
+}
+form{
+	width: 50%;
+	background: white;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+form>div{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 15%;
+}
+form>button{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+p{
+	text-align: center;
+}
+#btn_forgot_pass{
+	font-size: normal;
+	font-weight: normal;
+	background: white;
+}
+#btn_forgot_pass:hover{
+	color: #c4001d;
+}
+#btn_logins{
+	margin-bottom: 15%;
+}
+#btn_logins>button{
+	background: white;
+	border: 2px solid #eeeeee;
+	border-radius: 2.4rem;
+}
+#btn_login{
+	background: #c4001d !important;
+	color: white;
+}
+#span_or{
+	text-align: center;
+	line-height: 0;
+	margin: 2em;
+	color: #616161;
+}
+#span_or:before{
+	content: " ";
+	display: block;
+	border-top: 2px solid #eeeeee;
+	box-sizing: inherit;
+}
+#span_or>span{
+	vertical-align: top;
+}
+
+#btn_sign_up_free{
+	background: white;
+	border: 2px solid #eeeeee;
+	border-radius: 2.4rem;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@media screen and (max-width: 768px) {
+
+	form{
+		width: 90%;	
+		margin: auto;
+	}
+	form>div{
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-top: 5%;
+	}
+	#div_form>p{
+		font-size: 100%;
+	}
+	#div_form>h2{
+		font-size: 150%;
+	}
+}

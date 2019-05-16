@@ -12,7 +12,7 @@ app.get('/', (req,res)=>{
 })
 
 app.use('/admin/categories', require('./routers/admin/category.router'));
-
+app.use('/Chitietbaiviet', require('./routers/Chitietbaiviet/Chitietbaiviet.router'));
 app.use('/guest', require('./routers/guest/guest.router'));
 
 app.listen(3000, ()=>{
