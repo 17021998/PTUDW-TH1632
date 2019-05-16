@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TH16-News</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index-style.css">
+    <!--footer nav header css-->
+    <link rel="stylesheet" href="/css/footer-nav-headerCSS.css">
+    
+</head>
+
+<body>
+    <% include header-footer/header.ejs %>
+    
+    <!-- ### Week High light ###-->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-8 pr-lg-1">
+                    <article class="post">
+                        <div class="hl-item feature-post" style="background-image: url(images/1.jpg);">
+                            <a href="Chitietbaiviet/CTBV.html" class="post-link"></a>
+                            <div class="post-content">
+                                <a href="guest/chuyen-de.html" class="post-cata">Giải trí</a>
+                                <a href="Chitietbaiviet/CTBV.html" class="post-title">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức
+                                    chơi hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a>
+                                <div class="post-meta">
+                                    <i class="fas fa-clock"></i>
+                                    <span>22/04/2019 20:30:44</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-lg-4 pl-lg-1">
+                    <article class="post">
+                        <div class="hl-item sub-post" style="background-image: url(images/1.jpg);">
+                            <a href="Chitietbaiviet/CTBV.html" class="post-link"></a>
+                            <div class="post-content">
+                                <a href="guest/chuyen-de.html" class="post-cata">Giải trí</a>
+                                <a href="Chitietbaiviet/CTBV.html" class="post-title">BTS chính thức phá vỡ thành tích của Ariana Grande, lập
+                                    kỉ lục thế giới mới rồi đây!</a>
+                                <div class="post-meta">
+                                    <i class="fas fa-clock"></i>
+                                    <span>22/04/2019 20:30:44</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="post">
+                        <div class="hl-item sub-post" style="background-image: url(images/1.jpg);">
+                            <a href="Chitietbaiviet/CTBV.html" class="post-link"></a>
+                            <div class="post-content">
+                                <a href="guest/chuyen-de.html" class="post-cata">Giải trí</a>
+                                <a href="Chitietbaiviet/CTBV.html" class="post-title">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ
+                                    Khoa Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a>
+                                <div class="post-meta">
+                                    <i class="fas fa-clock"></i>
+                                    <span>22/04/2019 20:30:44</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ### Content ### -->
+    <section class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="grid-box">
+                        <div class="grid-header row">
+                            <div class="col-6 grid-title">
+                                <h2 id="grid-header"><i class="fas fa-crown"></i> Xem nhiều nhất</h2>
+                            </div>
+                            <div class="col-6 text-right grid-button">
+                                <a href="#most-view" role="button" data-slide="prev">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                                <span> </span>
+                                <a href="#most-view" role="button" data-slide="next">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="most-view" class="carousel slide container align-self-center mx-auto"
+                            data-ride="carousel" data-interval="9000">
+                            <div class="carousel-inner row">
+                            <% for( let index = 0; index < 10; index++ ) { 
+                                if (index==0){%> 
+                                <div class="carousel-item col-md-4 active">
+                                <%} else { %>
+                                <div class="carousel-item col-md-4">
+                                <%}%>
+                                    <article class="post most-view-item">
+                                        <div class="post-thumbnail">
+                                            <a href="Chitietbaiviet/CTBV.html">
+                                                <img src="images/1.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="guest/chuyen-de.htmlclass="post-cata">
+                                                Thời sự
+                                            </a>
+                                            <a href="Chitietbaiviet/CTBV.html" class="post-title">
+                                                Thượng nghị sĩ Mỹ và 30 năm dọn hậu quả chiến tranh Việt Nam.
+                                            </a>
+                                            <div class="post-meta">
+                                                <i class="fas fa-clock"></i>
+                                                <span>22/04/2019 20:30:44</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            <% } %>
+                           
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="new-article" class="row">
+                            <div class="single-post col-12">
+                                <div class="card">
+                                    <div>
+                                        <h2 class="section-title">Bài viết mới nhất</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <% for( let index = 0; index < 10; index++ ) { %>
+                                <!--single post-->
+                                <div class="col-12 col-md-6">
+                                    <div class="card single-post">
+                                        <a href="Chitietbaiviet/CTBV.html"><img src="images/1.jpg" class="card-img-top" alt=""></a>
+                                        <div class="card-body">
+                                            <a href="guest/chuyen-de.html" class="post-cata">Thời sự</a>
+                                            <a href="Chitietbaiviet/CTBV.html" class="post-title">
+                                                <h5 class="card-title">Ông Phạm Nhật Vũ bị bắt với cáo buộc đưa hối lộ</h5>
+                                            </a>
+                                            <p><i class="far fa-clock"></i> 22/04/2019 20:30:44</p>
+                                            <p class="card-text">Bộ Công an khởi tố bị can, quyết định bắt ông Phạm Nhật Vũ
+                                                (Chủ
+                                                tịch Công ty Cổ phần Nghe Nhìn Toàn cầu – AVG).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+
+                    <% for( let index = 0; index < 10; index++ ) { %>
+                        <!--1 chuyen muc-->
+                        <div class="cata-post col-md-12">
+                            <div class="category">
+                                <a href="guest/cata-style.css" class="post-cata"><i class="fas fa-bookmark"> Thời sự</i></a>
+                                <hr>
+                            </div>
+                            <div class="post">
+                                <div class="post-thumbnail">
+                                    <a href="Chitietbaiviet/CTBV.html"><img src="images/1.jpg" alt=""></a>
+                                </div>
+                                <div class="post-abstract">
+                                    <a href="Chitietbaiviet/CTBV.html" class="post-title">Thượng nghị sĩ Mỹ và 30 năm dọn hậu quả chiến tranh Việt
+                                        Nam.</a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <% include header-footer/footer.ejs%>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+        $('#most-view').on('slide.bs.carousel', function (e) {
+            var $e = $(e.relatedTarget);
+            var idx = $e.index();
+            var itemsPerSlide = 3;
+            var totalItems = $('.carousel-item').length;
+
+            if (idx >= totalItems - (itemsPerSlide - 1)) {
+                var it = itemsPerSlide - (totalItems - idx);
+                for (var i = 0; i < it; i++) {
+                    // append slides to end
+                    if (e.direction == "left") {
+                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                    }
+                    else {
+                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                    }
+                }
+            }
+        });
+
+        $(document).ready(function () {
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
+
+    </script>
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
