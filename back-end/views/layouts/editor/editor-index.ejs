@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Editor</title>
+    <!--Font-->
+    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" href="/css/editor/edit-area-style.css">
+    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+</head>
+
+<body>
+    <div id="page">
+        <%- include('../header-footer/header-editor.ejs') %>
+        <section id="page-main-content">
+            <!--Head content-->
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+                    <a href="profile-editor.html" class="head-item"><img src="../images/account.png"></a>
+                    <a href="../index.html" class="head-item">
+                        <span>Đăng xuất</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <!--Main content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="box">
+                            <h1>Chuyên mục: <span id="cata-name">Du lịch</span></h1>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="box row" id="draft-articles">
+                            <h4 class="article-list-header col-12">Danh sách các bài viết mới:</h4>
+                            <ul class="article-list col-12">
+
+                            </ul>
+                            <div class="article-list col-12 row">
+                                <a href="#edit" class="row item col-lg-6">
+                                    <div class="item-thumb col-6">
+                                        <img src="../images/home-new-post-1.jpg" alt="">
+                                    </div>
+                                    <div class="item-detail col-6">
+                                        <h6 class="article-detail">
+                                            <span class="article-title">Lễ này đưa gia đinh đi chơi đâu?</span> -
+                                            <span class="article-author">Xuân Diệu</span>
+                                        </h6>
+                                    </div>
+                                </a>
+                                <a href="#edit" class="col-lg-6 row item">
+                                    <div class="item-thumb col-6">
+                                        <img src="../images/home-new-post-1.jpg" alt="">
+                                    </div>
+                                    <div class="item-detail col-6">
+                                        <h6 class="article-detail">
+                                            <span class="article-title">Lễ này đưa gia đinh đi chơi đâu?</span> -
+                                            <span class="article-author">Xuân Diệu</span>
+                                        </h6>
+                                    </div>
+                                </a>
+                                <a href="#edit" class="col-lg-6 row item">
+                                    <div class="item-thumb col-6">
+                                        <img src="../images/home-new-post-1.jpg" alt="">
+                                    </div>
+                                    <div class="item-detail col-6">
+                                        <h6 class="article-detail">
+                                            <span class="article-title">Lễ này đưa gia đinh đi chơi đâu?</span> -
+                                            <span class="article-author">Xuân Diệu</span>
+                                        </h6>
+                                    </div>
+                                </a>
+                                <a href="#edit" class="col-lg-6 row item">
+                                    <div class="item-thumb col-6">
+                                        <img src="../images/home-new-post-1.jpg" alt="">
+                                    </div>
+                                    <div class="item-detail col-6">
+                                        <h6 class="article-detail">
+                                            <span class="article-title">Lễ này đưa gia đinh đi chơi đâu?</span> -
+                                            <span class="article-author">Xuân Diệu</span>
+                                        </h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="box row">
+                            <h3 id="edit" class="col-12">Nội dụng: </h3>
+                            <form class="col-12" action="post">
+                                <text-area name="editor" id="editor" rows="100" cols="80" disabled>
+                                </text-area>
+                                <script>
+                                    CKEDITOR.replace('editor');
+                                </script>
+                            </form>
+                            <div class="d-flex mt-3 justify-content-around col-12">
+                                <button class="btn btn-primary">Xét duyệt</button>
+                                <button class="btn btn-warning">Từ chối</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!--JQuery-->
+    <script src="/js/editor/jquery.min.js"></script>
+    <!--ckeditor-->
+    <script>
+        var content = `<h1>C&acirc;y cầu k&iacute;nh tại Mộc Ch&acirc;u (Sơn La) l&agrave; cầu k&iacute;nh đầu ti&ecirc;n tại Việt Nam sử dụng c&ocirc;ng nghệ k&iacute;nh 5D nhằm mang đến trải nghiệm ngắm cảnh đặc biệt cho du kh&aacute;ch từ tr&ecirc;n cao.</h1>
+
+<div style="text-align:center">
+<figure class="image" style="display:inline-block"><img alt="Cầu kinh mộc châu" height="330" src="../images/home-new-post-1.jpg" width="586" />
+<figcaption>Cầu k&iacute;nh đầu ti&ecirc;n tại Việt Nam.</figcaption>
+</figure>
+</div>
+
+<p>Chắc hẳn mọi người đều vui mừng v&igrave; được đ&oacute;n c&aacute;i tết thứ 2 trong năm - ng&agrave;y lễ 30/4 - 1/5 - phải kh&ocirc;ng n&agrave;o. Với một đợt nghỉ d&agrave;i như vậy c&aacute;c đọc giả của TH16-News đ&atilde; c&oacute; dự định g&igrave; cho m&igrave;nh chưa nhỉ. Nếu chưa sao c&aacute;c bạn kh&ocirc;ng c&ugrave;ng gia đ&igrave;nh, bạn b&egrave; của m&igrave;nh đến với cấu cầu kinh 5D đầu ti&ecirc;n tại Việt Nam&nbsp;Cầu kinh Mộc Ch&acirc;u để thử nghiệm c&aacute;c cảm gi&aacute;c mới lạ ở đ&acirc;y n&agrave;o.</p>
+
+<p>C&acirc;y cầu k&iacute;nh ở Mộc Ch&acirc;u (Sơn La) vừa mở cửa đi v&agrave;o hoạt động v&agrave;o ng&agrave;y 25/4 vừa qua. Đ&acirc;y l&agrave; c&acirc;y cầu k&iacute;nh đầu ti&ecirc;n ở Việt Nam, sử dụng c&ocirc;ng nghệ k&iacute;nh 5D nhằm mang đến trải nghiệm ngắm cảnh đặc biệt cho du kh&aacute;ch từ tr&ecirc;n cao.</p>
+
+<div style="text-align:center">
+<figure class="image" style="display:inline-block"><img alt="" height="480" src="../images/home-new-post-1.jpg" width="640" />
+<figcaption>Caption</figcaption>
+</figure>
+</div>
+
+<p>Xung quanh cầu được lắp đặt c&aacute;c vườn đ&agrave;o giả tạo bối cảnh đẹp mắt gi&uacute;p du kh&aacute;ch tham quan, chụp ảnh.</p>
+
+<div style="text-align:center">
+<figure class="image" style="display:inline-block"><img alt="" height="853" src="../images/home-new-post-1.jpg" width="640" />
+<figcaption>Caption</figcaption>
+</figure>
+</div>
+
+<p>Kh&ocirc;ng chỉ được kỳ vọng sẽ mang đến trải nghiệm mới mẻ cho du kh&aacute;ch m&agrave; đơn vị thi c&ocirc;ng c&acirc;y cầu kỳ vọng đ&acirc;y sẽ l&agrave; điểm đến hấp dẫn du kh&aacute;ch khi đến Mộc Ch&acirc;u (Sơn La) du lịch.</p>
+
+<div style="text-align:center">
+<figure class="image" style="display:inline-block"><img alt="" height="480" src="../images/home-new-post-1.jpg" width="640" />
+<figcaption>Caption</figcaption>
+</figure>
+</div>
+
+<p>C&aacute;c bạn c&oacute; th&iacute;ch địa điểm du lịch mới lạ n&agrave;y kh&ocirc;ng n&agrave;o! Vậy c&ograve;n chở g&igrave; nữa m&agrave; kh&ocirc;ng c&ugrave;ng người th&acirc;n của m&igrave;nh trải nghiệm địa điểm th&uacute; vị n&agrave;y n&agrave;o. Hay để lại b&igrave;nh luận về cảm nghĩ của bạn nh&aacute;&nbsp;<img height="50" src="file:///D:/Third%20Year/PhatTrienUngDungweb/DoAn/PTUDW-TH1632/ckeditor/plugins/hkemoji/sticker/onion/Onion--100.gif" width="50" /></p>`;
+        $(document).ready(function () {
+            $(".item").click(function (e) {
+                CKEDITOR.instances.editor.setData(content, function () {
+                    this.checkDirty();  // true
+                });
+            });
+        });
+    </script>
+    <!--Main Script-->
+    <script src="/js/editor/main.js"></script>
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

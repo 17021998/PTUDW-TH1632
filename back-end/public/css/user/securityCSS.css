@@ -1,0 +1,45 @@
+#content{
+	padding-left: 20px;
+	height: 90% !important;
+}
+.content-form-view{
+	padding-left: 50px;
+	background: #fff;
+	margin-right: 30px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	box-shadow: 1px 1px 5px #62727b;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+input:disabled {
+  background: #fff !important;
+}
+
+.class-disable{
+	display: none !important;
+}
+.class-enable{
+	display: inline-block;
+}
+.btn-gray>.btn{
+	background: #222326;
+	color: #fff;
+}
+#cancel-btn{
+	background: #d50000;
+	color: #fff;
+}
+
+@media screen and (max-width: 768px){
+	#content{
+		padding-left: 0px;
+}
+
+	.content-form-view{
+		padding-left: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}

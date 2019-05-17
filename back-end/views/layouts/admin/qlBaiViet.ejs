@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News - Admin</title>
+    <!--Font-->
+    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" href="/css/admin/admin-style.css">
+</head>
+
+<body>
+    <div id="page">
+        <%- include('../header-footer/header-admin.ejs') %>
+        <section id="page-main-content">
+            <!--Head content-->
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+                    <a href="profile-admin.html" class="head-item"><img src="../images/account.png"></a>
+                    <a href="../index.html" class="head-item">
+                        <span>Đăng xuất</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <!--Main content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 py-2">
+                        <h2>Quản lý bài viết</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-4 my-auto">
+                                        <div id="card-header-title">
+                                            <h5>Danh sách bài viết</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="btn-toolbar justify-content-between flex-nowrap">
+                                            <button type="button" class="btn btn-secondary clickable-row" data-href="ctBaiViet.html">
+                                                Thêm bài viết <span><i class="fas fa-plus"></i></span>
+                                            </button>
+                                            <select name="" id="" class="custom-select mx-auto w-50">
+                                                <option>
+                                                    Trang thái bài viết
+                                                </option>
+                                                <option value="publish">Đã phát hành</option>
+                                                <option value="draft">Chưa duyệt</option>
+                                                <option value="unpublish">Bị từ chối</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card body">
+                                <div class="table-responsive-xl">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Danh mục</th>
+                                                <th scope="col">Tiêu đề</th>
+                                                <th scope="col">Loại</th>
+                                                <th scope="col">Tác giả</th>
+                                                <th scope="col">Trạng thái</th>
+                                                <th scope="col">Ngày xuất bản</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="clickable-row" data-href="ctBaiViet.html">
+                                                <th scope="row">1</th>
+                                                <td>Thời sử</td>
+                                                <td>Bộ Lao động Thương binh và Xã hội đề xuất giờ làm việc từ 8h30</td>
+                                                <td>Thường</td>
+                                                <td>Xuân Diệu</td>
+                                                <td class="text-success">Đã xuất bản</td>
+                                                <td>
+                                                    <span class="date">15</span>
+                                                    <span class="month">10</span>
+                                                    <span class="year">2017</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="ctBaiViet.html">
+                                                <th scope="row">2</th>
+                                                <td>Đời sống</td>
+                                                <td>7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của
+                                                    ENDGAME
+                                                </td>
+                                                <td>Premium</td>
+                                                <td>Tô Lịch</td>
+                                                <td class="text-warning">Chưa Duyệt</td>
+                                                <td>
+                                                    <span class="day">1</span>
+                                                    <span class="month">4</span>
+                                                    <span class="year">2019</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="clickable-row" data-href="ctBaiViet.html">
+                                                <th scope="row">3</th>
+                                                <td>Chuyển động 24h</td>
+                                                <td>'Giá xăng có thể tăng cao hơn nhiều nếu không dùng Quỹ bình ổn'</td>
+                                                <td>Thường</td>
+                                                <td>Xuân Xiu</td>
+                                                <td class="text-danger">Bị từ chối</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <ul class="pagination mx-auto justify-content-center">
+                                    <li class="page-item disabled"><a href="#" class="page-link"><i
+                                                class="fas fa-chevron-left"></i></a></li>
+                                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                    <li class="page-item"><a href="#" class="page-link"><i
+                                                class="fas fa-chevron-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+    </div>
+
+    <!--JQuery-->
+    <script src="../editor/jquery.min.js"></script>
+    <!--Main Script-->
+    <script src="../editor/main.js"></script>
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

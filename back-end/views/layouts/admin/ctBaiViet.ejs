@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News Editor - Admin</title>
+    <!--Font-->
+    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" href="/css/admin/admin-style.css">
+    <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
+    <!--Ckeditor-->
+    <script src="/js/editor/jquery.min.js"></script> <!-- cai nay chua add-->
+    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
+    <script src="/js/admin/bootstrap-tagsinput.min.js"></script>
+    <style>
+        .bootstrap-tagsinput {
+            min-height: 0 !important;
+            margin-left: 16px !important;
+            margin-top: 16px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+        
+         <%- include('../header-footer/header-admin.ejs') %>
+
+        <section id="page-main-content">
+            <!--Head content-->
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+                    <a href="profile-admin.html" class="head-item"><img src="../images/account.png"></a>
+                    <a href="../index.html" class="head-item">
+                        <span>Đăng xuất</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <!--Main content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mt-5">
+                            <div class="card-header">
+                                <div id="tool-button" class="d-flex">
+                                    <button class="btn btn-sm ml-3 btn-primary">
+                                        <i class="far fa-save"></i>
+                                        <span> Save</span>
+                                    </button>
+                                    <button class="btn btn-sm ml-3 clickable-row" data-href="qlBaiViet.html">
+                                        <i class="fas fa-check"></i>
+                                        <span> Save & Close</span>
+                                    </button>
+                                    <button class="btn btn-sm ml-3 clickable-row" data-href="ctBaiViet.html">
+                                        <i class="fas fa-plus"></i>
+                                        <span> Save & New</span>
+                                    </button>
+                                    <button class="btn btn-sm ml-3">
+                                        <i class="fas fa-trash"></i>
+                                        <span> Delete</span>
+                                    </button>
+                                </div>
+                                <div class="d-flex mt-3">
+                                    <select id="status-selecter" class="custom-select-md ml-3">
+                                        <option>Chọn trạng thái bài viết</option>
+                                        <option value="public">Đã xuất bản</option>
+                                        <option value="draft">Chưa xuất bản</option>
+                                        <option value="ignore">Đã từ chối</option>
+                                    </select>
+                                    <select id="cata-selecter" class="custom-select-md ml-3">
+                                        <option>Chọn chuyên mục bài viết</option>
+                                        <option value="public">Thời sự</option>
+                                        <option value="draft">Đời Sống</option>
+                                        <option value="ignore">Công nghệ</option>
+                                        <option value="ignore">Thể thao</option>
+                                    </select>
+                                </div>
+                                <div class="row align-items-center mt-3">
+                                    <label for="article-title" class="col-2 ml-3">Tiêu đề</label>
+                                    <input type="text" id="article-title" placeholder="Title"
+                                        class="col-8 form-control ml-3">
+                                </div>
+                                <div class="d-flex">
+                                    <input type="text" data-role="tagsinput" placeholder="Thêm tags" class="ml-3">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form action="">
+                                    <text-area name="editor" id="editor" rows="100" cols="80">
+                                    </text-area>
+                                    <script>
+                                        CKEDITOR.replace('editor', {
+                                            height: 500
+                                        });
+                                    </script>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+    </div>
+    <!--Main Script-->
+    <script src="../editor/main.js"></script>
+    <script src="article-detail.js"></script>
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

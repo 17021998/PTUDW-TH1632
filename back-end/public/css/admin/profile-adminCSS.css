@@ -1,0 +1,119 @@
+#content{
+	padding-left: 20px;
+		height: 90% !important;
+}
+.content-form-view{
+	padding-left: 50px;
+	background: #fff;
+	margin-right: 30px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	box-shadow: 1px 1px 5px #62727b;
+
+}
+#content-form-img{
+	margin-top: 30px;
+    margin-left: 15%;  
+    margin-bottom: 30px;	
+}
+
+#profile-picture img{
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+    object-fit: cover;
+
+}
+
+
+input:disabled {
+  background: #fff !important;
+}
+
+.form-disable{
+	margin-bottom: 20px;
+}
+
+input[type=text], input[type=email] {
+	border-radius: 0px;
+	  width: 100%;
+	  box-sizing: border-box;
+	  border: none;
+	  border-bottom: 1px solid #102027;
+}
+input[type=text]:focus, input[type=email]:focus{
+  outline : 0;
+}
+.class-disable{
+	display: none !important;
+}
+.class-enable{
+	display: inline-block;
+}
+
+.form-a-edit{
+	color: #102027 !important;
+}
+.form-a-save{
+	color: #1faa00 !important;
+}
+.form-a-cancel{
+	color: #c4001d !important;
+}
+.form-a-edit ,.form-a-save, .form-a-cancel{
+	vertical-align: center;
+}
+.form-a-edit:hover ,.form-a-save:hover, .form-a-cancel:hover{
+	color: #db4437 !important;
+}
+
+
+
+@media screen and (max-width: 768px){
+	#content{
+		padding-left: 0px;
+}
+
+	.content-form-view{
+		padding-left: 10px;
+		margin-bottom: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.input-feild, #showDate, .date-edit{
+		width: 100% !important;
+	}
+	#day, #month{
+		width: 25%;
+		margin-right: 3px !important;
+	}
+	#year{
+		width: 40%;
+	}
+	.js-group-edit, .js-group-edit-date{
+		width: 20% !important;
+	}
+	.js-group-sc, .js-group-sc-date{
+		width: 20% !important;
+	}
+	.date-edit{
+		margin-right: 0px !important;
+	}
+	.js-group-sc-date{
+		margin-right: 0px !important;
+	}
+	#btnGiaHan{
+		width: 40%;
+	}
+}
+
+body, html {
+	height: 100%;
+}
+.badge{
+	font-size: 100%;
+}
+.btn-secondary {
+    background-color: #222326;
+    border-color: #222326;
+}
