@@ -16,6 +16,9 @@ app.use('/admin', require('./routers/admin/admin.router'));
 app.use('/Chitietbaiviet', require('./routers/Chitietbaiviet/Chitietbaiviet.router'));
 app.use('/guest', require('./routers/guest/guest.router'));
 app.use('/editor', require('./routers/editor/editor.router'));
+
+app.use('/user', require('./routers/user/user.router'));
+app.use('/writer', require('./routers/writer/writer.router'));
 app.listen(3000, ()=>{
     console.log('http://localhost:3000');
 })

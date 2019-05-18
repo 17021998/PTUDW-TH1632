@@ -16,12 +16,12 @@
                     <img src="/images/account.png">
                     <a href="/admin/profile-admin"><span>Admin</span></a>
                 </li>
-                <li><a href="/admin/profile-admin">Thông Tin Cá Nhân</a></li>
-                <li><a href="/admin/qlChuyenMuc">Chuyên Mục</a></li>
-                <li><a href="/admin/qlHashTag">Hash Tag</a></li>
-                <li><a href="/admin/qlBaiViet">Bài Viết</a></li>
-                <li><a href="/admin/qlNguoiDung">Danh sách người dùng</a></li>
-                <li><a href="/admin/security">Bảo mật</a></li>
+                <li <% if (isActive==="pa") { %> class="active" <% } %> ><a href="/admin/profile-admin">Thông Tin Cá Nhân</a></li>
+                <li <% if (isActive==="qlcm") { %> class="active" <% } %> ><a href="/admin/qlChuyenMuc">Chuyên Mục</a></li>
+                <li <% if (isActive==="qlht") { %> class="active" <% } %> ><a href="/admin/qlHashTag">Hash Tag</a></li>
+                <li <% if (isActive==="qlbv") { %> class="active" <% } %> ><a href="/admin/qlBaiViet">Bài Viết</a></li>
+                <li <% if (isActive==="qlnd") { %> class="active" <% } %> ><a href="/admin/qlNguoiDung">Danh sách người dùng</a></li>
+                <li <% if (isActive==="s") { %> class="active" <% } %> ><a href="/admin/security">Bảo mật</a></li>
                 <li><a href="/" class="main-menu-hidden">Đăng xuất</a></li>
             </ul>
         </nav>

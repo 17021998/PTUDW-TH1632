@@ -14,8 +14,8 @@
                 <li class="nav-img">
                     <img src="../images/account.png">
                     <a href="#"><span>ntquyen98@gmail.com</span></a></li>
-                <li><a href="/editor/profile-editor">Thông tin cá nhân</a></li>
-                <li class="js-menu-toggle active">
+                <li <% if (isActive==="pe") { %> class="active" <% } %> ><a href="/editor/profile-editor">Thông tin cá nhân</a></li>
+                <li class="js-menu-toggle <% if (isActive==="xdbv") { %> active <% } %>">
                     <a href="#sub-menu" data-toggle="collapse" role="button" aria-expanded="true"
                         aria-controls="sub-menu">Xét duyệt bài viết</a>
                     <ul class="collapse show" id="sub-menu">

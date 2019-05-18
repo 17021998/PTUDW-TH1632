@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Security</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" type="text/css" href="/css/user/securityCSS.css">
+    <!--JQuery-->
+    <script src="/js/editor/jquery.min.js"></script>
+    <!--Main Script-->
+    <script src="/js/editor/main.js"></script>
+
+</head>
+
+<body>
+    <div id="page">
+        <%- include('../header-footer/header-user.ejs') %>
+        <section id="page-main-content">
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+                    <a href="#" class="head-item"><span>Premium</span></a>
+                    <a href="profile-user-normal.html" class="head-item"><img src="../images/account.png"></a>
+                    <a href="../index.html" class="head-item">
+                        <span>Đăng xuất</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <div id="content">
+                <h1>Bảo mật</h1>
+                <hr>
+                <form class="d-flex flex-row content-form-view">
+                    <div class="col-md-9 ">
+                        <div class="btn-gray">
+                            <button type="button" class="btn" onclick="changePassword()">Thay đổi mật khẩu.</button>
+                        </div>
+                        <div id="change-pasword" class="class-disable">
+                            <div class="form-group">
+                                <label for="oldPassword">Mật khẩu cũ:</label>
+                                <input type="password" class="form-control col-md-9" id="oldPassword">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cbShowP"
+                                        onclick="showPassword()">
+                                    <label class="form-check-label" for="cbShowP">Xem mật khẩu.</label>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật
+                                khẩu?</button>
+                            <div class="form-group">
+                                <label for="new1Password">Mật khẩu mới:</label>
+                                <input type="password" class="form-control col-md-9" id="new1Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="new2Password">Nhập lại:</label>
+                                <input type="password" class="form-control col-md-9" id="new2Password">
+                            </div>
+                            <div class="btn-gray">
+                                <button type="button" class="btn" id="change-btn" onclick="changePasswordSuccet()">Thay
+                                    đổi mật khẩu</button>
+                                <button type="button" class="btn" id="cancel-btn"
+                                    onclick="cancleChangePassword()">Hủy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        function showPassword() {
+            var x = document.getElementById('oldPassword');
+            if (x.type === 'password') {
+                x.type = 'text';
+            } else {
+                x.type = 'password';
+            }
+        }
+
+        function changePassword() {
+            $('#change-pasword').removeClass('class-disable');
+        }
+
+        function cancleChangePassword() {
+            $('#change-pasword').addClass('class-disable');
+        }
+        function changePasswordSuccet() {
+            $('#change-pasword').addClass('class-disable');
+        }
+    </script>
+</body>
+
+</html>

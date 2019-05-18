@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Writer</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!--StyleSheet-->
+    <link href="/css/editor/editor-style.css" rel="stylesheet">
+    <link href="/css/writer/profile-writerCSS.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <div id="page">
+        <%- include('../header-footer/header-writer.ejs') %>
+        <section id="page-main-content">
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+
+                    <a class="head-item" href="profile-writer.html">
+                        <img src="../images/account.png" />
+                    </a>
+                    <a class="head-item" href="../index.html">
+                        <span>
+                            Đăng xuất
+                        </span>
+                        <i class="fas fa-sign-out-alt">
+                        </i>
+                    </a>
+                </div>
+            </div>
+            <div id="content">
+                <h1>
+                    Bài viết mới
+                </h1>
+                <hr>
+                <form class="d-flex flex-row content-form-view">
+                    <div class="col-12">
+                        <br>
+                        <div class="col-xs-4 col-md-12 form-group">
+                            <div class="controls">
+                                <select class="custom-select" id="inputGroupSelect01">
+                                    <option selected="">
+                                        Chọn chuyên mục
+                                    </option>
+                                    <option value="1">
+                                        Thời Sự
+                                    </option>
+                                    <option value="2">
+                                        Thể Thao
+                                    </option>
+                                    <option value="3">
+                                        Đời sống
+                                    </option>
+                                    <option value="3">
+                                        Khao Học
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-12 form-group">
+                            <div class="controls">
+                                <input class="form-control" id="inputendereco" name="endereco"
+                                    placeholder="Nhập Tiêu Đề Bài Viết." type="text">
+
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-12 form-group">
+                            <div class="controls">
+                                <input class="form-control" id="inputendereco" name="endereco"
+                                    placeholder="Tóm Tắt Nội Dung Bài Viết." type="text">
+
+                            </div>
+                        </div>
+                        <!-- input textarea -->
+                        <div class="col-xs-4 col-md-12 form-group">
+                            <textarea name="writer">
+                                                </textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-7 col-lg-7 col-sm-7 input-group-prepend left ml-3">
+                                <div class="input-group-text">
+                                    <input aria-label="Checkbox for following text input" type="checkbox">
+                                    Tôi đồng ý với các điều khoản bên bạn.
+
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-3 col-sm-3 btn btn-group float-right">
+                                <a aria-pressed="true" class="btn btn-primary btn-lg active ml-auto" href="#"
+                                    role="button">
+                                    Gữi Bài Viết
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                </form>
+            </div>
+        </section>
+    </div>
+        <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
+    <script type="text/javascript">
+        CKEDITOR.replace('writer');
+    </script>
+    <script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
+        </script>
+    <script crossorigin="anonymous" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+        </script>
+    <script crossorigin="anonymous" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+        </script>
+</body>
+
+</html>

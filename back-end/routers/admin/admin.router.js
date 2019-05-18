@@ -3,51 +3,53 @@ var router = express.Router();
 var categoryModle = require('../../modles/categoty.modle');
 
 router.get('/ctBaiViet', (req, res) => {
-    //res.end('category admin');
-    var p = categoryModle.all();
-    p
-        .then(rows => {
-            //console.log(rows);
-            res.render('admin/ctBaiViet');
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    var isActive = "ctbv";
+    res.render('admin/ctBaiViet', { "isActive": isActive });
+
 })
 
-router.get('/editor-info',(req,res)=>{
-    res.render('admin/editor-info');
+router.get('/editor-info', (req, res) => {
+    var isActive = "ei";
+    res.render('admin/editor-info', { "isActive": isActive });
 })
 
-router.get('/profile-admin',(req,res)=>{
-    res.render('admin/profile-admin');
+router.get('/profile-admin', (req, res) => {
+    var isActive = "pa";
+    res.render('admin/profile-admin', { "isActive": isActive });
 })
 
-router.get('/qlBaiViet',(req,res)=>{
-    res.render('admin/qlBaiViet');
+router.get('/qlBaiViet', (req, res) => {
+    var isActive = "qlbv";
+    res.render('admin/qlBaiViet', { "isActive": isActive });
 })
 
-router.get('/qlChuyenMuc',(req,res)=>{
-    res.render('admin/qlChuyenMuc');
+router.get('/qlChuyenMuc', (req, res) => {
+    var isActive = "qlcm";
+    res.render('admin/qlChuyenMuc', { "isActive": isActive });
 })
 
-router.get('/qlHashTag',(req,res)=>{
-    res.render('admin/qlHashTag');
+router.get('/qlHashTag', (req, res) => {
+    var isActive = "qlht";
+    res.render('admin/qlHashTag', { "isActive": isActive });
 })
 
-router.get('/qlNguoiDung',(req,res)=>{
-    res.render('admin/qlNguoiDung');
+router.get('/qlNguoiDung', (req, res) => {
+    var isActive = "qlnd";
+    res.render('admin/qlNguoiDung', { "isActive": isActive });
 })
 
-router.get('/security',(req,res)=>{
-    res.render('admin/security');
+router.get('/security', (req, res) => {
+    var isActive = "s";
+    res.render('admin/security', { "isActive": isActive });
 })
 
-router.get('/user-info',(req,res)=>{
-    res.render('admin/user-info');
+router.get('/user-info', (req, res) => {
+    var isActive = "ui";
+    res.render('admin/user-info', { "isActive": isActive });
 })
-router.get('/writer-info',(req,res)=>{
-    res.render('admin/writer-info');
+router.get('/writer-info', (req, res) => {
+    var isActive = "wi";
+    res.render('admin/writer-info', { "isActive": isActive });
 })
 
 module.exports = router;
