@@ -1,22 +1,16 @@
-﻿CREATE DATABASE TH16-NEWS --CHARACTER SET 'utf-8'
-GO
-
-USE TH16-NEWS
-GO
+﻿CREATE DATABASE TH16NEWS CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE Post
 (
-	ID int IDENTITY,
+	PostID int AUTO_INCREMENT,
 	Premium int not null,
 	PostStatus int,
-	Title nvarchar(50),
+	Title varchar(50),
 	Content TEXT,
 	Abstract TEXT,
 	ReleaseDay date
 	Primary key(ID)
-) --character set utf8
-
-GO
+)
 
 CREATE TABLE UserPrimary
 (
