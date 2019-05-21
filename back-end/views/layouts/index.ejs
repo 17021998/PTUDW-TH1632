@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="/css/index-style.css">
     <!--footer nav header css-->
     <link rel="stylesheet" href="/css/footer-nav-headerCSS.css">
-    
+    <!--Owl Carousel-->
+    <link rel="stylesheet" href="/css/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css" />
 </head>
 
 <body>
@@ -84,24 +86,18 @@
                                 <h2 id="grid-header"><i class="fas fa-crown"></i> Xem nhiều nhất</h2>
                             </div>
                             <div class="col-6 text-right grid-button">
-                                <a href="#most-view" role="button" data-slide="prev">
+                                <a href="javascript:;" role="button" class="slide-prev">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                                 <span> </span>
-                                <a href="#most-view" role="button" data-slide="next">
+                                <a href="javascript:;" role="button" class="slide-next">
                                     <i class="fas fa-chevron-right"></i>
                                 </a>
                             </div>
                         </div>
-                        <div id="most-view" class="carousel slide container align-self-center mx-auto"
-                            data-ride="carousel" data-interval="9000">
-                            <div class="carousel-inner row">
-                            <% for( let index = 0; index < 10; index++ ) { 
-                                if (index==0){%> 
-                                <div class="carousel-item col-md-4 active">
-                                <%} else { %>
-                                <div class="carousel-item col-md-4">
-                                <%}%>
+                        <div class="owl-carousel" id="most-view">
+                            <% for( var index = 0; index < 10; index++) { %>
+                                <div>
                                     <article class="post most-view-item">
                                         <div class="post-thumbnail">
                                             <a href="/Chitietbaiviet">
@@ -109,7 +105,7 @@
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="guest/chuyen-de.htmlclass="post-cata">
+                                            <a href="guest/chuyen-de.html" class="post-cata">
                                                 Thời sự
                                             </a>
                                             <a href="/Chitietbaiviet" class="post-title">
@@ -123,7 +119,6 @@
                                     </article>
                                 </div>
                             <% } %>
-                            </div>
                         </div>
                     </div>
                     <div>
@@ -184,46 +179,49 @@
     </section>
 
     <% include header-footer/footer.ejs%>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.mousewheel.js"></script>
     <script>
-        $('#most-view').on('slide.bs.carousel', function (e) {
-            var $e = $(e.relatedTarget);
-            var idx = $e.index();
-            var itemsPerSlide = 3;
-            var totalItems = $('.carousel-item').length;
-
-            if (idx >= totalItems - (itemsPerSlide - 1)) {
-                var it = itemsPerSlide - (totalItems - idx);
-                for (var i = 0; i < it; i++) {
-                    // append slides to end
-                    if (e.direction == "left") {
-                        $('.carousel-item').eq(i).appendTo('.carousel-inner');
-                    }
-                    else {
-                        $('.carousel-item').eq(0).appendTo('.carousel-inner');
-                    }
-                }
-            }
-        });
-
+        var owl = $('.owl-carousel');
         $(document).ready(function () {
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                rtl: true,
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                },
+                // you can use jQuery selector
+                navText: [$('.slide-next'), $('.slide-prev')]
+            });
+            owl.on('mousewheel', '.owl-stage', function (e) {
+                if (e.deltaY > 0) {
+                    owl.trigger('next.owl');
+                } else {
+                    owl.trigger('prev.owl');
+                }
+                e.preventDefault();
+            });
+
             $(".clickable-row").click(function () {
                 window.location = $(this).data("href");
             });
         });
-
     </script>
-    <!--Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

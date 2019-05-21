@@ -301,3 +301,30 @@ a, a:hover, a:focus {
 .post-thumbnail:hover img{
     transform: scale(1.5);
 }
+
+
+/*owl caroulse*/
+.owl-nav{
+    position: absolute;
+    right: 50px;
+    top: -40px;
+}
+
+a.slide-next, a.slide-prev{
+    position: relative;
+    margin: 0 15px; 
+}
+
+a.slide-next:before{
+    position: absolute;
+    right: 25px;
+    top: 0px;
+    width: 1px;
+    height: 15px;
+    background: #ddd;
+    content: '';
+    bottom: 0;
+    display: block;
+    text-align: center;
+}
+
