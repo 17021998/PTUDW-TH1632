@@ -52,146 +52,54 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="input-group w-100">
-                                            <input type="text" class="form-control" placeholder="Thêm danh mục">
-                                            <button class="btn btn-white" type="button"><i
-                                                    class="fas fa-plus"></i></button>
-                                        </div>
+                                        <form class="input-group w-100" method="post" action="/admin/categories/add">
+                                            <input type="text" class="form-control" name="CatName" placeholder="Thêm danh mục">
+                                            <button class="btn btn-white ml-3" type="submit">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                            <!--data-->
                             <div class="card body">
                                 <ul class="cata-list list-unstyled row p-2">
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Thời sự" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Quân sự" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Chuyển động 24h" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Thể thao" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Bóng đá" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Đời sống" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Du lịch" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Sức khỏe" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Giáo dục" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Khoa học" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="CNTT" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Chuyện đó đây" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Công nghệ" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <!-- bat dau chuyen muc-->
+                                    <% for( let index = 0; index < categories.length; index++ ) { %>
+                                    
+                                        <li class="col-12 col-md-5 mx-auto mb-4 p-2">
+                                            <div class="input-group mb-1">
+                                                <input type="text" class="form-control" value="<%=categories[index].CatName %>" readonly>
+                                                <button class="btn btn-white"><i class="far fa-edit"></i></button>
+                                                <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
+                                            </div>
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    <div class="input-group mb-1">
+                                                        <input type="text" class="form-control" value="Quân sự" readonly>
+                                                        <button class="btn btn-white"><i class="far fa-edit"></i></button>
+                                                        <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="input-group mb-1">
+                                                        <input type="text" class="form-control" value="Chuyển động 24h" readonly>
+                                                        <button class="btn btn-white"><i class="far fa-edit"></i></button>
+                                                        <button class="btn btn-white"><i
+                                                                class="far fa-trash-alt"></i></button>
+                                                    </div>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    <div class="input-group mb-1">
+                                                        <input type="text" class="form-control" placeholder="Thêm danh mục con">
+                                                        <button class="btn btn-white"><i class="fas fa-plus"></i></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    <% } %>
+                                    
+                                    <!--ket thuc chuyen muc-->
                                 </ul>
                             </div>
                         </div>

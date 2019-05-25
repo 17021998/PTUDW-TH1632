@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
+var writerModel = require('../../modles/writer/writer.modle');
+
+router.get('/', (req, res) => {
+    var isActive="tbv";
+    res.render('writer/writer',{"isActive":isActive}); 
+})
 
 router.get('/baivietduocduyet', (req, res) => {
     var isActive="bvdd";
@@ -29,14 +35,27 @@ router.get('/profile-writer', (req, res) => {
      
 })
 
-router.get('/sercurity', (req, res) => {
+router.get('/security', (req, res) => {
     var isActive="s";
-    res.render('writer/sercurity',{"isActive":isActive}); 
+    res.render('writer/security',{"isActive":isActive}); 
 })
 
-router.get('/', (req, res) => {
-    var isActive="tbv";
-    res.render('writer/writer',{"isActive":isActive}); 
+
+
+router.post('/add', (req,res)=>{
+
+    req.body.Premium=null;
+    req.body.ReleaseDay=null;
+    req.body.PostStatus=null;
+
+    console.log(req.body);
+    writerModel.add(req.body).then(id => {
+        // console.log(req.body);
+        res.redirect('/writer');
+      }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+      });
 })
 
 

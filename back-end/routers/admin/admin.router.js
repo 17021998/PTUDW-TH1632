@@ -24,8 +24,15 @@ router.get('/qlBaiViet', (req, res) => {
 })
 
 router.get('/qlChuyenMuc', (req, res) => {
-    var isActive = "qlcm";
-    res.render('admin/qlChuyenMuc', { "isActive": isActive });
+    categoryModle.all()
+    .then(rows => {
+        var isActive = "qlcm";
+    res.render('admin/qlChuyenMuc', { "isActive": isActive , categories: rows });
+      }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+      });
+    
 })
 
 router.get('/qlHashTag', (req, res) => {

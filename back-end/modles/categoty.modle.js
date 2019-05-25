@@ -1,6 +1,6 @@
 var db = require('../utils/db')
 
-var nametable = "departments";
+var nametable = "catagory";
 
 module.exports = {
     all: () => {
@@ -13,14 +13,14 @@ module.exports = {
     },
 
     add: entity => {
-    return db.add('categories', entity);
+    return db.add(nametable, entity);
     },
 
     update: entity => {
-    return db.update('categories', 'CatID', entity);
+    return db.update('catagory', 'CatID', entity);
     },
 
     delete: id => {
-    return db.delete('categories', 'CatID', id);
+    return db.delete('catagory', 'CatID', id);
     }
 };

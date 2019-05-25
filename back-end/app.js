@@ -1,8 +1,11 @@
 var express = require('express');
-
+var morgan = require('morgan');
 var app = express();
-
+app.use(morgan('dev'));
 app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded());
+
 
 app.set('view engine', "ejs");
 app.set("views","./views/layouts");

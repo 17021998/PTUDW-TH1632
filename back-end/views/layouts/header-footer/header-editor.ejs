@@ -7,7 +7,7 @@
     </div>
     <aside id="page-aside" role="complementary" class="js-fullheight">
         <div id="page-logo">
-            <img src="../images/company-logo.png" alt="company-logo">
+            <img src="/images/company-logo.png" alt="company-logo">
         </div>
         <nav id="page-main-menu" role="navigation">
             <ul>
@@ -15,14 +15,14 @@
                     <img src="../images/account.png">
                     <a href="#"><span>ntquyen98@gmail.com</span></a></li>
                 <li <% if (isActive==="pe") { %> class="active" <% } %> ><a href="/editor/profile-editor">Thông tin cá nhân</a></li>
-                <li class="js-menu-toggle <% if (isActive==="xdbv") { %> active <% } %>">
+                <li class="js-menu-toggle <% if (isActive==="ds"||isActive==="ts"||isActive==="kh"||isActive==="dl") { %> active <% } %> ">
                     <a href="#sub-menu" data-toggle="collapse" role="button" aria-expanded="true"
                         aria-controls="sub-menu">Xét duyệt bài viết</a>
                     <ul class="collapse show" id="sub-menu">
-                        <li class="active"><a href="#">Du lịch</a></li>
-                        <li><a href="#">Đời sống</a></li>
-                        <li><a href="#">Thời sự</a></li>
-                        <li><a href="#">Khoa học</a></li>
+                        <li <% if (isActive=="dl"){ %> class="active" <% } %> ><a href="/editor">Du lịch</a></li>
+                        <li <% if (isActive=="ds"){ %> class="active" <% } %> ><a href="/editor/doisong">Đời sống</a></li>
+                        <li <% if (isActive=="ts"){ %> class="active" <% } %> ><a href="/editor/thoisu">Thời sự</a></li>
+                        <li <% if (isActive=="kh"){ %> class="active" <% } %> ><a href="/editor/khoahoc">Khoa học</a></li>
                     </ul>
                 </li>
                 <li><a href="/editor/security">Bảo mật</a></li>
