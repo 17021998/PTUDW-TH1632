@@ -1,11 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-var writerModel = require('../../modles/writer/writer.modle');
+var writerModle = require('../../modles/writer/writer.modle');
+var categoryModle = require('../../modles/categoty.modle');
+var catpostModle = require('../../modles/catpost/catpost.modle');
 
 router.get('/', (req, res) => {
-    var isActive="tbv";
-    res.render('writer/writer',{"isActive":isActive}); 
+    //var isActive="tbv";
+    categoryModle.all()
+    .then(rows => {
+        var isActive = "tbv";
+        console.log(rows);
+        res.render('writer/writer', { "isActive": isActive , categories: rows });
+      }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+      });
+    //res.render('writer/writer',{"isActive":isActive}); 
 })
 
 router.get('/baivietduocduyet', (req, res) => {
@@ -40,22 +51,36 @@ router.get('/security', (req, res) => {
     res.render('writer/security',{"isActive":isActive}); 
 })
 
-
-
 router.post('/add', (req,res)=>{
 
     req.body.Premium=null;
     req.body.ReleaseDay=null;
     req.body.PostStatus=null;
-
+    var CatID = req.body.CatID;
+    // post.delete('CatID');
+    delete req.body['CatID'];
+    //console.log(post);
     console.log(req.body);
-    writerModel.add(req.body).then(id => {
+    writerModle.add(req.body).then(id => {
         // console.log(req.body);
+        console.log(id);
+        var catPost={
+            'CatID': CatID,
+            'PostID': id
+        };
+        catpostModle.add(catPost)
+        .then(id => {
+
+        }).catch(err=>{
+            console.log(err);
+            res.end('error occured');
+        });
         res.redirect('/writer');
       }).catch(err => {
         console.log(err);
         res.end('error occured.')
       });
+    // res.end('...');
 })
 
 

@@ -2,10 +2,13 @@ var express = require('express');
 var router = express.Router();
 var categoryModle = require('../../modles/categoty.modle');
 
+var adminModle = require('../../modles/admin/admin.modle');
+
 router.get('/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
-    res.render('admin/ctBaiViet', { "isActive": isActive });
-
+    
+        res.render('admin/ctBaiViet', { "isActive": isActive, baiviet: rows });
+    
 })
 
 router.get('/editor-info', (req, res) => {
@@ -20,7 +23,15 @@ router.get('/profile-admin', (req, res) => {
 
 router.get('/qlBaiViet', (req, res) => {
     var isActive = "qlbv";
-    res.render('admin/qlBaiViet', { "isActive": isActive });
+    adminModle.allPost()
+    .then(rows=>{
+        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rows });
+    })
+    .catch(err=>{
+        console.log(err);
+        res.end('error');
+    });
+    // res.render('admin/qlBaiViet', { "isActive": isActive });
 })
 
 router.get('/qlChuyenMuc', (req, res) => {

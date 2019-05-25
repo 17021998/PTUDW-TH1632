@@ -47,25 +47,25 @@
                         <br>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
-                                <select class="custom-select" id="inputGroupSelect01">
+                                <select class="custom-select" id="CatID" name="CatID">
                                     <option selected="">
                                         Chọn chuyên mục
                                     </option>
-                                    <option value="1">
-                                        Thời Sự
-                                    </option>
-                                    <option value="2">
-                                        Thể Thao
-                                    </option>
-                                    <option value="3">
-                                        Đời sống
-                                    </option>
-                                    <option value="3">
-                                        Khao Học
-                                    </option>
+                                    <% for( let index = 0; index < categories.length; index++ ) { %>
+                                        <option value="<%=categories[index].ID%>">
+                                            <%= categories[index].CatName%>
+                                        </option>
+                                    <% } %>
+                                    
                                 </select>
                             </div>
                         </div>
+                        <br>
+                        <%# <div class="col-xs-4 col-md-12 form-group">
+                            <label for=""> Anh dai dien </label>
+                            <textarea name="imageMain" id="imageMain"></textarea>
+                        </div>
+                        <br> %>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
                                 <input class="form-control" id="inputendereco" name="Title"
@@ -111,10 +111,25 @@
         </section>
     </div>
         <script src="/js/writer/ckeditor/ckeditor.js"></script> 
-    <script type="text/javascript">
+        <script type="text/javascript">
+            CKEDITOR.replace('Content', {
+                "extraPlugins" : 'imagebrowser',
+		        "imageBrowser_listUrl" : "/files"
+            });
+        </script>
+        <script type="text/javascript">
+            CKEDITOR.replace('imageMain', {
+                "extraPlugins" : 'imagebrowser',
+                "imageBrowser_listUrl" : "/files",
+                toolbar:[
+                    {name: 'insert', items: ['Image']}
+                ]
+            });
+        </script>
+    <%# <script type="text/javascript">
         CKEDITOR.replace('Content');
         CKEDITOR.config.height="300";
-    </script>
+    </script> %>
     <script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
         </script>
