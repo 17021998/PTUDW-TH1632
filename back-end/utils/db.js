@@ -5,8 +5,8 @@ var createConnection = () => {
         host: 'localhost',
         user: 'root',
         port: 3306,
-        password: '',
-        database: 'qlphongbandb'
+        password: '1',
+        database: 'th16news'
     });
 }
 
@@ -28,7 +28,7 @@ module.exports = {
 
     add: (tableName, entity) => {
       return new Promise((resolve, reject) => {
-        var sql = 'insert into ${tableName} set ?';
+        var sql = `insert into ${tableName} set ? ;`;
         var connection = createConnection();
         connection.connect();
         connection.query(sql, entity, (error, value) => {
@@ -46,8 +46,7 @@ module.exports = {
       return new Promise((resolve, reject) => {
         var id = entity[idField];
         delete entity[idField];
-  
-        var sql = 'update ${tableName} set ? where ${idField} = ?';
+        var sql = `update ${tableName} set ? where ${idField} = ? ;`;
         var connection = createConnection();
         connection.connect();
         connection.query(sql, [entity, id], (error, value) => {
@@ -63,7 +62,7 @@ module.exports = {
   
     delete: (tableName, idField, id) => {
       return new Promise((resolve, reject) => {
-        var sql = 'delete from ${tableName} where ${idField} = ?';
+        var sql = `delete from ${tableName} where ${idField} = ? ;`;
         var connection = createConnection();
         connection.connect();
         connection.query(sql, id, (error, value) => {

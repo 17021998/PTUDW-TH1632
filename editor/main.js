@@ -1,4 +1,23 @@
 (function () {
+	$(document).on('click', ".js-edit-btn", function () {
+		let inputTag = $(this).parent().children('input');
+		if (inputTag.attr('disabled')) {
+			inputTag.removeAttr('disabled')
+			$(this).addClass('display-none');
+			$(this).parent().children('.js-save-btn').removeClass('display-none');
+		}
+	});
+
+	/* $(document).on('click', ".js-save-btn", function(){
+		let inputTag = $(this).parent().children('input');
+
+		if (!inputTag.attr('disabled')) {
+			inputTag.prop('disabled', 'true')
+			$(this).addClass('display-none');
+			$(this).parent().children('.js-edit-btn').removeClass('display-none');
+		}
+	}); */
+
 	$(".clickable-row").click(function() {
 		window.location = $(this).data("href");
 	});

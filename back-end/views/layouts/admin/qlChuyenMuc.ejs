@@ -7,17 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Catagories - Admin</title>
     <!--Font-->
-    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <link rel="stylesheet" href="/css/fonts/Open_Sans/open-sans.css">
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" href="/css/admin/admin-style.css">
- 
 </head>
 
 <body>
@@ -52,146 +49,153 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="input-group w-100">
-                                            <input type="text" class="form-control" placeholder="Thêm danh mục">
-                                            <button class="btn btn-white" type="button"><i
-                                                    class="fas fa-plus"></i></button>
-                                        </div>
+                                        <form action="/admin/categories/add" method="POST" class="input-group w-100">
+                                            <input  type="text" class="form-control" 
+                                                    placeholder="Thêm danh mục"
+                                                    name="CatName">
+                                            <button class="btn btn-white" type="submit">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                             <div class="card body">
                                 <ul class="cata-list list-unstyled row p-2">
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Thời sự" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Quân sự" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Chuyển động 24h" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Thể thao" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Bóng đá" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Đời sống" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Du lịch" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Sức khỏe" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Giáo dục" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="col-12 col-md-5 mx-auto mb-4 p-2">
-                                        <div class="input-group mb-1">
-                                            <input type="text" class="form-control" value="Khoa học" disabled>
-                                            <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                            <button class="btn btn-white"><i class="far fa-trash-alt"></i></button>
-                                        </div>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="CNTT" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Chuyện đó đây" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" value="Công nghệ" disabled>
-                                                    <button class="btn btn-white"><i class="far fa-edit"></i></button>
-                                                    <button class="btn btn-white"><i
-                                                            class="far fa-trash-alt"></i></button>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="input-group mb-1">
-                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con">
-                                                    <button class="btn btn-white"><i class="fas fa-plus"></i></button>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                    <% for(var i = 0; i< cats.length; i++){ %>
+                                        <% if(i == 0){ %>
+                                        <li class="col-12 col-md-5 mx-auto mb-4 p-2">
+                                            <!--Thang chinh-->
+                                            <form 
+                                                action="/admin/categories/edit/<%=cats[i].ID %>" 
+                                                method="post" class="input-group mb-1">
+                                                <input name="CatName" type="text" class="form-control" 
+                                                    value="<%=cats[i].CatName %>" disabled>
+                                                <button class="btn btn-white js-edit-btn" type="button">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-white display-none js-save-btn" type="submit">
+                                                    <i class="far fa-save"></i>
+                                                </button>
+                                                <button class="btn btn-white" type="submit" 
+                                                        formaction="/admin/categories/delete/<%=cats[i].ID %>">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                            <ul class="list-group">
+                                            <% if(cats[i].subID != null){ %>
+                                                <li class="list-group-item">
+                                                    <!--Thang con-->
+                                                    <form action="/admin/categories/edit/<%=cats[i].subID %>" 
+                                                        method="post" class="input-group mb-1">
+                                                        <input name="CatName" type="text" class="form-control" 
+                                                        value="<%=cats[i].subName %>" disabled>
+                                                        <button class="btn btn-white js-edit-btn" type="button">
+                                                            <i class="far fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-white display-none js-save-btn" type="submit">
+                                                            <i class="far fa-save"></i>
+                                                        </button>
+                                                        <button class="btn btn-white" type="submit" 
+                                                                formaction="/admin/categories/delete/<%=cats[i].subID %>">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            <% } %>
+                                        <% } %>
+                                    
+                                        <% if(i != 0){ %>
+                                            <% if(cats[i].ID == cats[i-1].ID && cats[i].subID != null){ %>
+                                                <li class="list-group-item">
+                                                    <!--Thang con-->
+                                                    <form action="/admin/categories/edit/<%=cats[i].subID %>" 
+                                                        method="post" class="input-group mb-1">
+                                                        <input name="CatName" type="text" class="form-control" 
+                                                        value="<%=cats[i].subName %>" disabled>
+                                                        <button class="btn btn-white js-edit-btn" type="button">
+                                                            <i class="far fa-edit"></i>
+                                                        </button>
+                                                        <button class="btn btn-white display-none js-save-btn" type="submit">
+                                                            <i class="far fa-save"></i>
+                                                        </button>
+                                                        <button class="btn btn-white" type="submit" 
+                                                                formaction="/admin/categories/delete/<%=cats[i].subID %>">
+                                                            <i class="far fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                            <% } %>
+                                            <% if(cats[i].ID != cats[i-1].ID){ %>
+                                                <!--Them danh muc "can xem lai"-->
+                                                <li class="list-group-item">
+                                                    <form action="/admin/categories/<%=cats[i-1].ID %>/add" method="post"
+                                                        class="input-group mb-1">
+                                                        <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
+                                                        <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
+                                                    </form>
+                                                </li>
+                                            <!--Dong danh muc chay nay lại-->
+                                            </ul>
+                                        </li>
+                                        <!--Danh muc cha tiep theo-->
+                                        <li class="col-12 col-md-5 mx-auto mb-4 p-2">
+                                            <!--Thang cha again-->
+                                            <form 
+                                                action="/admin/categories/edit/<%=cats[i].ID %>" 
+                                                method="post" class="input-group mb-1">
+                                                <input name="CatName" type="text" class="form-control" 
+                                                    value="<%=cats[i].CatName %>" disabled>
+                                                <button class="btn btn-white js-edit-btn" type="button">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+                                                <button class="btn btn-white display-none js-save-btn" type="submit">
+                                                    <i class="far fa-save"></i>
+                                                </button>
+                                                <button class="btn btn-white" type="submit" 
+                                                        formaction="/admin/categories/delete/<%=cats[i].ID %>">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </form>
+                                            <ul class="list-group">
+                                                <% if(cats[i].subID != null){ %>
+                                                    <li class="list-group-item">
+                                                        <!--Thang con-->
+                                                        <form action="/admin/categories/edit/<%=cats[i].subID %>" 
+                                                            method="post" class="input-group mb-1">
+                                                            <input name="CatName" type="text" class="form-control" 
+                                                            value="<%=cats[i].subName %>" disabled>
+                                                            <button class="btn btn-white js-edit-btn" type="button">
+                                                                <i class="far fa-edit"></i>
+                                                            </button>
+                                                            <button class="btn btn-white display-none js-save-btn" type="submit">
+                                                                <i class="far fa-save"></i>
+                                                            </button>
+                                                            <button class="btn btn-white" type="submit" 
+                                                                    formaction="/admin/categories/delete/<%=cats[i].subID %>">
+                                                                <i class="far fa-trash-alt"></i>
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                <% }else{ %>
+                                                    <li class="list-group-item">
+                                                        <form action="/admin/categories/<%=cats[i].ID %>/add" method="post" class="input-group mb-1">
+                                                            <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
+                                                            <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
+                                                        </form>
+                                                    </li>
+                                                <% } %>
+                                                <% if(cats[i].subID != null && i == (cats.length-1)){ %>
+                                                    <li class="list-group-item">
+                                                        <form action="/admin/categories/<%=cats[i].ID %>/add" method="post" class="input-group mb-1">
+                                                            <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
+                                                            <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
+                                                        </form>
+                                                    </li>
+                                                <% } %>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
                                 </ul>
                             </div>
                         </div>
@@ -200,21 +204,12 @@
             </div>
         </section>
     </div>
-
-    <!--JQuery-->
-    <script src="../editor/jquery.min.js"></script>
-    <!--Main Script-->
-    <script src="../editor/main.js"></script>
     <!--Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!--Main Script-->
+    <script src="/js/editor/main.js"></script>
 </body>
 
 </html>
