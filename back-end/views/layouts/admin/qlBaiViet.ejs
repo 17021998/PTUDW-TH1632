@@ -82,43 +82,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="clickable-row" data-href="ctBaiViet.html">
-                                                <th scope="row">1</th>
-                                                <td>Thời sử</td>
-                                                <td>Bộ Lao động Thương binh và Xã hội đề xuất giờ làm việc từ 8h30</td>
-                                                <td>Thường</td>
-                                                <td>Xuân Diệu</td>
-                                                <td class="text-success">Đã xuất bản</td>
-                                                <td>
-                                                    <span class="date">15</span>
-                                                    <span class="month">10</span>
-                                                    <span class="year">2017</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="ctBaiViet.html">
-                                                <th scope="row">2</th>
-                                                <td>Đời sống</td>
-                                                <td>7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của
-                                                    ENDGAME
-                                                </td>
-                                                <td>Premium</td>
-                                                <td>Tô Lịch</td>
-                                                <td class="text-warning">Chưa Duyệt</td>
-                                                <td>
-                                                    <span class="day">1</span>
-                                                    <span class="month">4</span>
-                                                    <span class="year">2019</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="ctBaiViet.html">
-                                                <th scope="row">3</th>
-                                                <td>Chuyển động 24h</td>
-                                                <td>'Giá xăng có thể tăng cao hơn nhiều nếu không dùng Quỹ bình ổn'</td>
-                                                <td>Thường</td>
-                                                <td>Xuân Xiu</td>
-                                                <td class="text-danger">Bị từ chối</td>
-                                                <td></td>
-                                            </tr>
+                                            <% for( let index = 0; index < baiviet.length; index++ ) { %>
+                                                <tr class="clickable-row" data-href="ctBaiViet.html">
+                                                    <th scope="row"><%= baiviet[index].ID %></th>
+                                                    <td><%= baiviet[index].CatName %></td>
+                                                    <td><%= baiviet[index].Title %></td>
+                                                    <td>Thường</td>
+                                                    <td>Xuân Diệu</td>
+                                                    <td class="text-success">Đã xuất bản</td>
+                                                    <td>
+                                                        <span class="date">15</span>
+                                                        <span class="month">10</span>
+                                                        <span class="year">2017</span>
+                                                    </td>
+                                                </tr>
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>

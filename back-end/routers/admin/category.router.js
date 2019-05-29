@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var categoryModle = require('../../modles/categoty.modle');
+var categoryModel = require('../../modles/categoty.modle');
 
 router.get('/', (req, res) => {
     var p = categoryModle.all();

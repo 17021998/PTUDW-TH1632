@@ -42,62 +42,65 @@
                     Bài viết mới
                 </h1>
                 <hr>
-                <form class="d-flex flex-row content-form-view">
+                <form class="d-flex flex-row content-form-view" action="/writer/add" method="post">
                     <div class="col-12">
                         <br>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
-                                <select class="custom-select" id="inputGroupSelect01">
+                                <select class="custom-select" id="CatID" name="CatID">
                                     <option selected="">
                                         Chọn chuyên mục
                                     </option>
-                                    <option value="1">
-                                        Thời Sự
-                                    </option>
-                                    <option value="2">
-                                        Thể Thao
-                                    </option>
-                                    <option value="3">
-                                        Đời sống
-                                    </option>
-                                    <option value="3">
-                                        Khao Học
-                                    </option>
+                                    <% for( let index = 0; index < categories.length; index++ ) { %>
+                                        <option value="<%=categories[index].ID%>">
+                                            <%= categories[index].CatName%>
+                                        </option>
+                                    <% } %>
+                                    
                                 </select>
                             </div>
                         </div>
+                        <br>
+                        <%# <div class="col-xs-4 col-md-12 form-group">
+                            <label for=""> Anh dai dien </label>
+                            <textarea name="imageMain" id="imageMain"></textarea>
+                        </div>
+                        <br> %>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
-                                <input class="form-control" id="inputendereco" name="endereco"
+                                <input class="form-control" id="inputendereco" name="Title"
                                     placeholder="Nhập Tiêu Đề Bài Viết." type="text">
 
                             </div>
                         </div>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
-                                <input class="form-control" id="inputendereco" name="endereco"
+                                <input class="form-control" id="inputendereco" name="Abstract"
                                     placeholder="Tóm Tắt Nội Dung Bài Viết." type="text">
 
                             </div>
                         </div>
                         <!-- input textarea -->
                         <div class="col-xs-4 col-md-12 form-group">
-                            <textarea name="writer">
-                                                </textarea>
+                            <textarea name="Content" id="Content"></textarea>
                         </div>
                         <div class="row">
                             <div class="col-7 col-lg-7 col-sm-7 input-group-prepend left ml-3">
                                 <div class="input-group-text">
-                                    <input aria-label="Checkbox for following text input" type="checkbox">
+                                    <input aria-label="Checkbox for following text input" type="checkbox" >
                                     Tôi đồng ý với các điều khoản bên bạn.
 
                                 </div>
                             </div>
                             <div class="col-3 col-lg-3 col-sm-3 btn btn-group float-right">
-                                <a aria-pressed="true" class="btn btn-primary btn-lg active ml-auto" href="#"
-                                    role="button">
+                                <%# <a aria-pressed="true" class="btn btn-primary btn-lg active ml-auto" href="#"
+                                    type="submit">
                                     Gữi Bài Viết
-                                </a>
+                                </a> %>
+                                <button class="btn btn-white ml-3" type="submit">
+                                gữi bài viết
+                                                <%# <i class="fas fa-plus"></i> %>
+                                            </button>
                             </div>
                         </div>
                         <br>
@@ -107,10 +110,26 @@
             </div>
         </section>
     </div>
-        <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script> 
-    <script type="text/javascript">
-        CKEDITOR.replace('writer');
-    </script>
+        <script src="/js/writer/ckeditor/ckeditor.js"></script> 
+        <script type="text/javascript">
+            CKEDITOR.replace('Content', {
+                "extraPlugins" : 'imagebrowser',
+		        "imageBrowser_listUrl" : "/files"
+            });
+        </script>
+        <script type="text/javascript">
+            CKEDITOR.replace('imageMain', {
+                "extraPlugins" : 'imagebrowser',
+                "imageBrowser_listUrl" : "/files",
+                toolbar:[
+                    {name: 'insert', items: ['Image']}
+                ]
+            });
+        </script>
+    <%# <script type="text/javascript">
+        CKEDITOR.replace('Content');
+        CKEDITOR.config.height="300";
+    </script> %>
     <script crossorigin="anonymous" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
         </script>

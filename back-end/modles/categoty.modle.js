@@ -1,6 +1,6 @@
 var db = require('../utils/db')
 
-var nametable = "departments";
+var nametable = "catagory";
 
 module.exports = {
     all: () => {
