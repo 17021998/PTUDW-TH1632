@@ -3,7 +3,7 @@ var router = express.Router();
 var categoryModel = require('../../modles/categoty.modle');
 
 router.get('/', (req, res) => {
-    var p = categoryModle.all();
+    var p = categoryModel.all();
     p.then(cats => {
         res.render('admin/qlChuyenMuc', { 
             cats: cats,
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-    categoryModle.add(req.body).then(id => {
+    categoryModel.add(req.body).then(id => {
         res.redirect('/admin/categories')
     }).catch(err =>{
         console.log(err);
@@ -27,7 +27,7 @@ router.post('/add', (req, res) => {
 router.post('/:id/add', (req, res) => {
     var scID = req.params.id;
     req.body.SuperCatID = scID;
-    categoryModle.add(req.body).then(() => {
+    categoryModel.add(req.body).then(() => {
         res.redirect('/admin/categories');
     }).catch(err =>{
         console.log(err);
@@ -38,7 +38,7 @@ router.post('/:id/add', (req, res) => {
 router.post('/edit/:id', (req, res) => {
     var CatID = req.params.id;
     req.body.ID = CatID;
-    categoryModle.update(req.body).then( () =>{
+    categoryModel.update(req.body).then( () =>{
         res.redirect('/admin/categories');
     }).catch(err => {
         console.log(err);
@@ -48,7 +48,7 @@ router.post('/edit/:id', (req, res) => {
 
 router.post('/delete/:id', (req, res) => {
     var catID = req.params.id;
-    categoryModle.delete(catID).then(() =>{
+    categoryModel.delete(catID).then(() =>{
         res.redirect('/admin/categories');
     }).catch(err => {
         console.log(err);
