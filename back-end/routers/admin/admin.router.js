@@ -39,10 +39,10 @@ router.get('/qlChuyenMuc', (req, res) => {
     .then(rows => {
         var isActive = "qlcm";
     res.render('admin/qlChuyenMuc', { "isActive": isActive , categories: rows });
-      }).catch(err => {
+    }).catch(err => {
         console.log(err);
         res.end('error occured.')
-      });
+    });
     
 })
 
