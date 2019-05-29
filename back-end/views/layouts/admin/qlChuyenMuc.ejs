@@ -63,15 +63,15 @@
                             <!--data-->
                             <div class="card body">
                                 <ul class="cata-list list-unstyled row p-2">
-                                    <% for(var i = 0; i< cats.length; i++){ %>
+                                    <% for(var i = 0; i< rows.length; i++){ %>
                                         <% if(i == 0){ %>
                                         <li class="col-12 col-md-5 mx-auto mb-4 p-2">
                                             <!--Thang chinh-->
                                             <form 
-                                                action="/admin/categories/edit/<%=cats[i].ID %>" 
+                                                action="/admin/categories/edit/<%=rows[i].ID %>" 
                                                 method="post" class="input-group mb-1">
                                                 <input name="CatName" type="text" class="form-control" 
-                                                    value="<%=cats[i].CatName %>" disabled>
+                                                    value="<%=rows[i].CatName %>" disabled>
                                                 <button class="btn btn-white js-edit-btn" type="button">
                                                     <i class="far fa-edit"></i>
                                                 </button>
@@ -79,18 +79,18 @@
                                                     <i class="far fa-save"></i>
                                                 </button>
                                                 <button class="btn btn-white" type="submit" 
-                                                        formaction="/admin/categories/delete/<%=cats[i].ID %>">
+                                                        formaction="/admin/categories/delete/<%=rows[i].ID %>">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                             <ul class="list-group">
-                                            <% if(cats[i].subID != null){ %>
+                                            <% if(rows[i].subID != null){ %>
                                                 <li class="list-group-item">
                                                     <!--Thang con-->
-                                                    <form action="/admin/categories/edit/<%=cats[i].subID %>" 
+                                                    <form action="/admin/categories/edit/<%=rows[i].subID %>" 
                                                         method="post" class="input-group mb-1">
                                                         <input name="CatName" type="text" class="form-control" 
-                                                        value="<%=cats[i].subName %>" disabled>
+                                                        value="<%=rows[i].subName %>" disabled>
                                                         <button class="btn btn-white js-edit-btn" type="button">
                                                             <i class="far fa-edit"></i>
                                                         </button>
@@ -98,7 +98,7 @@
                                                             <i class="far fa-save"></i>
                                                         </button>
                                                         <button class="btn btn-white" type="submit" 
-                                                                formaction="/admin/categories/delete/<%=cats[i].subID %>">
+                                                                formaction="/admin/categories/delete/<%=rows[i].subID %>">
                                                             <i class="far fa-trash-alt"></i>
                                                         </button>
                                                     </form>
@@ -107,13 +107,13 @@
                                         <% } %>
                                     
                                         <% if(i != 0){ %>
-                                            <% if(cats[i].ID == cats[i-1].ID && cats[i].subID != null){ %>
+                                            <% if(rows[i].ID == rows[i-1].ID && rows[i].subID != null){ %>
                                                 <li class="list-group-item">
                                                     <!--Thang con-->
-                                                    <form action="/admin/categories/edit/<%=cats[i].subID %>" 
+                                                    <form action="/admin/categories/edit/<%=rows[i].subID %>" 
                                                         method="post" class="input-group mb-1">
                                                         <input name="CatName" type="text" class="form-control" 
-                                                        value="<%=cats[i].subName %>" disabled>
+                                                        value="<%=rows[i].subName %>" disabled>
                                                         <button class="btn btn-white js-edit-btn" type="button">
                                                             <i class="far fa-edit"></i>
                                                         </button>
@@ -121,16 +121,16 @@
                                                             <i class="far fa-save"></i>
                                                         </button>
                                                         <button class="btn btn-white" type="submit" 
-                                                                formaction="/admin/categories/delete/<%=cats[i].subID %>">
+                                                                formaction="/admin/categories/delete/<%=rows[i].subID %>">
                                                             <i class="far fa-trash-alt"></i>
                                                         </button>
                                                     </form>
                                                 </li>
                                             <% } %>
-                                            <% if(cats[i].ID != cats[i-1].ID){ %>
+                                            <% if(rows[i].ID != rows[i-1].ID){ %>
                                                 <!--Them danh muc "can xem lai"-->
                                                 <li class="list-group-item">
-                                                    <form action="/admin/categories/<%=cats[i-1].ID %>/add" method="post"
+                                                    <form action="/admin/categories/<%=rows[i-1].ID %>/add" method="post"
                                                         class="input-group mb-1">
                                                         <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
                                                         <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
@@ -143,10 +143,10 @@
                                         <li class="col-12 col-md-5 mx-auto mb-4 p-2">
                                             <!--Thang cha again-->
                                             <form 
-                                                action="/admin/categories/edit/<%=cats[i].ID %>" 
+                                                action="/admin/categories/edit/<%=rows[i].ID %>" 
                                                 method="post" class="input-group mb-1">
                                                 <input name="CatName" type="text" class="form-control" 
-                                                    value="<%=cats[i].CatName %>" disabled>
+                                                    value="<%=rows[i].CatName %>" disabled>
                                                 <button class="btn btn-white js-edit-btn" type="button">
                                                     <i class="far fa-edit"></i>
                                                 </button>
@@ -154,18 +154,18 @@
                                                     <i class="far fa-save"></i>
                                                 </button>
                                                 <button class="btn btn-white" type="submit" 
-                                                        formaction="/admin/categories/delete/<%=cats[i].ID %>">
+                                                        formaction="/admin/categories/delete/<%=rows[i].ID %>">
                                                     <i class="far fa-trash-alt"></i>
                                                 </button>
                                             </form>
                                             <ul class="list-group">
-                                                <% if(cats[i].subID != null){ %>
+                                                <% if(rows[i].subID != null){ %>
                                                     <li class="list-group-item">
                                                         <!--Thang con-->
-                                                        <form action="/admin/categories/edit/<%=cats[i].subID %>" 
+                                                        <form action="/admin/categories/edit/<%=rows[i].subID %>" 
                                                             method="post" class="input-group mb-1">
                                                             <input name="CatName" type="text" class="form-control" 
-                                                            value="<%=cats[i].subName %>" disabled>
+                                                            value="<%=rows[i].subName %>" disabled>
                                                             <button class="btn btn-white js-edit-btn" type="button">
                                                                 <i class="far fa-edit"></i>
                                                             </button>
@@ -173,22 +173,22 @@
                                                                 <i class="far fa-save"></i>
                                                             </button>
                                                             <button class="btn btn-white" type="submit" 
-                                                                    formaction="/admin/categories/delete/<%=cats[i].subID %>">
+                                                                    formaction="/admin/categories/delete/<%=rows[i].subID %>">
                                                                 <i class="far fa-trash-alt"></i>
                                                             </button>
                                                         </form>
                                                     </li>
                                                 <% }else{ %>
                                                     <li class="list-group-item">
-                                                        <form action="/admin/categories/<%=cats[i].ID %>/add" method="post" class="input-group mb-1">
+                                                        <form action="/admin/categories/<%=rows[i].ID %>/add" method="post" class="input-group mb-1">
                                                             <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
                                                             <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
                                                         </form>
                                                     </li>
                                                 <% } %>
-                                                <% if(cats[i].subID != null && i == (cats.length-1)){ %>
+                                                <% if(rows[i].subID != null && i == (rows.length-1)){ %>
                                                     <li class="list-group-item">
-                                                        <form action="/admin/categories/<%=cats[i].ID %>/add" method="post" class="input-group mb-1">
+                                                        <form action="/admin/categories/<%=rows[i].ID %>/add" method="post" class="input-group mb-1">
                                                             <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
                                                             <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
                                                         </form>

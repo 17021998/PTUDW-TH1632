@@ -4,9 +4,9 @@ var categoryModel = require('../../modles/categoty.modle');
 
 router.get('/', (req, res) => {
     var p = categoryModel.all();
-    p.then(cats => {
+    p.then(rows => {
         res.render('admin/qlChuyenMuc', { 
-            cats: cats,
+            rows: rows,
             isActive:"qlcm"
         });
     })
