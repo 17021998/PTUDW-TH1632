@@ -2,21 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 var writerModle = require('../../modles/writer/writer.modle');
-var categoryModle = require('../../modles/categoty.modle');
-var catpostModle = require('../../modles/catpost/catpost.modle');
 
-router.get('/', (req, res) => {
-    //var isActive="tbv";
-    categoryModle.all()
+router.get('/', (req, res) => { 
+    writerModle.getCatagory()
     .then(rows => {
         var isActive = "tbv";
-        console.log(rows);
         res.render('writer/writer', { "isActive": isActive , categories: rows });
       }).catch(err => {
         console.log(err);
         res.end('error occured.')
       });
-    //res.render('writer/writer',{"isActive":isActive}); 
 })
 
 router.get('/baivietduocduyet', (req, res) => {
@@ -68,7 +63,7 @@ router.post('/add', (req,res)=>{
             'CatID': CatID,
             'PostID': id
         };
-        catpostModle.add(catPost)
+        writerModle.addCatPost(catPost)
         .then(id => {
 
         }).catch(err=>{

@@ -37,29 +37,36 @@
             <!--Main content-->
             <div class="container">
                 <div class="row">
+                <!-- tên chuyên mục -->
                     <div class="col-12">
                         <div class="box">
-                            <h1>Chuyên mục: <span id="cata-name">Du lịch</span></h1>
+                            <h1>Chuyên mục: <span id="cata-name"><%=chuyenmuc%></span></h1>
                         </div>
                     </div>
+                    <!-- một mục hiển thị -->
                     <div class="col-md-12">
                         <div class="box row" id="draft-articles">
                             <h4 class="article-list-header col-12">Danh sách các bài viết mới:</h4>
                             <ul class="article-list col-12">
-
                             </ul>
                             <div class="article-list col-12 row">
-                                <a href="#edit" class="row item col-lg-6">
-                                    <div class="item-thumb col-6">
-                                        <img src="../images/home-new-post-1.jpg" alt="">
-                                    </div>
-                                    <div class="item-detail col-6">
-                                        <h6 class="article-detail">
-                                            <span class="article-title">Lễ này đưa gia đinh đi chơi đâu?</span> -
-                                            <span class="article-author">Xuân Diệu</span>
-                                        </h6>
-                                    </div>
-                                </a>
+                                <% for( let index = 0; index < post.length; index++ ) { %>
+                                    <a href="#edit" class="row item col-lg-6">
+                                            <div class="item-thumb col-6">
+                                            <!-- anh dai dien -->
+                                                <img src="../images/home-new-post-1.jpg" alt="">
+                                            </div>
+                                            <div class="item-detail col-6">
+                                                <h6 class="article-detail">
+                                                <!-- tiêu đề của bài viết -->
+                                                    <span class="article-title"><%=post[index].Title%></span>
+                                                    <!-- tên tac giả viết bài chưa đưa ra được. -->
+                                                    <span class="article-author">Xuân Diệu</span>
+                                                </h6>
+                                            </div>
+                                        </a>
+                                <% } %>
+                                
                                 <a href="#edit" class="col-lg-6 row item">
                                     <div class="item-thumb col-6">
                                         <img src="../images/home-new-post-1.jpg" alt="">
@@ -96,6 +103,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-12">
                         <div class="box row">
                             <h3 id="edit" class="col-12">Nội dụng: </h3>
@@ -159,7 +167,7 @@
 <p>C&aacute;c bạn c&oacute; th&iacute;ch địa điểm du lịch mới lạ n&agrave;y kh&ocirc;ng n&agrave;o! Vậy c&ograve;n chở g&igrave; nữa m&agrave; kh&ocirc;ng c&ugrave;ng người th&acirc;n của m&igrave;nh trải nghiệm địa điểm th&uacute; vị n&agrave;y n&agrave;o. Hay để lại b&igrave;nh luận về cảm nghĩ của bạn nh&aacute;&nbsp;<img height="50" src="file:///D:/Third%20Year/PhatTrienUngDungweb/DoAn/PTUDW-TH1632/ckeditor/plugins/hkemoji/sticker/onion/Onion--100.gif" width="50" /></p>`;
         $(document).ready(function () {
             $(".item").click(function (e) {
-                CKEDITOR.instances.editor.setData(=, function () {
+                CKEDITOR.instances.editor.setData(content, function () {
                     this.checkDirty();  // true
                 });
             });
@@ -168,15 +176,9 @@
     <!--Main Script-->
     <script src="/js/editor/main.js"></script>
     <!--Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
