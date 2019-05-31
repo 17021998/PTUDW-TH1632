@@ -15,6 +15,4 @@ module.exports = {
     add: entity => {
     return db.add(nametable, entity);
     },
-
-    
 };
