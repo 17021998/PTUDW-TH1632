@@ -7,20 +7,27 @@ module.exports = {
         return db.load('select * from ' + nametable);
     },
     
+    getCatagory:()=>{
+        return db.load('select c.ID, c.CatName from catagory as c where c.SuperCatID is null')
+    },
     
     single: id => {
     return db.load('select * from '+nametable+' where ID = ${id}');
     },
 
-    add: entity => {
+    addPost: entity => {
     return db.add(nametable, entity);
     },
 
-    update: entity => {
+    addCatPost: entity => {
+        return db.add(nametable, entity);
+    },
+
+    updatePost: entity => {
     return db.update('catagory', 'CatID', entity);
     },
 
-    delete: id => {
+    deletePost: id => {
     return db.delete('catagory', 'CatID', id);
     }
 };
