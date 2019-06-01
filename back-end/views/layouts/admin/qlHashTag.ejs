@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HashTags - Admin</title>
     <!--Font-->
-    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <link rel="stylesheet" href="/fonts/Open_Sans/open-sans.css">
     <!--Bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -29,7 +29,7 @@
             <!--Head content-->
             <div class="head-content row">
                 <div class="col-md-12 text-right my-auto">
-                    <a href="profile-admin.html" class="head-item"><img src="../images/account.png"></a>
+                    <a href="profile-admin.html" class="head-item"><img src="/images/account.png"></a>
                     <a href="../index.html" class="head-item">
                         <span>Đăng xuất</span>
                         <i class="fas fa-sign-out-alt"></i>
@@ -55,31 +55,62 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card body">
+                               <div class="card">
+                                    <div class="bootstrap-tagsinput">
+                                    <% for( let index = 0; index < tag.length; index++ ) { %>
+                                        <span class="tag label label-info"><%=tag[index].TagName %>
+                                            <a href="/admin/<%=tag[index].ID %>/deletetag"> <span data-role="remove"></span></a>
+                                        </span>
+                                    <% } %>
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                            <form action="/admin/qlHashTag/add" method="POST">
+
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col my-auto">
+                                            <div id="card-header-title">
+                                                <h5>Thêm HashTag</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card body"> 
                                 <center>
-                                    <input type="text" value="" data-role="tagsinput" placeholder="Add tags" />
+                                    <input type="text" name="tagname" data-role="tagsinput" placeholder="Add tags" />
                                 </center>
-                            </div>
+                                    <button class="btn btn-primary mb-3 button_a" formaction="/admin/qlHashTag/add" role="submit">
+                                        <i class="fa fa-check-circle" aria-hidden="true"></i>  
+                                        Gữi
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-    <!--JQuery-->
-    <script src="../editor/jquery.min.js"></script>
-    <!--Main Script-->
-    <script src="../editor/main.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("form").bind("keypress", function(e) {
+                    if (e.keyCode == 13) {
+                        return false;
+                    }
+            });
+    });
+        </script>
     <!--Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        
+    <script src="/js/editor/main.js"></script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var categoryModle = require('../../modles/categoty.modle');
-
 var adminModle = require('../../modles/admin/admin.modle');
+var split = require('string-split');
 
 router.get('/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
@@ -43,12 +43,37 @@ router.get('/qlChuyenMuc', (req, res) => {
         console.log(err);
         res.end('error occured.')
     });
-    
 })
 
 router.get('/qlHashTag', (req, res) => {
     var isActive = "qlht";
-    res.render('admin/qlHashTag', { "isActive": isActive });
+    adminModle.allTag()
+        .then(rows=>{
+            res.render('admin/qlHashTag', { "isActive": isActive, tag: rows});
+        })
+        .catch(err=>console.log(err));
+    
+})
+
+router.post('/qlHashTag/add', (req,res)=>{
+    var tagname= req.body.tagname;
+    var Arr = split(",", tagname);
+    
+    adminModle.addTag(Arr)
+        .then(id=>{
+            res.redirect("/admin/qlHashTag");
+        })
+        .catch(err => console.log(err));
+})
+
+router.get('/:id/deleteTag', (req,res)=>{
+    var idTag= req.params.id;
+    adminModle.deleteTag(idTag)
+        .then(id => {
+            res.redirect("/admin/qlHashTag");
+        })
+        .catch(err=>console.log(err));
+
 })
 
 router.get('/qlNguoiDung', (req, res) => {
