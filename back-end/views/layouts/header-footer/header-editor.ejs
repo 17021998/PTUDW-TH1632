@@ -12,7 +12,7 @@
         <nav id="page-main-menu" role="navigation">
             <ul>
                 <li class="nav-img">
-                    <img src="../images/account.png">
+                    <img src="/images/account.png">
                     <a href="#"><span>ntquyen98@gmail.com</span></a></li>
                 <li <% if (isActive==="pe") { %> class="active" <% } %> ><a href="/editor/profile-editor">Thông tin cá nhân</a></li>
                 <li class="js-menu-toggle active">
@@ -20,11 +20,11 @@
                         aria-controls="sub-menu">Xét duyệt bài viết</a>
                     <ul class="collapse show" id="sub-menu">
                         <% for( let index = 0; index < categories.length; index++ ) { %>
-                            <li <% if(categories[index].isActive){ %> class="active" <% } %>><a href="/editor/<%=categories[index].ID %>"><%=categories[index].CatName %></a></li>
+                            <li <% if(categories[index].isActive){ %> class="active" <% } %>><a href="/editor/<%=categories[index].ID %>/xdbv"><%=categories[index].CatName %></a></li>
                         <% } %>
                     </ul>
                 </li>
-                <li><a href="/editor/security">Bảo mật</a></li>
+                <li <% if (isActive==="s") { %> class="active" <% } %> ><a href="/editor/security">Bảo mật</a></li>
                 <li><a href="/" class="main-menu-hidden">Đăng xuất</a></li>
             </ul>
         </nav>

@@ -51,6 +51,11 @@ router.get('/qlHashTag', (req, res) => {
     res.render('admin/qlHashTag', { "isActive": isActive });
 })
 
+router.post('/qlHashTag/add', (req,res)=>{
+    console.log('...');
+    res.end('...');
+})
+
 router.get('/qlNguoiDung', (req, res) => {
     var isActive = "qlnd";
     res.render('admin/qlNguoiDung', { "isActive": isActive });
