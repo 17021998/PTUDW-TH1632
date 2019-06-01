@@ -62,7 +62,8 @@ module.exports = {
 
   delete: (tableName, idField, id) => {
     return new Promise((resolve, reject) => {
-      var sql = `delete from ${tableName} where ${idField} = ? ;`;
+      //var sql = `delete from ${tableName} where ${idField} = ? ;`;
+      var sql = `update ${tableName} set IsDelete = 1 where ${idField} = ? ;`;
       var connection = createConnection();
       connection.connect();
       connection.query(sql, id, (error, value) => {
