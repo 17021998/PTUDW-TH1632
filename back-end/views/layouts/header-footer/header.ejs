@@ -35,51 +35,49 @@
                     </button>
                     <div class="collapse navbar-collapse " id="navbar">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">Thời sự</a>
-                                <div class="dropdown-menu">
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Quân sự</a>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Chuyển động 24h</a>
+                            <% for(var i = 0; i< cats.length; i++){ %>
+                                <% if(i == 0){ %>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
+                                        <div class="dropdown-menu">
+                                            <% if(cats[i].subID != null){ %>
+                                                <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                            <% } %>
+                                <% } %>
+                                <% if(i != 0){ %>
+                                    <% if(cats[i].ID == cats[i-1].ID && cats[i].subID != null){ %>
+                                            <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                    <% } %>
+                                <% if(cats[i].ID != cats[i-1].ID){ %>        
                                     <div class="dropdown-divider"></div>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Mọi bài viết chủ đề Thời
-                                        sự</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">Thể thao</a>
-                                <div class="dropdown-menu">
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Bóng đá</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Mọi bài viết chủ đề Thể
-                                        thao</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">Đời sống</a>
-                                <div class="dropdown-menu">
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Du lịch</a>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Sức khỏe</a>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Giáo dục</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Mọi bài viết chủ đề Đời
-                                        sống</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">Khoa học</a>
-                                <div class="dropdown-menu">
-                                    <a href="/guest/chuyen-de" class="dropdown-item">CNTT</a>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Chuyện đó đây</a>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Công nghệ</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="/guest/chuyen-de" class="dropdown-item">Mọi bài viết chủ đề Khoa
-                                        học</a>
-                                </div>
-                            </li>
+                                        <a href="/guest/chuyen-de" class="dropdown-item">
+                                            Mọi bài viết chủ đề <%=cats[i-1].CatName %>
+                                        </a>
+                                    </div>
+                                </li>
+                                <!--Father-->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
+                                    <div class="dropdown-menu">
+                                        <% if(cats[i].subID != null){ %>
+                                            <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                        <% }else{ %>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="/guest/chuyen-de" class="dropdown-item">
+                                            Mọi bài viết chủ đề <%=cats[i-1].CatName %>
+                                        </a>
+                                        <% } %>
+                                        <% if(cats[i].subID != null && i == (cats.length-1)){ %>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/guest/chuyen-de" class="dropdown-item">
+                                                Mọi bài viết chủ đề <%=cats[i-1].CatName %>
+                                            </a>
+                                        <% } %>
+                                    <% } %>
+                                <% } %>
+                            <% } %>
                         </ul>
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control mr-sm-2" type="search" placeholder="Search"

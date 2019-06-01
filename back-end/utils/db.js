@@ -5,7 +5,7 @@ var createConnection = () => {
     host: 'localhost',
     user: 'root',
     port: 3306,
-    password: '',
+    password: '1',
     database: 'th16news'
   });
 }

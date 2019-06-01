@@ -60,12 +60,7 @@ app.post('/delete_file', function (req, res, next) {
     res.redirect('back')
 });
 
-
-
-app.get('/', (req, res) => {
-    res.render('index');
-})
-
+app.use('/', require('./routers/index/index.router'));
 app.use('/admin/categories', require('./routers/admin/category.router'));
 app.use('/admin', require('./routers/admin/admin.router'));
 app.use('/Chitietbaiviet', require('./routers/Chitietbaiviet/Chitietbaiviet.router'));
