@@ -52,24 +52,23 @@ router.post('/add', (req,res)=>{
     req.body.ReleaseDay=null;
     req.body.PostStatus=null;
     var CatID = req.body.CatID;
-    // post.delete('CatID');
     delete req.body['CatID'];
-    //console.log(post);
     console.log(req.body);
-    writerModle.add(req.body).then(id => {
+    writerModle.addPost(req.body).then(id => {
         // console.log(req.body);
         console.log(id);
         var catPost={
             'CatID': CatID,
             'PostID': id
         };
-        writerModle.addCatPost(catPost)
-        .then(id => {
-
-        }).catch(err=>{
-            console.log(err);
-            res.end('error occured');
-        });
+            // luu catpost
+            writerModle.addCatPost(catPost)
+            .then(id => {
+                
+            }).catch(err=>{
+                console.log(err);
+                res.end('error occured');
+            });
         res.redirect('/writer');
       }).catch(err => {
         console.log(err);

@@ -20,7 +20,7 @@ module.exports = {
     },
 
     addCatPost: entity => {
-        return db.add(nametable, entity);
+        return db.add('catpost', entity);
     },
 
     updatePost: entity => {

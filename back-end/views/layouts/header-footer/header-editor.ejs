@@ -20,7 +20,7 @@
                         aria-controls="sub-menu">Xét duyệt bài viết</a>
                     <ul class="collapse show" id="sub-menu">
                         <% for( let index = 0; index < categories.length; index++ ) { %>
-                            <li <% if(categories[index].isActive){ %> class="active" <% } %>><a href="/editor/<%=categories[index].ID %>/xdbv"><%=categories[index].CatName %></a></li>
+                            <li <% if(categories[index].isActive){ %> class="active" <% } %>><a href="/editor/<%=categories[index].ID %>"><%=categories[index].CatName %></a></li>
                         <% } %>
                     </ul>
                 </li>
