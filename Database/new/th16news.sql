@@ -27,14 +27,15 @@ USE `th16news`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `catagory`
+-- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `catagory`;
-CREATE TABLE IF NOT EXISTS `catagory` (
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE IF NOT EXISTS `category` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CatName` varchar(50) DEFAULT NULL,
   `SuperCatID` int(11) DEFAULT NULL,
+  `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `fk_cat_cat` (`SuperCatID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -49,6 +50,7 @@ DROP TABLE IF EXISTS `catpost`;
 CREATE TABLE IF NOT EXISTS `catpost` (
   `CatID` int(11) NOT NULL,
   `PostID` int(11) NOT NULL,
+  `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`CatID`,`PostID`),
   KEY `fk_CatPost_Post` (`PostID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -94,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `Content` text,
   `Abstract` text,
   `ReleaseDay` date DEFAULT NULL,
+  `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -121,6 +124,7 @@ DROP TABLE IF EXISTS `tag`;
 CREATE TABLE IF NOT EXISTS `tag` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `TagName` varchar(50) DEFAULT NULL,
+  `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -153,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `userprimary` (
   `Photo` varchar(50) DEFAULT NULL,
   `DoB` date DEFAULT NULL,
   `PassHash` varchar(50) DEFAULT NULL,
+  `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -188,16 +193,16 @@ CREATE TABLE IF NOT EXISTS `writerpost` (
 --
 
 --
--- Constraints for table `catagory`
+-- Constraints for table `category`
 --
-ALTER TABLE `catagory`
-  ADD CONSTRAINT `fk_cat_cat` FOREIGN KEY (`SuperCatID`) REFERENCES `catagory` (`ID`);
+ALTER TABLE `category`
+  ADD CONSTRAINT `fk_cat_cat` FOREIGN KEY (`SuperCatID`) REFERENCES `category` (`ID`);
 
 --
 -- Constraints for table `catpost`
 --
 ALTER TABLE `catpost`
-  ADD CONSTRAINT `fk_CatPost_Cat` FOREIGN KEY (`CatID`) REFERENCES `catagory` (`ID`),
+  ADD CONSTRAINT `fk_CatPost_Cat` FOREIGN KEY (`CatID`) REFERENCES `category` (`ID`),
   ADD CONSTRAINT `fk_CatPost_Post` FOREIGN KEY (`PostID`) REFERENCES `post` (`ID`);
 
 --
@@ -210,7 +215,7 @@ ALTER TABLE `editor`
 -- Constraints for table `editorcat`
 --
 ALTER TABLE `editorcat`
-  ADD CONSTRAINT `fk_editcat_cat` FOREIGN KEY (`ManagedCatID`) REFERENCES `catagory` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_editcat_cat` FOREIGN KEY (`ManagedCatID`) REFERENCES `category` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_editcat_edit` FOREIGN KEY (`UserID`) REFERENCES `editor` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
