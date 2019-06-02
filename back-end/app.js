@@ -69,6 +69,21 @@ app.use('/editor', require('./routers/editor/editor.router'));
 
 app.use('/user', require('./routers/user/user.router'));
 app.use('/writer', require('./routers/writer/writer.router'));
+
+//Xử lý error 404
+app.use((req, res, next)=>{
+    res.render('404', {layout: false});
+})
+
+//Xử lý lỗi tổng quát
+app.use((error,req, res, next)=>{
+    res.render('errors', {
+         layout: false, 
+         message: error.message, 
+         error
+    })
+})
+
 app.listen(3000, () => {
     console.log('http://localhost:3000');
 })
