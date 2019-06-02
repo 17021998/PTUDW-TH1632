@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var categoryModel = require('../../modles/categoty.modle');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     var p = categoryModel.all();
     p.then(rows => {
         res.render('admin/qlChuyenMuc', { 
@@ -10,9 +10,7 @@ router.get('/', (req, res) => {
             isActive:"qlcm"
         });
     })
-    .catch(err => {
-        console.log(err);
-    });
+    .catch(next);
 })
 
 router.post('/add', (req, res) => {

@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 router.get('/chuyen-de', (req,res)=> {
     res.render('guest/chuyen-de');
 })
@@ -20,6 +19,10 @@ router.get('/search-result', (req,res)=>{
 
 router.get('/sign_up', (req,res)=>{
     res.render('guest/sign_up');
+})
+
+router.get('/:id/chuyen-de', (req, res, next)=>{
+    throw new Error('bom')
 })
 
 module.exports = router;
