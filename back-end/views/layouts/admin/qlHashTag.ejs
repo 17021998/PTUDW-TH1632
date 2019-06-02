@@ -55,15 +55,38 @@
                                     </div>
                                 </div>
                             </div>
-                            <form method="post" action="/admin/qlHashTag/add">
-                                <div class="card body">
-                                    <center>
-                                        <input type="text" value="" data-role="tagsinput" placeholder="Add tags" />
-                                    </center>
-                                    <a class="btn btn-primary mb-3 button_a" role="submit">
+                               <div class="card">
+                                    <div class="bootstrap-tagsinput">
+                                    <% for( let index = 0; index < tag.length; index++ ) { %>
+                                        <span class="tag label label-info"><%=tag[index].TagName %>
+                                            <a href="/admin/<%=tag[index].ID %>/deletetag"> <span data-role="remove"></span></a>
+                                        </span>
+                                    <% } %>
+                                        
+                                        
+                                    </div>
+                                    
+                                </div>
+                            <form action="/admin/qlHashTag/add" method="POST">
+
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col my-auto">
+                                            <div id="card-header-title">
+                                                <h5>Thêm HashTag</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card body"> 
+                                <center>
+                                    <input type="text" name="tagname" data-role="tagsinput" placeholder="Add tags" />
+                                </center>
+                                    <button class="btn btn-primary mb-3 button_a" formaction="/admin/qlHashTag/add" role="submit">
                                         <i class="fa fa-check-circle" aria-hidden="true"></i>  
                                         Gữi
-                                    </a>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -74,15 +97,13 @@
     </div>
 
         <script>
-            // $(document).ready(function () {
-            //     $(".button_a").click(function(e){
-            //        var va = document.querySelectorAll('#hashtag-content')[0].innerHTML;
-            //        alert(va);
-            //        $.post('/admin/qlHashTag', {"hashtag": va}, funtion(data,status){
-            //            alert(data);
-            //        })
-            //     });
-            // });
+            $(document).ready(function() {
+                $("form").bind("keypress", function(e) {
+                    if (e.keyCode == 13) {
+                        return false;
+                    }
+            });
+    });
         </script>
     <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

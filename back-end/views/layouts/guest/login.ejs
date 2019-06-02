@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/css/guest/loginCSS.css">   
-    <link rel="stylesheet" type="text/css" href="/css/footer-nav-headerCSS.css"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/css/guest/loginCSS.css">
+	<link rel="stylesheet" type="text/css" href="/css/footer-nav-headerCSS.css">
 </head>
+
 <body>
 	<!--div content-->
 	<div id="div_content">
-	<div class="row">
-        <div>
-            <img src="">
-        </div>
-        <div class="col-md-11 text-right btn_ls">
-       		<!--Login/Logout-->
-                <a href="#" class="badge">
-                    <span>Đăng nhập</span>
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
-                <a href="/guest/sign_up" class="badge">
-                    <span>Đăng ký</span>
-                    <i class="fas fa-user"></i>
-                </a>
-        </div>
-	</div>
+		<div class="row">
+			<div>
+				<img src="">
+			</div>
+			<div class="col-md-11 text-right btn_ls">
+				<!--Login/Logout-->
+				<a href="#" class="badge">
+					<span>Đăng nhập</span>
+					<i class="fas fa-sign-in-alt"></i>
+				</a>
+				<a href="/guest/sign_up" class="badge">
+					<span>Đăng ký</span>
+					<i class="fas fa-user"></i>
+				</a>
+			</div>
+		</div>
 		<!--Login-->
 		<div id="div_form">
 			<h2>Đăng nhập để thêm nhiều thông tin bạn nhé!</h2>
 			<p>Đăng nhập bằng tài khoản của bạn!!!</p>
-			<form>
-			  <div class="form-group input-group-lg">
-			    <label for="inputEmail">Địa chỉ email:</label>
-			    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Email">
-			  </div>
-			  <div class="form-group input-group-lg mt-4">
-			    <label for="inputPassword">Mật khẩu:</label>
-			    <input type="password" class="form-control" id="inputPassword" placeholder="Mật khẩu">
-			  </div>
-			  <div class="mt-4">
+			<form novalidate action="" method="POST" id="signinForm">
+				<div class="form-group input-group-lg">
+					<label for="inputEmail">Địa chỉ email:</label>
+					<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+						placeholder="Email" name="email">
+				</div>
+				<div class="form-group input-group-lg mt-4">
+					<label for="inputPassword">Mật khẩu:</label>
+					<input type="password" class="form-control" id="inputPassword" placeholder="Mật khẩu" name="password">
+				</div>
+				<div class="mt-4">
 					<button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật khẩu?</button>
-			  </div>
-			  <div id="btn_logins" class="mt-4">
-			  	<button type="button" class="btn w-100" id="btn_login">ĐĂNG NHẬP</button>
-			  	<div id="span_or">
-			  		<span>HOẶC</span>
-			  	</div>
-
-			  	<button type="button" class="btn w-100" id="btn_login_google">ĐĂNG NHẬP BẰNG GOOGLE</button>
-			  </div>
+				</div>
+				<div id="btn_logins" class="mt-4">
+					<button type="submit" class="btn w-100" id="btn_login">ĐĂNG NHẬP</button>
+					<div id="span_or">
+						<span>HOẶC</span>
+					</div>
+					<button type="button" class="btn w-100" id="btn_login_google">ĐĂNG NHẬP BẰNG GOOGLE</button>
+				</div>
 			</form>
 		</div>
 		<div class="d-flex justify-content-center my-5">
@@ -62,20 +62,51 @@
 				<p>Bạn chưa có tài khoản?</p>
 				<button type="button" class="btn" id="btn_sign_up_free">ĐĂNG KÝ TÀI KHOẢN</button>
 			</div>
-		</div>		
+		</div>
 	</div>
 
-    <!-- ### Footer ### -->
-    <%- include('../header-footer/footer.ejs')%>
+	<!-- ### Footer ### -->
+	<%- include('../header-footer/footer.ejs')%>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<!--Validate-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<script>
+		$(function(){
+			$('#signinForm').validate({
+				rules:{
+					email:{
+						required: true,
+						email: true,
+					},
+					password:{
+						required: true,
+						minlength: 6
+					}
+				},
+				messages:{
+					email:{
+						required: 'Vui lòng nhập email.',
+						email: 'Email không hợp lệ.'
+					},
+					password:{
+						required: 'Vui lòng nhập mật khẩu.',
+						minlength: 'Mật khẩu phải có độ dài lớn hơn 6.'
+					}
+				},
+				errorElement: 'small',
+				errorClass: 'help-block text-danger',
+				highlight: function(e){
+					$(e).removeClass('is-valid').addClass('is-invalid');
+				},
+				unhighlight: function(e){
+					$(e).removeClass('is-invalid').addClass('is-valid');
+				}
+			});
+		});
+	</script>
 </body>
+
 </html>
