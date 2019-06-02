@@ -20,6 +20,10 @@ router.get('/search-result', (req,res)=>{
 
 router.get('/sign_up', (req,res)=>{
     res.render('guest/sign_up');
-})
+});
+
+router.post('/sign_up',(req, res) =>{
+    res.end("tao tai khoan");
+});
 
 module.exports = router;
