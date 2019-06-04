@@ -1,8 +1,40 @@
 var express = require('express');
 var router = express.Router();
 var editorModle = require('../../modles/editor/editor.modle');
-
-
+// lay du lieu bai viet de dua ra cho editor xem va duyet
+router.post('/getContentPost',(req,res)=>{
+    editorModle.getContentPost(req.body.id)
+    .then(rows=>{
+        var content = rows[0].Content; 
+        res.end(content);
+    }).catch(err=>{
+        console.log(err)
+    });
+    
+})
+// xet duyet bbai viet
+router.post('/xetduyet', (req,res)=>{
+    req.body.PostStatus=1;
+    var id = req.body.ID;
+    Promise.all([
+        editorModle.xetDuyetPost(req.body),
+        editorModle.getIDCatagoryByPostID(id)
+    ]).then(([id, CatID])=>{
+        res.redirect('/editor/'+CatID[0].CatID);
+    }).catch();
+    
+})
+// tu choi bai viet
+router.post('/tuchoi',(req,res)=>{
+    req.body.PostStatus=-1;
+    var id = req.body.ID;
+    Promise.all([
+        editorModle.xetDuyetPost(req.body),
+        editorModle.getIDCatagoryByPostID(id)
+    ]).then(([id, CatID])=>{ 
+        res.redirect('/editor/'+CatID[0].CatID);
+    }).catch();
+})
 
 router.get('/profile-editor', (req, res) => {
     var isActive="pe";
@@ -33,8 +65,7 @@ router.get("/:iddm", (req, res) => {
                rows[index].isActive = true;
            }
         }
-        var isActive = "xdbv";
-        console.log(rowPostByCat);
+        var isActive = "xdbv"; 
         res.render('editor/editor-index', { "isActive": isActive , "chuyenmuc": chuyenmuc , categories: rows , post: rowPostByCat});
     }).catch();
 })
