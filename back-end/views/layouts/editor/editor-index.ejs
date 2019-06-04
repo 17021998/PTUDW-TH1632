@@ -52,7 +52,7 @@
                             <div class="article-list col-12 row">
                             <!-- hien thi danh sach tren database. -->
                                 <% for( let index = 0; index < post.length; index++ ) { %>
-                                    <a href="#edit?id=<%= post[index].Content %>" class="a_href row item col-lg-6">
+                                    <a href="#edit?id=<%= post[index].ID %>" class="a_href row item col-lg-6">
                                         <div class="item-thumb col-6">
                                         <!-- anh dai dien -->
                                             <img src="../images/home-new-post-1.jpg" alt="">
@@ -74,18 +74,25 @@
                     <div class="col-md-12">
                         <div class="box row">
                             <h3 id="edit" class="col-12">Nội dụng: </h3>
-                            <form class="col-12" action="post">
-                                <text-area name="editor" id="editor" rows="100" cols="80" disabled>
+                            <div class="col-12">
+                                <text-area name="editor" id="editor" rows="100" cols="80" readonly>
                                 </text-area>
                                 <script>
                                     CKEDITOR.replace('editor');
                                     CKEDITOR.config.height="300";
                                 </script>
-                            </form>
-                            <div class="d-flex mt-3 justify-content-around col-12">
-                                <button class="btn btn-primary">Xét duyệt</button>
-                                <button class="btn btn-warning">Từ chối</button>
                             </div>
+                            <form class="col-12" method="POST" action="">
+                                <input type="text" id="ID" name="ID" value="" style="display: none;">
+                                <div class="d-flex mt-3 justify-content-around col-12">
+                                    <button class="btn btn-primary" role="submit" formaction="/editor/xetduyet">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    Xét Duyệt</button>
+                                    <button class="btn btn-warning" role="submit" formaction="/editor/tuchoi">
+                                        <i class="fa fa-window-close" aria-hidden="true"></i>
+                                    Từ chối</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -99,13 +106,15 @@
     <script>
         $(document).ready(function () {
             $(".item").click(function(e) {
-
                 var str = $('.a_href').attr('href').split('id=');
                 var id = str[str.length-1];
-
-                CKEDITOR.instances.editor.setData(id, function () {
-                    this.checkDirty();  // true
-                });
+                $("#ID").val(id);
+                $.post('/editor/getContentPost',{id:id},(data,status)=>{ 
+                    CKEDITOR.instances.editor.setData(data, function () {
+                        this.checkDirty();  // true
+                    });
+                })
+                
             });
         });
     </script>
