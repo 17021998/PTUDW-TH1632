@@ -9,8 +9,6 @@ module.exports = {
         return db.load('select * from ' + nametable);
     },
     
-    
-    
     single: id => {
     return db.load('select * from '+nametable+' where ID = ${id}');
     },
@@ -20,7 +18,7 @@ module.exports = {
     },
 
     allPost: ()=>{
-        return db.load('select post.*, catagory.CatName from post, catpost , catagory where post.ID=catpost.PostID and catpost.CatID=catagory.ID')
+        return db.load('select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID')
     },
 
     // Tag

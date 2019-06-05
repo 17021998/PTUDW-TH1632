@@ -44,7 +44,7 @@ router.get('/qlChuyenMuc', (req, res) => {
         res.end('error occured.')
     });
 })
-
+// quản lí hashtag
 router.get('/qlHashTag', (req, res) => {
     var isActive = "qlht";
     adminModle.allTag()

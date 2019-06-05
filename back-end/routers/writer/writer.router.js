@@ -4,7 +4,7 @@ var router = express.Router();
 var writerModle = require('../../modles/writer/writer.modle');
 
 router.get('/', (req, res) => { 
-    writerModle.getCatagory()
+    writerModle.getcategory()
     .then(rows => {
         var isActive = "tbv";
         res.render('writer/writer', { "isActive": isActive , categories: rows });
@@ -48,7 +48,7 @@ router.get('/security', (req, res) => {
 
 router.post('/add', (req,res)=>{
 
-    req.body.Premium=null;
+    req.body.Premium=0;
     req.body.ReleaseDay=null;
     req.body.PostStatus=null;
     var CatID = req.body.CatID;
