@@ -5,11 +5,27 @@ var router = express.Router();
 var guestModel = require('../../modles/guest/guest.model');
 
 router.get('/chuyen-de', (req,res,next)=> {
-    res.render('guest/chuyen-de');
+    Promise.all([
+        guestModel.allCat()
+    ]).then(([cats]) => {
+        res.render('guest/chuyen-de',{
+            cats:cats
+        });
+    }).catch(err => {
+        console.log(err);
+    });
 })
 
-router.get('/hash-tag', (req,res,next)=>{
-    res.render('guest/hash-tag');
+router.get('/hash-tag', (req,res,next)=>{ 
+    Promise.all([
+        guestModel.allCat()
+    ]).then(([cats]) => {
+        res.render('guest/hash-tag',{
+            cats:cats
+        });
+    }).catch(err => {
+        console.log(err);
+    });
 })
 
 router.get('/login', (req,res,next)=>{
@@ -17,7 +33,15 @@ router.get('/login', (req,res,next)=>{
 })
 
 router.get('/search-result', (req,res,next)=>{
-    res.render('guest/search-result');
+    Promise.all([
+        guestModel.allCat()
+    ]).then(([cats]) => {
+        res.render('guest/search-result',{
+            cats:cats
+        });
+    }).catch(err => {
+        console.log(err);
+    });
 })
 
 router.get('/sign_up', (req,res,next)=>{

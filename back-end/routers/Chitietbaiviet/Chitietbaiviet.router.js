@@ -4,16 +4,19 @@ var router = express.Router();
 var chitietbaiveitModel = require('../../modles/chitietbaiviet/chitietbaiviet.modle');
 
 
-router.get('/', (req,res)=> {
+router.get('/', (req, res) => {
+
+  Promise.all([
+    chitietbaiveitModel.allCat(),
     chitietbaiveitModel.all()
-    .then(rows => {
-        console.log(rows);
-        // res.end('...');
-            res.render('Chitietbaiviet/ctbv', {chitietbaiviet: rows[2] });
-      }).catch(err => {
-        console.log(err);
-        res.end('error occured.')
-      });
+  ]).then(([cats, rows]) => {
+    res.render('Chitietbaiviet/ctbv', {
+      cats: cats,
+      chitietbaiviet: rows[0]
+    });
+  }).catch(err => {
+    console.log(err);
+  });
 })
 
 module.exports = router;
