@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-8">
                                         <div class="btn-toolbar justify-content-between flex-nowrap">
-                                            <button type="button" class="btn btn-secondary clickable-row" data-href="ctBaiViet.html">
+                                            <button type="button" class="btn btn-secondary clickable-row" data-href="ctBaiViet">
                                                 Thêm bài viết <span><i class="fas fa-plus"></i></span>
                                             </button>
                                             <select name="" id="" class="custom-select mx-auto w-50">
@@ -83,7 +83,7 @@
                                         </thead>
                                         <tbody>
                                             <% for( let index = 0; index < baiviet.length; index++ ) { %>
-                                                <tr class="clickable-row" data-href="ctBaiViet.html">
+                                                <tr class="clickable-row" data-href="ctBaiViet">
                                                     <th scope="row"><%= baiviet[index].ID %></th>
                                                     <td><%= baiviet[index].CatName %></td>
                                                     <td><%= baiviet[index].Title %></td>

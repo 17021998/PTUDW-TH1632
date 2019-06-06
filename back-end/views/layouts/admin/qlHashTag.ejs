@@ -19,7 +19,9 @@
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" href="/css/admin/admin-style.css">
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="/css/cssAutoComplete/cssAutoComplete.css">
     <script src="/js/admin/bootstrap-tagsinput.min.js"></script>
+    
 </head>
 
 <body>
@@ -28,7 +30,16 @@
         <section id="page-main-content">
             <!--Head content-->
             <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
+            <div class="col-4"></div>
+                <div class="col-4">
+                    <form class="form-inline float-right" autocomplete="off">
+                        <input class="form-control mr-sm-2" id="mySearch" type="text" placeholder="Search"
+                            aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0 clickable-row"
+                            data-href="/guest/search-result" type="button">Search</button>
+                    </form>
+                </div>
+                <div class="col-md-4 text-right my-auto"> 
                     <a href="profile-admin.html" class="head-item"><img src="/images/account.png"></a>
                     <a href="../index.html" class="head-item">
                         <span>Đăng xuất</span>
@@ -58,7 +69,7 @@
                                <div class="card">
                                     <div class="bootstrap-tagsinput">
                                     <% for( let index = 0; index < tag.length; index++ ) { %>
-                                        <span class="tag label label-info"><%=tag[index].TagName %>
+                                        <span class="tag label label-info"><%=tag[index]["TagName"] %>
                                             <a href="/admin/<%=tag[index].ID %>/deletetag"> <span data-role="remove"></span></a>
                                         </span>
                                     <% } %>
@@ -97,19 +108,105 @@
     </div>
 
         <script>
+            function autocomplete(inp, arr) {
+                var currentFocus; 
+                inp.addEventListener("input", function(e) {
+                    var a, b, i, val = this.value; 
+                    closeAllLists();
+                    if (!val) { return false;}
+                    currentFocus = -1; 
+                    a = document.createElement("DIV");
+                    a.setAttribute("id", this.id + "autocomplete-list");
+                    a.setAttribute("class", "autocomplete-items"); 
+                    this.parentNode.appendChild(a);
+                   alert(arr.length);
+                    
+                    for (i = 0; i < arr.length; i++) { 
+                    // xử lí điều kiện tương đồng. co de sua thanh dieu kien gan dung nhu full text search
+                    // if (arr[i].[atrr].substr(0, val.length).toUpperCase() == val.toUpperCase()){
+                        
+                        if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()){
+                            alert(arr[i].substr(0,val.length).toUpperCase() == val.toUpperCase());
+                            b = document.createElement("DIV"); 
+                            b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                            b.innerHTML += arr[i].substr(val.length);
+                            b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>"; 
+                            b.addEventListener("click", function(e) { 
+                                inp.value = this.getElementsByTagName("input")[0].value;
+                                closeAllLists();
+                            });
+                            a.appendChild(b);
+                        }
+                    }
+                });
+            
+                inp.addEventListener("keydown", function(e) {
+                    var x = document.getElementById(this.id + "autocomplete-list");
+                    if (x) x = x.getElementsByTagName("div");
+                    if (e.keyCode == 40) { 
+                    currentFocus++;
+            
+                    addActive(x);
+                    } else if (e.keyCode == 38) { 
+                    currentFocus--; 
+                    addActive(x);
+                    } else if (e.keyCode == 13) { 
+                    e.preventDefault();
+                    if (currentFocus > -1) { 
+                        if (x) x[currentFocus].click();
+                    }
+                    }
+                });
+                function addActive(x) {
+                if (!x) return false;
+            
+                removeActive(x);
+                if (currentFocus >= x.length) currentFocus = 0;
+                if (currentFocus < 0) currentFocus = (x.length - 1);
+            
+                x[currentFocus].classList.add("autocomplete-active");
+                }
+                function removeActive(x) {
+            
+                for (var i = 0; i < x.length; i++) {
+                    x[i].classList.remove("autocomplete-active");
+                }
+                }
+                function closeAllLists(elmnt) {
+            
+                var x = document.getElementsByClassName("autocomplete-items");
+                for (var i = 0; i < x.length; i++) {
+                    if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                    }
+                }
+                }
+            
+                document.addEventListener("click", function (e) {
+                    closeAllLists(e.target);
+                });
+            }
+        </script>
+
+        <script>
             $(document).ready(function() {
                 $("form").bind("keypress", function(e) {
                     if (e.keyCode == 13) {
                         return false;
                     }
+                });
             });
-    });
         </script>
+        <script>
+            alert("<%=TagName.a %>");
+            //autocomplete(document.getElementById("mySearch"),[<%=TagName.a %>]);
+            
+        </script>
+            
     <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        
     <script src="/js/editor/main.js"></script>
 </body>
 

@@ -33,11 +33,14 @@ module.exports = {
         }
         sql+=`('${entity[entity.length-1]}') ;`;
             return db.load(sql);
-        
     },
 
     deleteTag: id=>{
         return db.delete('tag', 'ID', id);
+    },
+
+    getAllTagName:()=>{
+        return db.load('select tag.TagName from tag where IsDelete is null or IsDelete = 0');
     }
     
 };

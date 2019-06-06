@@ -7,7 +7,7 @@ var split = require('string-split');
 router.get('/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
     
-        res.render('admin/ctBaiViet', { "isActive": isActive, baiviet: rows });
+        res.render('admin/ctBaiViet', { "isActive": isActive });
     
 })
 
@@ -47,12 +47,22 @@ router.get('/qlChuyenMuc', (req, res) => {
 // quản lí hashtag
 router.get('/qlHashTag', (req, res) => {
     var isActive = "qlht";
-    adminModle.allTag()
-        .then(rows=>{
-            res.render('admin/qlHashTag', { "isActive": isActive, tag: rows});
-        })
-        .catch(err=>console.log(err));
-    
+    Promise.all([
+        adminModle.allTag(),
+        // adminModle.getAllTagName()
+    ]).then(([rows])=>{ 
+        //console.log(rowsTag);
+        var TagName = [];
+        for(let i=0;i<rows.length;i++){
+            // console.log(rows[i].TagName);
+            TagName[i]=rows[i].TagName;
+        }
+        var t={
+            a: TagName
+        };
+        console.log(t);
+        res.render('admin/qlHashTag', { "isActive": isActive, tag: rows, "TagName": t});
+    }).catch();
 })
 
 router.post('/qlHashTag/add', (req,res)=>{
