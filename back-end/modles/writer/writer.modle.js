@@ -7,8 +7,8 @@ module.exports = {
         return db.load('select * from ' + nametable);
     },
     
-    getCatagory:()=>{
-        return db.load('select c.ID, c.CatName from catagory as c where c.SuperCatID is null')
+    getcategory:()=>{
+        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null')
     },
     
     single: id => {
@@ -24,10 +24,10 @@ module.exports = {
     },
 
     updatePost: entity => {
-    return db.update('catagory', 'CatID', entity);
+    return db.update('category', 'CatID', entity);
     },
 
     deletePost: id => {
-    return db.delete('catagory', 'CatID', id);
+    return db.delete('category', 'CatID', id);
     }
 };

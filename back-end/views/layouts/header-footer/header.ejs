@@ -24,70 +24,73 @@
 </section>
 <!-- ### Navigation Bar ###-->
 <section class="navigation bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-light navbar-expand-lg">
-                    <a class="navbar-brand" href="/"><img src="/images/company-logo.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
-                        aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse " id="navbar">
-                        <ul class="navbar-nav mr-auto">
-                            <% for(var i = 0; i< cats.length; i++){ %>
-                                <% if(i == 0){ %>
+    <div class="ml-5">
+        <center>
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-light navbar-expand-lg">
+                        <a class="navbar-brand" href="/"><img src="/images/company-logo.png" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar"
+                            aria-controls="navbar" aria-expanded="true" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav mr-auto">
+                                <% for(var i = 0; i< cats.length; i++){ %>
+                                    <% if(i == 0){ %>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
+                                            <div class="dropdown-menu">
+                                                <% if(cats[i].subID != null){ %>
+                                                    <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                                <% } %>
+                                    <% } %>
+                                    <% if(i != 0){ %>
+                                        <% if(cats[i].ID == cats[i-1].ID && cats[i].subID != null){ %>
+                                                <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                        <% } %>
+                                    <% if(cats[i].ID != cats[i-1].ID){ %>        
+                                        <div class="dropdown-divider"></div>
+                                            <a href="/guest/chuyen-de" class="dropdown-item">
+                                                Mọi bài viết chủ đề <%=cats[i-1].CatName %>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <!--Father-->
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
                                         <div class="dropdown-menu">
                                             <% if(cats[i].subID != null){ %>
                                                 <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
-                                            <% } %>
-                                <% } %>
-                                <% if(i != 0){ %>
-                                    <% if(cats[i].ID == cats[i-1].ID && cats[i].subID != null){ %>
-                                            <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
-                                    <% } %>
-                                <% if(cats[i].ID != cats[i-1].ID){ %>        
-                                    <div class="dropdown-divider"></div>
-                                        <a href="/guest/chuyen-de" class="dropdown-item">
-                                            Mọi bài viết chủ đề <%=cats[i-1].CatName %>
-                                        </a>
-                                    </div>
-                                </li>
-                                <!--Father-->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
-                                    <div class="dropdown-menu">
-                                        <% if(cats[i].subID != null){ %>
-                                            <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
-                                        <% }else{ %>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="/guest/chuyen-de" class="dropdown-item">
-                                            Mọi bài viết chủ đề <%=cats[i-1].CatName %>
-                                        </a>
-                                        <% } %>
-                                        <% if(cats[i].subID != null && i == (cats.length-1)){ %>
+                                            <% }else{ %>
                                             <div class="dropdown-divider"></div>
                                             <a href="/guest/chuyen-de" class="dropdown-item">
                                                 Mọi bài viết chủ đề <%=cats[i-1].CatName %>
                                             </a>
+                                            <% } %>
+                                            <% if(cats[i].subID != null && i == (cats.length-1)){ %>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="/guest/chuyen-de" class="dropdown-item">
+                                                    Mọi bài viết chủ đề <%=cats[i-1].CatName %>
+                                                </a>
+                                            <% } %>
                                         <% } %>
                                     <% } %>
                                 <% } %>
-                            <% } %>
-                        </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0 clickable-row"
-                                data-href="/guest/search-result" type="button">Search</button>
-                        </form>
-                    </div>
-                </nav>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0 clickable-row"
+                                    data-href="/guest/search-result" type="button">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            
             </div>
-        </div>
+        </center>
     </div>
 </section>

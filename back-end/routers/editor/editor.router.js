@@ -18,7 +18,7 @@ router.post('/xetduyet', (req,res)=>{
     var id = req.body.ID;
     Promise.all([
         editorModle.xetDuyetPost(req.body),
-        editorModle.getIDCatagoryByPostID(id)
+        editorModle.getIDcategoryByPostID(id)
     ]).then(([id, CatID])=>{
         res.redirect('/editor/'+CatID[0].CatID);
     }).catch();
@@ -30,7 +30,7 @@ router.post('/tuchoi',(req,res)=>{
     var id = req.body.ID;
     Promise.all([
         editorModle.xetDuyetPost(req.body),
-        editorModle.getIDCatagoryByPostID(id)
+        editorModle.getIDcategoryByPostID(id)
     ]).then(([id, CatID])=>{ 
         res.redirect('/editor/'+CatID[0].CatID);
     }).catch();
@@ -38,7 +38,7 @@ router.post('/tuchoi',(req,res)=>{
 
 router.get('/profile-editor', (req, res) => {
     var isActive="pe";
-    editorModle.allCatagory().then(rows=>{
+    editorModle.allcategory().then(rows=>{
         res.render('editor/profile-editor', { "isActive": isActive , categories: rows});
     }).catch();
 
@@ -47,7 +47,7 @@ router.get('/profile-editor', (req, res) => {
 
 router.get('/security', (req, res) => {
     var isActive = "s";
-    editorModle.allCatagory().then(rows=>{
+    editorModle.allcategory().then(rows=>{
         res.render('editor/security', { "isActive": isActive , categories: rows});
     }).catch();
 })
@@ -56,8 +56,8 @@ router.get('/security', (req, res) => {
 router.get("/:iddm", (req, res) => {
     var iddanhmuc = req.params.iddm;
     Promise.all([
-        editorModle.allCatagory(),
-        editorModle.allPostByCatagory(iddanhmuc),
+        editorModle.allcategory(),
+        editorModle.allPostBycategory(iddanhmuc),
     ]).then(([rows, rowPostByCat])=>{
         for (let index = 0; index < rows.length; index++) {
            if(rows[index].ID===+iddanhmuc){

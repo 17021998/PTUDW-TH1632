@@ -1,12 +1,17 @@
 var mysql = require('mysql');
-
+//https://remotemysql.com/phpmyadmin/index.php?db=BE9zYddj2X
+// link database user password thì có ở dưới.
 var createConnection = () => {
   return mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    //remotemysql.com
+    host: 'remotemysql.com',
+    //BE9zYddj2X
+    user: 'BE9zYddj2X',
     port: 3306,
-    password: '',
-    database: 'th16news'
+    //2gwc9GcKjk
+    password: '2gwc9GcKjk',
+    //BE9zYddj2X
+    database: 'BE9zYddj2X'
   });
 }
 
