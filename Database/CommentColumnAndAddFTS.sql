@@ -1,4 +1,3 @@
-USE `th16news`;
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (

@@ -28,7 +28,6 @@ app.use((error,req, res, next)=>{
          error
     })
 })
-
 app.listen(3000, () => {
     console.log('http://localhost:3000');
 })

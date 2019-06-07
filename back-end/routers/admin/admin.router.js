@@ -54,21 +54,16 @@ router.get('/qlHashTag', (req, res) => {
         //console.log(rowsTag);
         var TagName = [];
         for(let i=0;i<rows.length;i++){
-            // console.log(rows[i].TagName);
             TagName[i]=rows[i].TagName;
         }
-        var t={
-            a: TagName
-        };
-        console.log(t);
-        res.render('admin/qlHashTag', { "isActive": isActive, tag: rows, "TagName": t});
+        console.log(TagName);
+        res.render('admin/qlHashTag', { "isActive": isActive, tag: rows, "TagName": TagName});
     }).catch();
 })
 
 router.post('/qlHashTag/add', (req,res)=>{
     var tagname= req.body.tagname;
     var Arr = split(",", tagname);
-    
     adminModle.addTag(Arr)
         .then(id=>{
             res.redirect("/admin/qlHashTag");
