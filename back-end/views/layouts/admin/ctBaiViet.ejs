@@ -19,9 +19,10 @@
     <link rel="stylesheet" href="/css/admin/admin-style.css">
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
     <!--Ckeditor-->
+    <script src="/js/writer/ckeditor/ckeditor.js"></script> 
     <script src="/js/editor/jquery.min.js"></script> <!-- cai nay chua add-->
-    <script src="https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js"></script>
     <script src="/js/admin/bootstrap-tagsinput.min.js"></script>
+    <script src="/js/editor/jquery.min.js"></script>
     <style>
         .bootstrap-tagsinput {
             min-height: 0 !important;
@@ -74,21 +75,20 @@
                                 <div class="d-flex mt-3">
                                     <select id="status-selecter" class="custom-select-md ml-3">
                                         <option>Chọn trạng thái bài viết</option>
-                                        <option value="public">Đã xuất bản</option>
-                                        <option value="draft">Chưa xuất bản</option>
-                                        <option value="ignore">Đã từ chối</option>
+                                        <option value="public" <% if (post.PostStatus===1) { %> selected <% } %> >Đã xuất bản</option> <%# 1 xuat ban 0 chua xuat ban -1 tu choi%>
+                                        <option value="draft" <% if (post.PostStatus===0) { %> selected <% } %> >Chưa xuất bản</option> 
+                                        <option value="ignore" <% if (post.PostStatus===-1) { %> selected <% } %> >Đã từ chối</option> 
                                     </select>
                                     <select id="cata-selecter" class="custom-select-md ml-3">
                                         <option>Chọn chuyên mục bài viết</option>
-                                        <option value="public">Thời sự</option>
-                                        <option value="draft">Đời Sống</option>
-                                        <option value="ignore">Công nghệ</option>
-                                        <option value="ignore">Thể thao</option>
+                                        <% for( let index = 0; index < Cat.length; index++ ) { %>
+                                            <option value="<%=Cat[index].ID%>" <% if (Cat[index].ID===post.CatID) { %> selected <% } %> ><%=Cat[index].CatName%></option>
+                                        <% } %>
                                     </select>
                                 </div>
                                 <div class="row align-items-center mt-3">
                                     <label for="article-title" class="col-2 ml-3">Tiêu đề</label>
-                                    <input type="text" id="article-title" placeholder="Title"
+                                    <input value="<%=post.Title%>" type="text" id="article-title" placeholder="Title"
                                         class="col-8 form-control ml-3">
                                 </div>
                                 <div class="d-flex">
@@ -103,6 +103,11 @@
                                         CKEDITOR.replace('editor', {
                                             height: 500
                                         });
+                                    </script> 
+                                    <script>
+                                        CKEDITOR.instances.editor.setData(`<%=post.Content%>`, function () {
+                                            this.checkDirty();  // true
+                                        });
                                     </script>
                                 </form>
                             </div>
@@ -114,18 +119,14 @@
     </section>
     </div>
     <!--Main Script-->
+
     <script src="/js/editor/main.js"></script>
     <script src="/js/admin/article-detail.js"></script>
+    
     <!--Bootstrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

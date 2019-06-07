@@ -59,7 +59,7 @@
                                                 <option>
                                                     Trang thái bài viết
                                                 </option>
-                                                <option value="publish">Đã phát hành</option>
+                                                <option value="publish" selected>Đã phát hành</option>
                                                 <option value="draft">Chưa duyệt</option>
                                                 <option value="unpublish">Bị từ chối</option>
                                             </select>
@@ -83,7 +83,7 @@
                                         </thead>
                                         <tbody>
                                             <% for( let index = 0; index < baiviet.length; index++ ) { %>
-                                                <tr class="clickable-row" data-href="ctBaiViet">
+                                                <tr class="clickable-row" data-href="<%=baiviet[index].ID%>/ctBaiViet">
                                                     <th scope="row"><%= baiviet[index].ID %></th>
                                                     <td><%= baiviet[index].CatName %></td>
                                                     <td><%= baiviet[index].Title %></td>

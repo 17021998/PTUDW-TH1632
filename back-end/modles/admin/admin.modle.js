@@ -4,9 +4,16 @@ var nametable = "catpost";
 
 module.exports = {
     
+    // catagory
+    allCatagoty: () => {
+        var supQuery = 'SELECT ID, CatName, SuperCatID From category where SuperCatID IS NOT NULL AND IsDelete IS NULL';
+        return db.load("SELECT c1.ID, c1.CatName, c2.ID as subID, c2.CatName as subName " + 
+                    "FROM category c1 LEFT join ("+ supQuery + ") c2 on c1.ID = c2.SuperCatID " + 
+                    "WHERE c1.IsDelete IS NULL AND c1.SuperCatID IS NULL ORDER BY c1.ID ;");
+    },
 
-    all: () => {
-        return db.load('select * from ' + nametable);
+    getCatagory:()=>{
+        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null')
     },
     
     single: id => {
@@ -16,9 +23,13 @@ module.exports = {
     add: entity => {
     return db.add(nametable, entity);
     },
-
+    // post
     allPost: ()=>{
         return db.load('select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID')
+    },
+
+    getPostByPostId: ID=>{
+        return db.load(`select p.*, c.ID as CatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID}`);
     },
 
     // Tag

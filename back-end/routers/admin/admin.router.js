@@ -1,13 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var categoryModle = require('../../modles/categoty.modle');
 var adminModle = require('../../modles/admin/admin.modle');
 var split = require('string-split');
 
-router.get('/ctBaiViet', (req, res) => {
+router.get('/:id/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
+    var id = req.params.id;
+    Promise.all([
+        adminModle.getCatagory(),
+        adminModle.getPostByPostId(id),
+        ])
+    .then(([rowsCat, rowsPos])=>{
+        console.log(rowsPos);
+        res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "post": rowsPos[0] });
+    })
+    .catch();
     
-        res.render('admin/ctBaiViet', { "isActive": isActive });
     
 })
 
@@ -35,7 +43,7 @@ router.get('/qlBaiViet', (req, res) => {
 })
 
 router.get('/qlChuyenMuc', (req, res) => {
-    categoryModle.all()
+    adminModle.allCatagoty()
     .then(rows => {
         var isActive = "qlcm";
     res.render('admin/qlChuyenMuc', { "isActive": isActive , rows: rows });
