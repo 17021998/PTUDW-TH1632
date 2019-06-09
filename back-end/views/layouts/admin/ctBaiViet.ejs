@@ -104,7 +104,7 @@
                                                     <span id="hashtag-content">
                                                         <%=Tag[index].TagName%>
                                                     </span>
-                                                    <a href='javascript: $.post("/admin/deleteTagPost",{"idT":<%=Tag[index].ID%>,"idP":<%=post.ID%>},(data,status)=>{});'> <span data-role="remove"></span></a>
+                                                    <a class="js-remove-tag" href='javascript: $.post("/admin/deleteTagPost",{"idT":<%=Tag[index].ID%>,"idP":<%=post.ID%>},(data,status)=>{});'> <span data-role="remove"></span></a>
                                                 </span>
                                             <% } %>
                                         </div>
@@ -149,7 +149,13 @@
     </script>
     <script src="/js/editor/main.js"></script>
     <script src="/js/admin/article-detail.js"></script>
-    
+    <script>
+        $(document).ready(function(){
+            $('.js-remove-tag').click(function(){
+                $(this).parent().hide();
+            })
+        })
+    </script>
     <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
