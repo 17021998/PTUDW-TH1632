@@ -80,5 +80,25 @@ module.exports = {
         connection.end();
       });
     });
+  },
+
+  delete2Key: (tableName, idField1, idField2, id1, id2) => {
+    return new Promise((resolve, reject) => {
+      //var sql = `delete from ${tableName} where ${idField} = ? ;`;
+      var sql = `update ${tableName} set IsDelete = 1 where ${idField1} = ? and ${idField2} = ?;`;
+      var connection = createConnection();
+      connection.connect();
+      connection.query(sql, id1, id2, (error, value) => {
+        console.log(value);
+        if (error) {
+          reject(error);
+        } else {
+          console.log(value);
+          resolve(1);
+        }
+        connection.end();
+      });
+    });
   }
+
 }

@@ -25,14 +25,30 @@ module.exports = {
     },
     // post
     allPost: ()=>{
-        return db.load('select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID')
+        return db.load('select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null')
     },
 
     getPostByPostId: ID=>{
-        return db.load(`select p.*, c.ID as CatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID}`);
+        return db.load(`select p.*, c.ID as CatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID} and p.IsDelete is null`);
+    },
+
+    savePost: entity=>{
+        return db.update('post', 'ID', entity);
+    },
+
+    deletePost: id=>{
+        return db.delete('post','ID',id);
     },
 
     // Tag
+    deleteTagPost: (idT,idP)=>{
+        return db.load(`update tagpost set IsDelete = 1 where TagID = ${idT} and PostID = ${idP}`);
+    },
+
+    getAllTagByPostID:id=>{
+        return db.load(`select t.* from tagpost as tp, tag as t where tp.PostID = ${id} and t.ID = tp.TagID`)
+    },
+
     allTag:()=>{
         return db.load('select * from tag where IsDelete is null or IsDelete = 0');
     },

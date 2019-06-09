@@ -54,7 +54,6 @@
                     <div class="col-12">
                         <div class="card mt-5">
                             <form method="post">
-                                <input type="hidden" class="form-control" name="ID" value="<%=post.ID%>">
                                 <div class="card-header">
                                     <div id="tool-button" class="d-flex">
                                         <button type="submit" class="btn btn-sm ml-3 btn-primary" formaction="/admin/save/baiviet">
@@ -78,36 +77,22 @@
                                     <%# post status %>
                                         <select id="PostStatus" name="PostStatus" class="custom-select-md ml-3">
                                             <option>Chọn trạng thái bài viết</option>
-                                            <option value="1" <% if (post.PostStatus===1) { %> selected <% } %> >Đã xuất bản</option> <%# 1 xuat ban 0 chua xuat ban -1 tu choi%>
-                                            <option value="0" <% if (post.PostStatus===0) { %> selected <% } %> >Chưa xuất bản</option> 
-                                            <option value="-1" <% if (post.PostStatus===-1) { %> selected <% } %> >Đã từ chối</option> 
-                                        </select>   
+                                            <option value="1" >Đã xuất bản</option> <%# 1 xuat ban 0 chua xuat ban -1 tu choi%>
+                                            <option value="0" >Chưa xuất bản</option> 
+                                            <option value="-1" >Đã từ chối</option> 
+                                        </select>
                                         <%# CatID %>
                                         <select id="CatID" name="CatID" class="custom-select-md ml-3">
                                             <option>Chọn chuyên mục bài viết</option>
                                             <% for( let index = 0; index < Cat.length; index++ ) { %>
-                                                <option value="<%=Cat[index].ID%>" <% if (Cat[index].ID===post.CatID) { %> selected <% } %> ><%=Cat[index].CatName%></option>
+                                                <option value="<%=Cat[index].ID%>"> <%=Cat[index].CatName%></option>
                                             <% } %>
                                         </select>
                                     </div>
                                     <div class="row align-items-center mt-3">
                                         <label for="article-title" class="col-2 ml-3">Tiêu đề</label>
-                                        <input value="<%=post.Title%>" type="text" name="Title" placeholder="Title"
+                                        <input type="text" name="Title" placeholder="Title"
                                             class="col-8 form-control ml-3">
-                                    </div>
-
-                                    <div class="row align-items-center mt-3">
-                                        <label for="article-title" class="col-2 ml-3">Danh Sách Tag.</label>
-                                        <div class="bootstrap-tagsinput col-8 form-control ml-3">
-                                            <% for( let index = 0; index < Tag.length; index++ ) { %>
-                                                <span class="tag label label-info" style="display: inline;">
-                                                    <span id="hashtag-content">
-                                                        <%=Tag[index].TagName%>
-                                                    </span>
-                                                    <a href='javascript: $.post("/admin/deleteTagPost",{"idT":<%=Tag[index].ID%>,"idP":<%=post.ID%>},(data,status)=>{});'> <span data-role="remove"></span></a>
-                                                </span>
-                                            <% } %>
-                                        </div>
                                     </div>
                                     <%#  add tag %>
                                     <div class="d-flex">
@@ -126,25 +111,9 @@
     </section>
     </div>
     <!--Main Script-->
-
-    <script>
-        $(document).ready(function() {
-            $("form").bind("keypress", function(e) {
-                if (e.keyCode == 13) {
-                    return false;
-                }
-            });
-        });
-    </script>
-    
     <script>
         CKEDITOR.replace('Content', {
             height: 500
-        });
-    </script> 
-    <script>
-        CKEDITOR.instances.Content.setData(`<%-post.Content%>`, function () {
-            this.checkDirty();  // true
         });
     </script>
     <script src="/js/editor/main.js"></script>
