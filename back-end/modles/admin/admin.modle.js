@@ -46,7 +46,7 @@ module.exports = {
     },
 
     getAllTagByPostID:id=>{
-        return db.load(`select t.* from tagpost as tp, tag as t where tp.PostID = ${id} and t.ID = tp.TagID`)
+        return db.load(`select t.* from tagpost as tp, tag as t where tp.PostID = ${id} and t.ID = tp.TagID and tp.IsDelete is null`)
     },
 
     allTag:()=>{
@@ -68,6 +68,31 @@ module.exports = {
 
     getAllTagName:()=>{
         return db.load('select tag.TagName from tag where IsDelete is null or IsDelete = 0');
+    },
+
+    getTagIDByName:(entity)=>{
+        var idT = entity.idT; //  mang ten tag
+
+        var sqlTag = `select t.ID from tag as t where `;
+        for (let index = 0; index < idT.length-1; index++) {
+            sqlTag+=`t.TagName = '${idT[index]}' or `
+        }
+        sqlTag += `t.TagName = '${idT[idT.length-1]}';`
+        return db.load(sqlTag);
+    },
+    // tagpost
+
+    addTagPost: entity=>{
+        var idP = entity.idP;
+        var idT = entity.idT; //  mang ten tag
+
+        var sql = `insert into tagpost (TagID, PostID) values `;
+        for(var i=0;i<idT.length-1;i++){
+            sql+=`('${idT[i].ID}', '${idP}'), `
+        }
+        sql+=`('${idT[idT.length-1].ID}', '${idP}')`;
+
+        return db.load(sql);
     }
-    
+
 };

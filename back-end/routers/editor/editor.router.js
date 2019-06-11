@@ -67,6 +67,7 @@ router.get("/:iddm", (req, res) => {
         }
         var isActive = "xdbv"; 
         res.render('editor/editor-index', { "isActive": isActive , "chuyenmuc": chuyenmuc , categories: rows , post: rowPostByCat});
+        // res.render('editor/test', { "isActive": isActive , "chuyenmuc": chuyenmuc , categories: rows , post: rowPostByCat});
     }).catch();
 })
 

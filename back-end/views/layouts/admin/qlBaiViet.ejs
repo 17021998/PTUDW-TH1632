@@ -89,11 +89,23 @@
                                                     <td><%= baiviet[index].Title %></td>
                                                     <td>Thường</td>
                                                     <td>Xuân Diệu</td>
-                                                    <td class="text-success">Đã xuất bản</td>
+                                                    <td class="text-success">
+                                                        <% if (baiviet[index].PostStatus===-1) { %>
+                                                            Từ Chối.
+                                                        <% } %>
+                                                        <% if (baiviet[index].PostStatus===1) { %>
+                                                            Đã Xuất Bản.
+                                                        <% } %> 
+                                                        <% if (baiviet[index].PostStatus===0) {%>
+                                                            Bài Viết Đã Được Xét Duyệt.
+                                                        <% } %> 
+                                                        <% if(baiviet[index].PostStatus === null){ %>
+                                                            Đang Đợi.
+                                                        <% } %>
+                                                    </td>
+                                                    
                                                     <td>
-                                                        <span class="date">15</span>
-                                                        <span class="month">10</span>
-                                                        <span class="year">2017</span>
+                                                        <%=baiviet[index].ReleaseDay%>
                                                     </td>
                                                 </tr>
                                             <% } %>

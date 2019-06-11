@@ -67,16 +67,19 @@
                                 </div>
                             </div>
                                <div class="card">
-                                    <div class="bootstrap-tagsinput">
-                                    <% for( let index = 0; index < tag.length; index++ ) { %>
-                                        <span class="tag label label-info"><%=tag[index]["TagName"] %>
-                                            <a href="/admin/<%=tag[index].ID %>/deletetag"> <span data-role="remove"></span></a>
-                                        </span>
-                                    <% } %>
-                                    </div>
+                                    <center>
+                                        <div class="bootstrap-tagsinput">
+                                        <% for( let index = 0; index < tag.length; index++ ) { %>
+                                            <span class="tag label label-info"><%=tag[index]["TagName"] %>
+                                                <a class="js-remove-tag" href='javascript: $.post("/admin/deleteTag",{"id": <%= tag[index].ID %>},(data,status)=>{});'> 
+                                                    <span data-role="remove"></span>
+                                                </a>
+                                            </span>
+                                        <% } %>
+                                        </div>
+                                    </center>
                                 </div>
-                            <form action="/admin/qlHashTag/add" method="POST">
-
+                            <form method="POST">
                                 <div class="card-header">
                                     <div class="row">
                                         <div class="col my-auto">
@@ -86,7 +89,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card body">
                                 <center>
                                     <input type="text" name="tagname" data-role="tagsinput" placeholder="Add tags" />
@@ -113,9 +115,16 @@
             });
         </script>
 
+        <script>
+            $(document).ready(function(){
+                $('.js-remove-tag').click(function(){
+                    $(this).parent().hide();
+                })
+            })
+        </script> 
+
         <script src="/js/autoComplete/autoComplete.js">
         </script>
-
         <script>
             // de search truyen vao doi tuong input va ten bang ma can search.
             autocomplete(document.getElementById("mySearch"),"tag");

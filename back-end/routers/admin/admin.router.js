@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var adminModle = require('../../modles/admin/admin.modle');
+
+var dateFormat = require('dateformat');
 var split = require('string-split');
 
 router.get('/:id/ctBaiViet', (req, res) => {
@@ -13,7 +15,6 @@ router.get('/:id/ctBaiViet', (req, res) => {
         adminModle.getAllTagByPostID(id),
         ])
     .then(([rowsCat, rowsPos, rowsTag])=>{
-        console.log(rowsTag);
         res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "post": rowsPos[0], "Tag": rowsTag});
     })
     .catch();
@@ -43,6 +44,10 @@ router.get('/qlBaiViet', (req, res) => {
     var isActive = "qlbv";
     adminModle.allPost()
     .then(rows=>{
+        for (let index = 0; index < rows.length; index++) {
+            if(rows[index].ReleaseDay!=null)
+                rows[index].ReleaseDay= dateFormat(rows[index].ReleaseDay, "yyyy/mm/dd");
+        }
         res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rows });
     })
     .catch(err=>{
@@ -74,16 +79,16 @@ router.get('/qlHashTag', (req, res) => {
         for(let i=0;i<rows.length;i++){
             TagName[i]=rows[i].TagName;
         }
-        console.log(TagName);
         res.render('admin/qlHashTag', { "isActive": isActive, tag: rows, "TagName": TagName});
     }).catch();
 }) 
 
-router.get('/:id/deleteTag', (req,res)=>{
-    var idTag= req.params.id;
+router.post('/deleteTag', (req,res)=>{
+    var idTag= req.body.id;
+    console.log(req.body);
     adminModle.deleteTag(idTag)
         .then(id => {
-            res.redirect("/admin/qlHashTag");
+            res.end('...');
         })
         .catch(err=>console.log(err));
 
@@ -121,19 +126,68 @@ router.post('/qlHashTag/add', (req,res)=>{
 })
 
 router.post('/save/baiviet',(req,res)=>{
+    // tag name add them.
+    var tag = req.body.tagname;
+    // id cua post can update.
+    var ID = req.body.ID;
+    var Arr = split(",", tag);
+    delete req.body['tagname'];
     delete req.body['CatID'];
-    adminModle.savePost(req.body)
-    .then(id=>{
-        res.redirect('/admin/'+id+'/ctBaiViet');
+    var arr = {"idP" : ID, "idT": Arr};
+
+    console.log(arr);
+
+    Promise.all([
+        adminModle.savePost(req.body),
+        adminModle.getTagIDByName(arr)
+    ])
+    .then(([id, rows])=>{
+        if(rows.length!=0){
+            console.log(rows);
+            var idT =[];
+            for (let index = 0; index < rows.length; index++) {
+                idT[index] = rows[index];
+            }
+            console.log(idT);
+            var arr1 = {"idP" : ID, "idT": idT};
+
+            adminModle.addTagPost(arr1)
+            .then()
+            .catch();
+        }
+        res.redirect('/admin/'+ID+'/ctBaiViet');
     })
     .catch();
 
 })
 
 router.post('/saveClose/baiviet',(req,res)=>{
+
+    // tag name add them.
+    var tag = req.body.tagname;
+    // id cua post can update.
+    var ID = req.body.ID;
+    var Arr = split(",", tag);
+    delete req.body['tagname'];
     delete req.body['CatID'];
-    adminModle.savePost(req.body)
-    .then(id=>{
+    var arr = {"idP" : ID, "idT": Arr};
+
+    Promise.all([
+        adminModle.savePost(req.body),
+        adminModle.getTagIDByName(arr)
+    ])
+    .then(([id, rows])=>{
+        if(rows.length!=0){
+            var idT =[];
+            for (let index = 0; index < rows.length; index++) {
+            idT[index] = rows[index];
+            }
+            var arr1 = {"idP" : ID, "idT": idT};
+            adminModle.addTagPost(arr1)
+            .then()
+            .catch();
+        }
+
         res.redirect('/admin/qlBaiViet');
     })
     .catch();
@@ -141,15 +195,30 @@ router.post('/saveClose/baiviet',(req,res)=>{
 })
 
 router.post('/saveNew/baiviet',(req,res)=>{
+    // tag name add them.
+    var tag = req.body.tagname;
+    // id cua post can update.
+    var ID = req.body.ID;
+    var Arr = split(",", tag);
+    delete req.body['tagname'];
     delete req.body['CatID'];
+    var arr = {"idP" : ID, "idT": Arr};
+
     Promise.all([
         adminModle.savePost(req.body),
-    ]).then(([id])=>{
+        adminModle.getTagIDByName(arr)
+    ])
+    .then(([id, rows])=>{
+        if(rows.length!=0){
+            var idT =[];
+            for (let index = 0; index < rows.length; index++) {
+            idT[index] = rows[index];
+            }
+            var arr1 = {"idP" : ID, "idT": idT};
+            adminModle.addTagPost(arr1)
+            .then().catch();
+        }
         res.redirect('/admin/newBaiViet');
-    }).catch();
-    adminModle.savePost(req.body)
-    .then(id=>{
-        
     })
     .catch();
 
