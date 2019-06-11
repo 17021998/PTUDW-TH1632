@@ -17,6 +17,7 @@
     <!--StyleSheet-->
     <link rel="stylesheet" href="../editor/editor-style.css">
     <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="qlNguoiDungV2_CSS.css">
     </script>
 </head>
 
@@ -85,128 +86,184 @@
                 </div>
                 <div class="row">
 
-                        <div id="user_card" class="card bg-light ml-5 mb-3 col-md-5 p-0">
-                                <div class="card-header">Danh sách người dùng </div>
+                        <div id="user_card" class="card bg-light ml-2 mr-2 mb-3 col-md-5 p-0">
+                                <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh sách người dùng </div>
                                 <div class="card-body">
                                     <!-- ### Subcriber table ###-->
                                     <div id="js-subcriber-table" class="table-responsive-xl">
                                         <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Avatar</th>
-                                                    <th scope="col">Tên</th>
-                                                    <th scope="col">Email</th>
-                                                </tr>
-                                            </thead>
                                             <tbody>
-                                                <tr class="clickable-row" data-href="user-info.html">
+                                                <tr>
                                                     <th scope="row">1</th>
                                                     <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                    <td>ABC</td>
-                                                    <td>ntquyen98@gmail.com</td>
+                                                    <td>
+                                                        <div class="widget-heading">
+                                                            ABC
+                                                        </div>
+                                                        ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-warning">Premium</span>
+                                                    </td>
                                                 </tr>
-                                                <tr class="clickable-row" data-href="user-info.html">
+                                                <tr>
                                                     <th scope="row">2</th>
                                                     <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                    <td>ABC</td>
-                                                    <td>ntquyen98@gmail.com</td>
+                                                    <td>
+                                                            ABC<br>
+                                                            ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-light">Premium</span>
+                                                    </td>
                                                 </tr>
-                                                <tr class="clickable-row" data-href="user-info.html">
+                                                <tr>
                                                     <th scope="row">3</th>
                                                     <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                    <td>ABC</td>
-                                                    <td>ntquyen98@gmail.com</td>
+                                                    <td>
+                                                            ABC<br>
+                                                            ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-light">Premium</span>
+                                                    </td>
                                                 </tr>
-                                                <tr class="clickable-row" data-href="user-info.html">
+                                                <tr>
                                                     <th scope="row">4</th>
                                                     <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                    <td>ABC</td>
-                                                    <td>ntquyen98@gmail.com</td>
+                                                    <td>
+                                                            ABC<br>
+                                                            ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-warning">Premium</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                    <td>
+                                                        <div class="widget-heading">
+                                                            ABC
+                                                        </div>
+                                                        ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-light">Premium</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                    <td>
+                                                            ABC<br>
+                                                            ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-warning">Premium</span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td class="avatar"><img src="../images/account.jpg" alt=""></td>
+                                                    <td>
+                                                            ABC<br>
+                                                            ntquyen98@gmail.com
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge badge-pill badge-light">Premium</span>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button>Xem danh sách chi tiết</button>
+                                        <a href="addNewMember.html" class="btn-wide btn btn-link btn-sm view-all" role="button" aria-pressed="true">Xem tất cả</a>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                    <div id="writer_card" class="card bg-light mb-3 col-md-12 p-0">
-                                            <div class="card-header">Danh sách phóng viên </div>
+                            <div class="card-padding col-md-6 ml-2 mr-2">
+                                    <div id="writer_card" class="card bg-light mb-1 col-md-12 p-0">
+                                            <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh sách phóng viên </div>
                                             <div class="card-body">
                                                 <!-- ### Writer table ### -->
                                                 <div id="js-writer-table" class="table-responsive-xl">
                                                     <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Avatar</th>
-                                                                <th scope="col">Tên</th>
-                                                                <th scope="col">Bút danh</th>
-                                                            </tr>
-                                                        </thead>
                                                         <tbody>
                                                             <tr class="clickable-row" data-href="writer-info.html">
                                                                 <th scope="row">1</th>
                                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                                <td>ABC</td>
-                                                                <td class="text-primary">Đại biến thái</td>
+                                                                <td>
+                                                                    <div class="widget-heading">
+                                                                        ABC
+                                                                    </div>
+                                                                    ntquyen98@gmail.com
+                                                                </td>
+                                                                <td>Đại biến thái</td>
                                                             </tr>
                                                             <tr class="clickable-row" data-href="writer-info.html">
                                                                 <th scope="row">1</th>
                                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                                <td>ABC</td>
-                                                                <td class="text-primary">Đại biến thái</td>
+                                                                <td>
+                                                                    <div class="widget-heading">
+                                                                        ABC
+                                                                    </div>
+                                                                    ntquyen98@gmail.com
+                                                                </td>
+                                                                <td>Đại biến thái</td>
                                                             </tr>
                                                             <tr class="clickable-row" data-href="writer-info.html">
                                                                 <th scope="row">1</th>
                                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                                <td>ABC</td>
-                                                                <td class="text-primary">Đại biến thái</td>
+                                                                <td>
+                                                                    <div class="widget-heading">
+                                                                        ABC
+                                                                    </div>
+                                                                    ntquyen98@gmail.com
+                                                                </td>
+                                                                <td>Đại biến thái</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <button>Xem danh sách chi tiết</button>
+                                                    <button class="btn-wide btn btn-link btn-sm view-all">Xem tất cả</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="editor_card" class="card bg-light mb-3 p-0">
-                                            <div class="card-header">Danh sách biên tập viên </div>
+                                        <div id="editor_card" class="card bg-light col-md-12 mb-3 p-0">
+                                            <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh sách biên tập viên </div>
                                             <div class="card-body">
                                                 <!-- ### Editor table ### -->
                                                 <div id="js-editor-table" class="table-responsive-xl">
                                                     <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">Tên</th>
-                                                                <th scope="col">Avatar</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
                                                         <tbody>
-                                                            <tr class="clickable-row" data-href="editor-info.html">
+                                                            <tr class="clickable-row" data-href="user-info.html">
                                                                 <th scope="row">1</th>
-                                                                <td>ABC</td>
                                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                                <td>ntquyen98@gmail.com</td>
+                                                                <td>
+                                                                    <div class="widget-heading">
+                                                                        ABC
+                                                                    </div>
+                                                                    ntquyen98@gmail.com
+                                                                </td>
                                                             </tr>
-                                                            <tr class="clickable-row" data-href="editor-info.html">
+                                                            <tr class="clickable-row" data-href="user-info.html">
                                                                 <th scope="row">2</th>
-                                                                <td>ABC</td>
                                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                                <td>ntquyen98@gmail.com</td>
+                                                                <td>
+                                                                        ABC<br>
+                                                                        ntquyen98@gmail.com
+                                                                </td>
                                                             </tr>
-                                                            <tr class="clickable-row" data-href="editor-info.html">
+                                                            <tr class="clickable-row" data-href="user-info.html">
                                                                 <th scope="row">3</th>
-                                                                <td>ABC</td>
                                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                                <td>ntquyen98@gmail.com</td>
+                                                                <td>
+                                                                        ABC<br>
+                                                                        ntquyen98@gmail.com
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                    <button>Xem danh sách chi tiết</button>
+                                                    <button class="btn-wide btn btn-link btn-sm view-all">Xem tất cả</button>
                                                 </div>
                                             </div>
                                         </div>

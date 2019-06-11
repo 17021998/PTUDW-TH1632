@@ -1,0 +1,71 @@
+h2{
+    margin-bottom: 0px;
+}
+.widget-heading{
+    opacity: .8;
+    font-weight: bold;
+}
+.text-muted {
+    color: #6c757d !important;
+}
+.card{
+    border-color: #ffffff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 
+    0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 
+    0 0.25rem 0.53125rem rgba(4,9,20,0.05), 
+    0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+}
+.card-background{
+    background: #424242;
+}
+.table {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 0px;
+    background-color: #fff;
+}
+th{
+    padding: 8px;
+}
+.table td, .table th {
+    padding: 8px;
+    vertical-align: middle; 
+}
+
+.view-all{
+    float: right;
+}
+.menu-header-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0;
+}
+.text-primary {
+    color: #fff !important;
+}
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+.btn{
+    font-weight: bold;
+    color: #0d6ed6;
+}
+.btn:hover{
+    color: #0d6ed6;
+}
+.btn-color{
+    color: #fff;
+    font-weight: initial;
+}
+.user-email{
+    font-size: 14px;
+}
+.birthday{
+    font-size: 13px;
+    height: 15px;
+}
+@media screen and (max-width: 768px){
+    .card-padding{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}

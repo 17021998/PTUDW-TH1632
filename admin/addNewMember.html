@@ -17,6 +17,7 @@
     <!--StyleSheet-->
     <link rel="stylesheet" href="../editor/editor-style.css">
     <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="qlNguoiDungV2_CSS.css">
 </head>
 
 <body>
@@ -78,8 +79,11 @@
             <!--Main content-->
             <div class="container">
                 <div class="row">
-                    <div class="col-12 py-2">
-                        <h2>Quản lý người dùng > User</h2>
+                    <div class="col-12 py-2 d-flex flex-row">
+                        <a href="qlNguoiDungV2.html">
+                            <h2>Quản lý người dùng </h2>
+                        </a>
+                        <h2>>User</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -94,7 +98,7 @@
                                     </div>
                                     <div class="col text-right">
                                          <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        <button type="button" class="btn btn-primary btn-color" data-toggle="modal"
                                             data-target="#exampleModalCenter">
                                             Thêm User
                                         </button>
@@ -148,9 +152,9 @@
                                                             </form>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
+                                                            <button type="button" class="btn btn-secondary btn-color"
                                                                 data-dismiss="modal">Hủy</button>
-                                                            <button type="button" class="btn btn-primary">Lưu</button>
+                                                            <button type="button" class="btn btn-primary btn-color">Lưu</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -166,22 +170,34 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">#</th>
-                                                <th scope="col">Tên</th>
                                                 <th scope="col">Avatar</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Tình Trạng Premium</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Premium</th>
                                                 <th scope="col">Ngày bắt đầu</th>
                                                 <th scope="col">Ngày kết thúc</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="clickable-row" data-href="user-info.html">
+                                            <tr>
                                                 <th scope="row">1</th>
-                                                <td>ABC</td>
                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>ntquyen98@gmail.com</td>
-                                                <td class="text-primary">Còn hiệu lực</td>
+                                                <td>
+                                                    <div class="widget-heading">
+                                                        ABC
+                                                    </div>
+                                                    <div class="birthday">
+                                                        <span class="date">1</span>
+                                                        <span class="month">4</span>
+                                                        <span class="year">2019</span>
+                                                    </div>
+                                                    <div class="user-email">
+                                                        ntquyen98@gmail.com
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-pill badge-warning">Premium</span>
+                                                </td>
                                                 <td class="start-day">
                                                     <span class="date">1</span>
                                                     <span class="month">4</span>
@@ -195,49 +211,34 @@
                                                 <td style="white-space:nowrap; width:1%;">
                                                     <div class="btn-toolbar">
                                                         <div class="btn-group btn-group-md">
-                                                            <button type="button" class="btn btn-warning"
+                                                            <button type="button" class="btn btn-warning btn-color"
                                                                 data-toggle="button" aria-pressed="false"
                                                                 autocomplete="off">Hủy Premium</button>
-                                                            <button type="button" class="btn btn-danger"
+                                                            <button type="button" class="btn btn-danger btn-color"
                                                                 data-toggle="button" aria-pressed="false">Xóa</button>
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr class="clickable-row" data-href="user-info.html">
-                                                <th scope="row">2</th>
-                                                <td>ABC</td>
+                                            <tr>
+                                                <th scope="row">1</th>
                                                 <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>ntquyen98@gmail.com</td>
-                                                <td class="text-danger">Hết hạn</td>
-                                                <td class="start-day">
-                                                    <span class="date">..</span>
-                                                    <span class="month">..</span>
-                                                    <span class="year">..</span>
-                                                </td>
-                                                <td class="ex-day">
-                                                    <span class="date">..</span>
-                                                    <span class="month">..</span>
-                                                    <span class="year">..</span>
-                                                </td>
-                                                <td style="white-space:nowrap; width:1%;">
-                                                    <div class="btn-toolbar">
-                                                        <div class="btn-group btn-group-md">
-                                                            <button type="button" class="btn btn-warning"
-                                                                data-toggle="button" aria-pressed="false"
-                                                                autocomplete="off">Gia hạn</button>
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-toggle="button" aria-pressed="false">Xóa</button>
-                                                        </div>
+                                                <td>
+                                                    <div class="widget-heading">
+                                                        ABC
+                                                    <div class="birthday">
+                                                        <span class="date">1</span>
+                                                        <span class="month">4</span>
+                                                        <span class="year">2019</span>
+                                                    </div>
+                                                    </div>
+                                                    <div class="user-email">
+                                                        ntquyen98@gmail.com
                                                     </div>
                                                 </td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="user-info.html">
-                                                <th scope="row">3</th>
-                                                <td>ABC</td>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>ntquyen98@gmail.com</td>
-                                                <td class="text-primary">Còn hiệu lực</td>
+                                                <td>
+                                                    <span class="badge badge-pill badge-light">Premium</span>
+                                                </td>
                                                 <td class="start-day">
                                                     <span class="date">1</span>
                                                     <span class="month">4</span>
@@ -251,38 +252,10 @@
                                                 <td style="white-space:nowrap; width:1%;">
                                                     <div class="btn-toolbar">
                                                         <div class="btn-group btn-group-md">
-                                                            <button type="button" class="btn btn-warning"
-                                                                data-toggle="button" aria-pressed="false"
-                                                                autocomplete="off">Hủy Premium</button>
-                                                            <button type="button" class="btn btn-danger"
-                                                                data-toggle="button" aria-pressed="false">Xóa</button>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="user-info.html">
-                                                <th scope="row">4</th>
-                                                <td>ABC</td>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>ntquyen98@gmail.com</td>
-                                                <td class="text-danger">Hết hạn</td>
-                                                <td class="start-day">
-                                                    <span class="date">..</span>
-                                                    <span class="month">..</span>
-                                                    <span class="year">..</span>
-                                                </td>
-                                                <td class="ex-day">
-                                                    <span class="date">..</span>
-                                                    <span class="month">..</span>
-                                                    <span class="year">..</span>
-                                                </td>
-                                                <td style="white-space:nowrap; width:1%;">
-                                                    <div class="btn-toolbar">
-                                                        <div class="btn-group btn-group-md">
-                                                            <button type="button" class="btn btn-warning"
+                                                            <button type="button" class="btn btn-warning btn-color"
                                                                 data-toggle="button" aria-pressed="false"
                                                                 autocomplete="off">Gia hạn</button>
-                                                            <button type="button" class="btn btn-danger"
+                                                            <button type="button" class="btn btn-danger btn-color"
                                                                 data-toggle="button" aria-pressed="false">Xóa</button>
                                                         </div>
                                                     </div>
