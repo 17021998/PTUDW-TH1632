@@ -153,6 +153,7 @@ router.get('/qlNguoiDung/subcribers', (req, res) =>{
         if (typeof req.query.page !== 'undefined') {
             currentPage = +req.query.page;
             }
+        console.log("so luong n = "+pages.length);
         var isActive = "qlnd";
         res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive, rows: rows, pages,currentPage: currentPage});
     }).catch(err => {
