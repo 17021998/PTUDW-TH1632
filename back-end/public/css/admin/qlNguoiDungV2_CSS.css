@@ -1,0 +1,213 @@
+h2{
+    margin-bottom: 0px;
+}
+.widget-heading{
+    opacity: .8;
+    font-weight: bold;
+}
+.text-muted {
+    color: #6c757d !important;
+}
+.card{
+    border-color: #ffffff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(4,9,20,0.03), 
+    0 0.9375rem 1.40625rem rgba(4,9,20,0.03), 
+    0 0.25rem 0.53125rem rgba(4,9,20,0.05), 
+    0 0.125rem 0.1875rem rgba(4,9,20,0.03);
+}
+.card-header{
+    padding: .25rem 1rem;
+}
+.card-body {
+    padding: 0 !important;
+}
+.card-background{
+    background: #424242;
+}
+.table {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 0px;
+    background-color: #fff;
+}
+th{
+    padding: 8px;
+}
+.table td, .table th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle; 
+}
+
+.view-all{
+    float: right;
+}
+.menu-header-title {
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0;
+}
+.text-primary {
+    color: #fff !important;
+}
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+.btn{
+    font-weight: bold;
+    color: #0d6ed6;
+}
+.btn:hover{
+    color: #fff;
+}
+.btn-color{
+    color: #fff !important;
+    font-weight: initial;
+}
+.btn-color:hover{
+    color: #fff;
+}
+.user-email{
+    font-size: 14px;
+}
+.birthday{
+    font-size: 13px;
+    height: 15px;
+}
+.birthday-size{
+    font-size: 13px;
+}
+@media screen and (max-width: 768px){
+    .card-padding{
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+/*modal style*/
+.modal-confirm {		
+    color: #636363;
+    width: 400px;
+}
+.modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+}
+.modal-confirm .modal-header {
+    border-bottom: none;   
+    position: relative;
+}
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+}
+.modal-confirm .modal-body {
+    color: #999;
+}
+.modal-confirm .modal-footer {
+    border: none;
+    text-align: center;	
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+    color: #999;
+}		
+.modal-confirm .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+}
+.modal-confirm .icon-box-renew{
+    border: 3px solid #64dd17;
+}
+.modal-confirm .icon-box-renew i{
+    color: #64dd17;
+}
+.modal-confirm .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    min-width: 120px;
+    border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 5px;
+    outline: none !important;
+}
+.modal-confirm .btn-info {
+    background: #c1c1c1;
+}
+.modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+    background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+    background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+    background: #ee3535;
+}
+.trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+}
+
+table.table td a.renewed {
+    background: #ffc107;
+    color: #212529;
+    border-radius: 10rem;
+    padding-right: .6em;
+    padding-left: .6em;
+    font-size: 85%;
+    font-weight: 700;
+}
+table.table td a.delete {
+    color: #F44336;
+}
+
+.pg-color a {
+    color: #222326;
+}
+.pg-color a:hover {
+    color: #fff !important;
+    background: #222326;
+}
+.pagination.pagination-circle .page-item.active .page-link {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.pagination.pagination-circle .page-item .page-link {
+    margin-left: 2px;
+    margin-right: 2px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #222326;
+    border-color: #222326;
+}

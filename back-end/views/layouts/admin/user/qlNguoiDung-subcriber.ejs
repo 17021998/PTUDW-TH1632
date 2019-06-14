@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users - Admin</title>
+    <!--Font-->
+    <link rel="stylesheet" href="/fonts/Open_Sans/open-sans.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!--StyleSheet-->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" href="/css/admin/admin-style.css">
+    <link rel="stylesheet" href="/css/admin/qlNguoiDungV2_CSS.css">
+
+</head>
+
+<body>
+    <div id="page">
+        <%- include('../../header-footer/header-admin.ejs') %>
+        <section id="page-main-content">
+            <!--Head content-->
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+                    <a href="profile-admin.html" class="head-item"><img src="/images/account.png"></a>
+                    <a href="/index.html" class="head-item">
+                        <span>Đăng xuất</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+            <!--Main content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 py-2 d-flex flex-row">
+                        <a href="/admin/qlNguoiDung">
+                            <h2>Quản lý người dùng </h2>
+                        </a>
+                        <h2>>User</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col my-auto">
+                                        <div id="card-header-title">
+                                            <h5>Danh sách người dùng User</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col text-right">
+                                        <a href="#addNewModal" class="btn btn-primary btn-color" data-toggle="modal"><i
+                                                class="fas fa-plus-circle"></i> <span>Thêm User</span></a>
+                                        <div class="input-group w-100">
+
+                                            <!-- Add New Modal -->
+                                            <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Thêm
+                                                                người dùng</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body text-left">
+                                                            <form novalidate id="newMember" method="POST" action="">
+                                                                <div class="form-group">
+                                                                    <label for="input_hoTen" class="col-form-label">
+                                                                        Họ tên:
+                                                                    </label>
+                                                                    <input type="text" class="form-control" name="name"
+                                                                        id="input_hoTen" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="input_birthday"
+                                                                        class="col-form-label">Ngày sinh:</label>
+                                                                    <input type="text" id="input_birthday"
+                                                                        class="form-control" name="birthday" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="input_email" class="col-form-label">
+                                                                        Email:
+                                                                    </label>
+                                                                    <input type="email" name="email"
+                                                                        class="form-control" id="input_email" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="input_password" class="col-form-label">
+                                                                        Mật khẩu:
+                                                                    </label>
+                                                                    <input type="password" name="password"
+                                                                        class="form-control" id="input_password" />
+                                                                </div>
+                                                                <button type="button"
+                                                                    class="btn btn-secondary btn-color"
+                                                                    data-dismiss="modal">Hủy</button>
+                                                                <button type="submit"
+                                                                    class="btn btn-primary btn-color">Lưu</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Add New Modal -->
+
+                                            <!-- Delete Modal -->
+                                            <div id="deleteModal" class="modal fade">
+                                                <div class="modal-dialog modal-confirm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="d-flex flex-column mx-auto">
+                                                                <div class="icon-box">
+                                                                    <i class="fas fa-times"></i>
+                                                                </div>
+                                                                <h4 class="modal-title">Bạn chắc chứ?</h4>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Bạn có chắc chắn muốn xóa người dùng này không? Thao tác
+                                                                này sẽ xóa toàn bộ thông tin về người dùng đó.</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="w-100 d-flex justify-content-around">
+                                                                <button type="button" class="btn btn-info"
+                                                                    data-dismiss="modal">Hủy bỏ</button>
+                                                                <button type="button" class="btn btn-danger">Xác
+                                                                    thực</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Delete Modal -->
+
+                                            <!-- Renew Modal -->
+                                            <div id="renewPremiumModal" class="modal fade">
+                                                <div class="modal-dialog modal-confirm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <div class="d-flex flex-column mx-auto">
+                                                                <div class="icon-box icon-box-renew">
+                                                                    <i class="fas fa-check"></i>
+                                                                </div>
+                                                                <h4 class="modal-title">Gia hạn thành công!</h4>
+                                                            </div>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>Người dùng này vừa được gia hạn thêm Premium!</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Renew Modal -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card body">
+                                <!-- ### Subcriber table ###-->
+                                <div id="js-subcriber-table" class="table-responsive-xl">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Premium</th>
+                                                <th scope="col">Ngày bắt đầu</th>
+                                                <th scope="col">Ngày kết thúc</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <% for( let index = 0; index < rows.length; index++ ) { %>
+                                            <tr>
+                                                <th scope="row"><%=index + 1 %></th>
+                                                <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                <td>
+                                                    <div class="widget-heading">
+                                                        <%=rows[index].FullName %>
+                                                    </div>
+                                                    <div class="birthday-size">
+                                                        <%=rows[index].DoB %>
+
+                                                    </div>
+                                                    <div class="user-email">
+                                                        <%=rows[index].Email %>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-pill badge-warning">Premium</span>
+                                                </td>
+                                                <td class="start-day">
+                                                    <span class="date">1</span>
+                                                    <span class="month">4</span>
+                                                    <span class="year">2019</span>
+                                                </td>
+                                                <td class="ex-day">
+                                                    <span class="date">8</span>
+                                                    <span class="month">4</span>
+                                                    <span class="year">2019</span>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <a href="#renewPremiumModal" class="renewed" data-toggle="modal"
+                                                            title="Gia hạn">Gia hạn</a>
+                                                        <a href="#deleteModal" class="delete" data-toggle="modal"><i
+                                                                class="fas fa-trash" data-toggle="tooltip"
+                                                                title="Delete"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <% let n = pages.length; %>
+                                <% if (n > 0) { %>
+                                <ul class="pagination pagination-circle pg-color d-flex justify-content-center">
+                                    <% if (n == 1) { %>
+                                    <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fas fa-angle-left"></i></i></a></li>
+                                    <% } %>
+                                    <% var i = 1; %>
+                                    <% if (currentPage > 5) { %>
+                                    <% i = +currentPage - 4; %>
+                                    <% } %>
+                                    <% if (i !== 1) { %>
+                                    <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
+                                    <% } %>
+                                    <% for (i; i <= n; i++) { %>
+                                    <% if (currentPage == i) { %>
+                                    <li class="page-item active"><a class="page-link"><%= i %> <span
+                                                class="sr-only">(current)</span></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% if (i == (+currentPage + 4)) { %>
+                                    <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
+                                    <% break; } %>
+                                    <% } %>
+                                    <% if (pages[n-1].active) { %>
+                                    <li class="page-item disabled"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="?page=<%=pages[n-1].value %>"><i class="fas fa-chevron-right"></i></a></li>
+                                    <% } %>
+                                </ul>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--Main Script-->
+    <script src="/js/editor/main.js"></script>
+    <!--Bootstrap-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script>
+        $(function () {
+            $('#input_birthday').datetimepicker({
+                format: 'd/m/Y',
+                timepicker: false,
+                mask: true
+            });
+            $('#newMember').validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true,
+                        remote: {
+                            url: '/guest/is-available'
+                        }
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6
+                    }
+                },
+                messages: {
+                    email: {
+                        required: 'Vui lòng nhập email.',
+                        email: 'Email không hợp lệ.',
+                        remote: 'Email này đã được đăng ký bởi tài khoản khác.'
+                    },
+                    password: {
+                        required: 'Vui lòng nhập mật khẩu.',
+                        minlength: 'Mật khẩu phải có độ dài lớn hơn 6.'
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

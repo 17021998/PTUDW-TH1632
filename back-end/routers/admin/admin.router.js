@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 var adminModle = require('../../modles/admin/admin.modle');
 var split = require('string-split');
+var bcrypt = require('bcrypt');
+var uuidv4 = require('uuid/v4');
+var guestModel = require('../../modles/guest/guest.model');
+var subcriberModel = require('../../modles/subcriber/subcriber.modle');
+var momnet = require('moment');
 
 router.get('/:id/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
@@ -92,6 +97,70 @@ router.get('/:id/deleteTag', (req,res)=>{
 router.get('/qlNguoiDung', (req, res) => {
     var isActive = "qlnd";
     res.render('admin/qlNguoiDung', { "isActive": isActive });
+})
+
+router.get('/qlNguoiDung/subcribers', (req, res) =>{
+    var page = req.query.page || 1;
+    if (page < 1) page = 1;
+    var limit = 4;
+    var offset = (page - 1)*limit;
+    Promise.all([
+        subcriberModel.pageBySubcriber(limit, offset),
+        subcriberModel.countBySubcriber(),
+    ]).then(([rows, count_rows]) => {
+        var total = count_rows[0].total;
+        var nPages = Math.floor(total / limit);
+        if (total % limit > 0) nPages++;
+        var pages = [];
+        var currentPage = 1;
+        for( i = 1; i <= nPages; i++){
+            var obj = {value: i};
+            pages.push(obj);
+        }
+        if (typeof req.query.page !== 'undefined') {
+            currentPage = +req.query.page;
+            }
+        var isActive = "qlnd";
+        res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive, rows: rows, pages,currentPage: currentPage});
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
+})
+
+router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
+    var saltRounds = 10;
+    var name = req.body.name;
+    var email = req.body.email;
+    var hash = bcrypt.hashSync(req.body.password, saltRounds);
+    var id = uuidv4();
+    var dob = momnet(req.body.birthday, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    var today = new Date().toLocaleDateString();
+    var beginDay = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+
+    var entity1 = {
+        ID: id,
+        FullName: name,
+        Email: email,
+        PassHash: hash,
+        role: 'user',
+        DoB: dob
+    };
+    var entity2 = {
+        UserID: id, 
+        Status: 1,
+        BeginDay: beginDay
+    };
+
+    guestModel.add(entity1)
+    .then(()=>{
+        subcriberModel.add(entity2)
+        .then(()=>{
+            return res.redirect('/admin/qlNguoiDung/subcribers');
+        }).catch(err=>{
+        console.log(err);
+        })
+    }).catch(next);
 })
 
 router.get('/security', (req, res) => {
