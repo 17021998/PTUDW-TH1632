@@ -132,42 +132,6 @@ router.post('/deleteTag', (req,res)=>{
 
 })
 
-//Get subcribers
-router.get('/qlNguoiDung/subcribers', (req, res) =>{
-    var isActive = "qlnd";
-    res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive});
-})
-
-//Post subcriber
-router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
-    var saltRounds = 10;
-    var name = req.body.name;
-    var email = req.body.email;
-    var hash = bcrypt.hashSync(req.body.password, saltRounds);
-    var id = uuidv4();
-
-    var entity1 = {
-        ID: id,
-        FullName: name,
-        Email: email,
-        PassHash: hash,
-        role: 'user'
-    };
-    var entity2 = {
-        UserID: id, 
-        Status: 1
-        //BeginDay: Date.now()
-    };
-
-    Promise.all([
-        guestModel.add(entity1)
-    ]).then(()=>{
-        subcriberModel.add(entity2);
-    }).catch(err=>{
-        console.log(err);
-    })
-})
-
 router.get('/qlNguoiDung/subcribers', (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
@@ -206,6 +170,11 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
     var dob = momnet(req.body.birthday, 'DD/MM/YYYY').format('YYYY-MM-DD');
     var today = new Date().toLocaleDateString();
     var beginDay = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+    
+    var current = new Date();
+    var followingDay = new Date(current.getTime() + 86400000*7); // + 7 day in ms
+    console.log("begin day is " + beginDay);
+    console.log("following day is " + followingDay.toLocaleDateString());
 
     var entity1 = {
         ID: id,
