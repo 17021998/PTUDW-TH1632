@@ -39,6 +39,12 @@ router.get('/profile-admin', (req, res) => {
     var isActive = "pa";
     res.render('admin/profile-admin', { "isActive": isActive });
 })
+// router post update profile admin
+router.post('/update/profile-admin', (req,res)=>{
+    var entity = req.body;
+
+    res.end('...');
+})
 
 router.get('/qlBaiViet', (req, res) => {
     var isActive = "qlbv";
@@ -167,9 +173,22 @@ router.get('/user-info', (req, res) => {
     var isActive = "ui";
     res.render('admin/user-info', { "isActive": isActive });
 })
+// update user infor
+router.post('/update/user-info', (req,res)=>{
+    var entity = req.body;
+
+    res.end('...');
+})
+
 router.get('/writer-info', (req, res) => {
     var isActive = "wi";
     res.render('admin/writer-info', { "isActive": isActive });
+})
+// update writer infor
+router.post('/update/writer-info', (req,res)=>{
+    var entity = req.body;
+
+    res.end('...');
 })
 
 
