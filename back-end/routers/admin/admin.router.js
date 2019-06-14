@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var adminModle = require('../../modles/admin/admin.modle');
+
+var dateFormat = require('dateformat');
 var split = require('string-split');
 var bcrypt = require('bcrypt');
 var uuidv4 = require('uuid/v4');
@@ -12,14 +14,13 @@ router.get('/:id/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
     var id = req.params.id;
     Promise.all([
-        adminModle.getCatagory(),
+        adminModle.getcategoryFather(),
+        adminModle.getCatagoryChild(),
         adminModle.getPostByPostId(id),
-        // thiếu lấy các tag thuộc post đó.
         adminModle.getAllTagByPostID(id),
         ])
-    .then(([rowsCat, rowsPos, rowsTag])=>{
-        console.log(rowsTag);
-        res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "post": rowsPos[0], "Tag": rowsTag});
+    .then(([rowsCat, rowC, rowsPos, rowsTag])=>{
+        res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "CatChild": rowC , "post": rowsPos[0], "Tag": rowsTag});
     })
     .catch();
 })
@@ -27,7 +28,7 @@ router.get('/:id/ctBaiViet', (req, res) => {
 
 router.get('/newBaiViet', (req,res)=>{
     var isac = "nbv"
-    adminModle.getCatagory()
+    adminModle.getcategoryFather()
     .then(rows=>{
         res.render('admin/newBaiViet',{"isActive": isac, "Cat": rows});
     })
@@ -43,18 +44,47 @@ router.get('/profile-admin', (req, res) => {
     var isActive = "pa";
     res.render('admin/profile-admin', { "isActive": isActive });
 })
+// router post update profile admin
+router.post('/update/profile-admin', (req,res)=>{
+    var entity = req.body;
+
+    res.end('...');
+})
 
 router.get('/qlBaiViet', (req, res) => {
     var isActive = "qlbv";
-    adminModle.allPost()
-    .then(rows=>{
-        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rows });
-    })
-    .catch(err=>{
-        console.log(err);
-        res.end('error');
-    });
-    // res.render('admin/qlBaiViet', { "isActive": isActive });
+    var ttbv = req.query.ttbv || 2;
+    var page = req.query.page || 1;
+    if(page < 1 || isNaN(page)){
+        page=1;
+    } 
+    if((ttbv <-2 && ttbv > 2)|| isNaN(ttbv)){
+        ttbv=2; // xác nhận là lấy tất cả.
+    } 
+    var limit = 5;
+    var offset = (page - 1) * limit;
+    Promise.all([
+        adminModle.countPost(),
+        adminModle.pagePost(limit, offset, ttbv),
+    ]).then(([count, rowsPage])=>{ 
+        for (let index = 0; index < rowsPage.length; index++) {
+            if(rowsPage[index].ReleaseDay!=null)
+            rowsPage[index].ReleaseDay= dateFormat(rowsPage[index].ReleaseDay, "yyyy/mm/dd");
+        }
+        var dateNow = dateFormat(new Date() ,"yyyy/mm/dd");
+        var counts = count[0].totals;
+        var len = Math.floor(counts / limit);
+        if(counts % limit>0){
+            len++;
+        }
+        var pages = [];
+        for( i =0 ;i<len;i++){
+            pages.push({"value": i, "isActive": i===+page-1});
+        }
+
+        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rowsPage, "page": pages, "p":page, "ttbv": ttbv, dateNow});
+    }).catch();
+
 })
 
 router.get('/qlChuyenMuc', (req, res) => {
@@ -70,33 +100,72 @@ router.get('/qlChuyenMuc', (req, res) => {
 // quản lí hashtag
 router.get('/qlHashTag', (req, res) => {
     var isActive = "qlht";
+    var page = req.query.page || 1; 
+    if(page < 1 || isNaN(page)){
+        page=1;
+    }
+    var limit = 10;
+    var offset = (page - 1) * limit;
     Promise.all([
         adminModle.allTag(),
-        // adminModle.getAllTagName()
-    ]).then(([rows])=>{ 
-        //console.log(rowsTag);
-        var TagName = [];
-        for(let i=0;i<rows.length;i++){
-            TagName[i]=rows[i].TagName;
+        adminModle.pageTag(limit,offset),
+    ]).then(([rows, rowsPage])=>{ 
+        var len = Math.floor(rows.length / limit);
+        if(rows.length % limit>0){
+            len++;
         }
-        console.log(TagName);
-        res.render('admin/qlHashTag', { "isActive": isActive, tag: rows, "TagName": TagName});
+        var pages = [];
+        for( i =0 ;i<len;i++){
+            pages.push({"value": i, "isActive": i===+page-1});
+        }
+        res.render('admin/qlHashTag', { "isActive": isActive, tag: rowsPage, "page": pages, "p": page });
     }).catch();
 }) 
 
-router.get('/:id/deleteTag', (req,res)=>{
-    var idTag= req.params.id;
+router.post('/deleteTag', (req,res)=>{
+    var idTag= req.body.id;
     adminModle.deleteTag(idTag)
         .then(id => {
-            res.redirect("/admin/qlHashTag");
+            res.end('...');
         })
         .catch(err=>console.log(err));
 
 })
 
-router.get('/qlNguoiDung', (req, res) => {
+//Get subcribers
+router.get('/qlNguoiDung/subcribers', (req, res) =>{
     var isActive = "qlnd";
-    res.render('admin/qlNguoiDung', { "isActive": isActive });
+    res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive});
+})
+
+//Post subcriber
+router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
+    var saltRounds = 10;
+    var name = req.body.name;
+    var email = req.body.email;
+    var hash = bcrypt.hashSync(req.body.password, saltRounds);
+    var id = uuidv4();
+
+    var entity1 = {
+        ID: id,
+        FullName: name,
+        Email: email,
+        PassHash: hash,
+        role: 'user'
+    };
+    var entity2 = {
+        UserID: id, 
+        Status: 1
+        //BeginDay: Date.now()
+    };
+
+    Promise.all([
+        guestModel.add(entity1)
+    ]).then(()=>{
+        subcriberModel.add(entity2);
+    }).catch(err=>{
+        console.log(err);
+    })
 })
 
 router.get('/qlNguoiDung/subcribers', (req, res) =>{
@@ -172,9 +241,22 @@ router.get('/user-info', (req, res) => {
     var isActive = "ui";
     res.render('admin/user-info', { "isActive": isActive });
 })
+// update user infor
+router.post('/update/user-info', (req,res)=>{
+    var entity = req.body;
+
+    res.end('...');
+})
+
 router.get('/writer-info', (req, res) => {
     var isActive = "wi";
     res.render('admin/writer-info', { "isActive": isActive });
+})
+// update writer infor
+router.post('/update/writer-info', (req,res)=>{
+    var entity = req.body;
+
+    res.end('...');
 })
 
 
@@ -190,19 +272,80 @@ router.post('/qlHashTag/add', (req,res)=>{
 })
 
 router.post('/save/baiviet',(req,res)=>{
+    // tag name add them.
+    var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
+    // id cua post can update.
+    var ID = req.body.ID;
+    var Arr = split(",", tag);
+    delete req.body['tagname'];
+    var CatId = req.body.CatID;
+
+    var entity={
+        CatID: CatId,
+        PostID: ID
+    };
+
     delete req.body['CatID'];
-    adminModle.savePost(req.body)
-    .then(id=>{
-        res.redirect('/admin/'+id+'/ctBaiViet');
+    var arr = {"idP" : ID, "idT": Arr};
+
+    Promise.all([
+        adminModle.savePost(req.body),
+        adminModle.getTagIDByName(arr),
+        adminModle.updateCatPost(entity),
+    ])
+    .then(([id, rows, rowCatPost])=>{
+        if(rows.length!=0){
+            var idT =[];
+            for (let index = 0; index < rows.length; index++) {
+                idT[index] = rows[index];
+            }
+            var arr1 = {"idP" : ID, "idT": idT};
+
+            adminModle.addTagPost(arr1)
+            .then().catch();
+        }
+        res.redirect('/admin/'+ID+'/ctBaiViet');
     })
     .catch();
 
 })
 
 router.post('/saveClose/baiviet',(req,res)=>{
+
+    // tag name add them.
+    var tag = req.body.tagname;
+    // id cua post can update.
+    var ID = req.body.ID;
+    var Arr = split(",", tag);
+    var entity = {
+        CatID: req.body.CatID,
+        PostID: ID
+    };
+    delete req.body['tagname'];
     delete req.body['CatID'];
-    adminModle.savePost(req.body)
-    .then(id=>{
+    var arr = {"idP" : ID, "idT": Arr};
+
+    Promise.all([
+        adminModle.savePost(req.body),
+        adminModle.getTagIDByName(arr),
+        adminModle.updateCatPost(entity),
+    ])
+    .then(([id, rows, rowsCatPost])=>{
+        if(rows.length!=0){
+            var idT =[];
+            for (let index = 0; index < rows.length; index++) {
+            idT[index] = rows[index];
+            }
+            var arr1 = {"idP" : ID, "idT": idT};
+            adminModle.addTagPost(arr1)
+            .then()
+            .catch();
+        }
+
         res.redirect('/admin/qlBaiViet');
     })
     .catch();
@@ -210,15 +353,35 @@ router.post('/saveClose/baiviet',(req,res)=>{
 })
 
 router.post('/saveNew/baiviet',(req,res)=>{
+    // tag name add them.
+    var tag = req.body.tagname;
+    // id cua post can update.
+    var ID = req.body.ID;
+    var Arr = split(",", tag);
+    var entity={
+        CatID: req.body.CatID,
+        PostID: req.body.PostID
+    };
+    delete req.body['tagname'];
     delete req.body['CatID'];
+    var arr = {"idP" : ID, "idT": Arr};
+
     Promise.all([
         adminModle.savePost(req.body),
-    ]).then(([id])=>{
+        adminModle.getTagIDByName(arr),
+        adminModle.updateCatPost(entity),
+    ])
+    .then(([id, rows, rowCatPost])=>{
+        if(rows.length!=0){
+            var idT =[];
+            for (let index = 0; index < rows.length; index++) {
+            idT[index] = rows[index];
+            }
+            var arr1 = {"idP" : ID, "idT": idT};
+            adminModle.addTagPost(arr1)
+            .then().catch();
+        }
         res.redirect('/admin/newBaiViet');
-    }).catch();
-    adminModle.savePost(req.body)
-    .then(id=>{
-        
     })
     .catch();
 
@@ -233,7 +396,6 @@ router.post('/delete/baiviet',(req,res)=>{
 })
 
 router.post('/deleteTagPost',(req,res)=>{
-    console.log(req.body);
     adminModle.deleteTagPost(req.body.idT,req.body.idP)
     .then(id=>{
         res.end('...');

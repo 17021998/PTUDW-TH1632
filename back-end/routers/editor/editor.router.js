@@ -20,7 +20,7 @@ router.post('/xetduyet', (req,res)=>{
         editorModle.xetDuyetPost(req.body),
         editorModle.getIDcategoryByPostID(id)
     ]).then(([id, CatID])=>{
-        res.redirect('/editor/'+CatID[0].CatID);
+        res.redirect('/editor/'+CatID[0].SuperCatID);
     }).catch();
     
 })
@@ -32,7 +32,7 @@ router.post('/tuchoi',(req,res)=>{
         editorModle.xetDuyetPost(req.body),
         editorModle.getIDcategoryByPostID(id)
     ]).then(([id, CatID])=>{ 
-        res.redirect('/editor/'+CatID[0].CatID);
+        res.redirect('/editor/'+CatID[0].SuperCatID);
     }).catch();
 })
 
@@ -41,8 +41,13 @@ router.get('/profile-editor', (req, res) => {
     editorModle.allcategory().then(rows=>{
         res.render('editor/profile-editor', { "isActive": isActive , categories: rows});
     }).catch();
+})
+// router post update profile editor.
+router.post('/update/profile-editor', (req,res)=>{
+    var entity = req.body;
 
 
+    res.end('...');
 })
 
 router.get('/security', (req, res) => {
@@ -67,6 +72,7 @@ router.get("/:iddm", (req, res) => {
         }
         var isActive = "xdbv"; 
         res.render('editor/editor-index', { "isActive": isActive , "chuyenmuc": chuyenmuc , categories: rows , post: rowPostByCat});
+        
     }).catch();
 })
 

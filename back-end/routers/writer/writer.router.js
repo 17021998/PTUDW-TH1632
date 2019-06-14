@@ -4,14 +4,15 @@ var router = express.Router();
 var writerModle = require('../../modles/writer/writer.modle');
 
 router.get('/', (req, res) => { 
-    writerModle.getcategory()
-    .then(rows => {
+    Promise.all([
+        writerModle.getcategoryFather(),
+        writerModle.getCatagoryChild()
+    ])
+    .then(([rowsF, rowsC])=>{
         var isActive = "tbv";
-        res.render('writer/writer', { "isActive": isActive , categories: rows });
-      }).catch(err => {
-        console.log(err);
-        res.end('error occured.')
-      });
+        res.render('writer/writer', { "isActive": isActive , "categories": rowsF , "CatChild": rowsC });
+    }).catch();
+    
 })
 
 router.get('/baivietduocduyet', (req, res) => {
@@ -53,10 +54,7 @@ router.post('/add', (req,res)=>{
     req.body.PostStatus=null;
     var CatID = req.body.CatID;
     delete req.body['CatID'];
-    console.log(req.body);
     writerModle.addPost(req.body).then(id => {
-        // console.log(req.body);
-        console.log(id);
         var catPost={
             'CatID': CatID,
             'PostID': id

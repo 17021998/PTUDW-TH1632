@@ -20,7 +20,6 @@ router.post('/searchAutoComplete',(req,res)=>{
 
     indexModel.searchTag(data)
     .then(rows=>{
-        console.log(rows);
         var TagName = [];
         for(let i=0;i<rows.length;i++){
             TagName[i]=rows[i].TagName;

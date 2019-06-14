@@ -27,7 +27,7 @@
             <div class="head-content row">
                 <div class="col-md-12 text-right my-auto">
                     <a href="profile-admin.html" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
+                    <a href="/" class="head-item">
                         <span>Đăng xuất</span>
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
@@ -52,16 +52,15 @@
                                     </div>
                                     <div class="col-8">
                                         <div class="btn-toolbar justify-content-between flex-nowrap">
-                                            <button type="button" class="btn btn-secondary clickable-row" data-href="ctBaiViet">
+                                            <button type="button" class="btn btn-secondary clickable-row" data-href="newBaiViet">
                                                 Thêm bài viết <span><i class="fas fa-plus"></i></span>
                                             </button>
-                                            <select name="" id="" class="custom-select mx-auto w-50">
-                                                <option>
-                                                    Trang thái bài viết
-                                                </option>
-                                                <option value="publish" selected>Đã phát hành</option>
-                                                <option value="draft">Chưa duyệt</option>
-                                                <option value="unpublish">Bị từ chối</option>
+                                            <select id="selectTrangThai" class="custom-select mx-auto w-50">
+                                                <option value="2" <% if(ttbv==2){ %> selected <% } %> > Tất cả</option>
+                                                <option value="1" <% if(ttbv==1){ %> selected <% } %> >Đã Xuất Bản</option>
+                                                <option value="0" <% if(ttbv==0){ %> selected <% } %> >Chưa Xuất Bản</option>
+                                                <option value="-1" <% if(ttbv==-1){ %> selected <% } %> >Bị từ chối</option>
+                                                <option value="-2" <% if(ttbv==-2){ %> selected <% } %> >Đang Đợi...</option>
                                             </select>
                                         </div>
                                     </div>
@@ -89,11 +88,19 @@
                                                     <td><%= baiviet[index].Title %></td>
                                                     <td>Thường</td>
                                                     <td>Xuân Diệu</td>
-                                                    <td class="text-success">Đã xuất bản</td>
+                                                    <td class="text-success">
+                                                        <% if (baiviet[index].PostStatus===-1) { %>
+                                                            Từ Chối.
+                                                        <% } else if (baiviet[index].PostStatus=== 1 && dateNow < baiviet[index].ReleaseDay) {%>
+                                                            Chưa Xuất Bản.
+                                                        <% } else if (baiviet[index].PostStatus=== 1 ) {%>
+                                                            Đã Xuất Bản.
+                                                        <% } else if (baiviet[index].PostStatus === null) { %>
+                                                            Đang Đợi...
+                                                        <% } %> 
+                                                    </td>
                                                     <td>
-                                                        <span class="date">15</span>
-                                                        <span class="month">10</span>
-                                                        <span class="year">2017</span>
+                                                        <%=baiviet[index].ReleaseDay%>
                                                     </td>
                                                 </tr>
                                             <% } %>
@@ -102,15 +109,28 @@
                                 </div>
                             </div>
                             <div class="card-footer text-center">
-                                <ul class="pagination mx-auto justify-content-center">
-                                    <li class="page-item disabled"><a href="#" class="page-link"><i
-                                                class="fas fa-chevron-left"></i></a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="#" class="page-link"><i
-                                                class="fas fa-chevron-right"></i></a></li>
-                                </ul>
+                                <span class="d-flex justify-content-center">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination">
+                                            <li class="page-item <% if(page[0].isActive){%> disabled <%}%> ">
+                                                <a class="page-link" href="/admin/qlBaiViet?page=<%=p - 1%>&ttbv=<%=ttbv%>" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <% for (var i=0; i<page.length;i++){ %>
+                                                <li class="page-item <% if (page[i].isActive){%> active <%}%>"><a class="page-link" 
+                                                href="/admin/qlBaiViet?page=<%=page[i].value + 1%>&ttbv=<%=ttbv%>"><%=page[i].value + 1%></a></li>
+                                            <% } %>
+                                            <li class="page-item <% if(page[page.length-1].isActive){%> disabled <%}%> ">
+                                                <a class="page-link" href="/admin/qlBaiViet?page=<%=p + 1%>&ttbv=<%=ttbv%>" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span> 
+                                                    <span class="sr-only">Next</span>
+                                                </a>    
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -120,12 +140,25 @@
     </section>
     </div>
 
+
     <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         
     <script src="/js/editor/main.js"></script>
+    <script>
+        document.getElementById("selectTrangThai").addEventListener('change', changeTTBV, false);
+
+        function changeTTBV(){
+            var value =  document.getElementById("selectTrangThai").value;
+            
+            document.location.href = '/admin/qlBaiViet?ttbv='+value;
+        }
+
+        window.addEventListener("load", start, false);
+    </script>
+
 </body>
 
 </html>

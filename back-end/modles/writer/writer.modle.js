@@ -7,8 +7,12 @@ module.exports = {
         return db.load('select * from ' + nametable);
     },
     
-    getcategory:()=>{
-        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null')
+    getcategoryFather:()=>{
+        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null and IsDelete is null');
+    },
+
+    getCatagoryChild:()=>{
+        return db.load('select * from category as c where c.SuperCatID is not null and IsDelete is null');
     },
     
     single: id => {
