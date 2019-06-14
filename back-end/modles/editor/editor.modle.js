@@ -5,8 +5,7 @@ var nametable = "catpost";
 module.exports = {
 
     allPostBycategory: CatID=>{
-        //select * from (select c.ID from category as c where c.SuperCatID=4) as cs, catpost as cp, post as p where cs.ID = cp.CatID and p.ID=cp.PostID
-        return db.load(`select p.*, cs.CatName from (select * from category as c where c.SuperCatID=${CatID}) as cs, catpost as cp, post as p where cs.ID = cp.CatID and p.ID=cp.PostID`);
+        return db.load(`select p.*, cs.CatName from (select * from category as c where c.SuperCatID=${CatID}) as cs, catpost as cp, post as p where cs.ID = cp.CatID and p.ID=cp.PostID and p.PostStatus is null and p.IsDelete is null`);
     },
 
     allcategory: ()=>{
@@ -18,7 +17,7 @@ module.exports = {
     },
 
     getIDcategoryByPostID: Postid=>{
-        return db.load(`select cp.CatID from catpost as cp where cp.PostID = ${Postid}`);
+        return db.load(`select c.SuperCatID from catpost as cp, category as c where cp.PostID = ${Postid} and c.ID = cp.CatID`);
     },
 
     xetDuyetPost: entity=>{

@@ -16,11 +16,13 @@ router.post('/getContentPost',(req,res)=>{
 router.post('/xetduyet', (req,res)=>{
     req.body.PostStatus=1;
     var id = req.body.ID;
+    console.log(req.body);
     Promise.all([
         editorModle.xetDuyetPost(req.body),
         editorModle.getIDcategoryByPostID(id)
     ]).then(([id, CatID])=>{
-        res.redirect('/editor/'+CatID[0].CatID);
+        console.log(CatID);
+        res.redirect('/editor/'+CatID[0].SuperCatID);
     }).catch();
     
 })
@@ -67,7 +69,7 @@ router.get("/:iddm", (req, res) => {
         }
         var isActive = "xdbv"; 
         res.render('editor/editor-index', { "isActive": isActive , "chuyenmuc": chuyenmuc , categories: rows , post: rowPostByCat});
-        // res.render('editor/test', { "isActive": isActive , "chuyenmuc": chuyenmuc , categories: rows , post: rowPostByCat});
+        
     }).catch();
 })
 

@@ -54,10 +54,7 @@ router.post('/add', (req,res)=>{
     req.body.PostStatus=null;
     var CatID = req.body.CatID;
     delete req.body['CatID'];
-    console.log(req.body);
     writerModle.addPost(req.body).then(id => {
-        // console.log(req.body);
-        console.log(id);
         var catPost={
             'CatID': CatID,
             'PostID': id

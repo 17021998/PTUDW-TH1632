@@ -15,7 +15,6 @@ router.get('/:id/ctBaiViet', (req, res) => {
         adminModle.getAllTagByPostID(id),
         ])
     .then(([rowsCat, rowC, rowsPos, rowsTag])=>{
-        console.log(rowsPos);
         res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "CatChild": rowC , "post": rowsPos[0], "Tag": rowsTag});
     })
     .catch();
@@ -43,19 +42,38 @@ router.get('/profile-admin', (req, res) => {
 
 router.get('/qlBaiViet', (req, res) => {
     var isActive = "qlbv";
-    adminModle.allPost()
-    .then(rows=>{
-        for (let index = 0; index < rows.length; index++) {
-            if(rows[index].ReleaseDay!=null)
-                rows[index].ReleaseDay= dateFormat(rows[index].ReleaseDay, "yyyy/mm/dd");
+    var ttbv = req.query.ttbv || 2;
+    var page = req.query.page || 1;
+    if(page < 1 || isNaN(page)){
+        page=1;
+    } 
+    if((ttbv <-2 && ttbv > 2)|| isNaN(ttbv)){
+        ttbv=2; // xác nhận là lấy tất cả.
+    } 
+    var limit = 5;
+    var offset = (page - 1) * limit;
+    Promise.all([
+        adminModle.countPost(),
+        adminModle.pagePost(limit, offset, ttbv),
+    ]).then(([count, rowsPage])=>{ 
+        for (let index = 0; index < rowsPage.length; index++) {
+            if(rowsPage[index].ReleaseDay!=null)
+            rowsPage[index].ReleaseDay= dateFormat(rowsPage[index].ReleaseDay, "yyyy/mm/dd");
         }
-        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rows });
-    })
-    .catch(err=>{
-        console.log(err);
-        res.end('error');
-    });
-    // res.render('admin/qlBaiViet', { "isActive": isActive });
+        var dateNow = dateFormat(new Date() ,"yyyy/mm/dd");
+        var counts = count[0].totals;
+        var len = Math.floor(counts / limit);
+        if(counts % limit>0){
+            len++;
+        }
+        var pages = [];
+        for( i =0 ;i<len;i++){
+            pages.push({"value": i, "isActive": i===+page-1});
+        }
+
+        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rowsPage, "page": pages, "p":page, "ttbv": ttbv, dateNow});
+    }).catch();
+
 })
 
 router.get('/qlChuyenMuc', (req, res) => {
@@ -71,22 +89,30 @@ router.get('/qlChuyenMuc', (req, res) => {
 // quản lí hashtag
 router.get('/qlHashTag', (req, res) => {
     var isActive = "qlht";
+    var page = req.query.page || 1; 
+    if(page < 1 || isNaN(page)){
+        page=1;
+    }
+    var limit = 10;
+    var offset = (page - 1) * limit;
     Promise.all([
         adminModle.allTag(),
-        // adminModle.getAllTagName()
-    ]).then(([rows])=>{ 
-        //console.log(rowsTag);
-        var TagName = [];
-        for(let i=0;i<rows.length;i++){
-            TagName[i]=rows[i].TagName;
+        adminModle.pageTag(limit,offset),
+    ]).then(([rows, rowsPage])=>{ 
+        var len = Math.floor(rows.length / limit);
+        if(rows.length % limit>0){
+            len++;
         }
-        res.render('admin/qlHashTag', { "isActive": isActive, tag: rows, "TagName": TagName});
+        var pages = [];
+        for( i =0 ;i<len;i++){
+            pages.push({"value": i, "isActive": i===+page-1});
+        }
+        res.render('admin/qlHashTag', { "isActive": isActive, tag: rowsPage, "page": pages, "p": page });
     }).catch();
 }) 
 
 router.post('/deleteTag', (req,res)=>{
     var idTag= req.body.id;
-    console.log(req.body);
     adminModle.deleteTag(idTag)
         .then(id => {
             res.end('...');
@@ -161,32 +187,39 @@ router.post('/qlHashTag/add', (req,res)=>{
 router.post('/save/baiviet',(req,res)=>{
     // tag name add them.
     var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
     delete req.body['tagname'];
+    var CatId = req.body.CatID;
+
+    var entity={
+        CatID: CatId,
+        PostID: ID
+    };
+
     delete req.body['CatID'];
     var arr = {"idP" : ID, "idT": Arr};
 
-    console.log(arr);
-
     Promise.all([
         adminModle.savePost(req.body),
-        adminModle.getTagIDByName(arr)
+        adminModle.getTagIDByName(arr),
+        adminModle.updateCatPost(entity),
     ])
-    .then(([id, rows])=>{
+    .then(([id, rows, rowCatPost])=>{
         if(rows.length!=0){
-            console.log(rows);
             var idT =[];
             for (let index = 0; index < rows.length; index++) {
                 idT[index] = rows[index];
             }
-            console.log(idT);
             var arr1 = {"idP" : ID, "idT": idT};
 
             adminModle.addTagPost(arr1)
-            .then()
-            .catch();
+            .then().catch();
         }
         res.redirect('/admin/'+ID+'/ctBaiViet');
     })
@@ -201,15 +234,20 @@ router.post('/saveClose/baiviet',(req,res)=>{
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
+    var entity = {
+        CatID: req.body.CatID,
+        PostID: ID
+    };
     delete req.body['tagname'];
     delete req.body['CatID'];
     var arr = {"idP" : ID, "idT": Arr};
 
     Promise.all([
         adminModle.savePost(req.body),
-        adminModle.getTagIDByName(arr)
+        adminModle.getTagIDByName(arr),
+        adminModle.updateCatPost(entity),
     ])
-    .then(([id, rows])=>{
+    .then(([id, rows, rowsCatPost])=>{
         if(rows.length!=0){
             var idT =[];
             for (let index = 0; index < rows.length; index++) {
@@ -233,15 +271,20 @@ router.post('/saveNew/baiviet',(req,res)=>{
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
+    var entity={
+        CatID: req.body.CatID,
+        PostID: req.body.PostID
+    };
     delete req.body['tagname'];
     delete req.body['CatID'];
     var arr = {"idP" : ID, "idT": Arr};
 
     Promise.all([
         adminModle.savePost(req.body),
-        adminModle.getTagIDByName(arr)
+        adminModle.getTagIDByName(arr),
+        adminModle.updateCatPost(entity),
     ])
-    .then(([id, rows])=>{
+    .then(([id, rows, rowCatPost])=>{
         if(rows.length!=0){
             var idT =[];
             for (let index = 0; index < rows.length; index++) {
@@ -266,7 +309,6 @@ router.post('/delete/baiviet',(req,res)=>{
 })
 
 router.post('/deleteTagPost',(req,res)=>{
-    console.log(req.body);
     adminModle.deleteTagPost(req.body.idT,req.body.idP)
     .then(id=>{
         res.end('...');

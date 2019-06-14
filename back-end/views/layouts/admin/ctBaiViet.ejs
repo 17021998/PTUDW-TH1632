@@ -84,7 +84,7 @@
                                         <select id="PostStatus" name="PostStatus" class="custom-select-md ml-3">
                                             <option>Chọn trạng thái bài viết</option>
                                             <option value="1" <% if (post.PostStatus===1) { %> selected <% } %> >Đã xuất bản</option> <%# 1 xuat ban 0 chua xuat ban -1 tu choi%>
-                                            <option value="0" <% if (post.PostStatus===0) { %> selected <% } %> >Chưa xuất bản</option> 
+                                            <option value="1" <% if (post.PostStatus===1 && (new Date() < post.ReleaseDay)) { %> selected <% } %> >Chưa Xuất Bản</option>
                                             <option value="-1" <% if (post.PostStatus===-1) { %> selected <% } %> >Đã từ chối</option>
                                             <option value="null" <% if (post.PostStatus===null) { %> selected <% } %> >Đang đợi...</option> 
                                         </select>   
@@ -95,7 +95,7 @@
                                                 <option value="<%=Cat[index].ID%>" <% if (Cat[index].ID===post.SuperCatID) { %> selected <% } %> ><%=Cat[index].CatName%></option>
                                             <% } %>
                                         </select>
-                                           <select id="CatID" name="CatID" class="custom-select-md ml-3">
+                                        <select id="CatID" name="CatID" class="custom-select-md ml-3">
                                             <option>Chọn chuyên mục bài viết</option>
                                             <% for( let index = 0; index < CatChild.length; index++ ) { %>
                                                 <% if(CatChild[index].SuperCatID === post.SuperCatID){ %>
