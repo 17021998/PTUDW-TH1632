@@ -22,13 +22,6 @@
     <!-- date time picker -->
     <link rel="stylesheet" href="/css/datetime/style.css">
     <script src="/js/dateTime/bootstrapdateTime-picker.js"></script>
-
-    <style>
-        .imgMain img{
-            width: 200px !important;
-            height: 100px !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -120,11 +113,25 @@
                                     <button class="btn btn-primary" role="submit" formaction="/editor/xetduyet">
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                     Xét Duyệt</button>
-                                    <button class="btn btn-warning" role="submit" formaction="/editor/tuchoi">
+                                    <a class="btn btn-warning" role="button" onclick="openForm()">
                                         <i class="fa fa-window-close" aria-hidden="true"></i>
-                                    Từ chối</button>
+                                    Từ chối</a>
                                 </div>
                             </form>
+
+                            <div class="form-popup" id="myForm">
+                                <form action="/" class="form-container">
+                                    <h1>Xác Nhận Từ Chối</h1>
+                                    <input type="hidden" placeholder="" id="idForm" name="ID">
+
+                                    <label for="psw"><b>Lý DO</b></label>
+                                    <textarea type="text" placeholder="Nhập Lý Do!" name="txt" required></textarea>
+
+                                    <button type="submit" class="btn">Xác Nhận</button>
+                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -142,18 +149,26 @@
                 var str = $('.a_href').attr('href').split('id=');
                 var id = str[str.length-1];
                 $("#ID").val(id);
+                $("#idForm").val(id);
                 $.post('/editor/getContentPost',{id:id},(data,status)=>{ 
                     CKEDITOR.instances.editor.setData(data, function () {
                         this.checkDirty();  // true
                     });
                 })
-                
             });
         });
     </script> 
     <script src="/js/editor/main.js"></script>
          
-   
+   <script>
+       function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+   </script>
 
 </body>
 

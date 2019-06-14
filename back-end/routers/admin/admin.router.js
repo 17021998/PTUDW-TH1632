@@ -9,13 +9,14 @@ router.get('/:id/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
     var id = req.params.id;
     Promise.all([
-        adminModle.getCatagory(),
+        adminModle.getcategoryFather(),
+        adminModle.getCatagoryChild(),
         adminModle.getPostByPostId(id),
-        // thiếu lấy các tag thuộc post đó.
         adminModle.getAllTagByPostID(id),
         ])
-    .then(([rowsCat, rowsPos, rowsTag])=>{
-        res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "post": rowsPos[0], "Tag": rowsTag});
+    .then(([rowsCat, rowC, rowsPos, rowsTag])=>{
+        console.log(rowsPos);
+        res.render('admin/ctBaiViet', { "isActive": isActive, "Cat": rowsCat, "CatChild": rowC , "post": rowsPos[0], "Tag": rowsTag});
     })
     .catch();
 })
@@ -23,7 +24,7 @@ router.get('/:id/ctBaiViet', (req, res) => {
 
 router.get('/newBaiViet', (req,res)=>{
     var isac = "nbv"
-    adminModle.getCatagory()
+    adminModle.getcategoryFather()
     .then(rows=>{
         res.render('admin/newBaiViet',{"isActive": isac, "Cat": rows});
     })

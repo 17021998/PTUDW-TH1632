@@ -5,7 +5,8 @@ var nametable = "catpost";
 module.exports = {
 
     allPostBycategory: CatID=>{
-        return db.load(`select p.*, c.CatName from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and cp.CatID = ${CatID} and PostStatus is null`);
+        //select * from (select c.ID from category as c where c.SuperCatID=4) as cs, catpost as cp, post as p where cs.ID = cp.CatID and p.ID=cp.PostID
+        return db.load(`select p.*, cs.CatName from (select * from category as c where c.SuperCatID=${CatID}) as cs, catpost as cp, post as p where cs.ID = cp.CatID and p.ID=cp.PostID`);
     },
 
     allcategory: ()=>{

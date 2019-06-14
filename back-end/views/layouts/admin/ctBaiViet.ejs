@@ -85,14 +85,22 @@
                                             <option>Chọn trạng thái bài viết</option>
                                             <option value="1" <% if (post.PostStatus===1) { %> selected <% } %> >Đã xuất bản</option> <%# 1 xuat ban 0 chua xuat ban -1 tu choi%>
                                             <option value="0" <% if (post.PostStatus===0) { %> selected <% } %> >Chưa xuất bản</option> 
-                                            <option value="-1" <% if (post.PostStatus===-1) { %> selected <% } %> >Đã từ chối</option> 
+                                            <option value="-1" <% if (post.PostStatus===-1) { %> selected <% } %> >Đã từ chối</option>
+                                            <option value="null" <% if (post.PostStatus===null) { %> selected <% } %> >Đang đợi...</option> 
                                         </select>   
                                         <%# CatID %>
-                                        <select id="CatID" name="CatID" class="custom-select-md ml-3">
+                                        <select id="CatIDFather" class="custom-select-md ml-3">
                                             <option>Chọn chuyên mục bài viết</option>
                                             <% for( let index = 0; index < Cat.length; index++ ) { %>
-                                                <option value="<%=Cat[index].ID%>" <% if (Cat[index].ID===post.CatID) { %> selected <% } %> ><%=Cat[index].CatName%></option>
+                                                <option value="<%=Cat[index].ID%>" <% if (Cat[index].ID===post.SuperCatID) { %> selected <% } %> ><%=Cat[index].CatName%></option>
                                             <% } %>
+                                        </select>
+                                           <select id="CatID" name="CatID" class="custom-select-md ml-3">
+                                            <option>Chọn chuyên mục bài viết</option>
+                                            <% for( let index = 0; index < CatChild.length; index++ ) { %>
+                                                <% if(CatChild[index].SuperCatID === post.SuperCatID){ %>
+                                                    <option value="<%=CatChild[index].ID%>" <% if (CatChild[index].ID===post.CatID) { %> selected <% } %> ><%=CatChild[index].CatName%></option>
+                                            <%} } %>
                                         </select>
                                     </div>
                                     <div class="row align-items-center mt-3">
@@ -141,28 +149,41 @@
                 }
             });
         });
-    </script>
-    
-    
-    <script>
         CKEDITOR.replace('Content', {
             height: 500
         });
-    </script> 
-    <script>
         CKEDITOR.instances.Content.setData(`<%-post.Content%>`, function () {
             this.checkDirty();  // true
         });
-    </script>
-    <script src="/js/editor/main.js"></script>
-    <script src="/js/admin/article-detail.js"></script>
-    <script>
         $(document).ready(function(){
             $('.js-remove-tag').click(function(){
                 $(this).parent().hide();
             })
         })
-    </script> 
+    </script>
+    
+    <script>
+        document.getElementById("CatIDFather").addEventListener("change", addOption, false);
+        
+        function addOption(){
+            var CatIDFater = document.getElementById("CatIDFather").value;
+            var select = $('#CatID');
+            $('option',select).remove();
+
+            <% for(let i = 0; i< CatChild.length; i++){ %>
+            if (CatIDFater==<%=CatChild[i].SuperCatID%>) {
+                    select.append(new Option('<%= CatChild[i].CatName %>', '<%= CatChild[i].ID %>', true, false));
+            }
+            <% } %>
+        }
+
+        window.addEventListener("load", start, false);
+    </script>
+    
+
+
+    <script src="/js/editor/main.js"></script>
+    <script src="/js/admin/article-detail.js"></script>
     <script src="/js/autoComplete/autoComplete.js"></script> 
 
     <!--Bootstrap-->
@@ -172,9 +193,7 @@
 
     <script>
         $(document).ready(function(){
-            // $('#addTag').click(function(){
                 $.getScript('/js/admin/load.js');
-            // });
         });
     </script>
 </body>

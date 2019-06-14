@@ -12,8 +12,12 @@ module.exports = {
                     "WHERE c1.IsDelete IS NULL AND c1.SuperCatID IS NULL ORDER BY c1.ID ;");
     },
 
-    getCatagory:()=>{
-        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null')
+    getcategoryFather:()=>{
+        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null and IsDelete is null');
+    },
+
+    getCatagoryChild:()=>{
+        return db.load('select * from category as c where c.SuperCatID is not null and IsDelete is null');
     },
     
     single: id => {
@@ -28,8 +32,8 @@ module.exports = {
         return db.load('select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null')
     },
 
-    getPostByPostId: ID=>{
-        return db.load(`select p.*, c.ID as CatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID} and p.IsDelete is null`);
+    getPostByPostId: ID=>{ // can sua lai
+        return db.load(`select p.*, c.ID as CatID, c.SuperCatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID} and p.IsDelete is null`);
     },
 
     savePost: entity=>{
