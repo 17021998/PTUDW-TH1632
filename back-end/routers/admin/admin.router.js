@@ -77,12 +77,26 @@ router.get('/qlBaiViet', (req, res) => {
         if(counts % limit>0){
             len++;
         }
+
+        var lenPage=[];
+        if(len < 5){
+            lenPage.push({"begin": 0, "end": len-1});
+        }else {
+            if(page -2 <=1){
+                lenPage.push({"begin": 0, "end": 4});
+            } else if(page + 2>=len){
+                lenPage.push({"begin": len-5, "end": len-1});
+            }else {
+                lenPage.push({"begin": page -2, "end": +page + 2});
+            }
+        }
+
         var pages = [];
         for( i =0 ;i<len;i++){
             pages.push({"value": i, "isActive": i===+page-1});
         }
 
-        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rowsPage, "page": pages, "p":page, "ttbv": ttbv, dateNow});
+        res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rowsPage, "page": pages, "p":page, "ttbv": ttbv, dateNow, "lenPage": lenPage[0]});
     }).catch();
 
 })
@@ -104,6 +118,7 @@ router.get('/qlHashTag', (req, res) => {
     if(page < 1 || isNaN(page)){
         page=1;
     }
+    console.log(page);
     var limit = 10;
     var offset = (page - 1) * limit;
     Promise.all([
@@ -114,11 +129,24 @@ router.get('/qlHashTag', (req, res) => {
         if(rows.length % limit>0){
             len++;
         }
+        // len là so luong trang.
+        var lenPage=[];
+        if(len < 5){
+            lenPage.push({"begin": 0, "end": len-1});
+        }else {
+            if(page -2 <=1){
+                lenPage.push({"begin": 0, "end": 4});
+            } else if(page + 2>=len){
+                lenPage.push({"begin": len-5, "end": len-1});
+            }else {
+                lenPage.push({"begin": page -2, "end": +page + 2});
+            }
+        }
         var pages = [];
         for( i =0 ;i<len;i++){
             pages.push({"value": i, "isActive": i===+page-1});
         }
-        res.render('admin/qlHashTag', { "isActive": isActive, tag: rowsPage, "page": pages, "p": page });
+        res.render('admin/qlHashTag', { "isActive": isActive, tag: rowsPage, "page": pages, "p": page, "lenPage": lenPage[0] });
     }).catch();
 }) 
 
