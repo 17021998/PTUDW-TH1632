@@ -42,7 +42,7 @@
                         <a href="/admin/qlNguoiDung">
                             <h2>Quản lý người dùng </h2>
                         </a>
-                        <h2>>User</h2>
+                        <h2>>Editor</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -52,12 +52,12 @@
                                 <div class="row">
                                     <div class="col my-auto">
                                         <div id="card-header-title">
-                                            <h5>Danh sách người dùng User</h5>
+                                            <h5>Danh sách người dùng Editor</h5>
                                         </div>
                                     </div>
                                     <div class="col text-right">
                                         <a href="#addNewModal" class="btn btn-primary btn-color" data-toggle="modal"><i
-                                                class="fas fa-plus-circle"></i> <span>Thêm User</span></a>
+                                                class="fas fa-plus-circle"></i> <span>Thêm Editor</span></a>
                                             </div>
                                         </div>
                             </div>
@@ -68,10 +68,10 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Avatar</th>
-                                                <th scope="col">User</th>
-                                                <th scope="col">Premium</th>
-                                                <th scope="col">Ngày bắt đầu</th>
-                                                <th scope="col">Ngày kết thúc</th>
+                                                <th scope="col">Editor</th>
+                                                <th scope="col">ngày sinh</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Số lượng category quản lý</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
@@ -92,27 +92,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <% if(todayFormat > rows[index].EndDay) {%>
-                                                        <span class="badge badge-pill badge-light">Premium</span>
-                                                    <% } else{ %>
                                                         <span class="badge badge-pill badge-warning">Premium</span>
-                                                    <% } %>
-                                                </td>
-                                                <td class="">
-                                                    <%=rows[index].BeginDay %>
-                                                </td>
-                                                <td class="">
-                                                    <%=rows[index].EndDay %>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex justify-content-around">
-                                                        <% if(todayFormat > rows[index].EndDay) {%>
-                                                            <form method="POST" action="/admin/qlNguoiDung/subcribers/update/<%=rows[index].ID%>">
-                                                                <button type="submit" class="renewed badge-pill" title="Gia hạn">Gia hạn</button>
-                                                            </form>
-                                                        <% } else{ %>
-                                                            <button class="renewed renewed-disable badge-pill" disabled title="Gia hạn">Gia hạn</button>
-                                                        <% } %>
+                                                        <button class="renewed renewed-disable badge-pill" disabled title="Gia hạn">Gia hạn</button>
                                                         <a id="<%=rows[index].ID %>" href="#deleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                                     </div>
                                                 </td>
@@ -143,7 +127,7 @@
                                                     <% } %>
                                             <% } %>
                                             <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
-                                        <% } else { if((currentPage + 2) < n) { %>
+                                        <% }else { if((currentPage + 2) < n) { %>
                                             <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
                                             <% for(var i = temp; i<= currentPage + 2; i++) { %>
                                                 <% if (currentPage == i) { %>
@@ -229,6 +213,13 @@
                                     </label>
                                     <input type="password" name="password"
                                         class="form-control" id="input_password" />
+                                </div>
+                                <div class="form-group">
+                                        <label for="input_password" class="col-form-label">
+                                            Category được phân công:
+                                        </label>
+                                        <input type="text" name="cat"
+                                            class="form-control" id="input_cat" />
                                 </div>
                                 <button type="button"
                                     class="btn btn-secondary btn-color" data-dismiss="modal">Hủy</button>

@@ -186,8 +186,11 @@ router.get('/qlNguoiDung/subcribers', (req, res) =>{
         if (typeof req.query.page !== 'undefined') {
             currentPage = +req.query.page;
             }
+        
+        var today = new Date().toLocaleDateString();
+        var todayFormat = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
         var isActive = "qlnd";
-        res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive, rows: rows, pages,currentPage: currentPage});
+        res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive, rows: rows, pages,currentPage: currentPage, todayFormat});
     }).catch(err => {
         console.log(err);
         res.end('error occured.')
@@ -201,14 +204,12 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
     var email = req.body.email;
     var hash = bcrypt.hashSync(req.body.password, saltRounds);
     var id = uuidv4();
+
     var dob = momnet(req.body.birthday, 'DD/MM/YYYY').format('YYYY-MM-DD');
     var today = new Date().toLocaleDateString();
     var beginDay = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
-    
-    var current = new Date();
-    var followingDay = new Date(current.getTime() + 86400000*7); // + 7 day in ms
-    console.log("begin day is " + beginDay);
-    console.log("following day is " + followingDay.toLocaleDateString());
+    var currentDay = new Date();
+    var endDay = new Date(currentDay.getTime() + 86400000*7); // + 7 day in ms
 
     var entity1 = {
         ID: id,
@@ -221,7 +222,8 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
     var entity2 = {
         UserID: id, 
         Status: 1,
-        BeginDay: beginDay
+        BeginDay: beginDay,
+        EndDay: endDay
     };
 
     guestModel.add(entity1)
@@ -238,9 +240,19 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
 
 //Update member
 router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
-    var id = req.params.UserID;
-    req.body.UserID = id;
-    subcriberModel.update(req.body)
+    var id = req.params.id;
+    var today = new Date().toLocaleDateString();
+    var beginDay = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+    var currentDay = new Date();
+    var endDay = new Date(currentDay.getTime() + 86400000*7); // + 7 day in ms
+    var entity = {
+        UserID: id, 
+        Status: 1,
+        BeginDay: beginDay,
+        EndDay: endDay
+    };  
+    console.log(entity);
+    subcriberModel.update(entity)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/subcribers');
     }).catch(err=>{

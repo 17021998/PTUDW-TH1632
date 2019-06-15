@@ -174,7 +174,8 @@ th{
     margin: 100px auto;
 }
 
-table.table td a.renewed {
+table.table td button.renewed {
+    border: none;
     background: #ffc107;
     color: #212529;
     border-radius: 10rem;
@@ -182,6 +183,10 @@ table.table td a.renewed {
     padding-left: .6em;
     font-size: 85%;
     font-weight: 700;
+}
+table.table td button.renewed-disable{
+    background: #f8f9fa;
+    color: #212529;
 }
 table.table td a.delete {
     color: #F44336;
