@@ -9,11 +9,9 @@
     <!--Font-->
     <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" href="/css/admin/admin-style.css">
@@ -39,20 +37,11 @@
 
 <body>
     <div id="page">
-        
-         <%- include('../header-footer/header-admin.ejs') %>
+        <%- include('../logout/admin/form.ejs') %>
+        <%- include('../header-footer/header-admin.ejs') %>
 
         <section id="page-main-content">
-            <!--Head content-->
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-                    <a href="profile-admin.html" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
-                        <span>Đăng xuất</span>
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
-            </div>
+        <%- include('../logout/admin/header-hori.ejs') %>
             <!--Main content-->
             <div class="container">
                 <div class="row">

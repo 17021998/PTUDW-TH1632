@@ -18,7 +18,6 @@
 
 <body>
     <% include header-footer/header.ejs %>
-    
     <!-- ### Week High light ###-->
     <section class="wrapper">
         <div class="container">
@@ -217,6 +216,22 @@
 
             $(".clickable-row").click(function () {
                 window.location = $(this).data("href");
+            });
+
+            $(".js-user").click(function(){
+                    var pop = $(".js-popover");
+                    if(pop.hasClass("d-none")){
+                        pop.removeClass("d-none");
+                    }else{
+                        pop.addClass("d-none");
+                    }
+            });
+            $(".js-search").click(function(){
+                $(".infinity-search").show();
+            });
+
+            $(".js-infinity-close").click(function(){
+                $(".infinity-search").hide();
             });
         });
     </script>

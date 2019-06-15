@@ -33,9 +33,14 @@
 		</div>
 		<!--Login-->
 		<div id="div_form">
-			<h2>Đăng nhập để thêm nhiều thông tin bạn nhé!</h2>
-			<p>Đăng nhập bằng tài khoản của bạn!!!</p>
-			<form novalidate action="" method="POST" id="signinForm">
+				<h2>Đăng nhập để thêm nhiều thông tin bạn nhé!</h2>
+				<p>Đăng nhập bằng tài khoản của bạn!!!</p>
+			<form novalidate method="POST" id="signinForm">
+				<% if(locals.error){ %>
+					<div class="error">
+						<h5><%=error %></h5>
+					</div>
+				<% } %>
 				<div class="form-group input-group-lg">
 					<label for="inputEmail">Địa chỉ email:</label>
 					<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
@@ -46,7 +51,7 @@
 					<input type="password" class="form-control" id="inputPassword" placeholder="Mật khẩu" name="password">
 				</div>
 				<div class="mt-4">
-					<button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật khẩu?</button>
+					<a href="/guest/reset" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật khẩu?</a>
 				</div>
 				<div id="btn_logins" class="mt-4">
 					<button type="submit" class="btn w-100" id="btn_login">ĐĂNG NHẬP</button>
@@ -54,6 +59,7 @@
 						<span>HOẶC</span>
 					</div>
 					<button type="button" class="btn w-100" id="btn_login_google">ĐĂNG NHẬP BẰNG GOOGLE</button>
+					<a href="/guest/auth/google" class="btn">Đăng nhập google</a>
 				</div>
 			</form>
 		</div>
@@ -103,6 +109,14 @@
 				},
 				unhighlight: function(e){
 					$(e).removeClass('is-invalid').addClass('is-valid');
+				}
+			});
+
+			$(document).ready(function(){
+				if($('#signinForm').find('.error')){
+					setTimeout(function(){
+						$('.error').hide();
+					},10000);
 				}
 			});
 		});

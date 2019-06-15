@@ -12,8 +12,15 @@
         <nav id="page-main-menu" role="navigation">
             <ul>
                 <li class="nav-img">
-                    <img src="/images/account.png">
-                    <a href="#"><span>ntquyen98@gmail.com</span></a></li>
+                        <% if(user.Photo){ %>
+                            <img src="<%=user.Photo %>">
+                        <% }else{ %>
+                            <img src="/images/account.png">
+                        <% } %>
+                        <% if(user.Email){ %>
+                            <img src="<%=user.Photo %>">
+                            <a href="#"><span><%=user.Email %></span></a></li>
+                        <% } %>
                 <li <% if (isActive==="pe") { %> class="active" <% } %> ><a href="/editor/profile-editor">Thông tin cá nhân</a></li>
                 <li class="js-menu-toggle active">
                     <a href="#sub-menu" data-toggle="collapse" role="button" aria-expanded="true"
@@ -25,7 +32,7 @@
                     </ul>
                 </li>
                 <li <% if (isActive==="s") { %> class="active" <% } %> ><a href="/editor/security">Bảo mật</a></li>
-                <li><a href="/" class="main-menu-hidden">Đăng xuất</a></li>
+                <li><a href="javascript:$('#frmSignout').submit();" class="main-menu-hidden">Đăng xuất</a></li>
             </ul>
         </nav>
         <div id="page-footer" class="text-right">

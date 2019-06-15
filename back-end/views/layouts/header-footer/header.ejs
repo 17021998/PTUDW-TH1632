@@ -1,31 +1,8 @@
 
-<section class="top-header bg-dark">
-    <!--full width color-->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <a href="#">
-                    <i class="fas fa-kiwi-bird"></i>
-                </a>
-            </div>
-            <div class="col-sm-6 text-right">
-                <!--Login/Logout-->
-                <a href="/guest/login" class="badge badge-dark">
-                    <span>Đăng nhập</span>
-                    <i class="fas fa-sign-in-alt"></i>
-                </a>
-                <a href="/guest/sign_up" class="badge badge-dark">
-                    <span>Đăng ký</span>
-                    <i class="fas fa-user"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- ### Navigation Bar ###-->
+<form name="frmSignout" id="frmSignout" action="/user/logout" method="POST"></form>
 <section class="navigation bg-light">
     <div class="ml-5">
-        <center>
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-light navbar-expand-lg">
@@ -80,17 +57,66 @@
                                     <% } %>
                                 <% } %>
                             </ul>
-                            <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0 clickable-row"
-                                    data-href="/guest/search-result" type="button">Search</button>
+
+                            <form class="searchDestop">
+                                <label for="search" class="button button--small button--less" title="Tìm kiếm">
+                                    <i class="fas fa-search"></i>
+                                </label>
+                                <input type="text" id="search" placeholder="Tìm kiếm..." class="inputSearch">
                             </form>
+                            <% if(!user){ %>
+                                <div class="signInOutGr">
+                                    <a href="javascript:;" class="button button--primary button--less mobile js-search btn-black">
+                                                <i class="fas fa-search"></i></a>
+                                    <a href="/guest/login" class="button button--primary button--less">Đăng nhập</a>
+                                    <a href="/guest/sign_up" class="btn btn-outline-success">Đăng ký</a>
+                                </div>
+                            <% }else{ %>
+                                <div class="signInOutGr isLogin" >
+                                        <a class="button button--primary button--less mobile js-search btn-black"href="javascript:;" ><i class="fas fa-search"></i></a>
+                                        <div class="account">
+                                            <a href="javascript:;" class="button user-icon js-user">
+                                                <% if(user.Photo){ %>
+                                                    <image class="user-icon-image" src="<%=user.Photo%>"/>
+                                                <% }else{ %>
+                                                    <image class="user-icon-image" src="/images/account.png"/>
+                                                <% } %>
+                                            </a>
+                                            <div class="js-popover account-menu card shadow-sm d-none">
+                                                <ul role="menu">
+                                                    <li><a href="javascript:;" class="d-block">
+                                                        Upgrade</a></li>
+                                                    <li><a href="/user/profile-user" class="d-block">
+                                                        Thông tin cá nhân</a>
+                                                    </li>
+                                                    <li><a href="javascript:$('#frmSignout').submit();" class="d-block">
+                                                        Đăng xuất</i>
+                                                    </a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </div>
+                            <% } %>
                         </div>
                     </nav>
                 </div>
             
             </div>
-        </center>
+    </div>
+    <div class="infinity-search">
+        <div class="infinity-search-row">
+            <div class="infinity-search-cell">
+                <form action="#" method="post">
+                    <input type="text" placeholder="Tìm kiếm..." class="searchField">
+                    <div class="infinity-search-submit">
+                        <i class="fas fa-search"></i>
+                        <input type="submit">
+                    </div>
+                    <div class="infinity-search-close js-infinity-close">
+                        <span>&#10005</span>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>

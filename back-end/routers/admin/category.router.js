@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var categoryModel = require('../../modles/categoty.modle');
+var auth = require('../../middlewares/auth');
 
-router.get('/', (req, res, next) => {
+router.get('/', auth, (req, res, next) => {
     var p = categoryModel.all();
     p.then(rows => {
         res.render('admin/qlChuyenMuc', { 
@@ -13,45 +14,33 @@ router.get('/', (req, res, next) => {
     .catch(next);
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', (req, res, next) => {
     categoryModel.add(req.body).then(id => {
         res.redirect('/admin/categories')
-    }).catch(err =>{
-        console.log(err);
-        res.end("error occured");
-    });
+    }).catch(next);
 });
 //Thêm category con
-router.post('/:id/add', (req, res) => {
+router.post('/:id/add', (req, res, next) => {
     var scID = req.params.id;
     req.body.SuperCatID = scID;
     categoryModel.add(req.body).then(() => {
         res.redirect('/admin/categories');
-    }).catch(err =>{
-        console.log(err);
-        res.end("error occured");
-    });
+    }).catch(next);
 });
 
-router.post('/edit/:id', (req, res) => {
+router.post('/edit/:id', (req, res, next) => {
     var CatID = req.params.id;
     req.body.ID = CatID;
     categoryModel.update(req.body).then( () =>{
         res.redirect('/admin/categories');
-    }).catch(err => {
-        console.log(err);
-        res.end("error occured");
-    })
+    }).catch(next);
 });
 
-router.post('/delete/:id', (req, res) => {
+router.post('/delete/:id', (req, res, next) => {
     var catID = req.params.id;
     categoryModel.delete(catID).then(() =>{
         res.redirect('/admin/categories');
-    }).catch(err => {
-        console.log(err);
-        res.end("error occured");
-    })
+    }).catch(next)
 });
 
 module.exports = router;

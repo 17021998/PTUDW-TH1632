@@ -7,17 +7,24 @@
             </div>
                 <aside id="page-aside" role="complementary" class="js-fullheight">
                     <div id="page-logo">
-                        <img src="../images/company-logo.png" alt="company-logo">
+                        <img src="/images/company-logo.png" alt="company-logo">
                     </div>
                     <nav id="page-main-menu" role="navigation">
                         <ul>
                             <li class="nav-img">
-                                <img src="../images/account.png">
-                                <a href="#"><span>ntquyen98@gmail.com</span></a></li>
+                                    <% if(user.Photo){ %>
+                                        <img src="<%=user.Photo %>">
+                                    <% }else{ %>
+                                        <img src="/images/account.png">
+                                    <% } %>
+                                    <% if(user.Email){ %>
+                                        <img src="<%=user.Photo %>">
+                                        <a href="#"><span><%=user.Email %></span></a></li>
+                                    <% } %>
                             <li <% if (isActive==="pu") { %> class="active" <% } %> ><a href="/user/profile-user">Thông tin cá nhân</a></li>
                             <li <% if (isActive==="s") { %> class="active" <% } %> ><a href="/user/security">Bảo mật</a></li>
                             <li <% if (isActive==="p") { %> class="active" <% } %> ><a href="#" class="main-menu-hidden">Premium</a></li>
-                            <li><a href="/" class="main-menu-hidden">Đăng xuất</a></li>
+                            <li><a href="javascript:$('#frmSignout').submit();" class="main-menu-hidden">Đăng xuất</a></li>
                         </ul>
                     </nav>
                     <div id="page-footer" class="text-right">

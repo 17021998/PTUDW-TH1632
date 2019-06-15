@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Reset Password</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" type="text/css" href="/css/guest/loginCSS.css">
+	<link rel="stylesheet" type="text/css" href="/css/guest/sign_upCSS.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer-nav-headerCSS.css">
+    <style>
+        input, input:focus{
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+	<!--div content-->
+	<div id="div_content">
+		<div class="row">
+			<div class="col-md-11 text-right btn_ls">
+				<!--Login/Logout-->
+				<a href="/guest/login" class="badge">
+					<span>Đăng nhập</span>
+					<i class="fas fa-sign-in-alt"></i>
+				</a>
+				<a href="/guest/sign_up" class="badge">
+					<span>Đăng ký</span>
+					<i class="fas fa-user"></i>
+				</a>
+			</div>
+		</div>
+		<!--Login-->
+		<div id="div_form">
+            <h2>Xác nhận tài khoản</h2>
+            <% if(locals.error){ %>
+                <div class="error">
+                    <h5><%=error %></h5>
+                </div>
+            <% } %>
+            <form novalidate action="/guest/resetEmail" method="POST" id="emailForm" class="d-flex">
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                placeholder="Nhập địa chỉ email" name="email">
+                <button type="submit" class="btn btn-success">Xác thực email</button>
+            </form>
+		</div>
+	</div>
+
+	<!-- ### Footer ### -->
+	<%- include('../header-footer/footer.ejs')%>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<!--Validate-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+	<script>
+		$(function () {
+            $('#emailForm').validate({
+                rules:{
+                    email:{
+                        required: true,
+                        email: true
+                    }
+                },
+                messages:{
+					email:{
+						required: 'Vui lòng nhập email.',
+						email: 'Email không hợp lệ.'
+                    }
+                },
+                errorElement: 'small',
+				errorClass: 'help-block text-danger',
+				highlight: function (e) {
+					$(e).removeClass('is-valid').addClass('is-invalid');
+				},
+				unhighlight: function (e) {
+					$(e).removeClass('is-invalid').addClass('is-valid');
+				}
+            })
+        });
+	</script>
+</body>
+
+</html>

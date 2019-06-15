@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var adminModle = require('../../modles/admin/admin.modle');
-
 var dateFormat = require('dateformat');
 var split = require('string-split');
 var bcrypt = require('bcrypt');
@@ -9,6 +8,44 @@ var uuidv4 = require('uuid/v4');
 var guestModel = require('../../modles/guest/guest.model');
 var subcriberModel = require('../../modles/subcriber/subcriber.modle');
 var momnet = require('moment');
+var passport = require('passport');
+var auth = require('../../middlewares/auth');
+
+// Đăng nhập đăng xuất
+router.get('/login', (req, res) => {
+    res.render('guest/login');
+});
+
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', function (err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.render('guest/login', {
+                layout: false,
+                error: info.message
+            });
+        }
+        var retUrl = req.session.retUrl || '/admin/profile-admin';
+        req.logIn(user, err => {
+            if (err) {
+                return next(err);
+            }
+            if (user.role == 'admin') {
+                return res.redirect(retUrl);
+            }
+            //nếu là không phải admin thì ra 404
+            return res.render('404');
+        });
+    })(req, res, next);
+});
+
+router.post('/logout' ,auth , (req, res, next) => {
+    req.logOut();
+    res.redirect('/admin/login');
+});
+// Kết thúc đăng nhập đăng xuất
 
 router.get('/:id/ctBaiViet', (req, res) => {
     var isActive = "ctbv";
@@ -25,14 +62,13 @@ router.get('/:id/ctBaiViet', (req, res) => {
     .catch();
 })
 
-
-router.get('/newBaiViet', (req,res)=>{
+router.get('/newBaiViet', (req,res,next)=>{
     var isac = "nbv"
     adminModle.getcategoryFather()
     .then(rows=>{
         res.render('admin/newBaiViet',{"isActive": isac, "Cat": rows});
     })
-    .catch();
+    .catch(next);
 })
 
 router.get('/editor-info', (req, res) => {
@@ -45,13 +81,13 @@ router.get('/profile-admin', (req, res) => {
     res.render('admin/profile-admin', { "isActive": isActive });
 })
 // router post update profile admin
-router.post('/update/profile-admin', (req,res)=>{
+router.post('/update/profile-admin', (req,res, next)=>{
     var entity = req.body;
 
     res.end('...');
 })
 
-router.get('/qlBaiViet', (req, res) => {
+router.get('/qlBaiViet', (req, res,next) => {
     var isActive = "qlbv";
     var ttbv = req.query.ttbv || 2;
     var page = req.query.page || 1;
@@ -97,22 +133,19 @@ router.get('/qlBaiViet', (req, res) => {
         }
 
         res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rowsPage, "page": pages, "p":page, "ttbv": ttbv, dateNow, "lenPage": lenPage[0]});
-    }).catch();
+    }).catch(next);
 
 })
 
-router.get('/qlChuyenMuc', (req, res) => {
+router.get('/qlChuyenMuc', (req, res,next) => {
     adminModle.allCatagoty()
     .then(rows => {
         var isActive = "qlcm";
     res.render('admin/qlChuyenMuc', { "isActive": isActive , rows: rows });
-    }).catch(err => {
-        console.log(err);
-        res.end('error occured.')
-    });
+    }).catch(next);
 })
 // quản lí hashtag
-router.get('/qlHashTag', (req, res) => {
+router.get('/qlHashTag', (req, res, next) => {
     var isActive = "qlht";
     var page = req.query.page || 1; 
     if(page < 1 || isNaN(page)){
@@ -147,16 +180,16 @@ router.get('/qlHashTag', (req, res) => {
             pages.push({"value": i, "isActive": i===+page-1});
         }
         res.render('admin/qlHashTag', { "isActive": isActive, tag: rowsPage, "page": pages, "p": page, "lenPage": lenPage[0] });
-    }).catch();
+    }).catch(next);
 }) 
 
-router.post('/deleteTag', (req,res)=>{
+router.post('/deleteTag', (req,res,next)=>{
     var idTag= req.body.id;
     adminModle.deleteTag(idTag)
         .then(id => {
             res.end('...');
         })
-        .catch(err=>console.log(err));
+        .catch(next);
 
 })
 
@@ -231,9 +264,7 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
         subcriberModel.add(entity2)
         .then(()=>{
             return res.redirect('/admin/qlNguoiDung/subcribers');
-        }).catch(err=>{
-        console.log(err);
-        })
+        }).catch(next)
     }).catch(next);
 })
 
@@ -255,9 +286,7 @@ router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
     subcriberModel.update(entity)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/subcribers');
-    }).catch(err=>{
-        console.log(err);
-    }).catch(next);
+    }).catch(next).catch(next);
 })
 //Delete member
 router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
@@ -265,9 +294,7 @@ router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
     subcriberModel.delete(id)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/subcribers');
-    }).catch(err=>{
-        console.log(err);
-    }).catch(next);
+    }).catch(next).catch(next);
 })
 
 router.get('/security', (req, res) => {
