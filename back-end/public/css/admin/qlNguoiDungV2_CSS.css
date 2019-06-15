@@ -211,3 +211,6 @@ table.table td a.delete {
     background-color: #222326;
     border-color: #222326;
 }
+.special-id{
+    width: 0px !important;
+}

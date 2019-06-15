@@ -132,6 +132,11 @@ router.post('/deleteTag', (req,res)=>{
 
 })
 
+router.get('/qlNguoiDung', (req, res) => {
+    var isActive = "qlnd";
+    res.render('admin/qlNguoiDung', { "isActive": isActive });
+})
+
 router.get('/qlNguoiDung/subcribers', (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
@@ -153,7 +158,6 @@ router.get('/qlNguoiDung/subcribers', (req, res) =>{
         if (typeof req.query.page !== 'undefined') {
             currentPage = +req.query.page;
             }
-        console.log("so luong n = "+pages.length);
         var isActive = "qlnd";
         res.render('admin/user/qlNguoiDung-subcriber', {"isActive": isActive, rows: rows, pages,currentPage: currentPage});
     }).catch(err => {
@@ -162,6 +166,7 @@ router.get('/qlNguoiDung/subcribers', (req, res) =>{
     });
 })
 
+//Add new member
 router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
     var saltRounds = 10;
     var name = req.body.name;
@@ -199,6 +204,29 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
         }).catch(err=>{
         console.log(err);
         })
+    }).catch(next);
+})
+
+
+//Update member
+router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
+    var id = req.params.UserID;
+    req.body.UserID = id;
+    subcriberModel.update(req.body)
+    .then(()=>{
+        return res.redirect('/admin/qlNguoiDung/subcribers');
+    }).catch(err=>{
+        console.log(err);
+    }).catch(next);
+})
+//Delete member
+router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
+    var id = req.params.id;
+    subcriberModel.delete(id)
+    .then(()=>{
+        return res.redirect('/admin/qlNguoiDung/subcribers');
+    }).catch(err=>{
+        console.log(err);
     }).catch(next);
 })
 

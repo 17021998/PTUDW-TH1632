@@ -58,118 +58,8 @@
                                     <div class="col text-right">
                                         <a href="#addNewModal" class="btn btn-primary btn-color" data-toggle="modal"><i
                                                 class="fas fa-plus-circle"></i> <span>Thêm User</span></a>
-                                        <div class="input-group w-100">
-
-                                            <!-- Add New Modal -->
-                                            <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog"
-                                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Thêm
-                                                                người dùng</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body text-left">
-                                                            <form novalidate id="newMember" method="POST" action="">
-                                                                <div class="form-group">
-                                                                    <label for="input_hoTen" class="col-form-label">
-                                                                        Họ tên:
-                                                                    </label>
-                                                                    <input type="text" class="form-control" name="name"
-                                                                        id="input_hoTen" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="input_birthday"
-                                                                        class="col-form-label">Ngày sinh:</label>
-                                                                    <input type="text" id="input_birthday"
-                                                                        class="form-control" name="birthday" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="input_email" class="col-form-label">
-                                                                        Email:
-                                                                    </label>
-                                                                    <input type="email" name="email"
-                                                                        class="form-control" id="input_email" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="input_password" class="col-form-label">
-                                                                        Mật khẩu:
-                                                                    </label>
-                                                                    <input type="password" name="password"
-                                                                        class="form-control" id="input_password" />
-                                                                </div>
-                                                                <button type="button"
-                                                                    class="btn btn-secondary btn-color"
-                                                                    data-dismiss="modal">Hủy</button>
-                                                                <button type="submit"
-                                                                    class="btn btn-primary btn-color">Lưu</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <!-- End Add New Modal -->
-
-                                            <!-- Delete Modal -->
-                                            <div id="deleteModal" class="modal fade">
-                                                <div class="modal-dialog modal-confirm">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <div class="d-flex flex-column mx-auto">
-                                                                <div class="icon-box">
-                                                                    <i class="fas fa-times"></i>
-                                                                </div>
-                                                                <h4 class="modal-title">Bạn chắc chứ?</h4>
-                                                            </div>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-hidden="true">&times;</button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Bạn có chắc chắn muốn xóa người dùng này không? Thao tác
-                                                                này sẽ xóa toàn bộ thông tin về người dùng đó.</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <div class="w-100 d-flex justify-content-around">
-                                                                <button type="button" class="btn btn-info"
-                                                                    data-dismiss="modal">Hủy bỏ</button>
-                                                                <button type="button" class="btn btn-danger">Xác
-                                                                    thực</button>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Delete Modal -->
-
-                                            <!-- Renew Modal -->
-                                            <div id="renewPremiumModal" class="modal fade">
-                                                <div class="modal-dialog modal-confirm">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <div class="d-flex flex-column mx-auto">
-                                                                <div class="icon-box icon-box-renew">
-                                                                    <i class="fas fa-check"></i>
-                                                                </div>
-                                                                <h4 class="modal-title">Gia hạn thành công!</h4>
-                                                            </div>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-hidden="true">&times;</button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <p>Người dùng này vừa được gia hạn thêm Premium!</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Renew Modal -->
                                         </div>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card body">
                                 <!-- ### Subcriber table ###-->
@@ -177,7 +67,6 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">#</th>
                                                 <th scope="col">Avatar</th>
                                                 <th scope="col">User</th>
                                                 <th scope="col">Premium</th>
@@ -187,10 +76,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             <% for( let index = 0; index < rows.length; index++ ) { %>
-                                            <tr>
-                                                <th scope="row"><%=index + 1 %></th>
+                                                <tr id="<%=rows[index].ID %>">
                                                 <td class="avatar"><img src="/images/1.jpg" alt=""></td>
                                                 <td>
                                                     <div class="widget-heading">
@@ -198,7 +85,7 @@
                                                     </div>
                                                     <div class="birthday-size">
                                                         <%=rows[index].DoB %>
-
+                                                        
                                                     </div>
                                                     <div class="user-email">
                                                         <%=rows[index].Email %>
@@ -219,15 +106,12 @@
                                                 </td>
                                                 <td>
                                                     <div>
-                                                        <a href="#renewPremiumModal" class="renewed" data-toggle="modal"
-                                                            title="Gia hạn">Gia hạn</a>
-                                                        <a href="#deleteModal" class="delete" data-toggle="modal"><i
-                                                                class="fas fa-trash" data-toggle="tooltip"
-                                                                title="Delete"></i></a>
+                                                        <a href="#renewPremiumModal" class="renewed" data-toggle="modal" title="Gia hạn">Gia hạn</a>
+                                                        <a id="<%=rows[index].ID %>" href="#deleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <% } %>
+                                            <% } %> 
                                         </tbody>
                                     </table>
                                 </div>
@@ -235,23 +119,22 @@
                             <div class="card-footer text-center">
                                 <% let n = pages.length; %>
                                 <% if (n > 0) { %>
-                                <ul class="pagination pagination-circle pg-color d-flex justify-content-center">
+                                    <ul class="pagination pagination-circle pg-color d-flex justify-content-center">
                                     <% if (n == 1) { %>
                                     <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-left"></i></a></li>
                                     <% } else { %>
-                                    <li class="page-item"><a class="page-link" href="?page=1"><i class="fas fa-angle-left"></i></i></a></li>
+                                        <li class="page-item"><a class="page-link" href="?page=1"><i class="fas fa-angle-left"></i></i></a></li>
                                     <% } %>
-
-
+                                    
                                     <% if (n > 5) {%>
                                         <% var temp = +currentPage - 2; %>
                                         <% if (temp <=1 ) { %>
                                             <% for(var i = 1; i<= 5; i++) { %>
                                                 <% if (currentPage == i) { %>
                                                     <li class="page-item active"><a class="page-link"><%= i %> <span class="sr-only">(current)</span></a></li>
-                                                <% } else { %>
+                                                    <% } else { %>
                                                     <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-                                                <% } %>
+                                                    <% } %>
                                             <% } %>
                                             <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
                                         <% }else { if((currentPage + 2) < n) { %>
@@ -272,24 +155,139 @@
                                                     <% } else { %>
                                                         <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
                                                     <% } %>
-                                                <% } %>
+                                                    <% } %>
                                             <% } %>
                                         <%} %>
-                                    <% } %>                                    
+                                    <% } else { %>
+                                        <% for(var i = 1; i<= n; i++) { %>
+                                            <% if (currentPage == i) { %>
+                                                <li class="page-item active"><a class="page-link"><%= i %> <span class="sr-only">(current)</span></a></li>
+                                                <% } else { %>
+                                                <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                                                <% } %>
+                                        <% } %>
+                                    <% } %>
 
-                                    <% if ((n-1)===currentPage ){ %>
+                                    <% if ((n)===currentPage ){ %>
                                     <li class="page-item disabled"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
                                     <% } else { %>
-                                    <li class="page-item"><a class="page-link" href="?page=<%=pages[n-1].value %>"><i class="fas fa-chevron-right"></i></a></li>
+                                        <li class="page-item"><a class="page-link" href="?page=<%=pages[n-1].value %>"><i class="fas fa-chevron-right"></i></a></li>
+                                        <% } %>
+                                    </ul>
                                     <% } %>
-                                </ul>
-                                <% } %>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <div class="input-group w-100">
+
+            <!-- Add New Modal -->
+            <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Thêm
+                                người dùng</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-left">
+                            <form novalidate id="newMember" method="POST" action="">
+                                <div class="form-group">
+                                    <label for="input_hoTen" class="col-form-label">
+                                        Họ tên:
+                                    </label>
+                                    <input type="text" class="form-control" name="name"
+                                        id="input_hoTen" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input_birthday"
+                                        class="col-form-label">Ngày sinh:</label>
+                                    <input type="text" id="input_birthday"
+                                        class="form-control" name="birthday" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input_email" class="col-form-label">
+                                        Email:
+                                    </label>
+                                    <input type="email" name="email"
+                                        class="form-control" id="input_email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input_password" class="col-form-label">
+                                        Mật khẩu:
+                                    </label>
+                                    <input type="password" name="password"
+                                        class="form-control" id="input_password" />
+                                </div>
+                                <button type="button"
+                                    class="btn btn-secondary btn-color" data-dismiss="modal">Hủy</button>
+                                <button type="submit" class="btn btn-primary btn-color">Lưu</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Add New Modal -->
+
+            <!-- Delete Modal -->
+            <div id="deleteModal" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                        <form id="deleteMember" method="POST" action="nothing.asp">
+                            <div class="modal-header">
+                                <div class="d-flex flex-column mx-auto">
+                                    <div class="icon-box">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                    <h4 class="modal-title">Bạn chắc chứ?</h4>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc chắn muốn xóa người dùng này không? Thao tác
+                                    này sẽ xóa toàn bộ thông tin về người dùng đó.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="w-100 d-flex justify-content-around">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Hủy bỏ</button>
+                                    <button type="submit" class="btn btn-danger">Xác thực</button>                                
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- End Delete Modal -->
+
+            <!-- Renew Modal -->
+            <div id="renewPremiumModal" class="modal fade">
+                <div class="modal-dialog modal-confirm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="d-flex flex-column mx-auto">
+                                <div class="icon-box icon-box-renew">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <h4 class="modal-title">Gia hạn thành công!</h4>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Người dùng này vừa được gia hạn thêm Premium!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Renew Modal -->
+        </div>
+               
     </div>
 
     <!--JQuery-->
@@ -304,6 +302,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script>
         $(function () {
+            $('td').click(function() {
+                var $tr = $(this).closest('tr');
+                var chooseID = $tr.attr('id');
+                var finalAction = "/admin/qlNguoiDung/subcribers/delete/"+chooseID;
+                document.getElementById('deleteMember').action = finalAction;
+            });
             $('#input_birthday').datetimepicker({
                 format: 'd/m/Y',
                 timepicker: false,
