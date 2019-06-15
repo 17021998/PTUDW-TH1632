@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `userprimary` (
   `Email` varchar(50) DEFAULT NULL,
   `Photo` varchar(50) DEFAULT NULL,
   `DoB` date DEFAULT NULL,
-  `PassHash` varchar(50) DEFAULT NULL,
+  `PassHash` varchar(100) DEFAULT NULL,
   `role` varchar(15) DEFAULT NULL,
   `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)

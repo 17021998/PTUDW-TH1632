@@ -17,7 +17,7 @@ require('./middlewares/passport-google')(app);
 // tao var user trong session
 require('./middlewares/user')(app);
 // Tao admin
-require('./utils/admin')("admin@th16news.hcmus","1234567");
+// require('./utils/admin')("admin@th16news.hcmus","1234567");
 // middlewares upload hinh anh.
 require('./middlewares/upload')(app);
 // middlwwares chua cac router.

@@ -63,7 +63,7 @@ router.post('/add',auth, (req,res, next)=>{
             .then(id => {
             }).catch(next);
         res.redirect('/writer');
-      }).catch(next);
+    }).catch(next);
     // res.end('...');
 });
 

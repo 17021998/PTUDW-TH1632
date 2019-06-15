@@ -18,7 +18,6 @@
                             <img src="/images/account.png">
                         <% } %>
                         <% if(user.Email){ %>
-                            <img src="<%=user.Photo %>">
                             <a href="#"><span><%=user.Email %></span></a></li>
                         <% } %>
                 <li <% if (isActive==="pe") { %> class="active" <% } %> ><a href="/editor/profile-editor">Thông tin cá nhân</a></li>

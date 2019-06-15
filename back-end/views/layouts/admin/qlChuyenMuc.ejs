@@ -180,6 +180,16 @@
                                                             </button>
                                                         </form>
                                                     </li>
+                                                    <% if((rows[i].subID != null) && (i == (rows.length-1))){ %>
+                                                        <li class="list-group-item">
+                                                                <form action="/admin/categories/<%=rows[i].ID %>/add" method="post"
+                                                                    class="input-group mb-1">
+                                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
+                                                                    <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    <% } %>
                                                 <% }else{ %>
                                                     <!--Them thang con-->
                                                     <li class="list-group-item">
