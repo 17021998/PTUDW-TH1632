@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var adminModle = require('../../modles/admin/admin.modle');
 var dateFormat = require('dateformat');
@@ -86,8 +86,11 @@ router.get('/profile-admin', (req, res) => {
 // router post update profile admin
 router.post('/update/profile-admin', (req,res, next)=>{
     var entity = req.body;
-
-    res.end('...');
+        adminModle.updateUserPrimary(entity)
+        .then((id)=>{
+            res.end('sucess');
+        })
+        .catch(()=>res.end('err'));
 })
 
 router.get('/qlBaiViet', (req, res,next) => {
@@ -131,8 +134,12 @@ router.get('/qlBaiViet', (req, res,next) => {
         }
 
         var pages = [];
-        for( i =0 ;i<len;i++){
-            pages.push({"value": i, "isActive": i===+page-1});
+        if(len!=0){
+            for( i =0 ;i<len;i++){
+                pages.push({"value": i, "isActive": i===+page-1});
+            }
+        }else{
+            pages.push({"value": 0, "isActive": true});
         }
 
         res.render('admin/qlBaiViet', { "isActive": isActive, baiviet: rowsPage, "page": pages, "p":page, "ttbv": ttbv, dateNow, "lenPage": lenPage[0]});
@@ -179,8 +186,12 @@ router.get('/qlHashTag', (req, res, next) => {
             }
         }
         var pages = [];
-        for( i =0 ;i<len;i++){
-            pages.push({"value": i, "isActive": i===+page-1});
+        if(len!=0){
+            for( i =0 ;i<len;i++){
+                pages.push({"value": i, "isActive": i===+page-1});
+            }
+        }else{
+            pages.push({"value": 0, "isActive": true});
         }
         res.render('admin/qlHashTag', { "isActive": isActive, tag: rowsPage, "page": pages, "p": page, "lenPage": lenPage[0] });
     }).catch(next);

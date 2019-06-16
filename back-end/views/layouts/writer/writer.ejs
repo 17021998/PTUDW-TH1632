@@ -44,11 +44,11 @@
                             </div>
                         </div>
                         <br>
-                        <%# <div class="col-xs-4 col-md-12 form-group">
+                        <div class="col-xs-4 col-md-12 form-group">
                             <label for=""> Anh dai dien </label>
-                            <textarea name="imageMain" id="imageMain"></textarea>
+                            <textarea name="ImageAbstract" id="ImageAbstract"></textarea>
                         </div>
-                        <br> %>
+                        <br>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
                                 <input class="form-control" id="inputendereco" name="Title"
@@ -101,7 +101,7 @@
             });
         </script>
         <script type="text/javascript">
-            CKEDITOR.replace('imageMain', {
+            CKEDITOR.replace('ImageAbstract', {
                 "extraPlugins" : 'imagebrowser',
                 "imageBrowser_listUrl" : "/files",
                 toolbar:[
@@ -117,10 +117,24 @@
                 });
             });
         </script>
-    <%# <script type="text/javascript">
-        CKEDITOR.replace('Content');
-        CKEDITOR.config.height="300";
-    </script> %>
+    <script>
+            document.getElementById("CatIDFather").addEventListener("change", addOption, false);
+            
+            function addOption(){
+                var CatIDFater = document.getElementById("CatIDFather").value;
+                var select = $('#CatID');
+                $('option',select).remove();
+
+                <% for(let i = 0; i< CatChild.length; i++){ %>
+                if (CatIDFater==<%=CatChild[i].SuperCatID%>) {
+                    
+                    select.append(new Option('<%= CatChild[i].CatName %>', '<%= CatChild[i].ID %>', true, false));
+                }
+                <% } %>
+            }
+
+            window.addEventListener("load", start, false);
+        </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
