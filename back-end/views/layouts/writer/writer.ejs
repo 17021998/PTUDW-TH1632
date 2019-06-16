@@ -28,10 +28,10 @@
                 <form class="d-flex flex-row content-form-view" action="/writer/add" method="post">
                     <div class="col-12">
                         <br>
-                        <div class="col-xs-4 col-md-12 form-group">
-                            <div class="controls">
-                                <select class="custom-select" id="CatID" name="CatID">
-                                    <option selected="">
+                        <div class="col-xs-4 col-md-12 form-group row">
+                            <div class="controls col-6">
+                                <select class="custom-select" id="CatIDFather">
+                                    <option>
                                         Chọn chuyên mục
                                     </option>
                                     <% for( let index = 0; index < categories.length; index++ ) { %>
@@ -39,7 +39,13 @@
                                             <%= categories[index].CatName%>
                                         </option>
                                     <% } %>
-                                    
+                                </select>
+                            </div>
+                            <div class="controls col-6">
+                                <select class="custom-select" id="CatID" name="CatID">
+                                    <option selected="selected">
+                                        Chọn chuyên mục
+                                    </option>                                   
                                 </select>
                             </div>
                         </div>

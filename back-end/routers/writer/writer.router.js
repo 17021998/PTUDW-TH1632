@@ -58,10 +58,11 @@ router.post('/add',auth, (req,res, next)=>{
             'CatID': CatID,
             'PostID': id
         };
-            // luu catpost
-            writerModle.addCatPost(catPost)
-            .then(id => {
-            }).catch(next);
+        var writerPost = {'WriterID': req.user.ID, 'PostID': id};
+        Promise.all([
+            writerModle.addCatPost(catPost),
+            writerModle.addWriterPost(writerPost),
+        ]).then(([id1,id2])=>{}).catch(next);
         res.redirect('/writer');
     }).catch(next);
     // res.end('...');

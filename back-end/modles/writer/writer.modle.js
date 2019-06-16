@@ -51,5 +51,8 @@ module.exports = {
     },
     someWriter: (limit)=>{
         return db.load(`select * from writer w, userprimary u where w.UserID = u.ID and u.IsDelete is Null limit ${limit};`)
+    },
+    addWriterPost: entity=>{
+        return db.add('writerpost', entity);
     }
 };
