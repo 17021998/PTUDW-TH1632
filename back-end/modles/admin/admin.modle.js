@@ -125,6 +125,10 @@ module.exports = {
     // cat post
     updateCatPost: entity=>{
         return db.load(`update catpost set CatID = ${entity.CatID} where PostID = ${entity.PostID}`);
+    },
+
+    updateUserPrimary: entity=>{
+        return db.update('userprimary', "ID", entity);
     }
 
 };

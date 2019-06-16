@@ -8,7 +8,7 @@ var storage = multer.diskStorage({
     filename: function (req, file, cb) {
         crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err)
-            cb(null, Math.floor(Math.random() * 9000000000) + 1000000000 + path.extname(file.originalname))
+            cb(null, file.originalname)
         })
     }
 })
@@ -38,6 +38,11 @@ module.exports = function (app){
     app.post('/upload', upload.array('flFileUpload', 12), function (req, res, next) {
         res.redirect('back')
     });
+
+    app.post('/uploadImage', upload.single('imgProfileFile'),function(req,res){
+        req.user.Photo = '/upload/'+ req.file.filename;
+        res.redirect('back')
+    })
     // xoa file tren server
     app.post('/delete_file', function (req, res, next) {
         var url_del = 'public' + req.body.url_del

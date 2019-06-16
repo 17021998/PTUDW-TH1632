@@ -34,40 +34,53 @@
                         <h2>Trang cá nhân</h2>
                     </div>
                 </div>
-                <form class="d-flex flex-row content-form-view">
+                <div class="d-flex flex-row content-form-view">
                     <div class="col-md-12">
-                        <div id="content-form-img">
-                            <div id="profile-picture">
-                                <img src="../images/account.png">
+                        <%# imgage profile %>
+                        <form  action="/uploadImage" method="post" id="formUpload" enctype="multipart/form-data">
+                            <input type="hidden" id="userID" value="<%=user.ID%>">
+                            <input class="inputfile inputfile-4" type="file" name="imgProfileFile" id="profile-img" style="display: none;">
+                            <label id="fileN" style="display: none;"></label>
+                            <div id="content-form-img">
+                                <div id="profile-picture">
+                                    <img id="profile-img-tag" src="<%=user.Photo%>" >
+                                </div>
+                                <div class="js-group-edit-img">
+                                    <a href="#" class="form-a-edit w-75 js-edit-i"><label for="profile-img"> Edit </label></a>
+                                </div>
+                                <div class="js-group-sc-img class-disable">
+                                    <a href="javascript: saveImageProfile()" class="form-a-save w-50 pr-3 js-save-i">Save</a>
+                                    <a href="javascript:  $('#profile-img-tag').attr('src', '<%=user.Photo%>');" class="form-a-cancel w-50 js-cancel-i">Cancel</a>
+                                </div>                            
                             </div>
-                            <div class="js-group-edit-img">
-                                <a href="#" class="form-a-edit w-75 js-edit-img">Edit</a>
-                            </div>
-                            <div class="js-group-sc-img class-disable">
-                                <a href="#" class="form-a-save pr-3 js-save-img">Save</a>
-                                <a href="#" class="form-a-cancel js-cancel-img">Cancel</a>
-                            </div>                            
-                        </div>
+                        </form>
+
+                        
+                       
+                        <%# end image profile %>
+
                         <div class="form-group col-md-12 row form-disable">
                             <label for="inputHoTen" class="col-sm-2 col-form-label">Họ tên:</label>
-                            <input type="text" class="input-feild col-md-8" id="inputHoTen" value="Nguyễn Thị Thu Quyền" disabled>
+                            <input type="text" class="input-feild col-md-8" id="inputHoTen" 
+                            value="<%=user.FullName%>" disabled>
                             <div class="js-group-edit col-md-2">
                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc class-disable">
-                                <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
-                                <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                                <a href="javascript: saveFullName()" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                <a href="javascript: $('#inputHoTen').val('<%=user.FullName%>')" class="form-a-cancel w-50 js-cancel">Cancel</a>
                             </div>
                         </div>
                         <div class="form-group col-md-12 row form-disable">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email liên lạc:</label>             
-                            <input type="email" class="input-feild col-md-8" id="inputEmail" value="ntquyen98@gmail.com" disabled>
+                            <input type="email" class="input-feild col-md-8" id="inputEmail" 
+                            value="<%=user.Email%>" disabled>
                             <div class="js-group-edit col-md-2 js-an">
                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc class-disable">
-                                <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
-                                <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                                <a href="javascript: saveEmail()" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                <a href="javascript: $('#inputEmail').val('<%=user.Email%>')" class="form-a-cancel w-50 js-cancel">Cancel</a>
                             </div> 
                         </div>  
                         <div class="col-md-12 row form-disable">
@@ -90,7 +103,7 @@
                             
                         </div>           
                     </div>              
-                </form>
+                </div>
             </div>
         </section>
     </div>
@@ -98,7 +111,8 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <!--Main Script-->
         <script src="/js/editor/main.js"></script>
-    <script src="profile-adminJS.js"></script>
+    <script src="/js/admin/profile-adminJS.js"></script>
+     <script src="/js/admin/getNameImg.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $( ".js-edit" ).each(function( index ) {
@@ -155,9 +169,84 @@
                 $('.js-group-sc-date').addClass('class-disable');
                 $('.js-group-sc-date').removeClass('class-enable');
             });
+            //  is image profile
+            $( ".js-edit-i" ).each(function( index ) {
+                $(this).click(function(e){
+                    $('.js-group-edit-img').eq(index).addClass('class-disable');
+                    $('.js-group-sc-img').eq(index).addClass('class-enable');
+                    $('.js-group-sc-img').eq(index).removeClass('class-disable');
+                })
+            }); 
+            $( ".js-save-i" ).each(function( index ) {
+                $(this).click(function(e){
+                    $('.js-group-edit-img').eq(index).addClass('class-enable');
+                    $('.js-group-edit-img').eq(index).removeClass('class-disable');
+                    $('.js-group-sc-img').eq(index).removeClass('class-enable');
+                    $('.js-group-sc-img').eq(index).addClass('class-disable');
+                })
+            }); 
+            $( ".js-cancel-i" ).each(function( index ) {
+                $(this).click(function(e){
+                    $('.js-group-edit-img').eq(index).addClass('class-enable');
+                    $('.js-group-edit-img').eq(index).removeClass('class-disable');
+                    $('.js-group-sc-img').eq(index).removeClass('class-enable');
+                    $('.js-group-sc-img').eq(index).addClass('class-disable');
+                })
+            }); 
+
         })
+        // add anh
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#profile-img-tag').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#profile-img").change(function(){
+            readURL(this);
+        });
         
     </script>
+
+    <script>
+        // function save img
+        function saveImageProfile(){
+            var name = document.getElementById('fileN').innerHTML;
+            var id = document.getElementById('userID').value;
+            $.post('/admin/update/profile-admin',{"ID": id, "Photo": "/upload/"+name},(data,status)=>{
+                if(status !='success'){
+                    alert('Lỗi database!!');
+                }
+            })
+            $('#formUpload').submit();
+        }
+        // function save full name
+        function saveFullName(){
+            var name = $('#inputHoTen').val();
+            var id = '<%=user.ID%>';
+             $.post('/admin/update/profile-admin',{"ID": id, "FullName": name},(data,status)=>{
+                if(status !='success'){
+                    alert('Lỗi database!!');
+                }
+            })
+        }
+
+        // function save email
+        function saveEmail(){
+            var name = $('#inputEmail').val();
+            var id = '<%=user.ID%>';
+             $.post('/admin/update/profile-admin',{"ID": id, "FullName": name},(data,status)=>{
+                if(status !='success'){
+                    alert('Lỗi database!!');
+                }
+            })
+        }
+    </script>
+
 </body>
 
 </html>
