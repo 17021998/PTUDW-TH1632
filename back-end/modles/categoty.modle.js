@@ -9,9 +9,11 @@ module.exports = {
                     "FROM category c1 LEFT join ("+ supQuery + ") c2 on c1.ID = c2.SuperCatID " + 
                     "WHERE c1.IsDelete IS NULL AND c1.SuperCatID IS NULL ORDER BY c1.ID ;");
     },
-
+    allOnlyCat: ()=>{
+        return db.load('select * from category where IsDelete IS NULL;')
+    },
     single: id => {
-    return db.load('select * from category where ID = ${id} AND IsDelete IS NULL');
+    return db.load('select * from category where ID = ${id} AND IsDelete IS NULL;');
     },
 //NHớ đổi tên table là categories lại :)
     add: entity => {

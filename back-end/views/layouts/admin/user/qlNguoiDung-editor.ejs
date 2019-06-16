@@ -69,7 +69,7 @@
                                             <tr>
                                                 <th scope="col">Avatar</th>
                                                 <th scope="col">Editor</th>
-                                                <th scope="col">ngày sinh</th>
+                                                <th scope="col">Ngày sinh</th>
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Số lượng category quản lý</th>
                                                 <th scope="col"></th>
@@ -77,27 +77,30 @@
                                         </thead>
                                         <tbody>
                                             <% for( let index = 0; index < rows.length; index++ ) { %>
-                                                <tr id="<%=rows[index].ID %>">
+                                                <tr id="<%=rows[index].UserID %>">
                                                 <td class="avatar"><img src="/images/1.jpg" alt=""></td>
                                                 <td>
                                                     <div class="widget-heading">
                                                         <%=rows[index].FullName %>
                                                     </div>
+                                                </td>
+                                                <td>
                                                     <div class="birthday-size">
                                                         <%=rows[index].DoB %>
-                                                        
                                                     </div>
+                                                </td>
+                                                <td>
                                                     <div class="user-email">
                                                         <%=rows[index].Email %>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                        <span class="badge badge-pill badge-warning">Premium</span>
+                                                    <%=rows[index].noc %>
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex justify-content-around">
-                                                        <button class="renewed renewed-disable badge-pill" disabled title="Gia hạn">Gia hạn</button>
-                                                        <a id="<%=rows[index].ID %>" href="#deleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                                        <button class="detail badge-pill" title="Xem chi tiết">Xem chi tiết</button>
+                                                        <a id="<%=rows[index].UserID %>" href="#deleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -187,43 +190,66 @@
                         </div>
                         <div class="modal-body text-left">
                             <form novalidate id="newMember" method="POST" action="">
-                                <div class="form-group">
-                                    <label for="input_hoTen" class="col-form-label">
-                                        Họ tên:
-                                    </label>
-                                    <input type="text" class="form-control" name="name"
-                                        id="input_hoTen" />
+                                <div class="row">
+                                    <div class="editor-info col-6">
+                                        <div class="form-group">
+                                            <label for="input_hoTen" class="col-form-label">
+                                                Họ tên:
+                                            </label>
+                                            <input type="text" class="form-control" name="name"
+                                                id="input_hoTen" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input_birthday"
+                                                class="col-form-label">Ngày sinh:</label>
+                                            <input type="text" id="input_birthday"
+                                                class="form-control" name="birthday" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input_email" class="col-form-label">
+                                                Email:
+                                            </label>
+                                            <input type="email" name="email"
+                                                class="form-control" id="input_email" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input_password" class="col-form-label">
+                                                Mật khẩu:
+                                            </label>
+                                            <input type="password" name="password"
+                                                class="form-control" id="input_password" />
+                                        </div>
+                                    </div>
+                                    <div class="editor-cat col-6">
+                                        <div class="form-group list-style-none">
+                                            <span>Chuyên mục được phân công: </span>
+                                            <ul class="ul-father">
+                                                <% for(let index = 0; index < cats.length; index++){ %>
+                                                    <% if(cats[index].SuperCatID == null) {%>    
+                                                        <li>
+                                                            <input type="checkbox" id="<%=cats[index].ID %>" name="checkCat" value="<%=cats[index].ID %>">
+                                                            <label for="<%=cats[index].ID %>"><%=cats[index].CatName %></label>
+                                                            <ul>
+                                                                <% for(let j = 0; j < cats.length; j++){ %>
+                                                                    <% if(cats[j].SuperCatID == cats[index].ID){ %>
+                                                                       <li>
+                                                                            <input type="checkbox" id="<%=cats[j].ID %>" name="checkCat" value="<%=cats[j].ID %>">
+                                                                            <label for="<%=cats[j].ID %>"><%=cats[j].CatName %></label> 
+                                                                       </li>
+                                                                    <% } %>
+                                                                <% } %>
+                                                            </ul>
+                                                        </li>
+                                                    <% } %>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="input_birthday"
-                                        class="col-form-label">Ngày sinh:</label>
-                                    <input type="text" id="input_birthday"
-                                        class="form-control" name="birthday" />
+                                <div class="text-right">
+                                    <button type="button" class="btn btn-secondary btn-color mr-3" data-dismiss="modal">Hủy</button>
+                                    <button type="submit" class="btn btn-primary btn-color">Lưu</button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="input_email" class="col-form-label">
-                                        Email:
-                                    </label>
-                                    <input type="email" name="email"
-                                        class="form-control" id="input_email" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="input_password" class="col-form-label">
-                                        Mật khẩu:
-                                    </label>
-                                    <input type="password" name="password"
-                                        class="form-control" id="input_password" />
-                                </div>
-                                <div class="form-group">
-                                        <label for="input_password" class="col-form-label">
-                                            Category được phân công:
-                                        </label>
-                                        <input type="text" name="cat"
-                                            class="form-control" id="input_cat" />
-                                </div>
-                                <button type="button"
-                                    class="btn btn-secondary btn-color" data-dismiss="modal">Hủy</button>
-                                <button type="submit" class="btn btn-primary btn-color">Lưu</button>
                             </form>
                         </div>
                     </div>
@@ -280,7 +306,7 @@
             $('td').click(function() {
                 var $tr = $(this).closest('tr');
                 var chooseID = $tr.attr('id');
-                var finalActionDelete = "/admin/qlNguoiDung/subcribers/delete/"+chooseID;
+                var finalActionDelete = "/admin/qlNguoiDung/editors/delete/"+chooseID;
                 document.getElementById('deleteMember').action = finalActionDelete;
             });
             $('#input_birthday').datetimepicker({

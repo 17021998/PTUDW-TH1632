@@ -8,6 +8,8 @@ var bcrypt = require('bcrypt');
 var uuidv4 = require('uuid/v4');
 var guestModel = require('../../modles/guest/guest.model');
 var subcriberModel = require('../../modles/subcriber/subcriber.modle');
+var editorModel = require('../../modles/editor/editor.modle');
+var categoryModel = require('../../modles/categoty.modle');
 var momnet = require('moment');
 
 router.get('/:id/ctBaiViet', (req, res) => {
@@ -137,6 +139,7 @@ router.get('/qlNguoiDung', (req, res) => {
     res.render('admin/qlNguoiDung', { "isActive": isActive });
 })
 
+//Load meber
 router.get('/qlNguoiDung/subcribers', (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
@@ -209,7 +212,6 @@ router.post('/qlNguoiDung/subcribers', (req, res, next) =>{
     }).catch(next);
 })
 
-
 //Update member
 router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
     var id = req.params.id;
@@ -231,12 +233,91 @@ router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
         console.log(err);
     }).catch(next);
 })
+
 //Delete member
 router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
     var id = req.params.id;
     subcriberModel.delete(id)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/subcribers');
+    }).catch(err=>{
+        console.log(err);
+    }).catch(next);
+})
+
+//Load editor
+router.get('/qlNguoiDung/editors', (req, res) =>{
+    var page = req.query.page || 1;
+    if (page < 1) page = 1;
+    var limit = 4;
+    var offset = (page - 1)*limit;
+    Promise.all([
+        editorModel.pageByEditor(limit, offset),
+        editorModel.countByEditor(),
+        categoryModel.allOnlyCat()
+    ]).then(([rows, count_rows, cats]) => {
+        console.log(rows.length);
+        var total = count_rows[0].total;
+        var nPages = Math.floor(total / limit);
+        if (total % limit > 0) nPages++;
+        console.log( "total "+total);
+        var pages = [];
+        var currentPage = 1;
+        for( i = 1; i <= nPages; i++){
+            var obj = {value: i};
+            pages.push(obj);
+        }
+        if (typeof req.query.page !== 'undefined') {
+            currentPage = +req.query.page;
+            }
+        var isActive = "qlnd";
+        res.render('admin/user/qlNguoiDung-editor', {"isActive": isActive, rows: rows, pages,currentPage: currentPage, cats});
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
+})
+
+//Add new editor
+router.post('/qlNguoiDung/editors', (req, res, next) =>{
+    var saltRounds = 10;
+    var name = req.body.name;
+    var email = req.body.email;
+    var hash = bcrypt.hashSync(req.body.password, saltRounds);
+    var id = uuidv4();
+    var checkCats = [];
+    checkCats = req.body.checkCat;  
+    var dob = momnet(req.body.birthday, 'DD/MM/YYYY').format('YYYY-MM-DD');
+    
+    var entity1 = {
+        ID: id,
+        FullName: name,
+        Email: email,
+        PassHash: hash,
+        role: 'editor',
+        DoB: dob
+    };
+    guestModel.add(entity1)
+    .then(()=>{
+        for(let i = 0; i< checkCats.length; i++){
+            var entity2 = {
+                UserID: id,
+                ManagedCatID: checkCats[i]
+            };
+            editorModel.addNewEditor(entity2)
+        }
+    })
+    .then(()=>{
+            return res.redirect('/admin/qlNguoiDung/editors');
+    }).catch(next);
+})
+
+//Delete editor
+router.post('/qlNguoiDung/editors/delete/:id', (req, res, next) =>{
+    var id = req.params.id;
+    editorModel.delete(id)
+    .then(()=>{
+        return res.redirect('/admin/qlNguoiDung/editors');
     }).catch(err=>{
         console.log(err);
     }).catch(next);
