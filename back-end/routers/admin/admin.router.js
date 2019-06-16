@@ -196,9 +196,21 @@ router.post('/deleteTag', (req,res,next)=>{
 
 })
 
+//Load Nguoi Dung
 router.get('/qlNguoiDung', (req, res) => {
-    var isActive = "qlnd";
-    res.render('admin/qlNguoiDung', { "isActive": isActive });
+    Promise.all([
+        subcriberModel.someSubcriber(8),
+        writerModel.someWriter(4),
+        editorModel.someEditor(4)
+    ]).then(([ss, ws, es])=>{
+        var today = new Date().toLocaleDateString();
+        var todayFormat = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+        var isActive = "qlnd";
+        res.render('admin/qlNguoiDung', { "isActive": isActive, subcribers: ss, writers: ws, editors: es, todayFormat });
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
 })
 
 //Load meber

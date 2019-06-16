@@ -48,5 +48,8 @@ module.exports = {
     },
     delete: id => {
         return db.delete('userprimary', 'ID', id);
+    },
+    someWriter: (limit)=>{
+        return db.load(`select * from writer w, userprimary u where w.UserID = u.ID and u.IsDelete is Null limit ${limit};`)
     }
 };

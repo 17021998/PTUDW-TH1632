@@ -41,90 +41,36 @@
                             <!-- ### Subcriber table ###-->
                             <div id="js-subcriber-table" class="table-responsive-xl">
                                 <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td class="avatar"><img src="/images/account.jpg" alt=""></td>
+                                    <thead>
+                                            <tr>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Premium</th>
+                                            </tr>
+                                        </thead>
+                                <tbody>
+                                        <% for( let index = 0; index < subcribers.length; index++ ) { %>
+                                            <tr>
+                                            <td class="avatar"><img src="/images/1.jpg" alt=""></td>
                                             <td>
                                                 <div class="widget-heading">
-                                                    ABC
+                                                    <%=subcribers[index].FullName %>
                                                 </div>
-                                                ntquyen98@gmail.com
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-warning">Premium</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                            <td>
-                                                ABC<br>
-                                                ntquyen98@gmail.com
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-light">Premium</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                            <td>
-                                                ABC<br>
-                                                ntquyen98@gmail.com
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-light">Premium</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">4</th>
-                                            <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                            <td>
-                                                ABC<br>
-                                                ntquyen98@gmail.com
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-warning">Premium</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                            <td>
-                                                <div class="widget-heading">
-                                                    ABC
+                                                <div class="user-email">
+                                                    <%=subcribers[index].Email %>
                                                 </div>
-                                                ntquyen98@gmail.com
                                             </td>
                                             <td>
-                                                <span class="badge badge-pill badge-light">Premium</span>
+                                                <% if(todayFormat > subcribers[index].EndDay) {%>
+                                                    <span class="badge badge-pill badge-light">Premium</span>
+                                                <% } else{ %>
+                                                    <span class="badge badge-pill badge-warning">Premium</span>
+                                                <% } %>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                            <td>
-                                                ABC<br>
-                                                ntquyen98@gmail.com
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-warning">Premium</span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                            <td>
-                                                ABC<br>
-                                                ntquyen98@gmail.com
-                                            </td>
-                                            <td>
-                                                <span class="badge badge-pill badge-light">Premium</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        <% } %>
+                                </tbody>
+                            </table>
                                 <a href="/admin/qlNguoiDung/subcribers" class="btn-wide btn btn-link btn-sm view-all" role="button"
                                     aria-pressed="true">Xem tất cả</a>
                             </div>
@@ -139,43 +85,35 @@
                                 <!-- ### Writer table ### -->
                                 <div id="js-writer-table" class="table-responsive-xl">
                                     <table class="table">
+                                            <thead>
+                                                    <tr>
+                                                        <th scope="col">Avatar</th>
+                                                        <th scope="col">Writer</th>
+                                                        <th scope="col">Bút danh</th>
+                                                    </tr>
+                                                </thead>
                                         <tbody>
-                                            <tr class="clickable-row" data-href="writer-info.html">
-                                                <th scope="row">1</th>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>
-                                                    <div class="widget-heading">
-                                                        ABC
-                                                    </div>
-                                                    ntquyen98@gmail.com
-                                                </td>
-                                                <td>Đại biến thái</td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="writer-info.html">
-                                                <th scope="row">1</th>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>
-                                                    <div class="widget-heading">
-                                                        ABC
-                                                    </div>
-                                                    ntquyen98@gmail.com
-                                                </td>
-                                                <td>Đại biến thái</td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="writer-info.html">
-                                                <th scope="row">1</th>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>
-                                                    <div class="widget-heading">
-                                                        ABC
-                                                    </div>
-                                                    ntquyen98@gmail.com
-                                                </td>
-                                                <td>Đại biến thái</td>
-                                            </tr>
+                                                <% for( let index = 0; index < writers.length; index++ ) { %>
+                                                    <tr>
+                                                    <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                    <td>
+                                                        <div class="widget-heading">
+                                                            <%=writers[index].FullName %>
+                                                        </div>
+                                                        <div class="user-email">
+                                                            <%=writers[index].Email %>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="widget-heading">
+                                                            <%=writers[index].WriterName %>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% } %> 
                                         </tbody>
                                     </table>
-                                    <button class="btn-wide btn btn-link btn-sm view-all">Xem tất cả</button>
+                                    <a href="/admin/qlNguoiDung/Writers" class="btn-wide btn btn-link btn-sm view-all" role="button">Xem tất cả</a>
                                 </div>
                             </div>
                         </div>
@@ -186,36 +124,32 @@
                                 <!-- ### Editor table ### -->
                                 <div id="js-editor-table" class="table-responsive-xl">
                                     <table class="table">
+                                            <thead>
+                                                    <tr>
+                                                        <th scope="col">Avatar</th>
+                                                        <th scope="col">Editor</th>
+                                                        <th scope="col">Email</th>
+                                                    </tr>
+                                                </thead>
                                         <tbody>
-                                            <tr class="clickable-row" data-href="user-info.html">
-                                                <th scope="row">1</th>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>
-                                                    <div class="widget-heading">
-                                                        ABC
-                                                    </div>
-                                                    ntquyen98@gmail.com
-                                                </td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="user-info.html">
-                                                <th scope="row">2</th>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>
-                                                    ABC<br>
-                                                    ntquyen98@gmail.com
-                                                </td>
-                                            </tr>
-                                            <tr class="clickable-row" data-href="user-info.html">
-                                                <th scope="row">3</th>
-                                                <td class="avatar"><img src="../images/account.jpg" alt=""></td>
-                                                <td>
-                                                    ABC<br>
-                                                    ntquyen98@gmail.com
-                                                </td>
-                                            </tr>
+                                                <% for( let index = 0; index < editors.length; index++ ) { %>
+                                                    <tr>
+                                                    <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                    <td>
+                                                        <div class="widget-heading">
+                                                            <%=editors[index].FullName %>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="user-email">
+                                                            <%=editors[index].Email %>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% } %> 
                                         </tbody>
                                     </table>
-                                    <button class="btn-wide btn btn-link btn-sm view-all">Xem tất cả</button>
+                                    <a href="/admin/qlNguoiDung/editors" class="btn-wide btn btn-link btn-sm view-all" role="button">Xem tất cả</a>
                                 </div>
                             </div>
                         </div>

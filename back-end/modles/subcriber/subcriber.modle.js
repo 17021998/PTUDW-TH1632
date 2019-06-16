@@ -22,5 +22,8 @@ module.exports = {
     },
     update: entity => {
         return db.update('subscriber', 'UserID', entity);
+    },
+    someSubcriber: (limit)=>{
+        return db.load(`select * from subscriber s, userprimary u where s.UserID = u.ID and u.IsDelete is Null limit ${limit};`)
     }
 };
