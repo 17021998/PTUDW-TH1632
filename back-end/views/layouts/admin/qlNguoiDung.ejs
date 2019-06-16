@@ -32,129 +32,151 @@
                         <h2>Quản lý người dùng</h2>
                     </div>
                 </div>
-                <div class="row">
-
-                    <div id="user_card" class="card bg-light ml-2 mr-2 mb-3 col-md-5 p-0">
-                        <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh
-                            sách người dùng </div>
-                        <div class="card-body">
-                            <!-- ### Subcriber table ###-->
-                            <div id="js-subcriber-table" class="table-responsive-xl">
-                                <table class="table">
-                                    <thead>
-                                            <tr>
-                                                <th scope="col">Avatar</th>
-                                                <th scope="col">User</th>
-                                                <th scope="col">Premium</th>
-                                            </tr>
-                                        </thead>
-                                <tbody>
-                                        <% for( let index = 0; index < subcribers.length; index++ ) { %>
-                                            <tr>
-                                            <td class="avatar"><img src="/images/1.jpg" alt=""></td>
-                                            <td>
-                                                <div class="widget-heading">
-                                                    <%=subcribers[index].FullName %>
-                                                </div>
-                                                <div class="user-email">
-                                                    <%=subcribers[index].Email %>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <% if(todayFormat > subcribers[index].EndDay) {%>
-                                                    <span class="badge badge-pill badge-light">Premium</span>
-                                                <% } else{ %>
-                                                    <span class="badge badge-pill badge-warning">Premium</span>
-                                                <% } %>
-                                            </td>
-                                        </tr>
-                                        <% } %>
-                                </tbody>
-                            </table>
-                                <a href="/admin/qlNguoiDung/subcribers" class="btn-wide btn btn-link btn-sm view-all" role="button"
-                                    aria-pressed="true">Xem tất cả</a>
-                            </div>
-
+                <% if(subcribers.length == 0 && writers.length==0 && editors.length==0){ %>
+                    <ul>
+                        <li><a href="/admin/qlNguoiDung/subcribers">Thêm người dùng</a></li>
+                        <li><a href="/admin/qlNguoiDung/writers">Thêm phóng viên</a></li>
+                        <li><a href="/admin/qlNguoiDung/editors">Thêm biên tập viên</a></li>
+                    </ul>
+                <% } else { %>
+                    <div class="row">
+                            <% if(subcribers.length == 0) {%>
+                                <div class="col-12">
+                                    <a href="/admin/qlNguoiDung/subcribers">Thêm người dùng</a><br>
+                                </div>
+                            <% } else{ %>
+                                <div id="user_card" class="card bg-light ml-2 mr-2 mb-3 col-md-5 p-0">
+                                    <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh
+                                        sách người dùng </div>
+                                    <div class="card-body">
+                                        <!-- ### Subcriber table ###-->
+                                        <div id="js-subcriber-table" class="table-responsive-xl">
+                                            <table class="table">
+                                                    <thead>
+                                                            <tr>
+                                                                <th scope="col">Avatar</th>
+                                                                <th scope="col">User</th>
+                                                                <th scope="col">Premium</th>
+                                                            </tr>
+                                                        </thead>
+                                                <tbody>
+                                                        <% for( let index = 0; index < subcribers.length; index++ ) { %>
+                                                            <tr>
+                                                            <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                            <td>
+                                                                <div class="widget-heading">
+                                                                    <%=subcribers[index].FullName %>
+                                                                </div>
+                                                                <div class="user-email">
+                                                                    <%=subcribers[index].Email %>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <% if(todayFormat > subcribers[index].EndDay) {%>
+                                                                    <span class="badge badge-pill badge-light">Premium</span>
+                                                                <% } else{ %>
+                                                                    <span class="badge badge-pill badge-warning">Premium</span>
+                                                                <% } %>
+                                                            </td>
+                                                        </tr>
+                                                        <% } %>
+                                                </tbody>
+                                            </table>
+                                            <a href="/admin/qlNguoiDung/subcribers" class="btn-wide btn btn-link btn-sm view-all" role="button"
+                                                aria-pressed="true">Xem tất cả</a>
+                                        </div>
+            
+                                    </div>
+                                </div>
+                            <% } %>
+                            <div class="card-padding col-md-6 ml-2 mr-2">
+                                <% if(writers.length==0) {%>
+                                    <a href="/admin/qlNguoiDung/writers">Thêm phóng viên</a><br>
+                                <% }else { %>
+                                    <div id="writer_card" class="card bg-light mb-1 col-md-12 p-0">
+                                    <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh
+                                        sách phóng viên </div>
+                                    <div class="card-body">
+                                        <!-- ### Writer table ### -->
+                                        <div id="js-writer-table" class="table-responsive-xl">
+                                            <table class="table">
+                                                    <thead>
+                                                            <tr>
+                                                                <th scope="col">Avatar</th>
+                                                                <th scope="col">Writer</th>
+                                                                <th scope="col">Bút danh</th>
+                                                            </tr>
+                                                        </thead>
+                                                <tbody>
+                                                        <% for( let index = 0; index < writers.length; index++ ) { %>
+                                                            <tr>
+                                                            <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                            <td>
+                                                                <div class="widget-heading">
+                                                                    <%=writers[index].FullName %>
+                                                                </div>
+                                                                <div class="user-email">
+                                                                    <%=writers[index].Email %>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="widget-heading">
+                                                                    <%=writers[index].WriterName %>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <% } %> 
+                                                </tbody>
+                                            </table>
+                                            <a href="/admin/qlNguoiDung/writers" class="btn-wide btn btn-link btn-sm view-all" role="button">Xem tất cả</a>
+                                        </div>
+                                    </div>
+                                    </div>
+        
+                                <% } %>
+                                <% if(editors.length==0) {%>
+                                    <a href="/admin/qlNguoiDung/editors">Thêm biên tập viên</a>
+                                <% }else { %>
+                                    <div id="editor_card" class="card bg-light col-md-12 mb-3 p-0">
+                                        <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh
+                                            sách biên tập viên </div>
+                                        <div class="card-body">
+                                            <!-- ### Editor table ### -->
+                                            <div id="js-editor-table" class="table-responsive-xl">
+                                                <table class="table">
+                                                        <thead>
+                                                                <tr>
+                                                                    <th scope="col">Avatar</th>
+                                                                    <th scope="col">Editor</th>
+                                                                    <th scope="col">Email</th>
+                                                                </tr>
+                                                            </thead>
+                                                    <tbody>
+                                                            <% for( let index = 0; index < editors.length; index++ ) { %>
+                                                                <tr>
+                                                                <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                                <td>
+                                                                    <div class="widget-heading">
+                                                                        <%=editors[index].FullName %>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="user-email">
+                                                                        <%=editors[index].Email %>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <% } %> 
+                                                    </tbody>
+                                                </table>
+                                                <a href="/admin/qlNguoiDung/editors" class="btn-wide btn btn-link btn-sm view-all" role="button">Xem tất cả</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
                         </div>
                     </div>
-                    <div class="card-padding col-md-6 ml-2 mr-2">
-                        <div id="writer_card" class="card bg-light mb-1 col-md-12 p-0">
-                            <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh
-                                sách phóng viên </div>
-                            <div class="card-body">
-                                <!-- ### Writer table ### -->
-                                <div id="js-writer-table" class="table-responsive-xl">
-                                    <table class="table">
-                                            <thead>
-                                                    <tr>
-                                                        <th scope="col">Avatar</th>
-                                                        <th scope="col">Writer</th>
-                                                        <th scope="col">Bút danh</th>
-                                                    </tr>
-                                                </thead>
-                                        <tbody>
-                                                <% for( let index = 0; index < writers.length; index++ ) { %>
-                                                    <tr>
-                                                    <td class="avatar"><img src="/images/1.jpg" alt=""></td>
-                                                    <td>
-                                                        <div class="widget-heading">
-                                                            <%=writers[index].FullName %>
-                                                        </div>
-                                                        <div class="user-email">
-                                                            <%=writers[index].Email %>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="widget-heading">
-                                                            <%=writers[index].WriterName %>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <% } %> 
-                                        </tbody>
-                                    </table>
-                                    <a href="/admin/qlNguoiDung/Writers" class="btn-wide btn btn-link btn-sm view-all" role="button">Xem tất cả</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="editor_card" class="card bg-light col-md-12 mb-3 p-0">
-                            <div class="card-header card-background menu-header-title text-primary text-capitalize">Danh
-                                sách biên tập viên </div>
-                            <div class="card-body">
-                                <!-- ### Editor table ### -->
-                                <div id="js-editor-table" class="table-responsive-xl">
-                                    <table class="table">
-                                            <thead>
-                                                    <tr>
-                                                        <th scope="col">Avatar</th>
-                                                        <th scope="col">Editor</th>
-                                                        <th scope="col">Email</th>
-                                                    </tr>
-                                                </thead>
-                                        <tbody>
-                                                <% for( let index = 0; index < editors.length; index++ ) { %>
-                                                    <tr>
-                                                    <td class="avatar"><img src="/images/1.jpg" alt=""></td>
-                                                    <td>
-                                                        <div class="widget-heading">
-                                                            <%=editors[index].FullName %>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="user-email">
-                                                            <%=editors[index].Email %>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <% } %> 
-                                        </tbody>
-                                    </table>
-                                    <a href="/admin/qlNguoiDung/editors" class="btn-wide btn btn-link btn-sm view-all" role="button">Xem tất cả</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </section>
     </div>

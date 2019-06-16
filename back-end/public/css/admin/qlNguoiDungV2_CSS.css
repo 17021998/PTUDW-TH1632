@@ -41,6 +41,9 @@ th{
 .view-all{
     float: right;
 }
+.view-all:hover{
+    color: #0056b3 !important;
+}
 .menu-header-title {
     font-weight: 500;
     font-size: 1rem;
