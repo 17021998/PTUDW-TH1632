@@ -7,36 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Writer</title>
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link href="/css/editor/editor-style.css" rel="stylesheet">
     <link href="/css/writer/profile-writerCSS.css" rel="stylesheet" type="text/css">
-
 </head>
-
 <body>
     <div id="page">
-        <%- include('../header-footer/header-writer.ejs') %>
-        <section id="page-main-content">
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-
-                    <a class="head-item" href="profile-writer.html">
-                        <img src="../images/account.png" />
-                    </a>
-                    <a class="head-item" href="../index.html">
-                        <span>
-                            Đăng xuất
-                        </span>
-                        <i class="fas fa-sign-out-alt">
-                        </i>
-                    </a>
-                </div>
-            </div>
+            <%- include('../logout/writer/form.ejs') %>
+            <%- include('../header-footer/header-writer.ejs') %>
+            <section id="page-main-content">
+                <%- include('../logout/writer/header-hori.ejs') %>
             <div id="content">
                 <h1>
                     Bài viết mới
@@ -45,10 +28,10 @@
                 <form class="d-flex flex-row content-form-view" action="/writer/add" method="post">
                     <div class="col-12">
                         <br>
-                        <div class="col-xs-4 col-md-12 form-group row">
-                            <div class="controls col-6">
-                                <select class="custom-select" id="CatIDFather">
-                                    <option>
+                        <div class="col-xs-4 col-md-12 form-group">
+                            <div class="controls">
+                                <select class="custom-select" id="CatID" name="CatID">
+                                    <option selected="">
                                         Chọn chuyên mục
                                     </option>
                                     <% for( let index = 0; index < categories.length; index++ ) { %>
@@ -56,21 +39,16 @@
                                             <%= categories[index].CatName%>
                                         </option>
                                     <% } %>
+                                    
                                 </select>
                             </div>
-                            <div class="controls col-6">
-                                <select class="custom-select" id="CatID" name="CatID">
-                                    <option selected="selected">
-                                        Chọn chuyên mục
-                                    </option>                                   
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 col-md-12 form-group">
-                            <label for=""> Anh dai dien </label>
-                            <textarea name="ImgMain" id="ImgMain"></textarea>
                         </div>
                         <br>
+                        <%# <div class="col-xs-4 col-md-12 form-group">
+                            <label for=""> Anh dai dien </label>
+                            <textarea name="imageMain" id="imageMain"></textarea>
+                        </div>
+                        <br> %>
                         <div class="col-xs-4 col-md-12 form-group">
                             <div class="controls">
                                 <input class="form-control" id="inputendereco" name="Title"
@@ -114,13 +92,16 @@
             </div>
         </section>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="/js/writer/ckeditor/ckeditor.js"></script> 
         <script type="text/javascript">
             CKEDITOR.replace('Content', {
-                "extraPlugins" : 'imagebrowser',
-		        "imageBrowser_listUrl" : "/files"
+                "extraPlugins" : 'imagebrowser , youtube',
+                "imageBrowser_listUrl" : "/files"
             });
-            CKEDITOR.replace('ImgMain', {
+        </script>
+        <script type="text/javascript">
+            CKEDITOR.replace('imageMain', {
                 "extraPlugins" : 'imagebrowser',
                 "imageBrowser_listUrl" : "/files",
                 toolbar:[
@@ -129,25 +110,17 @@
             });
         </script>
         <script>
-            document.getElementById("CatIDFather").addEventListener("change", addOption, false);
-            
-            function addOption(){
-                var CatIDFater = document.getElementById("CatIDFather").value;
-                var select = $('#CatID');
-                $('option',select).remove();
-
-                <% for(let i = 0; i< CatChild.length; i++){ %>
-                if (CatIDFater==<%=CatChild[i].SuperCatID%>) {
-                    
-                        select.append(new Option('<%= CatChild[i].CatName %>', '<%= CatChild[i].ID %>', true, false));
-                }
-                <% } %>
-            }
-
-            window.addEventListener("load", start, false);
+            $(document).ready(function () {
+                $(".check_label").click(function(e){
+                    alert($('#check').val());
+                    $('#check')=true;
+                });
+            });
         </script>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <%# <script type="text/javascript">
+        CKEDITOR.replace('Content');
+        CKEDITOR.config.height="300";
+    </script> %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>

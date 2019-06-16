@@ -12,8 +12,14 @@
                     <nav id="page-main-menu" role="navigation">
                         <ul>
                             <li class="nav-img">
-                                <img src="../images/account.png">
-                                <a href="#"><span>ntquyen98@gmail.com</span></a></li>
+                                    <% if(user.Photo){ %>
+                                        <img src="<%=user.Photo %>">
+                                    <% }else{ %>
+                                        <img src="/images/account.png">
+                                    <% } %>
+                                    <% if(user.Email){ %>
+                                        <a href="#"><span><%=user.Email %></span></a></li>
+                                    <% } %>
                             <li <% if (isActive==="pw") { %> class="active" <% } %> ><a href="/writer/profile-writer">Thông tin cá nhân</a></li>
                             <li <% if (isActive==="tbv") { %> class="active" <% } %>><a href="/writer">Thêm bài viết</a></li>
                             <li <% if (isActive==="bvdd") { %> class="active" <% } %>><a href="/writer/baivietduocduyet">Các bài đã duyệt</a></li>
@@ -21,7 +27,7 @@
                             <li <% if (isActive==="bvbtc") { %> class="active" <% } %>><a href="/writer/baivietbituchoi">Các bài bị từ chối</a></li>
                             <li <% if (isActive==="bvcd") { %> class="active" <% } %>><a href="/writer/baivietchuaduyet">Các bài chưa duyệt</a></li>
                             <li <% if (isActive==="s") { %> class="active" <% } %>><a href="/writer/security">Bảo mật</a></li>
-                            <li><a href="/" class="main-menu-hidden">Đăng xuất</a></li> 
+                            <li><a href="javascript:$('#frmSignout').submit();" class="main-menu-hidden">Đăng xuất</a></li> 
                         </ul>
                     </nav>
                     <div id="page-footer" class="text-right">

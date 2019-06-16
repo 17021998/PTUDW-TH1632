@@ -3,12 +3,12 @@ body {
     font-family: "Montserrat", Arial, sans-serif;
 }
 
-article, .cata-post, .card, .grid-box,.cata-menu{
+article, .cata-post, .card, .grid-box, .cata-menu {
     box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 1.5px 2.6px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
-#most-view article{
+#most-view article {
     box-shadow: none;
 }
 
@@ -16,18 +16,16 @@ article, .cata-post, .card, .grid-box,.cata-menu{
 
 a, a:hover, a:focus {
     text-decoration: none;
-    font-weight: 500;
     color: #a6a6a6;
     transition-duration: 500ms;
 }
-
 
 /* Week high light group*/
 
 .wrapper {
     padding: 15px 0;
-
 }
+
 /*Post*/
 
 .post-link {
@@ -110,31 +108,31 @@ a, a:hover, a:focus {
 }
 
 /*Xem nhieu nhat*/
-#grid-header{
+
+#grid-header {
     position: relative;
 }
 
-#grid-header:before{
+#grid-header:before {
     content: "";
     position: absolute;
     left: -20px;
     background: #db4437;
     width: 3px;
-    top:0px;
+    top: 0px;
     height: 100%;
 }
 
-
-.grid-header .grid-title{
+.grid-header .grid-title {
     position: relative;
     top: 20px;
     left: 20px;
 }
 
-.grid-header .grid-button{
+.grid-header .grid-button {
     position: relative;
-    top:25px;
-    right:25px;
+    top: 25px;
+    right: 25px;
     font-size: 16pt;
 }
 
@@ -182,11 +180,11 @@ a, a:hover, a:focus {
     margin: 0;
 }
 
-.section-title:before{
+.section-title:before {
     content: "";
     position: absolute;
     left: 0px;
-    top:0px;
+    top: 0px;
     background: #db4437;
     width: 3px;
     height: 100%;
@@ -244,32 +242,33 @@ a, a:hover, a:focus {
 }
 
 /*zoom-img-hover*/
-.post-thumbnail{
+
+.post-thumbnail {
     overflow: hidden;
 }
 
-.post-thumbnail img{
+.post-thumbnail img {
     transition: transform .5s ease;
 }
 
-.post-thumbnail:hover img{
+.post-thumbnail:hover img {
     transform: scale(1.5);
 }
 
-
 /*owl caroulse*/
-.owl-nav{
+
+.owl-nav {
     position: absolute;
     right: 50px;
     top: -40px;
 }
 
-a.slide-next, a.slide-prev{
+a.slide-next, a.slide-prev {
     position: relative;
-    margin: 0 15px; 
+    margin: 0 15px;
 }
 
-a.slide-next:before{
+a.slide-next:before {
     position: absolute;
     right: 25px;
     top: 0px;
@@ -281,4 +280,3 @@ a.slide-next:before{
     display: block;
     text-align: center;
 }
-

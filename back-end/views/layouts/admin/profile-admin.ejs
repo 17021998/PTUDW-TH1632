@@ -7,18 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile-Admin</title>
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" type="text/css" href="/css/admin/profile-adminCSS.css">
-    <!--JQuery-->
-    <script src="/js/editor/jquery.min.js"></script>
-    <!--Main Script-->
-    <script src="/js/editor/main.js"></script>
     <style type="text/css">
         @media screen and (max-width: 768px){
             .input-feild, #showDate, .date-edit{
@@ -30,18 +24,10 @@
 
 <body>
     <div id="page">
+        <%- include('../logout/admin/form.ejs') %>
         <%- include('../header-footer/header-admin.ejs') %>
-        
         <section id="page-main-content">
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-                    <a href="#" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
-                        <span>Đăng xuất</span>
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
-            </div>
+        <%- include('../logout/admin/header-hori.ejs') %>
             <div id="content">
                 <div class="row">
                     <div class="col-12 py-2">
@@ -55,22 +41,22 @@
                                 <img src="../images/account.png">
                             </div>
                             <div class="js-group-edit-img">
-                                 <a href="#" class="form-a-edit w-75 js-edit-img">Edit</a>
+                                <a href="#" class="form-a-edit w-75 js-edit-img">Edit</a>
                             </div>
                             <div class="js-group-sc-img class-disable">
-                                 <a href="#" class="form-a-save pr-3 js-save-img">Save</a>
-                                 <a href="#" class="form-a-cancel js-cancel-img">Cancel</a>
+                                <a href="#" class="form-a-save pr-3 js-save-img">Save</a>
+                                <a href="#" class="form-a-cancel js-cancel-img">Cancel</a>
                             </div>                            
                         </div>
                         <div class="form-group col-md-12 row form-disable">
                             <label for="inputHoTen" class="col-sm-2 col-form-label">Họ tên:</label>
                             <input type="text" class="input-feild col-md-8" id="inputHoTen" value="Nguyễn Thị Thu Quyền" disabled>
                             <div class="js-group-edit col-md-2">
-                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
+                                <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc class-disable">
-                                 <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
-                                 <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                                <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
                             </div>
                         </div>
                         <div class="form-group col-md-12 row form-disable">
@@ -80,8 +66,8 @@
                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc class-disable">
-                                 <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
-                                 <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                                <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
                             </div> 
                         </div>  
                         <div class="col-md-12 row form-disable">
@@ -95,22 +81,23 @@
                             </div> 
                             <input type="text" class=" col-md-8" id="showDate" value="01/08/1998" disabled>
                             <div class="js-group-edit-date col-md-2">
-                                 <a href="#" class="form-a-edit w-75 js-edit-date">Edit</a>
+                                <a href="#" class="form-a-edit w-75 js-edit-date">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc-date class-disable custom-control-inline">
-                                 <a href="#" class="form-a-save w-50 pr-3 js-save-date">Save</a>
-                                 <a href="#" class="form-a-cancel w-50 js-cancel-date">Cancel</a>
+                                <a href="#" class="form-a-save w-50 pr-3 js-save-date">Save</a>
+                                <a href="#" class="form-a-cancel w-50 js-cancel-date">Cancel</a>
                             </div>                        
                             
                         </div>           
                     </div>              
                 </form>
             </div>
-
-            
         </section>
     </div>
-
+        <!--JQuery-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <!--Main Script-->
+        <script src="/js/editor/main.js"></script>
     <script src="profile-adminJS.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){

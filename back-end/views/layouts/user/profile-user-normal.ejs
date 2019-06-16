@@ -7,101 +7,90 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile-normal</title>
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" type="text/css" href="/css/user/profile-user-normalCSS.css">
-    <!--JQuery-->
-    <script src="/js/editor/jquery.min.js"></script>
-    <!--Main Script-->
-    <script src="/js/editor/main.js"></script>
-
 </head>
-
 <body>
     <div id="page">
+    <%- include('../logout/user/form.ejs') %>
     <%- include('../header-footer/header-user.ejs') %>
         <section id="page-main-content">
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-                    <a href="#" class="head-item"><span>Premium</span></a>
-                    <a href="#" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
-                        <span>Đăng xuất</span>
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
-            </div>
+            <%- include('../logout/user/header-hori.ejs') %>
             <div id="content">
                 <h1>Trang cá nhân</h1>
                 <hr>
-                <form class="d-flex flex-row content-form-view">
+                <form action="/user/edit" method="POST" class="d-flex flex-row content-form-view">
                     <div class="col-md-12">
                         <div id="content-form-img">
                             <div id="profile-picture">
-                                <img src="../images/account.png">
+                                <% if(user.Photo){ %>
+                                    <img src="<%=user.Photo%>">
+                                <% }else{ %>
+                                    <img src="/images/account.png">
+                                <% } %>
                             </div>
                             <div class="js-group-edit-img">
-                                 <a href="#" class="form-a-edit w-75 js-edit-img">Edit</a>
+                                <a href="#" class="form-a-edit w-75 js-edit-img">Edit</a>
                             </div>
                             <div class="js-group-sc-img class-disable">
-                                 <a href="#" class="form-a-save pr-3 js-save-img">Save</a>
-                                 <a href="#" class="form-a-cancel js-cancel-img">Cancel</a>
+                                <a href="#" class="form-a-save pr-3 js-save-img">Save</a>
+                                <a href="#" class="form-a-cancel js-cancel-img">Cancel</a>
                             </div>                            
                         </div>
                         <div class="form-group col-md-12 row form-disable">
                             <label for="inputHoTen" class="col-sm-2 col-form-label">Họ tên:</label>
-                            <input type="text" class="input-feild col-md-8" id="inputHoTen" value="Nguyễn Thị Thu Quyền" disabled>
+                            <% if(user.FullName){ %>
+                                <input type="text" class="input-feild col-md-8" id="inputHoTen" value="<%=user.FullName%>" disabled>
+                            <% }else{ %>
+                                <input type="text" class="input-feild col-md-8" id="inputHoTen" placeholder="Nhập họ tên" disabled>
+                            <% } %>
                             <div class="js-group-edit col-md-2">
-                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
+                                <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc class-disable">
-                                 <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
-                                 <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                                <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
                             </div>
                         </div>
                         <div class="form-group col-md-12 row form-disable">
                             <label for="inputEmail" class="col-sm-2 col-form-label">Email liên lạc:</label>             
-                            <input type="email" class="input-feild col-md-8" id="inputEmail" value="ntquyen98@gmail.com" disabled>
+                            <input type="email" class="input-feild col-md-8" id="inputEmail" value="<%=user.Email%>" disabled>
                             <div class="js-group-edit col-md-2 js-an">
                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc class-disable">
-                                 <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
-                                 <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
+                                <a href="#" class="form-a-save w-50 pr-3 js-save">Save</a>
+                                <a href="#" class="form-a-cancel w-50 js-cancel">Cancel</a>
                             </div> 
                         </div>  
                         <div class="col-md-12 row form-disable">
                             <legend class="col-form-label col-sm-2">Ngày sinh:</legend>
                             <div class="date-edit custom-control-inline col-md-7 class-disable row">
                                 <select class="col-md-2 custom-select mr-3" id="day"></select>
-
                                 <select class="col-md-2 custom-select mr-3" id="month"></select>
-
                                 <select class="col-md-2 custom-select" id="year"></select>
                             </div> 
                             <input type="text" class=" col-md-8" id="showDate" value="01/08/1998" disabled>
                             <div class="js-group-edit-date col-md-2">
-                                 <a href="#" class="form-a-edit w-75 js-edit-date">Edit</a>
+                                <a href="#" class="form-a-edit w-75 js-edit-date">Edit</a>
                             </div>
                             <div class="col-md-2 js-group-sc-date class-disable custom-control-inline">
-                                 <a href="#" class="form-a-save w-50 pr-3 js-save-date">Save</a>
-                                 <a href="#" class="form-a-cancel w-50 js-cancel-date">Cancel</a>
-                            </div>                        
-                            
+                                <a href="#" class="form-a-save w-50 pr-3 js-save-date">Save</a>
+                                <a href="#" class="form-a-cancel w-50 js-cancel-date">Cancel</a>
+                            </div>
                         </div>           
                     </div>              
                 </form>
             </div>
-
-            
         </section>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--Main Script-->
+    <script src="/js/editor/main.js"></script>
     <script src="/js/user/profile-userJS.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -159,7 +148,7 @@
                 $('.js-group-sc-date').addClass('class-disable');
                 $('.js-group-sc-date').removeClass('class-enable');
             });
-        })
+        });
         
     </script>
 </body>

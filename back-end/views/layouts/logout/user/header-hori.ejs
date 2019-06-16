@@ -1,0 +1,14 @@
+<div class="head-content row">
+        <div class="col-md-12 text-right my-auto">
+            <a href="#" class="head-item"><span>Premium</span></a>
+            <% if(user.Photo){ %>
+                <a href="#" class="head-item"><img src="<%=user.Photo%>"></a>
+            <% }else{ %>
+                <a href="#" class="head-item"><img src="/images/account.png"></a>
+            <% } %>
+            <a href="javascript:$('#frmSignout').submit();" class="head-item js-logout">
+                <span>Đăng xuất</span>
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </div>
+    </div>

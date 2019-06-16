@@ -11,8 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="/css/guest/loginCSS.css">
 	<link rel="stylesheet" type="text/css" href="/css/guest/sign_upCSS.css">
 	<link rel="stylesheet" type="text/css" href="/css/footer-nav-headerCSS.css">
+	<!--Captcha-->
+	<script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
-
 <body>
 	<!--div content-->
 	<div id="div_content">
@@ -34,6 +35,9 @@
 			<h2>Đăng ký để sử dụng thêm nhiều tính năng bạn nhé!</h2>
 			<p>Cùng đăng ký nào!!!</p>
 			<form novalidate action="" method="POST" id="signupForm">
+				<% if(locals.error){ %>
+					<div class="error"><%=locals.error%></div>
+				<% } %>
 				<div class="form-group input-group-lg">
 					<label for="inputEmail">Địa chỉ email:</label>
 					<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
@@ -41,16 +45,14 @@
 				</div>
 				<div class="form-group input-group-lg mt-4">
 					<label for="inputPassword">Nhập mật khẩu:</label>
-					<input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu" name="password">
+					<input type="password" class="form-control" id="inputPassword" placeholder="Nhập mật khẩu"
+						name="password">
 				</div>
 				<div class="form-group input-group-lg mt-4">
 					<label for="inputConfirmPassword">Nhập lại mật khẩu:</label>
-					<input type="password" class="form-control" id="inputConfirmPassword" placeholder="Nhập lại mật khẩu" name="confirm">
-					<div class="form-check mt-4">
-						<input type="checkbox" class="form-check-input" id="checkAgree" value="agree" name="agree">
-						<label class="form-check-label" for="checkAgree">Bạn đồng ý với các điều khoản và chính sách của chúng
-							tôi?</label>
-					</div>
+					<input type="password" class="form-control" id="inputConfirmPassword"
+						placeholder="Nhập lại mật khẩu" name="confirm">
+					<div class="g-recaptcha mt-4" data-sitekey="6LdA8agUAAAAAOlp6VKuo8WBWah8scp9n3KYbvov"></div>
 				</div>
 				<div id="btn_logins" class="mt-4">
 					<button type="submit" class="btn w-100 mb-3" id="btn_sign_up">ĐĂNG KÝ</button>
@@ -69,46 +71,46 @@
 	<!--Validate-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 	<script>
-		$(function(){
+		$(function () {
 			$('#signupForm').validate({
-				rules:{
-					email:{
+				rules: {
+					email: {
 						required: true,
 						email: true,
 						remote: {
 							url: '/guest/is-available'
 						}
 					},
-					password:{
+					password: {
 						required: true,
 						minlength: 6
 					},
-					confirm:{
+					confirm: {
 						required: true,
 						equalTo: $('[name="password"]')
 					}
 				},
-				messages:{
-					email:{
+				messages: {
+					email: {
 						required: 'Vui lòng nhập email.',
 						email: 'Email không hợp lệ.',
 						remote: 'Email này đã được đăng ký bởi tài khoản khác.'
 					},
-					password:{
+					password: {
 						required: 'Vui lòng nhập mật khẩu.',
 						minlength: 'Mật khẩu phải có độ dài lớn hơn 6.'
 					},
-					confirm:{
+					confirm: {
 						required: 'Vui lòng xác nhận lại mật khẩu.',
 						equalTo: 'Xác nhận mật khẩu và mật khẩu phải trùng nhau.'
 					}
 				},
 				errorElement: 'small',
 				errorClass: 'help-block text-danger',
-				highlight: function(e){
+				highlight: function (e) {
 					$(e).removeClass('is-valid').addClass('is-invalid');
 				},
-				unhighlight: function(e){
+				unhighlight: function (e) {
 					$(e).removeClass('is-invalid').addClass('is-valid');
 				}
 			});

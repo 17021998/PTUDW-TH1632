@@ -19,18 +19,11 @@
 
 <body>
     <div id="page">
+        <%- include('../logout/admin/form.ejs') %>
         <%- include('../header-footer/header-admin.ejs') %>
         <section id="page-main-content">
             <!--Head content-->
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-                    <a href="profile-admin.html" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
-                        <span>Đăng xuất</span>
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
-            </div>
+            <%- include('../logout/admin/header-hori.ejs') %>
             <!--Main content-->
             <div class="container">
                 <div class="row">
@@ -63,7 +56,6 @@
                             <!--data-->
                             <div class="card body">
                                 <ul class="cata-list list-unstyled row p-2">
-                                    
                                     <% for(var i = 0; i< rows.length; i++){ %>
                                         <% if(i == 0){ %>
                                         <li class="col-12 col-md-5 mx-auto mb-4 p-2">
@@ -106,7 +98,6 @@
                                                 </li>
                                             <% } %>
                                         <% } %>
-                                    
                                         <% if(i != 0){ %>
                                             <% if(rows[i].ID == rows[i-1].ID && rows[i].subID != null){ %>
                                                 <li class="list-group-item">
@@ -127,6 +118,16 @@
                                                         </button>
                                                     </form>
                                                 </li>
+                                                <% if((rows[i].subID != null) && (i == (rows.length-1))){ %>
+                                                    <li class="list-group-item">
+                                                            <form action="/admin/categories/<%=rows[i].ID %>/add" method="post"
+                                                                class="input-group mb-1">
+                                                                <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
+                                                                <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                <% } %>
                                             <% } %>
                                             <% if(rows[i].ID != rows[i-1].ID){ %>
                                                 <!--Them danh muc "can xem lai"-->
@@ -179,15 +180,18 @@
                                                             </button>
                                                         </form>
                                                     </li>
+                                                    <% if((rows[i].subID != null) && (i == (rows.length-1))){ %>
+                                                        <li class="list-group-item">
+                                                                <form action="/admin/categories/<%=rows[i].ID %>/add" method="post"
+                                                                    class="input-group mb-1">
+                                                                    <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
+                                                                    <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    <% } %>
                                                 <% }else{ %>
-                                                    <li class="list-group-item">
-                                                        <form action="/admin/categories/<%=rows[i].ID %>/add" method="post" class="input-group mb-1">
-                                                            <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">
-                                                            <button class="btn btn-white js-add-btn" type="submit"><i class="fas fa-plus"></i></button>
-                                                        </form>
-                                                    </li>
-                                                <% } %>
-                                                <% if(rows[i].subID != null && i == (rows.length-1)){ %>
+                                                    <!--Them thang con-->
                                                     <li class="list-group-item">
                                                         <form action="/admin/categories/<%=rows[i].ID %>/add" method="post" class="input-group mb-1">
                                                             <input type="text" class="form-control" placeholder="Thêm danh mục con" name="CatName">

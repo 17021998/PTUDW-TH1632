@@ -7,11 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Security</title>
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" type="text/css" href="/css/user/securityCSS.css">
@@ -19,23 +17,13 @@
     <script src="/js/editor/jquery.min.js"></script>
     <!--Main Script-->
     <script src="/js/editor/main.js"></script>
-
 </head>
-
 <body>
     <div id="page">
+        <%- include('../logout/user/form.ejs') %>
         <%- include('../header-footer/header-user.ejs') %>
         <section id="page-main-content">
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-                    <a href="#" class="head-item"><span>Premium</span></a>
-                    <a href="profile-user-normal.html" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
-                        <span>Đăng xuất</span>
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
-            </div>
+            <%- include('../logout/user/header-hori.ejs') %>
             <div id="content">
                 <h1>Bảo mật</h1>
                 <hr>
@@ -74,13 +62,10 @@
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
-
         </section>
     </div>
-
     <script type="text/javascript">
         function showPassword() {
             var x = document.getElementById('oldPassword');
@@ -90,7 +75,6 @@
                 x.type = 'password';
             }
         }
-
         function changePassword() {
             $('#change-pasword').removeClass('class-disable');
         }
@@ -103,5 +87,4 @@
         }
     </script>
 </body>
-
 </html>

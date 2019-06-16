@@ -6,35 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User-Info</title>
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <!--StyleSheet-->
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" type="text/css" href="/css/admin/profile-adminCSS.css">
     <link rel="stylesheet" type="text/css" href="/css/admin/admin-style.css">
     <link rel="stylesheet" type="text/css" href="/css/editor/editor-style.css">
-    <!--JQuery-->
-    <script src="/js/editor/jquery.min.js"></script>
-    <!--Main Script-->
-    <script src="/js/editor/main.js"></script>
 </head>
 
 <body>
     <div id="page">
-       <%- include('../header-footer/header-admin.ejs') %>
-        <section id="page-main-content">
-            <div class="head-content row">
-                <div class="col-md-12 text-right my-auto">
-                    <a href="#" class="head-item"><img src="../images/account.png"></a>
-                    <a href="../index.html" class="head-item">
-                        <span>Đăng xuất</span>
-                        <i class="fas fa-sign-out-alt"></i>
-                    </a>
-                </div>
-            </div>
+            <%- include('../logout/admin/form.ejs') %>
+            <%- include('../header-footer/header-admin.ejs') %>
+            <section id="page-main-content">
+            <%- include('../logout/admin/header-hori.ejs') %>
             <div id="content">
                 <div class="row">
                     <div class="col-12 py-2">
@@ -87,6 +74,10 @@
             </div>
         </section>
     </div>
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--Main Script-->
+    <script src="/js/editor/main.js"></script>
 </body>
 
 </html>

@@ -12,14 +12,6 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `th16news`
 --
 CREATE DATABASE IF NOT EXISTS `th16news` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `th16news`;
@@ -68,26 +60,6 @@ CREATE TABLE IF NOT EXISTS `catpost` (
 --       `post` -> `ID`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `editor`
---
-
-DROP TABLE IF EXISTS `editor`;
-CREATE TABLE IF NOT EXISTS `editor` (
-  `UserID` varchar(50) NOT NULL,
-  PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- RELATIONSHIPS FOR TABLE `editor`:
---   `UserID`
---       `userprimary` -> `ID`
---
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `editorcat`
 --
@@ -124,6 +96,8 @@ CREATE TABLE IF NOT EXISTS `post` (
   `Abstract` text,
   `ImageAbstract` text,
   `ReleaseDay` date DEFAULT NULL,
+  `Deny` text DEFAULT NULL,
+  `Viewed` int DEFAULT 0,
   `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -143,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `subscriber` (
   `UserID` varchar(50) NOT NULL,
   `Status` int(11) DEFAULT NULL,
   `BeginDay` date DEFAULT NULL,
+  `EndDay` date DEFAULT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -206,7 +181,8 @@ CREATE TABLE IF NOT EXISTS `userprimary` (
   `Email` varchar(50) DEFAULT NULL,
   `Photo` varchar(50) DEFAULT NULL,
   `DoB` date DEFAULT NULL,
-  `PassHash` varchar(50) DEFAULT NULL,
+  `PassHash` varchar(100) DEFAULT NULL,
+  `role` varchar(15) DEFAULT NULL,
   `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -283,17 +259,11 @@ ALTER TABLE `catpost`
   ADD CONSTRAINT `fk_CatPost_Post` FOREIGN KEY (`PostID`) REFERENCES `post` (`ID`);
 
 --
--- Constraints for table `editor`
---
-ALTER TABLE `editor`
-  ADD CONSTRAINT `fk_edit_user` FOREIGN KEY (`UserID`) REFERENCES `userprimary` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `editorcat`
 --
 ALTER TABLE `editorcat`
   ADD CONSTRAINT `fk_editcat_cat` FOREIGN KEY (`ManagedCatID`) REFERENCES `category` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_editcat_edit` FOREIGN KEY (`UserID`) REFERENCES `editor` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_editcat_edit` FOREIGN KEY (`UserID`) REFERENCES `userprimary` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `subscriber`
@@ -325,3 +295,25 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+USE `th16news`;
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `ID` varchar(50) NOT NULL,
+  `PostID` int(11) NOT NULL,
+  `UserID` varchar(50) DEFAULT NULL,
+  `Content` text NOT NULL,
+  `IsDelete` int(1) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `comment`
+  ADD CONSTRAINT `fk_comm_post` FOREIGN KEY (`PostID`) REFERENCES `post` (`ID`);
+
+ALTER TABLE `comment`
+  ADD CONSTRAINT `fk_comm_user` FOREIGN KEY (`UserID`) REFERENCES `userprimary` (`ID`);
+
+ALTER TABLE `tag` ADD FULLTEXT KEY (`TagName`);
+
+ALTER table `userprimary` ADD FULLTEXT KEY (`FullName`);
