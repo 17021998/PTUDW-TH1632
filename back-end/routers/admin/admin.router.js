@@ -8,6 +8,7 @@ var uuidv4 = require('uuid/v4');
 var guestModel = require('../../modles/guest/guest.model');
 var subcriberModel = require('../../modles/subcriber/subcriber.modle');
 var editorModel = require('../../modles/editor/editor.modle');
+var writerModel = require('../../modles/writer/writer.modle');
 var categoryModel = require('../../modles/categoty.modle');
 var momnet = require('moment');
 var passport = require('passport');
@@ -373,6 +374,79 @@ router.post('/qlNguoiDung/editors/delete/:id', (req, res, next) =>{
     editorModel.delete(id)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/editors');
+    }).catch(err=>{
+        console.log(err);
+    }).catch(next);
+})
+
+//Load writer
+router.get('/qlNguoiDung/writers', (req, res) =>{
+    var page = req.query.page || 1;
+    if (page < 1) page = 1;
+    var limit = 4;
+    var offset = (page - 1)*limit;
+    Promise.all([
+        writerModel.pageWriter(limit, offset),
+        writerModel.countByWriter()
+    ]).then(([rows, count_rows]) => {
+        var total = count_rows[0].total;
+        var nPages = Math.floor(total / limit);
+        if (total % limit > 0) nPages++;
+        var pages = [];
+        var currentPage = 1;
+        for( i = 1; i <= nPages; i++){
+            var obj = {value: i};
+            pages.push(obj);
+        }
+        if (typeof req.query.page !== 'undefined') {
+            currentPage = +req.query.page;
+            }
+        var isActive = "qlnd";
+        res.render('admin/user/qlNguoiDung-writer', {"isActive": isActive, rows: rows, pages,currentPage: currentPage});
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
+})
+
+//Add new writers
+router.post('/qlNguoiDung/writers', (req, res, next) =>{
+    var saltRounds = 10;
+    var name = req.body.name;
+    var nickname = req.body.nickname;
+    var email = req.body.email;
+    var hash = bcrypt.hashSync(req.body.password, saltRounds);
+    var id = uuidv4();
+    var dob = momnet(req.body.birthday, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+    var entity1 = {
+        ID: id,
+        FullName: name,
+        Email: email,
+        PassHash: hash,
+        role: 'writer',
+        DoB: dob
+    };
+    var entity2 = {
+        UserID: id, 
+        WriterName: nickname
+    };
+
+    guestModel.add(entity1)
+    .then(()=>{
+        writerModel.add(entity2)
+        .then(()=>{
+            return res.redirect('/admin/qlNguoiDung/writers');
+        }).catch(next)
+    }).catch(next);
+})
+
+//Delete writer
+router.post('/qlNguoiDung/writers/delete/:id', (req, res, next) =>{
+    var id = req.params.id;
+    writerModel.delete(id)
+    .then(()=>{
+        return res.redirect('/admin/qlNguoiDung/writers');
     }).catch(err=>{
         console.log(err);
     }).catch(next);

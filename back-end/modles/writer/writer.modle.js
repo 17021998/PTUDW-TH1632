@@ -33,5 +33,20 @@ module.exports = {
 
     deletePost: id => {
     return db.delete('category', 'CatID', id);
+    },
+    add: entity =>{
+        return db.add('writer', entity);
+    },
+    allWriter: () => {
+        return db.load(`select * from writer w, userprimary u where w.UserID = u.ID and u.IsDelete is Null;`);
+    },
+    pageWriter: (limit, offset) => {
+        return db.load(`select * from writer w, userprimary u where w.UserID = u.ID and u.IsDelete is Null limit ${limit} offset ${offset};`);
+    },
+    countByWriter: () => {
+        return db.load(`select count (*) as total from writer w, userprimary u where w.UserID = u.ID and u.IsDelete is Null;`);
+    },
+    delete: id => {
+        return db.delete('userprimary', 'ID', id);
     }
 };

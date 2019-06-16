@@ -23,10 +23,18 @@
 
 <body>
     <div id="page">
-        <%- include('../../logout/admin/form.ejs') %>
         <%- include('../../header-footer/header-admin.ejs') %>
         <section id="page-main-content">
-        <%- include('../../logout/admin/header-hori.ejs') %>
+            <!--Head content-->
+            <div class="head-content row">
+                <div class="col-md-12 text-right my-auto">
+                    <a href="profile-admin.html" class="head-item"><img src="/images/account.png"></a>
+                    <a href="/index.html" class="head-item">
+                        <span>Đăng xuất</span>
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
             <!--Main content-->
             <div class="container">
                 <div class="row">
@@ -34,7 +42,7 @@
                         <a href="/admin/qlNguoiDung">
                             <h2>Quản lý người dùng </h2>
                         </a>
-                        <h2>>Editor</h2>
+                        <h2>>Writer</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -44,12 +52,12 @@
                                 <div class="row">
                                     <div class="col my-auto">
                                         <div id="card-header-title">
-                                            <h5>Danh sách người dùng Editor</h5>
+                                            <h5>Danh sách người dùng Writer</h5>
                                         </div>
                                     </div>
                                     <div class="col text-right">
                                         <a href="#addNewModal" class="btn btn-primary btn-color" data-toggle="modal"><i
-                                                class="fas fa-plus-circle"></i> <span>Thêm Editor</span></a>
+                                                class="fas fa-plus-circle"></i> <span>Thêm Writer</span></a>
                                             </div>
                                         </div>
                             </div>
@@ -60,10 +68,10 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Avatar</th>
-                                                <th scope="col">Editor</th>
+                                                <th scope="col">Writer</th>
                                                 <th scope="col">Ngày sinh</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Số lượng category quản lý</th>
+                                                <th scope="col">Số lượng bài viết đã có</th>
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
@@ -87,7 +95,7 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <%=rows[index].noc %>
+                                                    Chua bo gi vo het
                                                 </td>
                                                 <td>
                                                     <div class = "d-flex justify-content-around">
@@ -170,7 +178,7 @@
 
             <!-- Add New Modal -->
             <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-edit" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Thêm
@@ -182,61 +190,37 @@
                         </div>
                         <div class="modal-body text-left">
                             <form novalidate id="newMember" method="POST" action="">
-                                <div class="row">
-                                    <div class="editor-info col-6">
-                                        <div class="form-group">
-                                            <label for="input_hoTen" class="col-form-label">
-                                                Họ tên:
-                                            </label>
-                                            <input type="text" class="form-control" name="name"
-                                                id="input_hoTen" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="input_birthday"
-                                                class="col-form-label">Ngày sinh:</label>
-                                            <input type="text" id="input_birthday"
-                                                class="form-control" name="birthday" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="input_email" class="col-form-label">
-                                                Email:
-                                            </label>
-                                            <input type="email" name="email"
-                                                class="form-control" id="input_email" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="input_password" class="col-form-label">
-                                                Mật khẩu:
-                                            </label>
-                                            <input type="password" name="password"
-                                                class="form-control" id="input_password" />
-                                        </div>
+                                <div class="form-group">
+                                    <label for="input_hoTen" class="col-form-label">
+                                        Họ tên:
+                                    </label>
+                                    <input type="text" class="form-control" name="name"
+                                        id="input_hoTen" />
+                                </div>
+                                <div class="form-group">
+                                        <label for="input_butDanh" class="col-form-label">
+                                            Bút danh:
+                                        </label>
+                                        <input type="text" class="form-control" name="nickname"
+                                            id="input_butDanh" />
                                     </div>
-                                    <div class="editor-cat col-6">
-                                        <div class="form-group list-style-none">
-                                            <span>Chuyên mục được phân công: </span>
-                                            <ul class="ul-father">
-                                                <% for(let index = 0; index < cats.length; index++){ %>
-                                                    <% if(cats[index].SuperCatID == null) {%>    
-                                                        <li>
-                                                            <input type="checkbox" id="<%=cats[index].ID %>" name="checkCat" value="<%=cats[index].ID %>">
-                                                            <label for="<%=cats[index].ID %>"><%=cats[index].CatName %></label>
-                                                            <ul>
-                                                                <% for(let j = 0; j < cats.length; j++){ %>
-                                                                    <% if(cats[j].SuperCatID == cats[index].ID){ %>
-                                                                       <li>
-                                                                            <input type="checkbox" id="<%=cats[j].ID %>" name="checkCat" value="<%=cats[j].ID %>">
-                                                                            <label for="<%=cats[j].ID %>"><%=cats[j].CatName %></label> 
-                                                                       </li>
-                                                                    <% } %>
-                                                                <% } %>
-                                                            </ul>
-                                                        </li>
-                                                    <% } %>
-                                                <% } %>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="input_birthday"
+                                        class="col-form-label">Ngày sinh:</label>
+                                    <input type="text" id="input_birthday"
+                                        class="form-control" name="birthday" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input_email" class="col-form-label">
+                                        Email:
+                                    </label>
+                                    <input type="email" name="email" class="form-control" id="input_email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="input_password" class="col-form-label">
+                                        Mật khẩu:
+                                    </label>
+                                    <input type="password" name="password" class="form-control" id="input_password" />
                                 </div>
                                 <div class="text-right">
                                     <button type="button" class="btn btn-secondary btn-color mr-3" data-dismiss="modal">Hủy</button>
@@ -280,7 +264,7 @@
             </div>
             <!-- End Delete Modal -->
         </div>
-               
+
     </div>
 
     <!--JQuery-->
@@ -298,7 +282,7 @@
             $('td').click(function() {
                 var $tr = $(this).closest('tr');
                 var chooseID = $tr.attr('id');
-                var finalActionDelete = "/admin/qlNguoiDung/editors/delete/"+chooseID;
+                var finalActionDelete = "/admin/qlNguoiDung/writers/delete/"+chooseID;
                 document.getElementById('deleteMember').action = finalActionDelete;
             });
             $('#input_birthday').datetimepicker({
@@ -344,4 +328,4 @@
     </script>
 </body>
 
-</html>
+</html> 
