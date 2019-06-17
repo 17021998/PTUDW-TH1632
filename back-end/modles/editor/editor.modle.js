@@ -4,12 +4,17 @@ var nametable = "catpost";
 
 module.exports = {
 
-    allPostBycategory: CatID=>{
-        return db.load(`select p.*, cs.CatName from (select * from category as c where c.SuperCatID=${CatID}) as cs, catpost as cp, post as p where cs.ID = cp.CatID and p.ID=cp.PostID and p.PostStatus is null and p.IsDelete is null`);
+    allPostBycategory: (CatID, userID)=>{
+        return db.load(`select p.* 
+        from post as p, category as c, catpost as cp, editorcat as ec 
+        where ec.UserID='${userID}' and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
     },
 
-    allcategory: ()=>{
-        return db.load('select c.ID, c.CatName from category as c where c.SuperCatID is null');
+    allcategory: (id)=>{
+        var sql = `select cat.ID, cat.CatName from category as cat,
+        (select c.SuperCatID from editorcat as ec, category as c where ec.UserID = '${id}' and ec.ManagedCatID = c.ID group by c.SuperCatID) as cate 
+        where cat.ID= cate.SuperCatID`
+        return db.load(sql);
     },
 
     getContentPost: ID=>{

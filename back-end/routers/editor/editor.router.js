@@ -41,7 +41,7 @@ router.post('/tuchoi', (req, res,next) => {
 
 router.get('/profile-editor', (req, res,next) => {
     var isActive = "pe";
-    editorModle.allcategory().then(rows => {
+    editorModle.allcategory(req.user.ID).then(rows => {
         res.render('editor/profile-editor', { "isActive": isActive, categories: rows });
     }).catch(next);
 });
@@ -65,7 +65,7 @@ router.post('/update/profile-editor', (req, res) => {
 
 router.get('/security', (req, res,next) => {
     var isActive = "s";
-    editorModle.allcategory().then(rows => {
+    editorModle.allcategory(req.user.ID).then(rows => {
         res.render('editor/security', { "isActive": isActive, categories: rows });
     }).catch(next);
 });
@@ -110,8 +110,8 @@ router.post('/logout',auth , (req, res, next) => {
 router.get("/:iddm", (req, res,next) => {
     var iddanhmuc = req.params.iddm;
     Promise.all([
-        editorModle.allcategory(),
-        editorModle.allPostBycategory(iddanhmuc),
+        editorModle.allcategory(req.user.ID),
+        editorModle.allPostBycategory(iddanhmuc, req.user.ID),
     ]).then(([rows, rowPostByCat]) => {
         for (let index = 0; index < rows.length; index++) {
             if (rows[index].ID === +iddanhmuc) {
