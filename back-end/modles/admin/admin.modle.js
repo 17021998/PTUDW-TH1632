@@ -19,10 +19,6 @@ module.exports = {
     getCatagoryChild:()=>{
         return db.load('select * from category as c where c.SuperCatID is not null and IsDelete is null');
     },
-    
-    single: id => {
-    return db.load('select * from '+nametable+' where ID = ${id}');
-    },
 
     add: entity => {
     return db.add(nametable, entity);

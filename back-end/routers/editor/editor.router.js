@@ -56,24 +56,7 @@ router.get('/security', (req, res,next) => {
     }).catch(next);
 });
 
-// xu li nay sau cung` vi no co cung root nếu muốn đổi root thì bỏ đâu cũng đc
-router.get("/:iddm", (req, res,next) => {
-    var iddanhmuc = req.params.iddm;
-    Promise.all([
-        editorModle.allcategory(),
-        editorModle.allPostBycategory(iddanhmuc),
-    ]).then(([rows, rowPostByCat]) => {
-        for (let index = 0; index < rows.length; index++) {
-            if (rows[index].ID === +iddanhmuc) {
-                var chuyenmuc = rows[index].CatName;
-                rows[index].isActive = true;
-            }
-        }
-        var isActive = "xdbv";
-        res.render('editor/editor-index', { "isActive": isActive, "chuyenmuc": chuyenmuc, categories: rows, post: rowPostByCat });
 
-    }).catch(next);
-});
 //Đăng nhập cho editor
 router.get('/login', (req, res) => {
     res.render('guest/login');
@@ -107,5 +90,24 @@ router.post('/login', (req, res, next) => {
 router.post('/logout',auth , (req, res, next) => {
     req.logOut();
     res.redirect('/editor/login');
+});
+
+// xu li nay sau cung` vi no co cung root nếu muốn đổi root thì bỏ đâu cũng đc
+router.get("/:iddm", (req, res,next) => {
+    var iddanhmuc = req.params.iddm;
+    Promise.all([
+        editorModle.allcategory(),
+        editorModle.allPostBycategory(iddanhmuc),
+    ]).then(([rows, rowPostByCat]) => {
+        for (let index = 0; index < rows.length; index++) {
+            if (rows[index].ID === +iddanhmuc) {
+                var chuyenmuc = rows[index].CatName;
+                rows[index].isActive = true;
+            }
+        }
+        var isActive = "xdbv";
+        res.render('editor/editor-index', { "isActive": isActive, "chuyenmuc": chuyenmuc, categories: rows, post: rowPostByCat });
+
+    }).catch(next);
 });
 module.exports = router;

@@ -37,9 +37,32 @@ router.get('/baivietchuaduyet',auth, (req, res) => {
     res.render('writer/baivietduocduyet', { "isActive": isActive }); 
 })
 
-router.get('/profile-writer',auth, (req, res) => {
+router.get('/profile-writer',auth, (req, res,next) => {
     var isActive="pw";
-    res.render('writer/profile-writer', { "isActive": isActive });
+    var id = req.user.ID;
+    writerModle.getWriter(id)
+    .then(rows=>{
+        res.render('writer/profile-writer', { "isActive": isActive , "WriterName": rows[0]});
+    })
+    .catch(next)
+    
+})
+// router post update profile writer
+router.post('/update/profile-writer', (req,res, next)=>{
+    var entity = req.body;
+        writerModle.updateWriterProfile(entity)
+        .then((id)=>{
+            res.end('success');
+        })
+        .catch(()=>res.end('err'));
+})
+router.post('/updateW/profile-writer', (req,res, next)=>{
+    var entity = req.body;
+        writerModle.updateWriterN(entity)
+        .then((id)=>{
+            res.end('success');
+        })
+        .catch(()=>res.end('err'));
 })
 
 router.get('/security',auth, (req, res) => {

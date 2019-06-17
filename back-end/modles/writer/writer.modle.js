@@ -54,5 +54,14 @@ module.exports = {
     },
     addWriterPost: entity=>{
         return db.add('writerpost', entity);
+    },
+    updateWriterProfile: (entity)=>{
+        return  db.update('userprimary', 'ID', entity);
+    },
+    updateWriterN: (entity)=>{
+        return  db.update('writer', 'UserID', entity);
+    },
+    getWriter: id =>{
+        return db.load(`select w.WriterName from writer as w where w.UserID = '${id}'`);
     }
 };
