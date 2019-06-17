@@ -6,7 +6,6 @@ module.exports = function (app){
     app.use('/Chitietbaiviet', require('../routers/Chitietbaiviet/Chitietbaiviet.router'));
     app.use('/guest', require('../routers/guest/guest.router'));
     app.use('/editor', require('../routers/editor/editor.router'));
-    
     app.use('/user', require('../routers/user/user.router'));
     app.use('/writer', require('../routers/writer/writer.router'));
 

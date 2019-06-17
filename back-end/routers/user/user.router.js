@@ -9,7 +9,7 @@ router.get('/profile-user',auth , (req, res) => {
     });
 })
 
-router.get('/sercurity',auth , (req, res) => {
+router.get('/security',auth , (req, res) => {
     var isActive = "s";
     return res.render('user/sercurity', { 
         "isActive": isActive

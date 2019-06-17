@@ -1,7 +1,11 @@
     <div class="head-content row">
         <div class="col-md-12 text-right my-auto">
             <a class="head-item" href="/writer/profile-writer">
-                <img src="/images/account.png" />
+                <% if(user.Photo){ %>
+                    <img src="<%=user.Photo %>">
+                <% }else{ %>
+                    <img src="/images/account.png">
+                <% } %>
             </a>
             <a class="head-item" href="javascript:$('#frmSignout').submit();">
                 <span>

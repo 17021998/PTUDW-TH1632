@@ -17,23 +17,27 @@
 <body>
 	<!--div content-->
 	<div id="div_content">
-		<div class="row">
-			<div class="col-md-11 text-right btn_ls">
-				<!--Login/Logout-->
-				<a href="/guest/login" class="badge">
-					<span>Đăng nhập</span>
-					<i class="fas fa-sign-in-alt"></i>
-				</a>
-				<a href="#" class="badge">
-					<span>Đăng ký</span>
-					<i class="fas fa-user"></i>
-				</a>
+		<% if(locals.isNormalUser){ %>
+			<div class="row">
+				<div class="col-md-11 text-right btn_ls">
+					<!--Login/Logout-->
+					<a href="/guest/login" class="badge">
+						<span>Đăng nhập</span>
+						<i class="fas fa-sign-in-alt"></i>
+					</a>
+				</div>
 			</div>
-		</div>
+		<% } %>
 		<!--Login-->
 		<div id="div_form">
-			<h2>Đăng ký để sử dụng thêm nhiều tính năng bạn nhé!</h2>
-			<p>Cùng đăng ký nào!!!</p>
+			<% if(locals.isNormalUser){ %>
+				<h2>Đăng ký để sử dụng thêm nhiều tính năng bạn nhé!</h2>
+				<p>Cùng đăng ký nào!!!</p>
+			<% }else{ %>
+				<br>
+				<br>
+				<br>
+			<% } %>
 			<form novalidate action="" method="POST" id="signupForm">
 				<% if(locals.error){ %>
 					<div class="error"><%=locals.error%></div>
@@ -56,7 +60,14 @@
 				</div>
 				<div id="btn_logins" class="mt-4">
 					<button type="submit" class="btn w-100 mb-3" id="btn_sign_up">ĐĂNG KÝ</button>
-					<button type="button" class="btn w-100" id="btn_login_google">ĐĂNG KÝ BẰNG GOOGLE</button>
+					<% if (locals.isNormalUser) {%>
+						<% if(isNormalUser){ %>
+							<div id="span_or">
+								<span>HOẶC</span>
+							</div>
+							<a href="/guest/auth/google" class="btn w-100" id="btn_login_google">ĐĂNG KÝ BẰNG GOOGLE</a>
+						<% } %>
+					<% } %>
 				</div>
 			</form>
 		</div>

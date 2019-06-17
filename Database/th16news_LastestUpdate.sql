@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   `ReleaseDay` date DEFAULT NULL,
   `Deny` text DEFAULT NULL,
   `Viewed` int DEFAULT 0,
+  `EditorID` varchar(50) DEFAULT NULL,
   `IsDelete` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -179,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `userprimary` (
   `ProviderCo` varchar(50) DEFAULT NULL,
   `FullName` varchar(50) DEFAULT NULL,
   `Email` varchar(50) DEFAULT NULL,
-  `Photo` varchar(50) DEFAULT NULL,
+  `Photo` varchar(100) DEFAULT NULL,
   `DoB` date DEFAULT NULL,
   `PassHash` varchar(100) DEFAULT NULL,
   `role` varchar(15) DEFAULT NULL,

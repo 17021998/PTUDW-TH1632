@@ -19,7 +19,7 @@ var createConnection = () => {
     // port: 3306,
     // password: 'root',
     // database: 'th16news',
-     dateStrings: true
+    dateStrings: true
   });
 }
 

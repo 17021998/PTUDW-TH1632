@@ -10,5 +10,30 @@ module.exports = {
 
     searchTag: entity =>{
         return db.load(`select t.TagName from ${entity.table} as t where MATCH(TagName) AGAINST ('${entity.value}')`);
+    },
+    topThreeWeek: () => {
+        return db.load(`SELECT * FROM post 
+                        WHERE IsDelete IS NULL 
+                        AND PostStatus = 1 
+                        ORDER BY Viewed AND ABS( DATEDIFF( ReleaseDay, NOW() ) ) DESC
+                        LIMIT 3`);
+    },
+    topMostTen: () => {
+        return db.load(`SELECT * FROM post 
+                        WHERE IsDelete IS NULL 
+                        AND PostStatus = 1 
+                        ORDER BY Viewed DESC
+                        LIMIT 10`);
+    },
+    topNewTen: () => {
+        return db.load(`SELECT * 
+                        FROM post 
+                        WHERE IsDelete IS NULL
+                        AND PostStatus = 1
+                        ORDER BY ABS( DATEDIFF( ReleaseDay, NOW() ) ) DESC
+                        LIMIT 10 ;`);
+    },
+    topTenCate: () => {
+
     }
 };

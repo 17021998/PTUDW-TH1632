@@ -1,15 +1,11 @@
-var mail = require('nodemailer');
-var ggKey = require('./googleKey.js');
+var nodemailer = require('nodemailer');
 
-var auth = {
-    type: 'oauth2',
-    user: 'aquarius.superstar@gmail.com',
-    clientId : ggKey.EmailID,
-    clientSecret: ggKey.EmailSecret,
-    refreshToken: ggKey.RefreshToken
-};
-
-module.exports = mail.createTransport({
+var transporter = nodemailer.createTransport({
     service: 'gmail',
-    auth: auth,
+    auth: {
+        user: 'thnews8@gmail.com',
+        pass: 'Quang123456'
+    }
 });
+
+module.exports = transporter;

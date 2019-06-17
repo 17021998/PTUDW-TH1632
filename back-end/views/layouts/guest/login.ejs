@@ -15,26 +15,26 @@
 <body>
 	<!--div content-->
 	<div id="div_content">
-		<div class="row">
-			<div>
-				<img src="">
-			</div>
-			<div class="col-md-11 text-right btn_ls">
-				<!--Login/Logout-->
-				<a href="#" class="badge">
-					<span>Đăng nhập</span>
-					<i class="fas fa-sign-in-alt"></i>
-				</a>
-				<a href="/guest/sign_up" class="badge">
-					<span>Đăng ký</span>
-					<i class="fas fa-user"></i>
-				</a>
-			</div>
-		</div>
+			<% if(locals.isNormalUser){ %>
+				<div class="row">
+					<div class="col-md-11 text-right btn_ls">
+						<a href="/guest/sign_up" class="badge">
+							<span>Đăng ký</span>
+							<i class="fas fa-user"></i>
+						</a>
+					</div>
+				</div>
+			<% } %>
 		<!--Login-->
 		<div id="div_form">
+			<% if(locals.isNormalUser){ %>
 				<h2>Đăng nhập để thêm nhiều thông tin bạn nhé!</h2>
 				<p>Đăng nhập bằng tài khoản của bạn!!!</p>
+			<% }else{ %>
+				<br>
+				<br>
+				<br>
+			<% } %>
 			<form novalidate method="POST" id="signinForm">
 				<% if(locals.error){ %>
 					<div class="error">
@@ -55,20 +55,25 @@
 				</div>
 				<div id="btn_logins" class="mt-4">
 					<button type="submit" class="btn w-100" id="btn_login">ĐĂNG NHẬP</button>
-					<div id="span_or">
-						<span>HOẶC</span>
-					</div>
-					<button type="button" class="btn w-100" id="btn_login_google">ĐĂNG NHẬP BẰNG GOOGLE</button>
-					<a href="/guest/auth/google" class="btn">Đăng nhập google</a>
+					<% if (locals.isNormalUser) {%>
+						<% if(isNormalUser){ %>
+							<div id="span_or">
+								<span>HOẶC</span>
+							</div>
+							<a href="/guest/auth/google" class="btn w-100" id="btn_login_google">ĐĂNG KÝ BẰNG GOOGLE</a>
+						<% } %>
+					<% } %>
 				</div>
 			</form>
 		</div>
-		<div class="d-flex justify-content-center my-5">
-			<div class="d-flex flex-column">
-				<p>Bạn chưa có tài khoản?</p>
-				<button type="button" class="btn" id="btn_sign_up_free">ĐĂNG KÝ TÀI KHOẢN</button>
+		<% if(locals.isNormalUser){ %>
+			<div class="d-flex justify-content-center my-5">
+				<div class="d-flex flex-column">
+					<p>Bạn chưa có tài khoản?</p>
+					<a href="/guest/sign_up" class="btn" id="btn_sign_up_free">ĐĂNG KÝ TÀI KHOẢN</a>
+				</div>
 			</div>
-		</div>
+		<% } %>
 	</div>
 
 	<!-- ### Footer ### -->

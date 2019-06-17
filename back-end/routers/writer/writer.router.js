@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var writerModle = require('../../modles/writer/writer.modle');
 var auth = require('../../middlewares/auth');
+var isLogin = require('../../middlewares/checkLogInOut');
 
 router.get('/',auth, (req, res, next) => { 
     Promise.all([
@@ -104,7 +105,7 @@ router.post('/add',auth, (req,res, next)=>{
     // res.end('...');
 });
 
-router.get('/login', (req, res) => {
+router.get('/login',isLogin, (req, res) => {
     res.render('guest/login');
 });
 

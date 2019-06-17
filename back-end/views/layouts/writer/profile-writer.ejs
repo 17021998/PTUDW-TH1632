@@ -61,7 +61,9 @@
                         <div class="form-group col-md-12 row form-disable">
                             <label for="inputButDanh" class="col-sm-2 col-form-label">Bút danh:</label>
                             <input type="text" class="input-feild col-md-8" id="inputButDanh" 
-                            value="<%=WriterName.WriterName%>" disabled>
+                            value="<%if(WriterName){%>
+                                <%=WriterName.WriterName%>
+                                <% } %>" disabled>
                             <div class="js-group-edit col-md-2">
                                 <a href="#" class="form-a-edit w-75 js-edit">Edit</a>
                             </div>
@@ -251,7 +253,7 @@
         function saveEmail(){
             var name = $('#inputEmail').val();
             var id = '<%=user.ID%>';
-             $.post('/writer/update/profile-writer',{"ID": id, "FullName": name},(data,status)=>{
+            $.post('/writer/update/profile-writer',{"ID": id, "FullName": name},(data,status)=>{
                 if(status !='success'){
                     alert('Lỗi database!!');
                 }

@@ -3,6 +3,7 @@ var router = express.Router();
 var editorModle = require('../../modles/editor/editor.modle');
 var passport = require('passport');
 var auth = require('../../middlewares/auth');
+var isLogin = require('../../middlewares/checkLogInOut');
 
 // lay du lieu bai viet de dua ra cho editor xem va duyet
 router.post('/getContentPost', (req, res,next) => {
@@ -72,7 +73,7 @@ router.get('/security', (req, res,next) => {
 
 
 //Đăng nhập cho editor
-router.get('/login', (req, res) => {
+router.get('/login',isLogin, (req, res) => {
     res.render('guest/login');
 });
 

@@ -13,9 +13,10 @@ var categoryModel = require('../../modles/categoty.modle');
 var momnet = require('moment');
 var passport = require('passport');
 var auth = require('../../middlewares/auth');
+var isLogin = require('../../middlewares/checkLogInOut');
 
 // Đăng nhập đăng xuất
-router.get('/login', (req, res) => {
+router.get('/login',isLogin, (req, res) => {
     res.render('guest/login');
 });
 
@@ -50,7 +51,7 @@ router.post('/logout' ,auth , (req, res, next) => {
 });
 // Kết thúc đăng nhập đăng xuất
 
-router.get('/:id/ctBaiViet', (req, res) => {
+router.get('/:id/ctBaiViet',auth, (req, res) => {
     var isActive = "ctbv";
     var id = req.params.id;
     Promise.all([
@@ -65,7 +66,7 @@ router.get('/:id/ctBaiViet', (req, res) => {
     .catch();
 })
 
-router.get('/newBaiViet', (req,res,next)=>{
+router.get('/newBaiViet',auth, (req,res,next)=>{
     var isac = "nbv"
     adminModle.getcategoryFather()
     .then(rows=>{
@@ -74,12 +75,12 @@ router.get('/newBaiViet', (req,res,next)=>{
     .catch(next);
 })
 
-router.get('/editor-info', (req, res) => {
+router.get('/editor-info',auth, (req, res) => {
     var isActive = "ei";
     res.render('admin/editor-info', { "isActive": isActive });
 })
 
-router.get('/profile-admin', (req, res) => {
+router.get('/profile-admin',auth, (req, res) => {
     var isActive = "pa";
     res.render('admin/profile-admin', { "isActive": isActive });
 })
@@ -101,7 +102,7 @@ router.post('/update/profile-admin', (req,res, next)=>{
         .catch(()=>res.end('err'));
 })
 
-router.get('/qlBaiViet', (req, res,next) => {
+router.get('/qlBaiViet',auth, (req, res,next) => {
     var isActive = "qlbv";
     var ttbv = req.query.ttbv || 2;
     var page = req.query.page || 1;
@@ -155,7 +156,7 @@ router.get('/qlBaiViet', (req, res,next) => {
 
 })
 
-router.get('/qlChuyenMuc', (req, res,next) => {
+router.get('/qlChuyenMuc',auth, (req, res,next) => {
     adminModle.allCatagoty()
     .then(rows => {
         var isActive = "qlcm";
@@ -163,7 +164,7 @@ router.get('/qlChuyenMuc', (req, res,next) => {
     }).catch(next);
 })
 // quản lí hashtag
-router.get('/qlHashTag', (req, res, next) => {
+router.get('/qlHashTag',auth, (req, res, next) => {
     var isActive = "qlht";
     var page = req.query.page || 1; 
     if(page < 1 || isNaN(page)){
@@ -216,7 +217,7 @@ router.post('/deleteTag', (req,res,next)=>{
 })
 
 //Load Nguoi Dung
-router.get('/qlNguoiDung', (req, res) => {
+router.get('/qlNguoiDung',auth, (req, res) => {
     Promise.all([
         subcriberModel.someSubcriber(8),
         writerModel.someWriter(4),
@@ -233,7 +234,7 @@ router.get('/qlNguoiDung', (req, res) => {
 })
 
 //Load meber
-router.get('/qlNguoiDung/subcribers', (req, res) =>{
+router.get('/qlNguoiDung/subcribers',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
     var limit = 4;
@@ -333,7 +334,7 @@ router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
 })
 
 //Load editor
-router.get('/qlNguoiDung/editors', (req, res) =>{
+router.get('/qlNguoiDung/editors',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
     var limit = 4;
@@ -411,7 +412,7 @@ router.post('/qlNguoiDung/editors/delete/:id', (req, res, next) =>{
 })
 
 //Load writer
-router.get('/qlNguoiDung/writers', (req, res) =>{
+router.get('/qlNguoiDung/writers',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
     var limit = 4;
@@ -483,12 +484,12 @@ router.post('/qlNguoiDung/writers/delete/:id', (req, res, next) =>{
     }).catch(next);
 })
 
-router.get('/security', (req, res) => {
+router.get('/security',auth, (req, res) => {
     var isActive = "s";
     res.render('admin/security', { "isActive": isActive });
 })
 
-router.get('/user-info', (req, res) => {
+router.get('/user-info',auth, (req, res) => {
     var isActive = "ui";
     res.render('admin/user-info', { "isActive": isActive });
 })
@@ -499,7 +500,7 @@ router.post('/update/user-info', (req,res)=>{
     res.end('...');
 })
 
-router.get('/writer-info', (req, res) => {
+router.get('/writer-info',auth, (req, res) => {
     var isActive = "wi";
     res.render('admin/writer-info', { "isActive": isActive });
 })

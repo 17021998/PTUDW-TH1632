@@ -8,6 +8,8 @@ var subscriberModel = require('../../modles/subcriber/subcriber.modle');
 var request = require('request');
 var mailTransporter = require('../../utils/email');
 var mailContent = require('../../utils/resetMail');
+var isLogin = require('../../middlewares/checkLogInOut');
+var moment = require('moment');
 
 router.get('/chuyen-de', (req,res,next)=> {
     Promise.all([
@@ -29,8 +31,8 @@ router.get('/hash-tag', (req,res,next)=>{
     }).catch(next);
 })
 
-router.get('/login', (req,res,next)=>{
-    res.render('guest/login');
+router.get('/login',isLogin, (req,res,next)=>{
+    res.render('guest/login', {isNormalUser: true});
 })
 
 router.get('/search-result', (req,res,next)=>{
@@ -43,8 +45,8 @@ router.get('/search-result', (req,res,next)=>{
     }).catch(next);
 })
 
-router.get('/sign_up', (req, res, next) => {
-    res.render('guest/sign_up');
+router.get('/sign_up', isLogin, (req, res, next) => {
+    res.render('guest/sign_up', {isNormalUser: true});
 });
 
 router.post('/sign_up', (req, res, next) => {
@@ -69,7 +71,7 @@ router.post('/sign_up', (req, res, next) => {
     var hash = bcrypt.hashSync(req.body.password, saltRounds);
     var id = uuidv4();
     var today = new Date().toLocaleDateString();
-    var beginDay = momnet(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+    var beginDay = moment(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
     var currentDay = new Date();
     var endDay = new Date(currentDay.getTime() + 86400000*7); // + 7 day in ms
     var entity = {
@@ -152,6 +154,7 @@ router.get('/is-correct-code', (req, res, next) => {
 
 router.post('/resetEmail', (req, res, next) => {
     var userMail = req.body.email;
+    console.log(userMail);
     guestModel.singleByUserEmail(userMail)
     .then((rows) => {
         if(rows.length === 0){
@@ -172,7 +175,9 @@ router.post('/resetEmail', (req, res, next) => {
                 if(err){
                     next(err);
                 }
+                console.log("Gui mail thanh cong");
                 req.session.code = token;
+                mailTransporter.close();
                 res.render('guest/reset-password');
             })
         }
