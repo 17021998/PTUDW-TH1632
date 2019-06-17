@@ -225,6 +225,7 @@
         function saveFullName(){
             var name = $('#inputHoTen').val();
             var id = '<%=user.ID%>';
+
              $.post('/admin/update/profile-admin',{"ID": id, "FullName": name},(data,status)=>{
                 if(status !='success'){
                     alert('Lỗi database!!');
@@ -236,7 +237,7 @@
         function saveEmail(){
             var name = $('#inputEmail').val();
             var id = '<%=user.ID%>';
-             $.post('/admin/update/profile-admin',{"ID": id, "FullName": name},(data,status)=>{
+             $.post('/admin/update/profile-admin',{"ID": id, "Email": name},(data,status)=>{
                 if(status !='success'){
                     alert('Lỗi database!!');
                 }

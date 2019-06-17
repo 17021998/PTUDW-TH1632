@@ -50,6 +50,18 @@ router.get('/profile-writer',auth, (req, res,next) => {
 // router post update profile writer
 router.post('/update/profile-writer', (req,res, next)=>{
     var entity = req.body;
+    var name = req.body.FullName||1
+    var mail = req.body.Email || 1;
+    var butdanh = req.body.WriterName || 1;
+    if( name!=1 ){ 
+        req.user.FullName = name;
+    }
+    if( mail!=1 ){ 
+        req.user.Email = mail;
+    } 
+    if( butdanh!=1 ){ 
+        req.user.WriterName = butdanh;
+    }
         writerModle.updateWriterProfile(entity)
         .then((id)=>{
             res.end('success');
@@ -73,6 +85,7 @@ router.get('/security',auth, (req, res) => {
 router.post('/add',auth, (req,res, next)=>{
     req.body.Premium=0;
     req.body.ReleaseDay=null;
+    req.body.editorID = null;
     req.body.PostStatus=null;
     var CatID = req.body.CatID;
     delete req.body['CatID'];

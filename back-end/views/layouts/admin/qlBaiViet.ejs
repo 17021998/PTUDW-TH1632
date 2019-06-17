@@ -75,8 +75,8 @@
                                                     <th scope="row"><%= baiviet[index].ID %></th>
                                                     <td><%= baiviet[index].CatName %></td>
                                                     <td><%= baiviet[index].Title %></td>
-                                                    <td>Thường</td>
-                                                    <td>Xuân Diệu</td>
+                                                    <td><% if(baiviet[index].Premium ==1){ %> Premium <%}else{%> Thường <%}%></td>
+                                                    <td><%=baiviet[index].FullName%></td>
                                                     <td class="text-success">
                                                         <% if (baiviet[index].PostStatus===-1) { %>
                                                             Từ Chối.

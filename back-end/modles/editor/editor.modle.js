@@ -53,5 +53,8 @@ module.exports = {
     },
     someEditor: (limit)=>{
         return db.load(`select e.UserID, e.noc ,u.FullName, u.Email, u.DoB, u.Photo from userprimary u, (select distinct(UserID), count(ManagedCatID) as noc from editorcat group by UserID )as e where e.UserID = u.ID AND u.IsDelete is Null limit ${limit};`)
+    },
+    updateEditorProfile: (entity)=>{
+        return  db.update('userprimary', 'ID', entity);
     }
 };

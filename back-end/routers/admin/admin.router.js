@@ -86,6 +86,14 @@ router.get('/profile-admin', (req, res) => {
 // router post update profile admin
 router.post('/update/profile-admin', (req,res, next)=>{
     var entity = req.body;
+    var name = req.body.FullName||1
+    var mail = req.body.Email || 1;
+    if( name!=1 ){ 
+        req.user.FullName = name;
+    }
+    if( mail!=1 ){ 
+        req.user.Email = mail;
+    }
         adminModle.updateUserPrimary(entity)
         .then((id)=>{
             res.end('sucess');
@@ -107,8 +115,8 @@ router.get('/qlBaiViet', (req, res,next) => {
     var offset = (page - 1) * limit;
     Promise.all([
         adminModle.countPost(),
-        adminModle.pagePost(limit, offset, ttbv),
-    ]).then(([count, rowsPage])=>{ 
+        adminModle.pagePost(limit, offset, ttbv), // lay duoc danh sach cac post 
+    ]).then(([count, rowsPage])=>{
         for (let index = 0; index < rowsPage.length; index++) {
             if(rowsPage[index].ReleaseDay!=null)
             rowsPage[index].ReleaseDay= dateFormat(rowsPage[index].ReleaseDay, "yyyy/mm/dd");

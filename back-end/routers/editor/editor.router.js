@@ -16,6 +16,7 @@ router.post('/getContentPost', (req, res,next) => {
 // xet duyet bbai viet
 router.post('/xetduyet', (req, res, next) => {
     req.body.PostStatus = 1;
+    req.body.editorID = req.user.ID;
     var id = req.body.ID;
     Promise.all([
         editorModle.xetDuyetPost(req.body),
@@ -28,6 +29,7 @@ router.post('/xetduyet', (req, res, next) => {
 // tu choi bai viet
 router.post('/tuchoi', (req, res,next) => {
     req.body.PostStatus = -1;
+    req.body.editorID = req.user.ID;
     var id = req.body.ID;
     Promise.all([
         editorModle.xetDuyetPost(req.body),
@@ -46,7 +48,19 @@ router.get('/profile-editor', (req, res,next) => {
 // router post update profile editor.
 router.post('/update/profile-editor', (req, res) => {
     var entity = req.body;
-    res.end('...');
+    var name = req.body.FullName||1;
+    var mail = req.body.Email || 1;
+    if( name!=1 ){ 
+        req.user.FullName = name;
+    }
+    if( mail!=1 ){ 
+        req.user.Email = mail;
+    }
+    editorModle.updateEditorProfile(entity)
+    .then(id=>{
+        res.end('success');
+    }).catch();
+    
 });
 
 router.get('/security', (req, res,next) => {

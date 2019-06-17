@@ -35,13 +35,21 @@ module.exports = {
     pagePost: (limit, offset, ttbv)=>{
         var sql;
         if(ttbv == 2){
-            sql = `select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null limit ${limit} offset ${offset}`;
+            sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
+             (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null limit ${limit} offset ${offset}) as a 
+             where a.ID = wp.PostID and wp.WriterID = up.ID`;
         }else if(ttbv == -2){
-            sql = `select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus is null limit ${limit} offset ${offset}`;
+            sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
+            (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus is null limit ${limit} offset ${offset}) as a
+            where a.ID = wp.PostID and wp.WriterID = up.ID`;
         } else if (ttbv == 0){
-            sql = `select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = 1 and post.ReleaseDay > CURRENT_DATE limit ${limit} offset ${offset}`;
+            sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
+            (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = 1 and post.ReleaseDay > CURRENT_DATE limit ${limit} offset ${offset}) as a
+            where a.ID = wp.PostID and wp.WriterID = up.ID`;
         } else {
-            sql = `select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = ${ttbv} limit ${limit} offset ${offset}`;
+            sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
+            (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = ${ttbv} and post.ReleaseDay < CURRENT_DATE limit ${limit} offset ${offset}) as a
+            where a.ID = wp.PostID and wp.WriterID = up.ID`;
         }
         return db.load(sql);
     },
