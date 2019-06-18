@@ -110,13 +110,14 @@ router.get('/qlBaiViet',auth, (req, res,next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     } 
+    
     if((ttbv <-2 && ttbv > 2)|| isNaN(ttbv)){
         ttbv=2; // xác nhận là lấy tất cả.
-    } 
+    }
     var limit = 5;
     var offset = (page - 1) * limit;
     Promise.all([
-        adminModle.countPost(),
+        adminModle.countPost(ttbv),
         adminModle.pagePost(limit, offset, ttbv), // lay duoc danh sach cac post 
     ]).then(([count, rowsPage])=>{
         for (let index = 0; index < rowsPage.length; index++) {
@@ -171,7 +172,6 @@ router.get('/qlHashTag',auth, (req, res, next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     }
-    console.log(page);
     var limit = 10;
     var offset = (page - 1) * limit;
     Promise.all([
