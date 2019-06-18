@@ -484,6 +484,23 @@ router.post('/qlNguoiDung/writers/delete/:id', (req, res, next) =>{
     }).catch(next);
 })
 
+//Load info of userprimary
+router.get('/qlNguoiDung/user-info/:id', (req, res) => {
+    var id = req.params.id;
+    Promise.all([
+        editorModel.singleEditor(id),
+        categoryModel.allOnlyCat(),
+        editorModel.catOfEditor(id)
+    ])
+    .then(([user, cats, editorCat]) => {
+        var isActive = "qlnd";
+    res.render('admin/user/user-info', { "isActive": isActive , user, cats, editorCat});
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
+})
+
 router.get('/security',auth, (req, res) => {
     var isActive = "s";
     res.render('admin/security', { "isActive": isActive });
