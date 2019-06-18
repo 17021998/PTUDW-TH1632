@@ -12,6 +12,17 @@
     <!--StyleSheet-->
     <link href="/css/editor/editor-style.css" rel="stylesheet">
     <link href="/css/writer/profile-writerCSS.css" rel="stylesheet" type="text/css">
+    <style>
+        .pull-left p img{
+            width: 150px !important;
+            height: 120px !important;
+        }
+        hr.style13 {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+    </style>
 </head>
 <body>
     <div id="page">
@@ -24,27 +35,30 @@
                     Danh sách các bài viết
                 </h1>
                 <hr>
-                <form class="d-flex flex-row content-form-view">
+                <div class="d-flex flex-row content-form-view">
                     <div class="col-12 container">
                         <ul class="media-list">
                             <% for( let index = 0; index < rows.length; index++ ) { %>
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-6">
                                         <li class="media">
                                             <a href="#">
                                                 <a class="pull-left" href="#">
-                                                    <img alt="" class="img-circle"
-                                                        src="https://bootdey.com/img/Content/user_1.jpg">
+                                                    <%-rows[index].ImageAbstract%>
                                                     <p>
                                                         Khoa Học
                                                     </p>
                                                 </a>
                                                 <div class="media-body">
+                                                    <%if(rows[index].ReleaseDay!=null){%>
                                                     <span class="text-muted pull-right">
                                                         <small class="text-muted">
-                                                            Thời gian đăng
+                                                        Thời gian đăng: 
+                                                            <strong> <%=rows[index].ReleaseDay%> </strong>
                                                         </small>
                                                     </span>
+                                                    <%}%>
+                                                    <br>
                                                     <strong class="text-success">
                                                         <%=rows[index].Title%>
                                                     </strong>
@@ -55,17 +69,29 @@
                                             </a>
                                         </li>
                                     </div>
-                                    <span class="col-4">
-                                        <a href="#" role="button">
-                                            <i class="fas fa-file">
-                                            </i>
+                                    
+                                    <div class="col-4">
+                                    <%if(rows[index].Deny){%>
+                                        <span>Lí Do: </span>
+                                        <span>
+                                        <%=rows[index].Deny%>
+                                        </span>
+                                    <%}%>
+                                    </div>
+                                    
+                                    <%if(rows[index].PostStatus != 1){%>
+                                    <span class="col-2 mt-5">
+                                        <a href="/writer/editWriterPost?idP=<%=rows[index].ID%>&isAc=<%=isActive%>" role="button">
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                     </span>
+                                    <%}%>
                                 </div>
+                                <hr class="style13">
                             <% } %>
                         </ul>
                     </div>
-                </form>
+                </div>
             </div>
         </section>
     </div>

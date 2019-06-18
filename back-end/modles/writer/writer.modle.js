@@ -14,6 +14,9 @@ module.exports = {
     getCatagoryChild:()=>{
         return db.load('select * from category as c where c.SuperCatID is not null and IsDelete is null');
     },
+    getPostByPostId: ID=>{ // can sua lai
+        return db.load(`select p.*, c.ID as CatID, c.SuperCatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID} and p.IsDelete is null`);
+    },
     
     single: id => {
     return db.load('select * from '+nametable+' where ID = ${id}');
@@ -26,9 +29,11 @@ module.exports = {
     addCatPost: entity => {
         return db.add('catpost', entity);
     },
-
+    updateCatPost: entity=>{
+        return db.update('catpost','PostID', entity);
+    },
     updatePost: entity => {
-    return db.update('category', 'CatID', entity);
+        return db.update('post', 'ID', entity)
     },
 
     deletePost: id => {
@@ -68,7 +73,7 @@ module.exports = {
         return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = 1 and p.ReleaseDay > CURRENT_DATE and  p.IsDelete is null`)
     },
     getBVDaXuatBan: (id)=>{
-        return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = 1 and p.ReleaseDay < CURRENT_DATE and  p.IsDelete is null`)
+        return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = 1 and p.ReleaseDay <= CURRENT_DATE and  p.IsDelete is null`)
     },
     getBVTuChoi: (id)=>{
         return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = -1 and  p.IsDelete is null`)

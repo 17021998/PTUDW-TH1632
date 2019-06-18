@@ -5,9 +5,9 @@ var nametable = "catpost";
 module.exports = {
 
     allPostBycategory: (CatID, userID)=>{
-        return db.load(`select p.* 
-        from post as p, category as c, catpost as cp, editorcat as ec 
-        where ec.UserID='${userID}' and p.PostStatus is null and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
+        return db.load(`select p.*, w.WriterName
+        from post as p, category as c, catpost as cp, editorcat as ec, writer as w, writerpost as wp
+        where p.ID = wp.PostID and w.UserID = wp.WriterID and ec.UserID='${userID}' and p.PostStatus is null and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
     },
 
     allcategory: (id)=>{

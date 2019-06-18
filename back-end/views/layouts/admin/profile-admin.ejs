@@ -213,13 +213,15 @@
         // function save img
         function saveImageProfile(){
             var name = document.getElementById('fileN').innerHTML;
-            var id = document.getElementById('userID').value;
-            $.post('/admin/update/profile-admin',{"ID": id, "Photo": "/upload/"+name},(data,status)=>{
-                if(status !='success'){
-                    alert('Lỗi database!!');
-                }
-            })
-            $('#formUpload').submit();
+            if(name!=""){
+                var id = document.getElementById('userID').value;
+                $.post('/admin/update/profile-admin',{"ID": id, "Photo": "/upload/"+name},(data,status)=>{
+                    if(status !='success'){
+                        alert('Lỗi database!!');
+                    }
+                })
+                $('#formUpload').submit();
+            }
         }
         // function save full name
         function saveFullName(){

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News Editor - Admin</title>
+    <!--Font-->
+    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!--StyleSheet-->
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" href="/css/admin/admin-style.css">
+    <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="/css/cssAutoComplete/cssAutoComplete.css">
+    <!--Ckeditor-->
+    <script src="/js/writer/ckeditor/ckeditor.js"></script> 
+    <script src="/js/editor/jquery.min.js"></script> <!-- cai nay chua add-->
+    <script src="/js/admin/bootstrap-tagsinput.min.js"></script>
+    <script src="/js/editor/jquery.min.js"></script>
+    <style>
+        .bootstrap-tagsinput {
+            min-height: 0 !important;
+            margin-left: 16px !important;
+            margin-top: 16px !important;
+        }
+
+        .autocomplete-items{
+            top: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+            <%- include('../logout/writer/form.ejs') %>
+            <%- include('../header-footer/header-writer.ejs') %>
+            <section id="page-main-content">
+                <%- include('../logout/writer/header-hori.ejs') %>
+            <!--Main content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mt-5">
+                            <form method="post">
+                                <input type="hidden" class="form-control" name="ID" value="<%=post.ID%>">
+                                <div class="card-header">
+                                    <div id="tool-button" class="d-flex">
+                                        <button role="submit" class="btn btn-sm ml-3" formaction="/admin/delete/baiviet">
+                                            <i class="fa fa-backward" aria-hidden="true"></i>
+                                            <span> Back </span>
+                                        </button>
+                                        <button role="submit" class="btn btn-sm ml-3 btn-primary" formaction="/writer/editorWriterPost?isAc=<%=isActive%>">
+                                            <i class="far fa-save"></i>
+                                            <span> Save</span>
+                                        </button>
+                                    </div>
+                                    <div class="d-flex mt-3">
+                                        <%# CatID %>
+                                        <select id="CatIDFather" class="custom-select-md ml-3">
+                                            <option>Chọn chuyên mục bài viết</option>
+                                            <% for( let index = 0; index < Cat.length; index++ ) { %>
+                                                <option value="<%=Cat[index].ID%>" <% if (Cat[index].ID===post.SuperCatID) { %> selected <% } %> ><%=Cat[index].CatName%></option>
+                                            <% } %>
+                                        </select>
+                                        <select id="CatID" name="CatID" class="custom-select-md ml-3">
+                                            <option>Chọn chuyên mục bài viết</option>
+                                            <% for( let index = 0; index < CatChild.length; index++ ) { %>
+                                                <% if(CatChild[index].SuperCatID === post.SuperCatID){ %>
+                                                    <option value="<%=CatChild[index].ID%>" <% if (CatChild[index].ID===post.CatID) { %> selected <% } %> ><%=CatChild[index].CatName%></option>
+                                            <%} } %>
+                                        </select>
+                                    </div>
+                                    <div class="row align-items-center mt-3">
+                                        <label for="article-title" class="col-2 ml-3">Tiêu đề</label>
+                                        <input value="<%=post.Title%>" type="text" name="Title" placeholder="Title"
+                                            class="col-8 form-control ml-3">
+                                    </div>
+
+                                    <div class="row align-items-center mt-3">
+                                        <label for="article-title" class="col-2 ml-3">Tóm tắt</label>
+                                        <input value="<%=post.Abstract%>" type="text" name="Abstract" placeholder="Abstract"
+                                            class="col-8 form-control ml-3">
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-4 col-md-12 form-group card-body">
+                                <label for=""><strong>ảnh đại diện </strong></label>
+                                    <textarea name="ImageAbstract" id="ImageAbstract"></textarea>
+                                </div>
+                                <div class="col-xs-4 col-md-12 form-group card-body">
+                                    <textarea name="Content" id="Content"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </section>
+    </div>
+    <script>
+        CKEDITOR.replace('ImageAbstract', {
+            "extraPlugins" : 'imagebrowser',
+            "imageBrowser_listUrl" : "/files",
+            toolbar:[
+                {name: 'insert', items: ['Image']}
+            ]
+        });
+        CKEDITOR.instances.ImageAbstract.setData(`<%-post.ImageAbstract%>`, function () {
+            this.checkDirty();  // true
+        });
+
+        CKEDITOR.replace('Content', {
+            "extraPlugins" : 'imagebrowser , youtube',
+            "imageBrowser_listUrl" : "/files"
+        });
+        CKEDITOR.instances.Content.setData(`<%-post.Content%>`, function () {
+            this.checkDirty();  // true
+        });
+        
+    </script>
+    
+    <script>
+        document.getElementById("CatIDFather").addEventListener("change", addOption, false);
+        
+        function addOption(){
+            var CatIDFater = document.getElementById("CatIDFather").value;
+            var select = $('#CatID');
+            $('option',select).remove();
+
+            <% for(let i = 0; i< CatChild.length; i++){ %>
+            if (CatIDFater==<%=CatChild[i].SuperCatID%>) {
+                    select.append(new Option('<%= CatChild[i].CatName %>', '<%= CatChild[i].ID %>', true, false));
+            }
+            <% } %>
+        }
+
+        window.addEventListener("load", start, false);
+    </script>
+    <script src="/js/editor/main.js"></script>
+    <script src="/js/admin/article-detail.js"></script>
+    <script src="/js/autoComplete/autoComplete.js"></script>
+
+    <!--Bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+                $.getScript('/js/admin/load.js');
+        });
+    </script>
+</body>
+
+</html>
