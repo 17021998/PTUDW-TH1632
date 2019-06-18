@@ -6,6 +6,9 @@ module.exports = {
     all: () => {
         return db.load('select * from ' + nametable);
     },
+    addViewed: (id) => {
+        return db.load(`UPDATE post SET Viewed = Viewed + 1 WHERE ID = ${id};`)
+    },
     
     single: id => {
         return db.load(`select p.*, w.WriterName from post as p, writerpost as wp, writer as w where p.ID = ${id} and wp.PostID = p.ID and wp.WriterID = w.UserID`);

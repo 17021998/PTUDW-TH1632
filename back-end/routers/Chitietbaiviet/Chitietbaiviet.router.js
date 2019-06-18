@@ -29,7 +29,8 @@ router.get('/:id', (req, res, next) => {
     chitietbaiveitModel.allCat(),
     chitietbaiveitModel.getCat(idP),
     chitietbaiveitModel.single(idP),
-    chitietbaiveitModel.getComment(idP)
+    chitietbaiveitModel.getComment(idP),
+    chitietbaiveitModel.addViewed(idP)
   ]).then(([cats,cat , rows, rowsComment]) => {
     res.render('Chitietbaiviet/ctbv', {
       cats: cats,
