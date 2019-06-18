@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var writerModle = require('../../modles/writer/writer.modle');
@@ -17,9 +17,14 @@ router.get('/',auth, (req, res, next) => {
     
 })
 
-router.get('/baivietduocduyet',auth, (req, res) => {
+router.get('/baivietduocduyet',auth, (req, res, next) => {
     var isActive="bvdd";
-    res.render('writer/baivietduocduyet', { "isActive": isActive }); 
+    writerModle.getBVChuaXuatBan(req.user.ID)
+    .then(rows=>{
+        res.render('writer/baivietduocduyet', { "isActive": isActive , rows}); 
+    })
+    .catch(next)
+    
 })
 
 router.get('/baivietdaxuatban',auth, (req, res) => {

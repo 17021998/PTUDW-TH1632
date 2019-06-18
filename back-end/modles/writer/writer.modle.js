@@ -63,5 +63,17 @@ module.exports = {
     },
     getWriter: id =>{
         return db.load(`select w.WriterName from writer as w where w.UserID = '${id}'`);
-    }
+    },
+    getBVChuaXuatBan: (id)=>{
+        return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = 1 and p.ReleaseDay > CURRENT_DATE and  p.IsDelete is null`)
+    },
+    getBVDaXuatBan: (id)=>{
+        return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = 1 and p.ReleaseDay < CURRENT_DATE and  p.IsDelete is null`)
+    },
+    getBVTuChoi: (id)=>{
+        return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus = -1 and  p.IsDelete is null`)
+    },
+    getBVDangDoi: (id)=>{
+        return db.load(`select p.* from post as p, writerpost as wp where p.ID = wp.PostID and wp.WriterID = '${id}' and p.PostStatus is null and  p.IsDelete is null`)
+    },
 };

@@ -7,7 +7,7 @@ module.exports = {
     allPostBycategory: (CatID, userID)=>{
         return db.load(`select p.* 
         from post as p, category as c, catpost as cp, editorcat as ec 
-        where ec.UserID='${userID}' and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
+        where ec.UserID='${userID}' and p.PostStatus is null and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
     },
 
     allcategory: (id)=>{

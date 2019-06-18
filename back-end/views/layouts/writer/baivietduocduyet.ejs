@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,177 +27,42 @@
                 <form class="d-flex flex-row content-form-view">
                     <div class="col-12 container">
                         <ul class="media-list">
-                            <div class="row">
-                                <div class="col-8">
-                                    <li class="media">
-                                        <a href="#">
-                                            <a class="pull-left" href="#">
-                                                <img alt="" class="img-circle"
-                                                    src="https://bootdey.com/img/Content/user_1.jpg">
-                                                <p>
-                                                    Khoa Học
-                                                </p>
+                            <% for( let index = 0; index < rows.length; index++ ) { %>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <li class="media">
+                                            <a href="#">
+                                                <a class="pull-left" href="#">
+                                                    <img alt="" class="img-circle"
+                                                        src="https://bootdey.com/img/Content/user_1.jpg">
+                                                    <p>
+                                                        Khoa Học
+                                                    </p>
+                                                </a>
+                                                <div class="media-body">
+                                                    <span class="text-muted pull-right">
+                                                        <small class="text-muted">
+                                                            Thời gian đăng
+                                                        </small>
+                                                    </span>
+                                                    <strong class="text-success">
+                                                        <%=rows[index].Title%>
+                                                    </strong>
+                                                    <p>
+                                                        <%=rows[index].Abstract%>
+                                                    </p>
+                                                </div>
                                             </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">
-                                                        Thời gian đăng
-                                                    </small>
-                                                </span>
-                                                <strong class="text-success">
-                                                    Tiêu đề Bài viết
-                                                </strong>
-                                                <p>
-                                                    Tóm tắt nội dung của bài viết
-                                                </p>
-                                            </div>
+                                        </li>
+                                    </div>
+                                    <span class="col-4">
+                                        <a href="#" role="button">
+                                            <i class="fas fa-file">
+                                            </i>
                                         </a>
-                                    </li>
+                                    </span>
                                 </div>
-                                <span class="col-4">
-                                    <a href="#" role="button">
-                                        <i class="fas fa-file">
-                                        </i>
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <li class="media">
-                                        <a href="#">
-                                            <a class="pull-left" href="#">
-                                                <img alt="" class="img-circle"
-                                                    src="https://bootdey.com/img/Content/user_1.jpg">
-                                                <p>
-                                                    Khoa Học
-                                                </p>
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">
-                                                        Thời gian đăng
-                                                    </small>
-                                                </span>
-                                                <strong class="text-success">
-                                                    Tiêu đề Bài viết
-                                                </strong>
-                                                <p>
-                                                    Tóm tắt nội dung của bài viết
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </div>
-                                <span class="col-4">
-                                    <a href="#" role="button">
-                                        <i class="fas fa-file">
-                                        </i>
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <li class="media">
-                                        <a href="#">
-                                            <a class="pull-left" href="#">
-                                                <img alt="" class="img-circle"
-                                                    src="https://bootdey.com/img/Content/user_1.jpg">
-                                                <p>
-                                                    Khoa Học
-                                                </p>
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">
-                                                        Thời gian đăng
-                                                    </small>
-                                                </span>
-                                                <strong class="text-success">
-                                                    Tiêu đề Bài viết
-                                                </strong>
-                                                <p>
-                                                    Tóm tắt nội dung của bài viết
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </div>
-                                <span class="col-4">
-                                    <a href="#" role="button">
-                                        <i class="fas fa-file">
-                                        </i>
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <li class="media">
-                                        <a href="#">
-                                            <a class="pull-left" href="#">
-                                                <img alt="" class="img-circle"
-                                                    src="https://bootdey.com/img/Content/user_1.jpg">
-                                                <p>
-                                                    Khoa Học
-                                                </p>
-
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">
-                                                        Thời gian đăng
-                                                    </small>
-                                                </span>
-                                                <strong class="text-success">
-                                                    Tiêu đề Bài viết
-                                                </strong>
-                                                <p>
-                                                    Tóm tắt nội dung của bài viết
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </div>
-                                <span class="col-4">
-                                    <a href="#" role="button">
-                                        <i class="fas fa-file">
-                                        </i>
-                                    </a>
-                                </span>
-                            </div>
-                            <div class="row">
-                                <div class="col-8">
-                                    <li class="media">
-                                        <a href="#">
-                                            <a class="pull-left" href="#">
-                                                <img alt="" class="img-circle"
-                                                    src="https://bootdey.com/img/Content/user_1.jpg">
-                                                <p>
-                                                    Khoa Học
-                                                </p> 
-                                            </a>
-                                            <div class="media-body">
-                                                <span class="text-muted pull-right">
-                                                    <small class="text-muted">
-                                                        Thời gian đăng
-                                                    </small>
-                                                </span>
-                                                <strong class="text-success">
-                                                    Tiêu đề Bài viết
-                                                </strong>
-                                                <p>
-                                                    Tóm tắt nội dung của bài viết
-                                                </p>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </div>
-                                <span class="col-4">
-                                    <a href="#" role="button">
-                                        <i class="fas fa-file">
-                                        </i>
-                                    </a>
-                                </span>
-                            </div>
+                            <% } %>
                         </ul>
                     </div>
                 </form>
