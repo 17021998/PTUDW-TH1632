@@ -43,7 +43,7 @@
 <div class="panel-body backgroundcolor">
         <!-- ảnh đại diện cho tin tức -->
         <div class="image_main">
-            <img src="../images/1.jpg" >
+            <%- chitietbaiviet.ImageAbstract%>
         </div>
         
         <div class="center-block noidung">
@@ -54,6 +54,7 @@
                 <div>
                     <%- chitietbaiviet.Content%>
                 </div>
+                <span class="d-flex flex-row-reverse m-3 p-3"> <%= chitietbaiviet.WriterName%> </span>
             </div>
 
             <div class="center-block hagtag w-100">
@@ -126,60 +127,28 @@
                                 Comment panel
                             </div>
                             <div class="panel-body">
-                                <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                <textarea id="ContentComment" class="form-control" placeholder="write a comment..." rows="3"></textarea>
                                 <br>
-                                <button type="button" class="btn btn-info float-right">Post</button>
+                                <button type="button" id="sentComment" class="btn btn-info float-right">Post</button>
+                                
                                 <div class="clearfix"></div>
                                 <hr>
-                                <ul class="media-list">
+                                <ul class="media-list" id="myList">
+                                <% for( let index = 0; index < comment.length; index++ ) { %>
                                     <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <img src="https://bootdey.com/img/Content/user_1.jpg" alt=""
+                                        <a class="pull-left">
+                                            <img src="<%if(comment[index].UserID==null){%> https://bootdey.com/img/Content/user_1.jpg <% } else { %> <%=comment[index].Photo%> <%}%> "
                                                 class="img-circle">
                                         </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text-success">@MartinoMont</strong>
+                                        <div class="media-body ml-4">
+                                            <strong class="text-success"><%if(comment[index].UserID == null){%> NoName <% } else { %> <%=comment[index].FullName%> <%}%></strong>
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                <%=comment[index].Content%>
                                             </p>
                                         </div>
                                     </li>
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <img src="https://bootdey.com/img/Content/user_2.jpg" alt=""
-                                                class="img-circle">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text-success">@LaurenceCorreil</strong>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                Lorem ipsum dolor <a href="#">#ipsumdolor </a>adipiscing elit.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="media">
-                                        <a href="#" class="pull-left">
-                                            <img src="https://bootdey.com/img/Content/user_3.jpg" alt=""
-                                                class="img-circle">
-                                        </a>
-                                        <div class="media-body">
-                                            <span class="text-muted pull-right">
-                                                <small class="text-muted">30 min ago</small>
-                                            </span>
-                                            <strong class="text-success">@JohnNida</strong>
-                                            <p>
-                                                Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur
-                                                adipiscing elit.
-                                            </p>
-                                        </div>
-                                    </li>
+                                <% } %>
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -193,5 +162,54 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#sentComment").click(function(){
+                var cmt = $("#ContentComment").val();
+                var idP = "<%=chitietbaiviet.ID%>";
+                // xu li ajax luu cmt.
+                $.post('/chitietbaiviet/cmt',{"PostID": idP, "Content": cmt},(data,status)=>{
+               
+                    if(status=='success'){
+                        // add cmt
+                        
+                        var ulCmt = document.getElementById('myList');
+                        var licmt = document.createElement('LI');
+                        licmt.setAttribute("class","media");
+                        ulCmt.appendChild(licmt);
+                        var acmt = document.createElement('a');
+                        acmt.setAttribute("class", "pull-left");
+                        licmt.appendChild(acmt);
+
+                        var img = document.createElement('img');
+                        img.setAttribute("class", "img-circle");
+                        <%if(!user){%>
+                            img.setAttribute("src", "https://bootdey.com/img/Content/user_1.jpg");
+                        <% } else { %>
+                            img.setAttribute("src", "<%=user.Photo%>");
+                        <%}%>
+                        acmt.appendChild(img);
+
+                        var div = document.createElement('DIV');
+                        div.setAttribute('class', 'media-body ml-4');
+                        licmt.appendChild(div);
+                        var strong = document.createElement('strong');
+                        strong.setAttribute("class", "text-success");
+                        div.appendChild(strong);
+                        <%if(!user){%>
+                            strong.innerHTML = "NoName"
+                        <% } else { %>
+                            strong.innerHTML = "<%=user.FullName%>"
+                        <%}%>
+                        var p = document.createElement('p');
+                        div.appendChild(p);
+                        p.innerHTML= cmt;
+                        // end add cmt.
+                    }
+                })
+
+            });
+        });
+    </script>
 </body>
 </html>

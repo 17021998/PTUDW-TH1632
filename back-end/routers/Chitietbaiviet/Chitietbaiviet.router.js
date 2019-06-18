@@ -3,20 +3,39 @@ var router = express.Router();
 
 var chitietbaiveitModel = require('../../modles/chitietbaiviet/chitietbaiviet.modle');
 
+router.post('/cmt',(req,res)=>{
+  var entity = req.body;
+  if(!req.user){
+    console.log(1);
+      entity.UserID = null;
+  }else{
+    entity.UserID = req.user.ID;
+  }
+  chitietbaiveitModel.addComment(entity)
+  .then(id=>{
+    res.end('success');
+  })
+  .catch();
+})
 
-router.get('/', (req, res) => {
 
+// add cai nay cuoi cung
+router.get('/:id', (req, res) => {
+  var idP = req.params.id;
   Promise.all([
     chitietbaiveitModel.allCat(),
-    chitietbaiveitModel.all()
-  ]).then(([cats, rows]) => {
+    chitietbaiveitModel.single(idP),
+    chitietbaiveitModel.getComment(idP)
+  ]).then(([cats, rows, rowsComment]) => {
     res.render('Chitietbaiviet/ctbv', {
       cats: cats,
-      chitietbaiviet: rows[0]
+      chitietbaiviet: rows[0],
+      "comment": rowsComment
     });
   }).catch(err => {
     console.log(err);
   });
 })
+
 
 module.exports = router;
