@@ -241,7 +241,7 @@ router.get('/qlNguoiDung',auth, (req, res) => {
 router.get('/qlNguoiDung/subcribers',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
-    var limit = 4;
+    var limit = 10;
     var offset = (page - 1)*limit;
     Promise.all([
         subcriberModel.pageBySubcriber(limit, offset),
@@ -340,7 +340,7 @@ router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
 router.get('/qlNguoiDung/editors',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
-    var limit = 4;
+    var limit = 8;
     var offset = (page - 1)*limit;
     Promise.all([
         editorModel.pageByEditor(limit, offset),
@@ -416,7 +416,7 @@ router.post('/qlNguoiDung/editors/delete/:id', (req, res, next) =>{
 router.get('/qlNguoiDung/writers',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
-    var limit = 4;
+    var limit = 8;
     var offset = (page - 1)*limit;
     Promise.all([
         writerModel.pageWriter(limit, offset),
@@ -529,29 +529,6 @@ router.get('/security',auth, (req, res) => {
     var isActive = "s";
     res.render('admin/security', { "isActive": isActive });
 })
-
-router.get('/user-info',auth, (req, res) => {
-    var isActive = "ui";
-    res.render('admin/user-info', { "isActive": isActive });
-})
-// update user infor
-router.post('/update/user-info', (req,res)=>{
-    var entity = req.body;
-
-    res.end('...');
-})
-
-router.get('/writer-info',auth, (req, res) => {
-    var isActive = "wi";
-    res.render('admin/writer-info', { "isActive": isActive });
-})
-// update writer infor
-router.post('/update/writer-info', (req,res)=>{
-    var entity = req.body;
-
-    res.end('...');
-})
-
 
 // router post
 router.post('/qlHashTag/add', (req,res)=>{
