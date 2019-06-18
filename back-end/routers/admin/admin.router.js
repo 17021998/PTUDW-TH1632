@@ -515,13 +515,11 @@ router.post('/qlNguoiDung/user-info/:id', (req, res, next) =>{
         };
         entities.push(entity);
     }
-    console.log(entities);
     
     editorModel.updateCatOfEditor(id, entities)
     .then(()=>{
-        var url = `/qlNguoiDung/user-info/${id}`;
-        var isActive = "qlnd";
-        res.render(url, { "isActive": isActive});
+        var url = `/admin/qlNguoiDung/user-info/${id}`;
+        res.redirect(url);
     }).catch(next);
 })
 

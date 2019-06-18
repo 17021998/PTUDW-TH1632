@@ -74,14 +74,15 @@ module.exports = {
     },
     catOfEditor: (id)=>{
         return db.load(`select ManagedCatID from editorcat where UserID = '${id}';`)
-    }, 
+    },
     updateCatOfEditor: (id, entities)=>{
         db.load(`delete from editorcat where UserID = '${id}'`);
-        var sql=`insert into editorcat values `;
+        var sql=`insert into editorcat( UserID , ManagedCatID) values `;
         for(var i=0; i < entities.length-1; i++){
-            sql+=`('${entities[i]}'), `
+            sql+=`('${entities[i].UserID}' , ${entities[i].ManagedCatID}), `
         }
-        sql+=`('${entity[entities.length-1]}') ;`;
+        sql+=`('${entities[entities.length-1].UserID}' , ${entities[entities.length-1].ManagedCatID})`;
+        console.log(sql);
         return db.load(sql);
     }
 };
