@@ -17,6 +17,43 @@ router.get('/',auth, (req, res, next) => {
     
 })
 
+router.get('/editWriterPost',auth,(req,res,next)=>{
+    var id = req.query.idP;
+    var isActive = req.query.isAc;
+    Promise.all([
+        writerModle.getcategoryFather(),
+        writerModle.getCatagoryChild(),
+        writerModle.getPostByPostId(id),
+    ])
+    .then(([rowsCat, rowC, rowsPos])=>{
+        
+        res.render('writer/editWriterPost',{"isActive": isActive, "Cat": rowsCat, "CatChild": rowC , "post": rowsPos[0]});
+    }).catch(next);
+})
+
+router.post('/editorWriterPost', (req,res,next)=>{
+    var entity = req.body;
+    var isActive = req.query.isAc;
+    req.body.PostStatus = null;
+    req.body.ReleaseDay = null;
+    req.body.Deny = null;
+    req.body.editorID = null;
+    var CatID = req.body.CatID;
+    delete req.body['CatID'];
+    var catpot={'CatID': CatID, 'PostID': req.body.ID};
+    Promise.all([
+        writerModle.updatePost(req.body),
+        writerModle.updateCatPost(catpot),
+    ])
+    .then(([idP,idCP])=>{
+        if(isActive == 'bvbtc'){
+            res.redirect('/writer/baivietbituchoi');
+        } else{
+            res.redirect('/writer/baivietchuaduyet');
+        }
+    }).catch(next);
+})
+
 router.get('/baivietduocduyet',auth, (req, res, next) => {
     var isActive="bvdd";
     writerModle.getBVChuaXuatBan(req.user.ID)
@@ -27,21 +64,34 @@ router.get('/baivietduocduyet',auth, (req, res, next) => {
     
 })
 
-router.get('/baivietdaxuatban',auth, (req, res) => {
+router.get('/baivietdaxuatban',auth, (req, res,next) => {
     var isActive="bvdxb";
-    res.render('writer/baivietduocduyet', { "isActive": isActive }); 
+    writerModle.getBVDaXuatBan(req.user.ID)
+    .then(rows=>{
+        res.render('writer/baivietduocduyet', { "isActive": isActive , rows}); 
+    })
+    .catch(next)
 })
 
-router.get('/baivietbituchoi',auth, (req, res) => {
+router.get('/baivietbituchoi',auth, (req, res,next) => {
     var isActive="bvbtc";
-    res.render('writer/baivietduocduyet', { "isActive": isActive }); 
+    writerModle.getBVTuChoi(req.user.ID)
+    .then(rows=>{
+        res.render('writer/baivietduocduyet', { "isActive": isActive , rows}); 
+    })
+    .catch(next)
 })
 
-router.get('/baivietchuaduyet',auth, (req, res) => {
+router.get('/baivietchuaduyet',auth, (req, res,next) => {
 
     var isActive="bvcd";
-    res.render('writer/baivietduocduyet', { "isActive": isActive }); 
+    writerModle.getBVDangDoi(req.user.ID)
+    .then(rows=>{
+        res.render('writer/baivietduocduyet', { "isActive": isActive , rows}); 
+    })
+    .catch(next) 
 })
+
 
 router.get('/profile-writer',auth, (req, res,next) => {
     var isActive="pw";
