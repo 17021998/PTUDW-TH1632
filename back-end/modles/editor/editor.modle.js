@@ -4,6 +4,13 @@ var nametable = "catpost";
 
 module.exports = {
 
+    allPostXetDuyet: (userID)=>{
+        return db.load(`select * from post as p where p.editorID = '${userID}' and p.IsDelete is null and p.PostStatus = 1`)
+    },
+    allPostTuChoi: (userID)=>{
+        return db.load(`select * from post as p where p.editorID = '${userID}' and p.IsDelete is null and p.PostStatus = -1`)
+    },
+
     allPostBycategory: (CatID, userID)=>{
         return db.load(`select p.*, w.WriterName
         from post as p, category as c, catpost as cp, editorcat as ec, writer as w, writerpost as wp
