@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
     <link rel="stylesheet" href="/css/cssAutoComplete/cssAutoComplete.css">
     <script src="/js/admin/bootstrap-tagsinput.min.js"></script>
+    <link rel="stylesheet" href="/css/admin/cssPhantrang.css">
     
 </head>
 
@@ -86,24 +87,25 @@
                                         </div>
                                     </center>
                                     <span class="d-flex justify-content-center">
-                                        <nav aria-label="Page navigation">
-                                            <ul class="pagination">
+                                        <%# <nav aria-label="Page navigation"> %>
+                                            <ul class="pagination pagination-circle pg-color d-flex justify-content-center">
                                                 <li class="page-item <% if(page[0].isActive){%> disabled <%}%> ">
                                                     <a class="page-link" href="/admin/qlHashTag?page=<%=+p - 1%>" aria-label="Previous">
                                                         <span aria-hidden="true">&laquo;</span>
                                                         <span class="sr-only">Previous</span>
                                                     </a>
                                                 </li>
-
-                                                <li class="page-item <%if (lenPage.begin == 0){%> disabled <%}%> "><a class="page-link" 
-                                                href="/admin/qlHashTag?page=<%=lenPage.begin%>">...</a></li>
-
+                                                <%#  li dau tien %>
+                                                <li class="page-item <%if (lenPage.begin == 0){%> disabled hidden <%}%>">
+                                                    <a class="page-link" href="/admin/qlHashTag?page=<%=lenPage.begin%>">...</a>
+                                                </li>
+                                                <%#  ket thuc %>
                                                 <% for (var i=lenPage.begin; i<=lenPage.end; i++){ %>
                                                     <li class="page-item <% if (page[i].isActive){%> active <%}%>"><a class="page-link" 
                                                     href="/admin/qlHashTag?page=<%=page[i].value + 1%>"><%=page[i].value + 1%></a></li>
                                                 <% } %>
 
-                                                <li class="page-item <%if (lenPage.end == page.length-1){%> disabled <%}%>"><a class="page-link" 
+                                                <li class="page-item <%if (lenPage.end == page.length-1){%> disabled hidden <%}%>"><a class="page-link" 
                                                 href="/admin/qlHashTag?page=<%=lenPage.end + 1%>">...</a></li>
 
                                                 <li class="page-item <% if(page[page.length-1].isActive){%> disabled <%}%> ">
@@ -113,7 +115,7 @@
                                                     </a>    
                                                 </li>
                                             </ul>
-                                        </nav>
+                                        <%# </nav> %>
                                     </span>
                                 </div>
                             <form method="POST">

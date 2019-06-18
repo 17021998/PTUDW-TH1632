@@ -30,6 +30,8 @@
                         <% } %>
                     </ul>
                 </li>
+                <li <% if (isActive==="bvdd") { %> class="active" <% } %> ><a href="/editor/editorDaDuyet">Bài viết đã duyệt</a></li>
+                <li <% if (isActive==="bvtc") { %> class="active" <% } %> ><a href="/editor/editorTuChoi">Bài VIết từ chối</a></li> 
                 <li <% if (isActive==="s") { %> class="active" <% } %> ><a href="/editor/security">Bảo mật</a></li>
                 <li><a href="javascript:$('#frmSignout').submit();" class="main-menu-hidden">Đăng xuất</a></li>
             </ul>

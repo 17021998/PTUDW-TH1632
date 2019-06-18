@@ -69,9 +69,12 @@ router.get('/:id/ctBaiViet',auth, (req, res) => {
 
 router.get('/newBaiViet',auth, (req,res,next)=>{
     var isac = "nbv"
-    adminModle.getcategoryFather()
-    .then(rows=>{
-        res.render('admin/newBaiViet',{"isActive": isac, "Cat": rows});
+    Promise.all([
+        adminModle.getcategoryFather(),
+        adminModle.getCatagoryChild()
+    ])
+    .then(([ catF, catC])=>{
+        res.render('admin/newBaiViet',{"isActive": isac, "Cat": catF, "CatChild": catC});
     })
     .catch(next);
 })
@@ -110,13 +113,14 @@ router.get('/qlBaiViet',auth, (req, res,next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     } 
+    
     if((ttbv <-2 && ttbv > 2)|| isNaN(ttbv)){
         ttbv=2; // xác nhận là lấy tất cả.
-    } 
+    }
     var limit = 5;
     var offset = (page - 1) * limit;
     Promise.all([
-        adminModle.countPost(),
+        adminModle.countPost(ttbv),
         adminModle.pagePost(limit, offset, ttbv), // lay duoc danh sach cac post 
     ]).then(([count, rowsPage])=>{
         for (let index = 0; index < rowsPage.length; index++) {
@@ -560,6 +564,58 @@ router.post('/qlHashTag/add', (req,res)=>{
         .catch(err => console.log(err));
 })
 
+router.post('/save/bv',(req,res)=>{
+    // tag name add them.
+    var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
+    req.body.ReleaseDay = null;
+    req.body.editorID = null;
+    req.body.Abstract = req.body.Title;
+    req.body.Premium = 0;
+    req.body.Deny = null;
+    req.body.editorID = req.user.ID;
+    if(req.body.PostStatus == 1){
+        req.body.ReleaseDay = dateFormat(new Date(),"yyyy/mm/dd" );
+    }
+    // id cua post can update.
+    var Arr = split(",", tag);
+    delete req.body['tagname'];
+    var CatId = req.body.CatID;
+    delete req.body['CatID'];
+    var arr = {"idT": Arr};
+    Promise.all([
+        adminModle.addPost(req.body),
+        adminModle.getTagIDByName(arr)
+    ])
+    .then(([id, rowTag])=>{
+        var catPost={
+            'CatID': CatId,
+            'PostID': id
+        };
+        
+        Promise.all([
+            adminModle.addCatPost(catPost)
+        ]).then(([id1])=>{}).catch();
+
+        if(rowTag.length!=0){   
+            var idT =[];
+            for (let index = 0; index < rowTag.length; index++) {
+                idT[index] = rowTag[index];
+            }
+            var arr1 = {"idP" : id, "idT": idT};
+
+            adminModle.addTagPost(arr1)
+            .then().catch();
+        }
+        res.redirect('/admin/newBaiViet');
+    }).catch();
+
+
+})
+
 router.post('/save/baiviet',(req,res)=>{
     // tag name add them.
     var tag = req.body.tagname;
@@ -567,17 +623,18 @@ router.post('/save/baiviet',(req,res)=>{
         req.body.PostStatus = null;
         req.body.ReleaseDay = null;
     }
+    if(req.body.PostStatus == 1){
+        req.body.ReleaseDay = dateFormat(new Date(),"yyyy/mm/dd" );
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
     delete req.body['tagname'];
     var CatId = req.body.CatID;
-
     var entity={
         CatID: CatId,
         PostID: ID
     };
-
     delete req.body['CatID'];
     var arr = {"idP" : ID, "idT": Arr};
 
@@ -607,6 +664,10 @@ router.post('/saveClose/baiviet',(req,res)=>{
 
     // tag name add them.
     var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
@@ -644,12 +705,16 @@ router.post('/saveClose/baiviet',(req,res)=>{
 router.post('/saveNew/baiviet',(req,res)=>{
     // tag name add them.
     var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
     var entity={
         CatID: req.body.CatID,
-        PostID: req.body.PostID
+        PostID: req.body.ID
     };
     delete req.body['tagname'];
     delete req.body['CatID'];

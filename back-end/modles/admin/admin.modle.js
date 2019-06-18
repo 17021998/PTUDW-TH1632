@@ -28,8 +28,22 @@ module.exports = {
         return db.load('select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null')
     },
 
-    countPost: ()=>{
-        return db.load('select count(*) as totals from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null');
+    countPost: (ttbv)=>{
+
+        var sql;
+        if(ttbv==2){
+            sql = `select count(*) as totals from post where post.IsDelete is null`;
+        }else if(ttbv == -2){
+            sql = `select count(*) as totals from post as p where p.IsDelete is null and p.PostStatus is null`;
+        }else if(ttbv == 0){
+            sql = `select count(*) as totals from post as p where p.IsDelete is null and p.PostStatus = 1 and p.ReleaseDay > CURRENT_DATE`;
+        }else if(ttbv == 1){
+            sql = `select count(*) as totals from post as p where p.IsDelete is null and p.PostStatus = 1 and p.ReleaseDay <= CURRENT_DATE`;
+        }else{
+            sql = `select count(*) as totals from post as p where p.IsDelete is null and p.PostStatus = -1`;
+        }
+        return db.load(sql);
+        
     },
 
     pagePost: (limit, offset, ttbv)=>{
@@ -46,9 +60,13 @@ module.exports = {
             sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
             (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = 1 and post.ReleaseDay > CURRENT_DATE limit ${limit} offset ${offset}) as a
             where a.ID = wp.PostID and wp.WriterID = up.ID`;
-        } else {
+        } else if(ttbv == 1) {
             sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
-            (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = ${ttbv} and post.ReleaseDay < CURRENT_DATE limit ${limit} offset ${offset}) as a
+            (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = ${ttbv} and post.ReleaseDay <= CURRENT_DATE limit ${limit} offset ${offset}) as a
+            where a.ID = wp.PostID and wp.WriterID = up.ID`;
+        }else{
+            sql = `select a.*, up.FullName from writerpost as wp, userprimary as up,
+            (select post.*, category.CatName from post, catpost , category where post.ID=catpost.PostID and catpost.CatID=category.ID and post.IsDelete is null and post.PostStatus = ${ttbv} limit ${limit} offset ${offset}) as a
             where a.ID = wp.PostID and wp.WriterID = up.ID`;
         }
         return db.load(sql);
@@ -56,6 +74,15 @@ module.exports = {
 
     getPostByPostId: ID=>{ // can sua lai
         return db.load(`select p.*, c.ID as CatID, c.SuperCatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID} and p.IsDelete is null`);
+    },
+    addPost: entity => {
+        return db.add('post', entity);
+    },
+    addCatPost: entity => {
+        return db.add('catpost', entity);
+    },
+    addWriterPost: entity=>{
+        return db.add('writerpost', entity);
     },
 
     savePost: entity=>{

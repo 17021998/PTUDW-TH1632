@@ -7,7 +7,6 @@ var isLogin = require('../../middlewares/checkLogInOut');
 
 // lay du lieu bai viet de dua ra cho editor xem va duyet
 router.post('/getContentPost', (req, res,next) => {
-
     editorModle.getContentPost(req.body.id)
         .then(rows => {
             var content = rows[0].Content;
@@ -111,6 +110,31 @@ router.post('/logout',auth , (req, res, next) => {
     req.session.retUrl = null;
     req.logOut();
     res.redirect('/editor/login');
+});
+
+
+router.get('/editorDaDuyet',(req,res,next)=>{
+    Promise.all([
+        editorModle.allcategory(req.user.ID),
+        editorModle.allPostXetDuyet(req.user.ID),
+    ])
+    .then(([rows, rowPost])=>{
+        var isActive = "bvdd";
+        res.render('editor/editorDaDuyet', { "isActive": isActive, categories: rows, post: rowPost });
+    })
+    .catch(next);
+});
+
+router.get('/editorTuChoi',(req,res,next)=>{
+    Promise.all([
+        editorModle.allcategory(req.user.ID),
+        editorModle.allPostTuChoi(req.user.ID),
+    ])
+    .then(([rows, rowPost])=>{
+        var isActive = "bvtc";
+        res.render('editor/EditorTuChoi', { "isActive": isActive, categories: rows, post: rowPost });
+    })
+    .catch(next);
 });
 
 // xu li nay sau cung` vi no co cung root nếu muốn đổi root thì bỏ đâu cũng đc
