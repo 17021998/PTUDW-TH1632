@@ -19,6 +19,7 @@ router.get('/security',auth , (req, res) => {
 //sử dụng POST cho logout vì sẽ thực sự logout, nếu dùng GET trình duyệt sẽ trước các trang mà nó nghĩ có thể vào
 //Như thế không thực sự là logout https://stackoverflow.com/questions/3521290/logout-get-or-post
 router.post('/logout',auth , (req, res, next) => {
+    req.session.retUrl = null;
     req.logOut();
     res.redirect('/guest/login');
 });

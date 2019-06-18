@@ -27,15 +27,22 @@
     <%- include('../logout/admin/form.ejs') %>
     <%- include('../header-footer/header-admin.ejs') %>
         <section id="page-main-content">
-        <div class="col-4">
-            <form class="form-inline float-right" autocomplete="off">
-                <input class="form-control mr-sm-2" id="mySearch" type="text" placeholder="Search"
-                    aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0 clickable-row"
-                    data-href="/guest/search-result" type="button">Search</button>
-            </form>
+        <!--Head content-->
+        <div class="head-content row">
+            <div class="col-md-12 text-right my-auto">
+                <a href="/admin/profile-admin" class="head-item">
+                    <% if(user.Photo){ %>
+                        <img src="<%=user.Photo %>">
+                    <% }else{ %>
+                        <img src="/images/account.png">
+                    <% } %>
+                </a>
+                <a href="javascript: $('#frmSignout').submit();" class="head-item">
+                    <span>Đăng xuất</span>
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
         </div>
-        <%- include('../logout/admin/header-hori.ejs') %>
             <!--Main content-->
             <div class="container">
                 <div class="row">
@@ -48,10 +55,21 @@
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
-                                    <div class="col my-auto">
+                                    <div class="col-md-6 my-auto">
                                         <div id="card-header-title">
                                             <h5>Danh sách Tags</h5>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <form class="searchDestop form-inline float-right" autocomplete="off">
+                                            <label for="mySearch" class="button button--small button--less " title="Tìm kiếm">
+                                                <i class="fas fa-search"></i>
+                                            </label>
+                                            <div>
+                                                <input type="text" id="mySearch" placeholder="Tìm kiếm..." class="inputSearch">
+                                                <span class="focus-border"></span>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -18,6 +18,12 @@
     margin-bottom: 0;
 }
 
+@media (max-width: 990px){
+    .searchDestop{
+        float: left !important;
+    }
+}
+
 #card-header-title h5:before{
     position: absolute;
     left: -1.25rem;
@@ -92,4 +98,52 @@ input:disabled{
 
 tr.clickable-row:hover{
     cursor: pointer;
+}
+
+.inputSearch{
+    height: 37px;
+    display: block;
+    margin-left: 15px;
+    width: 200px;
+    border:none;
+    cursor: pointer;
+    padding-left: 1px;
+    padding-right: 0;
+    box-sizing: border-box;
+    background: 0 0;
+    outline: 0;
+    line-height: normal;
+}
+
+.inputSearch+.focus-border{
+    position: relative;
+}
+
+.inputSearch+.focus-border:after{
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 210px;
+    left: 10px;
+    background-color: #000;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    -o-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -ms-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -o-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.inputSearch:focus+.focus-border:after{
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1);
+    transform: scaleX(1);
 }

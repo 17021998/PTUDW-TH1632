@@ -46,6 +46,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/logout' ,auth , (req, res, next) => {
+    req.session.retUrl = null;
     req.logOut();
     res.redirect('/admin/login');
 });
