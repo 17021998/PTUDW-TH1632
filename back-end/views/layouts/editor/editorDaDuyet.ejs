@@ -48,7 +48,7 @@
                             <div class="article-list col-12 row">
                             <!-- hien thi danh sach tren database. -->
                                 <% for( let index = 0; index < post.length; index++ ) { %>
-                                    <a href='#edit?id=<%= post[index].ID %>' class="a_href row item col-lg-6">
+                                    <a href="#edit?id=<%= post[index].ID %>" class="a_href row item col-lg-6">
                                         <div class="item-thumb col-6">
                                         <!-- anh dai dien -->
                                             <div class='imgMain'>
@@ -57,7 +57,6 @@
                                         </div>
                                         <div class="item-detail col-6">
                                             <h6 class="article-detail">
-                                            <%= post[index].ID %>
                                             <!-- tiêu đề của bài viết -->
                                                 <span class="article-title"><%=post[index].Title%></span>
                                                 <!-- tên tac giả viết bài chưa đưa ra được. -->
@@ -82,7 +81,7 @@
                                 </script>
                             </div>
                             <form class="col-12" method="POST" action="">
-                                <input type="text" id="idXD" name="ID" value="" style="display: none;">
+                                <input type="text" id="ID" name="ID" value="" style="display: none;">
                                 <div class="card">
                                     <div class="form-group row mt-2">
                                         <label class="col-3 ml-3" for="">Ngày Xuất Bản</label>
@@ -99,7 +98,6 @@
                                                 minView: 2,
                                                 forceParse: 0
                                             });
-                                            $('#datetime').val(new Date('yyyy-mm-dd'));
                                         </script>
                                     </div>
                                 </div>
@@ -139,20 +137,16 @@
     <!--ckeditor--> 
     <script>
         $(document).ready(function () {
-
-             $('.item').each(function(){
-                $(this).on( "click", function() {
-                    var self = $(this);
-                    var str = $(self).attr('href').split('id=');        
-                    var id = str[str.length-1];
-                    $("#idXD").val(id);
-                    $("#idForm").val(id);
-                    $.post('/editor/getContentPost',{id:id},(data,status)=>{ 
-                        CKEDITOR.instances.editor.setData(data, function () {
-                            this.checkDirty();  // true
-                        });
-                    })         
-                });
+            $(".item").click(function(e) {
+                var str = $('.a_href').attr('href').split('id=');
+                var id = str[str.length-1];
+                $("#ID").val(id);
+                $("#idForm").val(id);
+                $.post('/editor/getContentPost',{id:id},(data,status)=>{ 
+                    CKEDITOR.instances.editor.setData(data, function () {
+                        this.checkDirty();  // true
+                    });
+                })
             });
         });
     </script> 

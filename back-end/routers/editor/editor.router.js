@@ -7,6 +7,7 @@ var isLogin = require('../../middlewares/checkLogInOut');
 
 // lay du lieu bai viet de dua ra cho editor xem va duyet
 router.post('/getContentPost', (req, res,next) => {
+
     editorModle.getContentPost(req.body.id)
         .then(rows => {
             var content = rows[0].Content;
