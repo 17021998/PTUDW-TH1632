@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var editorModle = require('../../modles/editor/editor.modle');
 var passport = require('passport');
@@ -19,6 +19,9 @@ router.post('/xetduyet', (req, res, next) => {
     req.body.PostStatus = 1;
     req.body.editorID = req.user.ID;
     var id = req.body.ID;
+	if(req.body.ReleaseDay || 1){
+        req.body.ReleaseDay = new Date();
+    }
     Promise.all([
         editorModle.xetDuyetPost(req.body),
         editorModle.getIDcategoryByPostID(id)
@@ -32,6 +35,7 @@ router.post('/tuchoi', (req, res,next) => {
     req.body.PostStatus = -1;
     req.body.editorID = req.user.ID;
     var id = req.body.ID;
+req.body.ReleaseDay = null;
     Promise.all([
         editorModle.xetDuyetPost(req.body),
         editorModle.getIDcategoryByPostID(id)

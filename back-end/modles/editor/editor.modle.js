@@ -7,7 +7,7 @@ module.exports = {
     allPostBycategory: (CatID, userID)=>{
         return db.load(`select p.* 
         from post as p, category as c, catpost as cp, editorcat as ec 
-        where ec.UserID='${userID}' and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
+        where ec.UserID='${userID}' and p.PostStatus is null and ec.ManagedCatID=cp.CatID and cp.PostID=p.ID and c.ID=ec.ManagedCatID AND c.SuperCatID = ${CatID}`);
     },
 
     allcategory: (id)=>{
@@ -53,13 +53,19 @@ module.exports = {
         return db.delete('userprimary', 'ID', id);
     },
 
-    update: entity => {
-        return db.update('subscriber', 'UserID', entity);
+    updateEditorByAdmin: entity => {
+        return db.update('editorcat', 'UserID', entity);
     },
     someEditor: (limit)=>{
         return db.load(`select e.UserID, e.noc ,u.FullName, u.Email, u.DoB, u.Photo from userprimary u, (select distinct(UserID), count(ManagedCatID) as noc from editorcat group by UserID )as e where e.UserID = u.ID AND u.IsDelete is Null limit ${limit};`)
     },
     updateEditorProfile: (entity)=>{
         return  db.update('userprimary', 'ID', entity);
+    },
+    singleEditor: (id)=>{
+        return db.load(`select * from userprimary where ID = '${id}';`);
+    },
+    catOfEditor: (id)=>{
+        return db.load(`select ManagedCatID from editorcat where UserID = '${id}';`)
     }
 };
