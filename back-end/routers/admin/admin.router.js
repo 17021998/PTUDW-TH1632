@@ -175,7 +175,7 @@ router.get('/qlHashTag',auth, (req, res, next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     }
-    var limit = 10;
+    var limit = 30;
     var offset = (page - 1) * limit;
     Promise.all([
         adminModle.allTag(),
