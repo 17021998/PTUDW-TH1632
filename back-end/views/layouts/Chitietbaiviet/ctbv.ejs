@@ -26,16 +26,24 @@
         <div class="container">
             <div class="col-12">
                 <ul class="breadcrumb">
-                    <li class="start">
-                        <h4>
-                            <a href="#">Đời sống</a>
-                        </h4>
-                    </li>
-                    <li>
-                        <h4>
-                            <a href="#">Du lịch</a>
-                        </h4>
-                    </li>
+                        <% if(cat.FID!=null){ %>
+                            <li class="start">
+                                <h4>
+                                    <a href="/guest/chuyen-de/<%=cat.FID%>"><%=cat.FName%></a>
+                                </h4>
+                            </li>
+                            <li>
+                                <h4>
+                                    <a href="/guest/chuyen-de/<%=cat.ID%>"><%=cat.CatName%></a>
+                                </h4>
+                            </li>
+                        <% }else{ %>
+                            <li class="start">
+                                <h4>
+                                    <a href="/guest/chuyen-de/<%=cat.ID%>"><%=cat.CatName%></a>
+                                </h4>
+                            </li>
+                        <% } %>
                 </ul>
             </div>
         </div> 
@@ -169,7 +177,7 @@
                 var idP = "<%=chitietbaiviet.ID%>";
                 // xu li ajax luu cmt.
                 $.post('/chitietbaiviet/cmt',{"PostID": idP, "Content": cmt},(data,status)=>{
-               
+                
                     if(status=='success'){
                         // add cmt
                         

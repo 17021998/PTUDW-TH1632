@@ -86,7 +86,7 @@
                                     <i class="far fa-clock"></i> <span id="post-time"><%=posts[0].ReleaseDay%></span>
                                     <%if(posts[0].Tags.length != 0){ %>
                                         <% for(let i = 0; i< posts[0].Tags.length;i++){ %>
-                                            <a href="/guest/tag/<%=posts[0].Tags[i].ID%>" class="badge badge-secondary">
+                                            <a href="/guest/hash-tag/<%=posts[0].Tags[i].ID%>" class="badge badge-secondary">
                                                 <span>#<%=posts[0].Tags[i].Name%></span>
                                             </a>
                                         <% } %>
@@ -133,7 +133,7 @@
                                                 </span>
                                                 <%if(posts[i].Tags.length != 0){ %>
                                                     <% for(let j = 0; j< posts[i].Tags.length;j++){ %>
-                                                        <a href="/guest/tag/<%=posts[i].Tags[j].ID%>" class="badge badge-secondary d-inline-block hashtag">
+                                                        <a href="/guest/hash-tag/<%=posts[i].Tags[j].ID%>" class="badge badge-secondary d-inline-block hashtag">
                                                             <span>#<%=posts[i].Tags[j].Name%></span>
                                                         </a>
                                                     <% } %>

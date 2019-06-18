@@ -15,6 +15,14 @@ module.exports = {
         return db.load(`SELECT * FROM comment as c LEFT JOIN userprimary as up on c.UserID = up.ID where c.PostID = ${id} and c.IsDelete is null`);
     },
 
+    getCat: id => {
+        return db.load(`SELECT c.ID, c.CatName, c1.ID as FID, c1.CatName as FName 
+                        FROM catpost ct 
+                        join category c on ct.CatID = c.ID 
+                        left join category c1 on c.SuperCatID = c1.ID
+                        WHERE ct.PostID = ${id} `);
+    },
+
     addComment: entity =>{
         return db.add('comment', entity);
     },

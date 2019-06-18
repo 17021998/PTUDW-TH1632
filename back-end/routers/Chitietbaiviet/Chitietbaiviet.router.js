@@ -20,21 +20,24 @@ router.post('/cmt',(req,res)=>{
 
 
 // add cai nay cuoi cung
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   var idP = req.params.id;
+  if(idP < 1 || isNaN(idP)){
+    idP = 1;
+  }
   Promise.all([
     chitietbaiveitModel.allCat(),
+    chitietbaiveitModel.getCat(idP),
     chitietbaiveitModel.single(idP),
     chitietbaiveitModel.getComment(idP)
-  ]).then(([cats, rows, rowsComment]) => {
+  ]).then(([cats,cat , rows, rowsComment]) => {
     res.render('Chitietbaiviet/ctbv', {
       cats: cats,
+      cat: cat[0],
       chitietbaiviet: rows[0],
       "comment": rowsComment
     });
-  }).catch(err => {
-    console.log(err);
-  });
+  }).catch(next);
 })
 
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AVENGER:1(2019)</title>
+    <title><%=tag.TagName%></title>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--Font Awesome-->
@@ -26,157 +26,112 @@
                 <div class="col-12 col-lg-8">
                     <div id="hash-tag-info">
                         <h1 class="hash-label">Tin tức về <span class="hash-tag-name"><%=tag.TagName%></span></h1>
-                        <h2 class="hash-name hash-tag-name">Avengers: 1 (2019)</h2>
+                        <h2 class="hash-name hash-tag-name"><%=tag.TagName%></h2>
                         <div class="fr related-cata">
-                            <div class="related-cata-label">
-                                <span>Chuyên mục liên quan</span>
-                            </div>
-                            <ul class="related-cata-filter">
-                                <li><a href="#">Đời sống</a></li>
-                            </ul>
+                            
                         </div>
                     </div>
                     <div class="content-wrapper">
-                        <div class="content-thumbnail">
-                            <a href="#"><img src="/images/1.jpg" alt=""></a>
-                        </div>
-                        <div class="content-header">
-                            <h2 class="post-title first"><a href="#">7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của 1</a></h2>
-                            <div class="post-meta">
-                                <i class="far fa-clock"></i> <span id="post-time">22/04/2019 20:30:44</span>
+                            <div class="content-thumbnail">
+                                <!--Premium-->
+                                <% if(posts[0].Premium == 1){ %>
+                                    <span class="premium-tag"><i class="far fa-gem"></i></span>
+                                <% } %>
+                                <% if(posts[0].Premium == 1 && !locals.user){ %>
+                                    <a href="javascript:;">
+                                        <%-posts[0].ImageAbstract%>
+                                    </a>
+                                <% }else{ %>
+                                    <a href="/chitietbaiviet/<%=posts[0].ID%>">
+                                        <%-posts[0].ImageAbstract%>
+                                    </a>
+                                <% } %>
                             </div>
-                            <div class="post-abstract">
-                                <p>Được xem là bước tổng kết hành trình 11 năm của Marvel trên màn ảnh rộng nhưng bản thân "1" lại chứa đựng ...</p>
+                            <div class="content-header">
+                                <h2 class="post-title first">
+                                    <!--Premium-->
+                                    <% if(posts[0].Premium == 1 && !locals.user){ %>
+                                        <a href="javascript:;">
+                                            <%=posts[0].Title%>
+                                        </a>
+                                    <% }else{ %>
+                                        <a href="/chitietbaiviet/<%=posts[0].ID%>"><%=posts[0].Title%></a>
+                                    <% } %>
+                                </h2>
+                                <div class="post-meta">
+                                    <i class="far fa-clock"></i> <span id="post-time"><%=posts[0].ReleaseDay%></span>
+                                    <%if(posts[0].Tags.length != 0){ %>
+                                        <% for(let i = 0; i< posts[0].Tags.length;i++){ %>
+                                            <a href="/guest/hash-tag/<%=posts[0].Tags[i].ID%>" class="badge badge-secondary">
+                                                <span>#<%=posts[0].Tags[i].Name%></span>
+                                            </a>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                                <div class="post-abstract">
+                                    <p><%=posts[0].Abstract%></p>
+                                </div>
                             </div>
-                        </div>
                     </div>
                     <div class="post-list">
                         <!--### single post ###-->
-                        <div class="row post">
-                            <div class="col-md-4">
-                                <div class="post-thumbnail">
-                                    <a href="#"><img src="../images/1.jpg" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="#">7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của 1</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <i class="far fa-clock"></i> <span id="post-time">22/04/2019 20:30:44</span>
-                                    </div>
-                                    <div class="post-abstract">
-                                        <p>Được xem là bước tổng kết hành trình 11 năm của Marvel trên màn ảnh rộng nhưng bản thân "1" lại chứa đựng ...</p>
+                        <% for(let i = 1; i< posts.length; i++){ %>
+                            <div class="row post">
+                                <div class="col-md-4">
+                                    <div class="post-thumbnail">
+                                        <!--Premium---->
+                                        <% if(posts[i].Premium == 1 && !locals.user){ %>
+                                            <a href="javascript:;">
+                                                <%-posts[i].ImageAbstract%>
+                                            </a>
+                                        <% }else{ %>
+                                            <a href="/chitietbaiviet/<%=posts[i].ID%>"><%-posts[i].ImageAbstract%></a>
+                                        <% } %>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row post">
-                            <div class="col-md-4">
-                                <div class="post-thumbnail">
-                                    <a href="#"><img src="../images/1.jpg" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="#">7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của 1</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <i class="far fa-clock"></i> <span id="post-time">22/04/2019 20:30:44</span>
-                                    </div>
-                                    <div class="post-abstract">
-                                        <p>Được xem là bước tổng kết hành trình 11 năm của Marvel trên màn ảnh rộng nhưng bản thân "1" lại chứa đựng ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row post">
-                            <div class="col-md-4">
-                                <div class="post-thumbnail">
-                                    <a href="#"><img src="../images/1.jpg" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="#">7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của 1</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <i class="far fa-clock"></i> <span id="post-time">22/04/2019 20:30:44</span>
-                                    </div>
-                                    <div class="post-abstract">
-                                        <p>Được xem là bước tổng kết hành trình 11 năm của Marvel trên màn ảnh rộng nhưng bản thân "1" lại chứa đựng ...</p>
+                                <div class="col-md-8">
+                                    <div class="post-content">
+                                        <% if(posts[i].Premium == 1){ %>
+                                            <span class="premium-tag"><i class="far fa-gem"></i></span>
+                                        <% } %>
+                                        <!--Premium-->
+                                        <% if(posts[0].Premium == 1 && !locals.user){ %>
+                                            <h2 class="post-title">
+                                                <a href="javascript:;"><%=posts[i].Title%></a>
+                                            </h2>
+                                        <% }else{ %>
+                                            <h2 class="post-title">
+                                                <a href="/chitietbaiviet/<%=posts[i].ID%>"><%=posts[i].Title%></a>
+                                            </h2>
+                                        <% } %>
+                                        <div class="post-meta">
+                                            <i class="far fa-clock"></i> <span id="post-time"><%=posts[i].ReleaseDay%>
+                                            </span>
+                                            <%if(posts[i].Tags.length != 0){ %>
+                                                <% for(let j = 0; j< posts[i].Tags.length;j++){ %>
+                                                    <a href="/guest/hash-tag/<%=posts[i].Tags[j].ID%>" class="badge badge-secondary d-inline-block hashtag">
+                                                        <span>#<%=posts[i].Tags[j].Name%></span>
+                                                    </a>
+                                                <% } %>
+                                            <% } %>
+                                        </div>
+                                        <div class="post-abstract">
+                                            <p><%=posts[0].Abstract%></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row post">
-                            <div class="col-md-4">
-                                <div class="post-thumbnail">
-                                    <a href="#"><img src="../images/1.jpg" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="#">7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của 1</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <i class="far fa-clock"></i> <span id="post-time">22/04/2019 20:30:44</span>
-                                    </div>
-                                    <div class="post-abstract">
-                                        <p>Được xem là bước tổng kết hành trình 11 năm của Marvel trên màn ảnh rộng nhưng bản thân "1" lại chứa đựng ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row post">
-                            <div class="col-md-4">
-                                <div class="post-thumbnail">
-                                    <a href="#"><img src="../images/1.jpg" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="#">7 câu hỏi nhức nhối MARVEL nợ khán giả sau cái kết trọn vẹn của 1</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <i class="far fa-clock"></i> <span id="post-time">22/04/2019 20:30:44</span>
-                                    </div>
-                                    <div class="post-abstract">
-                                        <p>Được xem là bước tổng kết hành trình 11 năm của Marvel trên màn ảnh rộng nhưng bản thân "1" lại chứa đựng ...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <ul class="pagination">
-                                <li class="page-item disabled"><a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a></li>
-                                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                                <li class="page-item"><a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a></li>
-                            </ul>
-                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-     <%- include('../header-footer/footer.ejs')%>
+    <%- include('../header-footer/footer.ejs')%>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
