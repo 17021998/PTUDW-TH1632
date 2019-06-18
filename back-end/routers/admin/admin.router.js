@@ -171,7 +171,6 @@ router.get('/qlHashTag',auth, (req, res, next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     }
-    console.log(page);
     var limit = 10;
     var offset = (page - 1) * limit;
     Promise.all([
@@ -318,7 +317,6 @@ router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
         BeginDay: beginDay,
         EndDay: endDay
     };  
-    console.log(entity);
     subcriberModel.update(entity)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/subcribers');
@@ -345,11 +343,9 @@ router.get('/qlNguoiDung/editors',auth, (req, res) =>{
         editorModel.countByEditor(),
         categoryModel.allOnlyCat()
     ]).then(([rows, count_rows, cats]) => {
-        console.log(rows.length);
         var total = count_rows[0].total;
         var nPages = Math.floor(total / limit);
         if (total % limit > 0) nPages++;
-        console.log( "total "+total);
         var pages = [];
         var currentPage = 1;
         for( i = 1; i <= nPages; i++){
@@ -493,13 +489,36 @@ router.get('/qlNguoiDung/user-info/:id', (req, res) => {
         categoryModel.allOnlyCat(),
         editorModel.catOfEditor(id)
     ])
-    .then(([user, cats, editorCat]) => {
+    .then(([neditor, cats, editorCat]) => {
         var isActive = "qlnd";
-    res.render('admin/user/user-info', { "isActive": isActive , user, cats, editorCat});
+    res.render('admin/user/user-info', { "isActive": isActive , neditor, cats, editorCat});
     }).catch(err => {
         console.log(err);
         res.end('error occured.')
     });
+})
+
+//Edit info of userprimary
+router.post('/qlNguoiDung/user-info/:id', (req, res, next) =>{
+    var checkCats ;
+    var id = req.params.id;
+    checkCats = req.body.checkCat;
+    var entities = [];
+    for(let i = 0; i< checkCats.length; i++){
+        var entity = {
+            UserID: id,
+            ManagedCatID: checkCats[i]
+        };
+        entities.push(entity);
+    }
+    console.log(entities);
+    
+    editorModel.updateCatOfEditor(id, entities)
+    .then(()=>{
+        var url = `/qlNguoiDung/user-info/${id}`;
+        var isActive = "qlnd";
+        res.render(url, { "isActive": isActive});
+    }).catch(next);
 })
 
 router.get('/security',auth, (req, res) => {

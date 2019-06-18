@@ -42,7 +42,7 @@ module.exports = {
     },
 
     pageByEditor: (limit, offset) => {
-        return db.load(`select e.UserID, e.noc ,u.FullName, u.Email, u.DoB, u.Photo from userprimary u, (select distinct(UserID), count(ManagedCatID) as noc from editorcat group by UserID )as e where e.UserID = u.ID AND u.IsDelete is Null limit ${limit} offset ${offset};`);
+        return db.load(`select b.ID, b.FullName, b.Email, b.Photo, b.DoB, count(a.ManagedCatID) as noc from (select * from editorcat ) as a RIGHT JOIN (select * from userprimary where role = 'editor' and IsDelete is null) as b on a.UserID = b.ID group by b.ID limit ${limit} offset ${offset};`);
     },
 
     countByEditor: () => {
@@ -57,7 +57,7 @@ module.exports = {
         return db.update('editorcat', 'UserID', entity);
     },
     someEditor: (limit)=>{
-        return db.load(`select e.UserID, e.noc ,u.FullName, u.Email, u.DoB, u.Photo from userprimary u, (select distinct(UserID), count(ManagedCatID) as noc from editorcat group by UserID )as e where e.UserID = u.ID AND u.IsDelete is Null limit ${limit};`)
+        return db.load(`select b.ID, b.FullName, b.Email, b.Photo, b.DoB, count(a.ManagedCatID) as noc from (select * from editorcat ) as a RIGHT JOIN (select * from userprimary where role = 'editor' and IsDelete is null) as b on a.UserID = b.ID group by b.ID limit ${limit};`)
     },
     updateEditorProfile: (entity)=>{
         return  db.update('userprimary', 'ID', entity);
@@ -67,5 +67,14 @@ module.exports = {
     },
     catOfEditor: (id)=>{
         return db.load(`select ManagedCatID from editorcat where UserID = '${id}';`)
+    }, 
+    updateCatOfEditor: (id, entities)=>{
+        db.load(`delete from editorcat where UserID = '${id}'`);
+        var sql=`insert into editorcat values `;
+        for(var i=0; i < entities.length-1; i++){
+            sql+=`('${entities[i]}'), `
+        }
+        sql+=`('${entity[entities.length-1]}') ;`;
+        return db.load(sql);
     }
 };
