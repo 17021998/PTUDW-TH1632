@@ -75,6 +75,15 @@ module.exports = {
     getPostByPostId: ID=>{ // can sua lai
         return db.load(`select p.*, c.ID as CatID, c.SuperCatID from post as p, catpost as cp , category as c where p.ID = cp.PostID and cp.CatID = c.ID and p.ID = ${ID} and p.IsDelete is null`);
     },
+    addPost: entity => {
+        return db.add('post', entity);
+    },
+    addCatPost: entity => {
+        return db.add('catpost', entity);
+    },
+    addWriterPost: entity=>{
+        return db.add('writerpost', entity);
+    },
 
     savePost: entity=>{
         return db.update('post', 'ID', entity);
