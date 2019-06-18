@@ -3,8 +3,8 @@ admin@th16news.hcmus
 1234567
 
 editor
-editor123@gmail.com
-quang123
+editor1@gmail.com
+123456
 
 writer
 writer123@gmail.com
