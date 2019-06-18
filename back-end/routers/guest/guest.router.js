@@ -14,17 +14,56 @@ var moment = require('moment');
 var indexModel = require('../../modles/index/index.model');
 
 router.get('/chuyen-de/:id', (req,res,next)=> {
+    var page = req.query.page || 1;
+    if(page < 1 || isNaN(page)){
+        page=1;
+    }
+    var limit = 5;
+    var offset = (page - 1) * limit;
     var catId = req.params.id;
     Promise.all([
         indexModel.allCat(),
-        indexModel.allByCat(catId),
-        indexModel.getCatById(catId)
-    ]).then(([cats, posts, cat]) => {
+        indexModel.allByCat(catId, limit, offset),
+        indexModel.getCatById(catId),
+        indexModel.getCountByCat(catId)
+        // thieu get count();
+    ]).then(([cats, posts, cat, count]) => {
+        var counts = count[0].totals;
+        var len = Math.floor(counts / limit);
+        if(counts % limit>0){
+            len++;
+        }
+
+        var lenPage=[];
+        if(len < 5){
+            lenPage.push({"begin": 0, "end": len-1});
+        }else {
+            if(page -2 <=1){
+                lenPage.push({"begin": 0, "end": 4});
+            } else if(page + 2>=len){
+                lenPage.push({"begin": len-5, "end": len-1});
+            }else {
+                lenPage.push({"begin": page -2, "end": +page + 2});
+            }
+        }
+
+        var pages = [];
+        if(len!=0){
+            for( i =0 ;i<len;i++){
+                pages.push({"value": i, "isActive": i===+page-1});
+            }
+        }else{
+            pages.push({"value": 0, "isActive": true});
+        }
+
         var posts1 = handlePost(posts); //Chuyển danh sách bài viết thành có hashtag
         res.render('guest/chuyen-de.ejs',{
             cats:cats,
             posts: posts1,
-            cat: cat[0]
+            cat: cat[0],
+            "page": pages,
+            "p": page,
+            "lenPage": lenPage[0]
         });
     }).catch(next);
 })
