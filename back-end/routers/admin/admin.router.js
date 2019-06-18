@@ -69,9 +69,12 @@ router.get('/:id/ctBaiViet',auth, (req, res) => {
 
 router.get('/newBaiViet',auth, (req,res,next)=>{
     var isac = "nbv"
-    adminModle.getcategoryFather()
-    .then(rows=>{
-        res.render('admin/newBaiViet',{"isActive": isac, "Cat": rows});
+    Promise.all([
+        adminModle.getcategoryFather(),
+        adminModle.getCatagoryChild()
+    ])
+    .then(([ catF, catC])=>{
+        res.render('admin/newBaiViet',{"isActive": isac, "Cat": catF, "CatChild": catC});
     })
     .catch(next);
 })
@@ -110,13 +113,14 @@ router.get('/qlBaiViet',auth, (req, res,next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     } 
+    
     if((ttbv <-2 && ttbv > 2)|| isNaN(ttbv)){
         ttbv=2; // xác nhận là lấy tất cả.
-    } 
+    }
     var limit = 5;
     var offset = (page - 1) * limit;
     Promise.all([
-        adminModle.countPost(),
+        adminModle.countPost(ttbv),
         adminModle.pagePost(limit, offset, ttbv), // lay duoc danh sach cac post 
     ]).then(([count, rowsPage])=>{
         for (let index = 0; index < rowsPage.length; index++) {
@@ -171,8 +175,7 @@ router.get('/qlHashTag',auth, (req, res, next) => {
     if(page < 1 || isNaN(page)){
         page=1;
     }
-    console.log(page);
-    var limit = 10;
+    var limit = 30;
     var offset = (page - 1) * limit;
     Promise.all([
         adminModle.allTag(),
@@ -238,7 +241,7 @@ router.get('/qlNguoiDung',auth, (req, res) => {
 router.get('/qlNguoiDung/subcribers',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
-    var limit = 4;
+    var limit = 10;
     var offset = (page - 1)*limit;
     Promise.all([
         subcriberModel.pageBySubcriber(limit, offset),
@@ -318,7 +321,6 @@ router.post('/qlNguoiDung/subcribers/update/:id', (req, res, next) =>{
         BeginDay: beginDay,
         EndDay: endDay
     };  
-    console.log(entity);
     subcriberModel.update(entity)
     .then(()=>{
         return res.redirect('/admin/qlNguoiDung/subcribers');
@@ -338,18 +340,16 @@ router.post('/qlNguoiDung/subcribers/delete/:id', (req, res, next) =>{
 router.get('/qlNguoiDung/editors',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
-    var limit = 4;
+    var limit = 8;
     var offset = (page - 1)*limit;
     Promise.all([
         editorModel.pageByEditor(limit, offset),
         editorModel.countByEditor(),
         categoryModel.allOnlyCat()
     ]).then(([rows, count_rows, cats]) => {
-        console.log(rows.length);
         var total = count_rows[0].total;
         var nPages = Math.floor(total / limit);
         if (total % limit > 0) nPages++;
-        console.log( "total "+total);
         var pages = [];
         var currentPage = 1;
         for( i = 1; i <= nPages; i++){
@@ -416,7 +416,7 @@ router.post('/qlNguoiDung/editors/delete/:id', (req, res, next) =>{
 router.get('/qlNguoiDung/writers',auth, (req, res) =>{
     var page = req.query.page || 1;
     if (page < 1) page = 1;
-    var limit = 4;
+    var limit = 8;
     var offset = (page - 1)*limit;
     Promise.all([
         writerModel.pageWriter(limit, offset),
@@ -493,42 +493,40 @@ router.get('/qlNguoiDung/user-info/:id', (req, res) => {
         categoryModel.allOnlyCat(),
         editorModel.catOfEditor(id)
     ])
-    .then(([user, cats, editorCat]) => {
+    .then(([neditor, cats, editorCat]) => {
         var isActive = "qlnd";
-    res.render('admin/user/user-info', { "isActive": isActive , user, cats, editorCat});
+    res.render('admin/user/user-info', { "isActive": isActive , neditor, cats, editorCat});
     }).catch(err => {
         console.log(err);
         res.end('error occured.')
     });
 })
 
+//Edit info of userprimary
+router.post('/qlNguoiDung/user-info/:id', (req, res, next) =>{
+    var checkCats ;
+    var id = req.params.id;
+    checkCats = req.body.checkCat;
+    var entities = [];
+    for(let i = 0; i< checkCats.length; i++){
+        var entity = {
+            UserID: id,
+            ManagedCatID: checkCats[i]
+        };
+        entities.push(entity);
+    }
+    
+    editorModel.updateCatOfEditor(id, entities)
+    .then(()=>{
+        var url = `/admin/qlNguoiDung/user-info/${id}`;
+        res.redirect(url);
+    }).catch(next);
+})
+
 router.get('/security',auth, (req, res) => {
     var isActive = "s";
     res.render('admin/security', { "isActive": isActive });
 })
-
-router.get('/user-info',auth, (req, res) => {
-    var isActive = "ui";
-    res.render('admin/user-info', { "isActive": isActive });
-})
-// update user infor
-router.post('/update/user-info', (req,res)=>{
-    var entity = req.body;
-
-    res.end('...');
-})
-
-router.get('/writer-info',auth, (req, res) => {
-    var isActive = "wi";
-    res.render('admin/writer-info', { "isActive": isActive });
-})
-// update writer infor
-router.post('/update/writer-info', (req,res)=>{
-    var entity = req.body;
-
-    res.end('...');
-})
-
 
 // router post
 router.post('/qlHashTag/add', (req,res)=>{
@@ -541,6 +539,58 @@ router.post('/qlHashTag/add', (req,res)=>{
         .catch(err => console.log(err));
 })
 
+router.post('/save/bv',(req,res)=>{
+    // tag name add them.
+    var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
+    req.body.ReleaseDay = null;
+    req.body.editorID = null;
+    req.body.Abstract = req.body.Title;
+    req.body.Premium = 0;
+    req.body.Deny = null;
+    req.body.editorID = req.user.ID;
+    if(req.body.PostStatus == 1){
+        req.body.ReleaseDay = dateFormat(new Date(),"yyyy/mm/dd" );
+    }
+    // id cua post can update.
+    var Arr = split(",", tag);
+    delete req.body['tagname'];
+    var CatId = req.body.CatID;
+    delete req.body['CatID'];
+    var arr = {"idT": Arr};
+    Promise.all([
+        adminModle.addPost(req.body),
+        adminModle.getTagIDByName(arr)
+    ])
+    .then(([id, rowTag])=>{
+        var catPost={
+            'CatID': CatId,
+            'PostID': id
+        };
+        
+        Promise.all([
+            adminModle.addCatPost(catPost)
+        ]).then(([id1])=>{}).catch();
+
+        if(rowTag.length!=0){   
+            var idT =[];
+            for (let index = 0; index < rowTag.length; index++) {
+                idT[index] = rowTag[index];
+            }
+            var arr1 = {"idP" : id, "idT": idT};
+
+            adminModle.addTagPost(arr1)
+            .then().catch();
+        }
+        res.redirect('/admin/newBaiViet');
+    }).catch();
+
+
+})
+
 router.post('/save/baiviet',(req,res)=>{
     // tag name add them.
     var tag = req.body.tagname;
@@ -548,17 +598,18 @@ router.post('/save/baiviet',(req,res)=>{
         req.body.PostStatus = null;
         req.body.ReleaseDay = null;
     }
+    if(req.body.PostStatus == 1){
+        req.body.ReleaseDay = dateFormat(new Date(),"yyyy/mm/dd" );
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
     delete req.body['tagname'];
     var CatId = req.body.CatID;
-
     var entity={
         CatID: CatId,
         PostID: ID
     };
-
     delete req.body['CatID'];
     var arr = {"idP" : ID, "idT": Arr};
 
@@ -588,6 +639,10 @@ router.post('/saveClose/baiviet',(req,res)=>{
 
     // tag name add them.
     var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
@@ -625,12 +680,16 @@ router.post('/saveClose/baiviet',(req,res)=>{
 router.post('/saveNew/baiviet',(req,res)=>{
     // tag name add them.
     var tag = req.body.tagname;
+    if(req.body.PostStatus=="null"){
+        req.body.PostStatus = null;
+        req.body.ReleaseDay = null;
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
     var entity={
         CatID: req.body.CatID,
-        PostID: req.body.PostID
+        PostID: req.body.ID
     };
     delete req.body['tagname'];
     delete req.body['CatID'];

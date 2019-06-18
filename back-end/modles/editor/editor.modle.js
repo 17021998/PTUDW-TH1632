@@ -4,6 +4,13 @@ var nametable = "catpost";
 
 module.exports = {
 
+    allPostXetDuyet: (userID)=>{
+        return db.load(`select * from post as p where p.editorID = '${userID}' and p.IsDelete is null and p.PostStatus = 1`)
+    },
+    allPostTuChoi: (userID)=>{
+        return db.load(`select * from post as p where p.editorID = '${userID}' and p.IsDelete is null and p.PostStatus = -1`)
+    },
+
     allPostBycategory: (CatID, userID)=>{
         return db.load(`select p.*, w.WriterName
         from post as p, category as c, catpost as cp, editorcat as ec, writer as w, writerpost as wp
@@ -19,6 +26,30 @@ module.exports = {
 
     getContentPost: ID=>{
         return db.load(`select p.Content from post as p where p.ID = ${ID}`);
+    },
+
+    getTagIDByName:(entity)=>{
+        var idT = entity.idT; //  mang ten tag
+
+        var sqlTag = `select t.ID from tag as t where `;
+        for (let index = 0; index < idT.length-1; index++) {
+            sqlTag+=`t.TagName = '${idT[index]}' or `
+        }
+        sqlTag += `t.TagName = '${idT[idT.length-1]}';`
+        return db.load(sqlTag);
+    },
+
+    addTagPost: entity=>{
+        var idP = entity.idP;
+        var idT = entity.idT; //  mang ten tag
+
+        var sql = `insert into tagpost (TagID, PostID) values `;
+        for(var i=0;i<idT.length-1;i++){
+            sql+=`('${idT[i].ID}', '${idP}'), `
+        }
+        sql+=`('${idT[idT.length-1].ID}', '${idP}')`;
+
+        return db.load(sql);
     },
 
     getIDcategoryByPostID: Postid=>{
@@ -42,7 +73,7 @@ module.exports = {
     },
 
     pageByEditor: (limit, offset) => {
-        return db.load(`select e.UserID, e.noc ,u.FullName, u.Email, u.DoB, u.Photo from userprimary u, (select distinct(UserID), count(ManagedCatID) as noc from editorcat group by UserID )as e where e.UserID = u.ID AND u.IsDelete is Null limit ${limit} offset ${offset};`);
+        return db.load(`select b.ID, b.FullName, b.Email, b.Photo, b.DoB, count(a.ManagedCatID) as noc from (select * from editorcat ) as a RIGHT JOIN (select * from userprimary where role = 'editor' and IsDelete is null) as b on a.UserID = b.ID group by b.ID limit ${limit} offset ${offset};`);
     },
 
     countByEditor: () => {
@@ -57,7 +88,7 @@ module.exports = {
         return db.update('editorcat', 'UserID', entity);
     },
     someEditor: (limit)=>{
-        return db.load(`select e.UserID, e.noc ,u.FullName, u.Email, u.DoB, u.Photo from userprimary u, (select distinct(UserID), count(ManagedCatID) as noc from editorcat group by UserID )as e where e.UserID = u.ID AND u.IsDelete is Null limit ${limit};`)
+        return db.load(`select b.ID, b.FullName, b.Email, b.Photo, b.DoB, count(a.ManagedCatID) as noc from (select * from editorcat ) as a RIGHT JOIN (select * from userprimary where role = 'editor' and IsDelete is null) as b on a.UserID = b.ID group by b.ID limit ${limit};`)
     },
     updateEditorProfile: (entity)=>{
         return  db.update('userprimary', 'ID', entity);
@@ -67,5 +98,15 @@ module.exports = {
     },
     catOfEditor: (id)=>{
         return db.load(`select ManagedCatID from editorcat where UserID = '${id}';`)
+    },
+    updateCatOfEditor: (id, entities)=>{
+        db.load(`delete from editorcat where UserID = '${id}'`);
+        var sql=`insert into editorcat( UserID , ManagedCatID) values `;
+        for(var i=0; i < entities.length-1; i++){
+            sql+=`('${entities[i].UserID}' , ${entities[i].ManagedCatID}), `
+        }
+        sql+=`('${entities[entities.length-1].UserID}' , ${entities[entities.length-1].ManagedCatID})`;
+        console.log(sql);
+        return db.load(sql);
     }
 };

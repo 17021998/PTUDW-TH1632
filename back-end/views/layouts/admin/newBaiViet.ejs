@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" href="/css/admin/admin-style.css">
     <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="/css/cssAutoComplete/cssAutoComplete.css">
     <!--Ckeditor-->
     <script src="/js/writer/ckeditor/ckeditor.js"></script> 
     <script src="/js/editor/jquery.min.js"></script> <!-- cai nay chua add-->
@@ -26,6 +27,9 @@
             min-height: 0 !important;
             margin-left: 16px !important;
             margin-top: 16px !important;
+        }
+        .autocomplete-items{
+            top: auto !important;
         }
     </style>
 </head>
@@ -44,37 +48,31 @@
                             <form method="post">
                                 <div class="card-header">
                                     <div id="tool-button" class="d-flex">
-                                        <button type="submit" class="btn btn-sm ml-3 btn-primary" formaction="/admin/save/baiviet">
+                                        <a class="btn btn-sm ml-3" href="/admin/qlBaiViet" role="button">
+                                        <i class="fa fa-backward" aria-hidden="true"></i>
+                                            <span> Back </span></a>
+                                        <button type="submit" class="btn btn-sm ml-3 btn-primary" formaction="/admin/save/bv">
                                             <i class="far fa-save"></i>
                                             <span> Save</span>
                                         </button>
-                                        <button type="submit" class="btn btn-sm ml-3 clickable-row" formaction="/admin/saveClose/baiviet">
-                                            <i class="fas fa-check"></i>
-                                            <span> Save & Close</span>
-                                        </button>
-                                        <button type="submit" class="btn btn-sm ml-3 clickable-row" formaction="/admin/saveNew/baiviet">
-                                            <i class="fas fa-plus"></i>
-                                            <span> Save & New</span>
-                                        </button>
-                                        <button type="submit" class="btn btn-sm ml-3" formaction="/admin/delete/baiviet">
-                                            <i class="fas fa-trash"></i>
-                                            <span> Delete</span>
-                                        </button>
+
                                     </div>
                                     <div class="d-flex mt-3">
                                     <%# post status %>
                                         <select id="PostStatus" name="PostStatus" class="custom-select-md ml-3">
                                             <option>Chọn trạng thái bài viết</option>
-                                            <option value="1" >Đã xuất bản</option> <%# 1 xuat ban 0 chua xuat ban -1 tu choi%>
-                                            <option value="0" >Chưa xuất bản</option> 
-                                            <option value="-1" >Đã từ chối</option> 
+                                            <option value="1" selected>Xuất bản</option>
+                                            <option value="null" >Đợi duyệt</option>
                                         </select>
                                         <%# CatID %>
-                                        <select id="CatID" name="CatID" class="custom-select-md ml-3">
+                                        <select id="CatIDFather" class="custom-select-md ml-3">
                                             <option>Chọn chuyên mục bài viết</option>
                                             <% for( let index = 0; index < Cat.length; index++ ) { %>
-                                                <option value="<%=Cat[index].ID%>"> <%=Cat[index].CatName%></option>
+                                                <option value="<%=Cat[index].ID%>" ><%=Cat[index].CatName%></option>
                                             <% } %>
+                                        </select>
+                                        <select id="CatID" name="CatID" class="custom-select-md ml-3">
+                                            <option>Chọn chuyên mục bài viết</option>
                                         </select>
                                     </div>
                                     <div class="row align-items-center mt-3">
@@ -87,7 +85,12 @@
                                         <input type="text" data-role="tagsinput" placeholder="Thêm tags" name="tagname" class="ml-3">
                                     </div>
                                 </div>
+                                <div class="col-xs-4 col-md-12 form-group">
+                                    <label for=""> Ảnh đại diện</label>
+                                    <textarea name="ImageAbstract" id="ImageAbstract"></textarea>
+                                </div>
                                 <div class="col-xs-4 col-md-12 form-group card-body">
+                                <label for="Content">Nội dung bài viết</label>
                                     <textarea name="Content" id="Content"></textarea>
                                 </div>
                             </form>
@@ -101,16 +104,68 @@
     <!--Main Script-->
     <script>
         CKEDITOR.replace('Content', {
+            "extraPlugins" : 'imagebrowser , youtube',
+            "imageBrowser_listUrl" : "/files"
+        });
+        CKEDITOR.replace('Content', {
             height: 500
         });
     </script>
+
+    <script type="text/javascript">
+            CKEDITOR.replace('ImageAbstract', {
+                "extraPlugins" : 'imagebrowser',
+                "imageBrowser_listUrl" : "/files",
+                toolbar:[
+                    {name: 'insert', items: ['Image']}
+                ]
+            });
+        </script>
+
+    <script>
+        $(document).ready(function() {
+            $("form").bind("keypress", function(e) {
+                if (e.keyCode == 13) {
+                    return false;
+                }
+            });
+        });
+        CKEDITOR.replace('Content', {
+            height: 500
+        });
+    </script>
+
+    <script>
+        document.getElementById("CatIDFather").addEventListener("change", addOption, false);
+        
+        function addOption(){
+            var CatIDFater = document.getElementById("CatIDFather").value;
+            var select = $('#CatID');
+            $('option',select).remove();
+
+            <% for(let i = 0; i< CatChild.length; i++){ %>
+            if (CatIDFater==<%=CatChild[i].SuperCatID%>) {
+                    select.append(new Option('<%= CatChild[i].CatName %>', '<%= CatChild[i].ID %>', true, false));
+            }
+            <% } %>
+        }
+
+        window.addEventListener("load", start, false);
+    </script>
+
     <script src="/js/editor/main.js"></script>
     <script src="/js/admin/article-detail.js"></script>
+    <script src="/js/autoComplete/autoComplete.js"></script> 
     
     <!--Bootstrap-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+                $.getScript('/js/admin/load.js');
+        });
+    </script>
 </body>
 
 </html>

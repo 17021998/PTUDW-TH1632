@@ -70,7 +70,13 @@
                                         <tbody>
                                             <% for( let index = 0; index < rows.length; index++ ) { %>
                                                 <tr id="<%=rows[index].ID %>">
-                                                <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                                <td class="avatar">
+                                                    <% if(rows[index].Photo == null){ %> 
+                                                        <img src="/images/account.png" >
+                                                    <% }else{ %>
+                                                        <img src="<%=rows[index].Photo %>">
+                                                    <% } %>
+                                                </td>
                                                 <td>
                                                     <div class="widget-heading">
                                                         <%=rows[index].FullName %>
@@ -287,10 +293,17 @@
             $('#input_birthday').datetimepicker({
                 format: 'd/m/Y',
                 timepicker: false,
-                mask: true
+                mask: true,
+                startDate:'1990/01/01'
             });
             $('#newMember').validate({
                 rules: {
+                    name: {
+                        required: true
+                    },
+                    birthday: {
+                        required: true
+                    },
                     email: {
                         required: true,
                         email: true,
@@ -304,6 +317,12 @@
                     }
                 },
                 messages: {
+                    name: {
+                        required: 'Vui lòng nhập tên đầy đủ của bạn.'
+                    },
+                    birthday: {
+                        required: 'Vui lòng nhập ngày sinh của bạn.'
+                    },
                     email: {
                         required: 'Vui lòng nhập email.',
                         email: 'Email không hợp lệ.',

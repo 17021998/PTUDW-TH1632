@@ -56,38 +56,38 @@
                                 <div class="row">
                                     <div class="col my-auto">
                                         <div id="card-header-title">
-                                            <h5><%=user[0].FullName %></h5>
+                                            <h5><%=neditor[0].FullName %></h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card body">
-                                <form class="d-flex flex-row content-form-view">
+                                <form class="d-flex flex-row content-form-view" method="POST" action="">
                                     <div class="col-md-12 row">
                                         <div class="col-md-6">
                                             <div id="content-form-img">
                                                 <div id="profile-picture">
-                                                    <% if(user[0].Photo == null) { %>
+                                                    <% if(neditor[0].Photo == null) { %>
                                                     <img src="/images/1.jpg">
                                                     <% } else{ %>
-                                                    <img src="<%=user[0].Photo %>">
+                                                    <img src="<%=neditor[0].Photo %>">
                                                     <% } %>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-12 row form-disable">
                                                 <label for="inputHoTen" class="col-sm-4 col-form-label">Họ tên:</label>
                                                 <input type="text" class="input-feild col-md-8" id="inputHoTen"
-                                                    value="<%= user[0].FullName %>" readonly>
+                                                    value="<%= neditor[0].FullName %>" readonly>
                                             </div>
                                             <div class="form-group col-md-12 row form-disable">
                                                 <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
                                                 <input type="email" class="input-feild col-md-8" id="inputEmail"
-                                                    value="<%= user[0].Email %>" readonly>
+                                                    value="<%= neditor[0].Email %>" readonly>
                                             </div>
                                             <div class="col-md-12 row form-disable">
                                                 <label for="showDate" class="col-form-label col-sm-4">Ngày sinh:</label>
                                                 <input type="text" class=" col-md-8" id="showDate"
-                                                    value="<%=user[0].DoB %>" readonly>
+                                                    value="<%= neditor[0].DoB %>" readonly>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -97,16 +97,17 @@
                                                     <% for(let index = 0; index < cats.length; index++){ %>
                                                     <% if(cats[index].SuperCatID == null) {%>
                                                     <li>
-                                                        <input type="checkbox" class = "li-disable" id="<%=cats[index].ID %>" name="checkCat"
-                                                            value="<%=cats[index].ID %>" <% for(let i = 0; i < editorCat.length; i++){ %> <% if(cats[index].ID == editorCat[i].ManagedCatID) { %> checked <% }} %>>
+                                                        
+                                                        <input type="checkbox" class = "li-disable" id="<%= cats[index].ID %>" name="checkCat" readonly
+                                                            value="<%=cats[index].ID %>" <% for(let i = 0; i < editorCat.length; i++){ %> <% if (editorCat[i].ManagedCatID==cats[index].ID){ %> checked <%}%> <% } %> >
                                                         <label
                                                             for="<%=cats[index].ID %>"><%=cats[index].CatName %></label>
                                                         <ul>
                                                             <% for(let j = 0; j < cats.length; j++){ %>
                                                             <% if(cats[j].SuperCatID == cats[index].ID){ %>
                                                             <li>
-                                                                <input type="checkbox" class = "li-disable" id="<%=cats[j].ID %>"
-                                                                    name="checkCat" value="<%=cats[j].ID %>" <% for(let i = 0; i < editorCat.length; i++){ %> <% if(cats[index].ID == editorCat[i].ManagedCatID) { %> checked <% }} %>>
+                                                                <input type="checkbox" class = "li-disable" id="<%=cats[j].ID %>" readonly                           
+                                                                    name="checkCat" value="<%=cats[j].ID %>" <% for(let i = 0; i < editorCat.length; i++){ %> <% if(cats[j].ID == editorCat[i].ManagedCatID) { %> checked <% }} %>>
                                                                 <label
                                                                     for="<%=cats[j].ID %>"><%=cats[j].CatName %></label>
                                                             </li>
@@ -119,8 +120,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                                <div class="text-center mb-3">
-                                                        <button id = "btn-edit" type="button" class="btn btn-secondary btn-color mr-3">Chỉnh sửa</button>
+                                                <div class="text-center mb-3 mx-auto">
                                                         <button id = "btn-save" type="submit" class="btn btn-primary btn-color">Lưu</button>
                                                 </div>
                                     </div>
@@ -142,21 +142,5 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.li-disable').attr('disabled', 'true');
-            $('#btn-save').attr('disabled');
-            $('#btn-edit').click(function(){
-                $('.li-disable').removeAttr('disabled');
-                $('#btn-save').removeAttr('disabled');
-                $('btn-edit').attr('disabled');
-            });
-            $('#btn-save').click(function(){
-                $('.li-disable').attr('disabled', 'true');
-                $('#btn-save').attr('disabled');
-                $('btn-edit').removeAttr('disabled');
-            });
-        });
-    </script>
 </body>
 </html>

@@ -26,7 +26,7 @@
         <%- include('../../logout/admin/form.ejs') %>
         <%- include('../../header-footer/header-admin.ejs') %>
         <section id="page-main-content">
-        <%- include('../../logout/admin/header-hori.ejs') %>
+            <%- include('../../logout/admin/header-hori.ejs') %>
             <!--Main content-->
             <div class="container">
                 <div class="row">
@@ -50,8 +50,8 @@
                                     <div class="col text-right">
                                         <a href="#addNewModal" class="btn btn-primary btn-color" data-toggle="modal"><i
                                                 class="fas fa-plus-circle"></i> <span>Thêm Editor</span></a>
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card body">
                                 <!-- ### Subcriber table ###-->
@@ -69,8 +69,14 @@
                                         </thead>
                                         <tbody>
                                             <% for( let index = 0; index < rows.length; index++ ) { %>
-                                                <tr id="<%=rows[index].UserID %>">
-                                                <td class="avatar"><img src="/images/1.jpg" alt=""></td>
+                                            <tr id="<%=rows[index].ID %>">
+                                                <td class="avatar">
+                                                    <% if(rows[index].Photo == null){ %>
+                                                    <img src="/images/account.png">
+                                                    <% }else{ %>
+                                                    <img src="<%=rows[index].Photo %>">
+                                                    <% } %>
+                                                </td>
                                                 <td>
                                                     <div class="widget-heading">
                                                         <%=rows[index].FullName %>
@@ -86,17 +92,21 @@
                                                         <%=rows[index].Email %>
                                                     </div>
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <%=rows[index].noc %>
                                                 </td>
                                                 <td>
-                                                    <div class = "d-flex justify-content-around">
-                                                        <a class="detail badge-pill" href="user-info/<%=rows[index].UserID %>" title="Xem chi tiết">Xem chi tiết</a>
-                                                        <a id="<%=rows[index].UserID %>" href="#deleteModal" class="delete" data-toggle="modal"><i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>
+                                                    <div class="d-flex justify-content-around">
+                                                        <a class="detail badge-pill mr-3"
+                                                            href="user-info/<%=rows[index].ID %>"
+                                                            title="Xem chi tiết">Xem chi tiết</a>
+                                                        <a id="<%=rows[index].ID %>" href="#deleteModal" class="delete"
+                                                            data-toggle="modal"><i class="fas fa-trash"
+                                                                data-toggle="tooltip" title="Delete"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <% } %> 
+                                            <% } %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -104,62 +114,70 @@
                             <div class="card-footer text-center">
                                 <% let n = pages.length; %>
                                 <% if (n > 0) { %>
-                                    <ul class="pagination pagination-circle pg-color d-flex justify-content-center">
+                                <ul class="pagination pagination-circle pg-color d-flex justify-content-center">
                                     <% if (n == 1) { %>
-                                    <li class="page-item disabled"><a class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                                    <li class="page-item disabled"><a class="page-link"><i
+                                                class="fas fa-angle-left"></i></a></li>
                                     <% } else { %>
-                                        <li class="page-item"><a class="page-link" href="?page=1"><i class="fas fa-angle-left"></i></i></a></li>
+                                    <li class="page-item"><a class="page-link" href="?page=1"><i
+                                                class="fas fa-angle-left"></i></i></a></li>
                                     <% } %>
-                                    
+
                                     <% if (n > 5) {%>
-                                        <% var temp = +currentPage - 2; %>
-                                        <% if (temp <=1 ) { %>
-                                            <% for(var i = 1; i<= 5; i++) { %>
-                                                <% if (currentPage == i) { %>
-                                                    <li class="page-item active"><a class="page-link"><%= i %> <span class="sr-only">(current)</span></a></li>
-                                                    <% } else { %>
-                                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-                                                    <% } %>
-                                            <% } %>
-                                            <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
-                                        <% }else { if((currentPage + 2) < n) { %>
-                                            <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
-                                            <% for(var i = temp; i<= currentPage + 2; i++) { %>
-                                                <% if (currentPage == i) { %>
-                                                    <li class="page-item active"><a class="page-link"><%= i %> <span class="sr-only">(current)</span></a></li>
-                                                <% } else { %>
-                                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-                                                <% } %>
-                                            <% } %>
-                                            <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
-                                        <% } else{ %>
-                                            <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
-                                                <% for(var i = n - 4; i<= n; i++) { %>
-                                                    <% if (currentPage == i) { %>
-                                                        <li class="page-item active"><a class="page-link"><%= i %> <span class="sr-only">(current)</span></a></li>
-                                                    <% } else { %>
-                                                        <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-                                                    <% } %>
-                                                    <% } %>
-                                            <% } %>
-                                        <%} %>
+                                    <% var temp = +currentPage - 2; %>
+                                    <% if (temp <=1 ) { %>
+                                    <% for(var i = 1; i<= 5; i++) { %>
+                                    <% if (currentPage == i) { %>
+                                    <li class="page-item active"><a class="page-link"><%= i %> <span
+                                                class="sr-only">(current)</span></a></li>
                                     <% } else { %>
-                                        <% for(var i = 1; i<= n; i++) { %>
-                                            <% if (currentPage == i) { %>
-                                                <li class="page-item active"><a class="page-link"><%= i %> <span class="sr-only">(current)</span></a></li>
-                                                <% } else { %>
-                                                <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
-                                                <% } %>
-                                        <% } %>
+                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% } %>
+                                    <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
+                                    <% }else { if((currentPage + 2) < n) { %>
+                                    <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
+                                    <% for(var i = temp; i<= currentPage + 2; i++) { %>
+                                    <% if (currentPage == i) { %>
+                                    <li class="page-item active"><a class="page-link"><%= i %> <span
+                                                class="sr-only">(current)</span></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% } %>
+                                    <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
+                                    <% } else{ %>
+                                    <li class="page-item disabled"><a class="page-link" href="javascript:;">...</a></li>
+                                    <% for(var i = n - 4; i<= n; i++) { %>
+                                    <% if (currentPage == i) { %>
+                                    <li class="page-item active"><a class="page-link"><%= i %> <span
+                                                class="sr-only">(current)</span></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% } %>
+                                    <% } %>
+                                    <%} %>
+                                    <% } else { %>
+                                    <% for(var i = 1; i<= n; i++) { %>
+                                    <% if (currentPage == i) { %>
+                                    <li class="page-item active"><a class="page-link"><%= i %> <span
+                                                class="sr-only">(current)</span></a></li>
+                                    <% } else { %>
+                                    <li class="page-item"><a class="page-link" href="?page=<%= i %>"><%= i %></a></li>
+                                    <% } %>
+                                    <% } %>
                                     <% } %>
 
                                     <% if ((n)===currentPage ){ %>
-                                    <li class="page-item disabled"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+                                    <li class="page-item disabled"><a class="page-link"><i
+                                                class="fas fa-chevron-right"></i></a></li>
                                     <% } else { %>
-                                        <li class="page-item"><a class="page-link" href="?page=<%=pages[n-1].value %>"><i class="fas fa-chevron-right"></i></a></li>
-                                        <% } %>
-                                    </ul>
+                                    <li class="page-item"><a class="page-link" href="?page=<%=pages[n-1].value %>"><i
+                                                class="fas fa-chevron-right"></i></a></li>
                                     <% } %>
+                                </ul>
+                                <% } %>
                             </div>
                         </div>
                     </div>
@@ -169,14 +187,14 @@
         <div class="input-group w-100">
 
             <!-- Add New Modal -->
-            <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-edit" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Thêm
                                 người dùng</h5>
-                            <button type="button" class="close" data-dismiss="modal"
-                                aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -188,28 +206,25 @@
                                             <label for="input_hoTen" class="col-form-label">
                                                 Họ tên:
                                             </label>
-                                            <input type="text" class="form-control" name="name"
-                                                id="input_hoTen" />
+                                            <input type="text" class="form-control" name="name" id="input_hoTen" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="input_birthday"
-                                                class="col-form-label">Ngày sinh:</label>
-                                            <input type="text" id="input_birthday"
-                                                class="form-control" name="birthday" />
+                                            <label for="input_birthday" class="col-form-label">Ngày sinh:</label>
+                                            <input type="text" id="input_birthday" class="form-control"
+                                                name="birthday" />
                                         </div>
                                         <div class="form-group">
                                             <label for="input_email" class="col-form-label">
                                                 Email:
                                             </label>
-                                            <input type="email" name="email"
-                                                class="form-control" id="input_email" />
+                                            <input type="email" name="email" class="form-control" id="input_email" />
                                         </div>
                                         <div class="form-group">
                                             <label for="input_password" class="col-form-label">
                                                 Mật khẩu:
                                             </label>
-                                            <input type="password" name="password"
-                                                class="form-control" id="input_password" />
+                                            <input type="password" name="password" class="form-control"
+                                                id="input_password" />
                                         </div>
                                     </div>
                                     <div class="editor-cat col-6">
@@ -217,29 +232,32 @@
                                             <span>Chuyên mục được phân công: </span>
                                             <ul class="ul-father">
                                                 <% for(let index = 0; index < cats.length; index++){ %>
-                                                    <% if(cats[index].SuperCatID == null) {%>    
+                                                <% if(cats[index].SuperCatID == null) {%>
+                                                <li>
+                                                    <input type="checkbox" id="<%=cats[index].ID %>" name="checkCat"
+                                                        value="<%=cats[index].ID %>">
+                                                    <label for="<%=cats[index].ID %>"><%=cats[index].CatName %></label>
+                                                    <ul>
+                                                        <% for(let j = 0; j < cats.length; j++){ %>
+                                                        <% if(cats[j].SuperCatID == cats[index].ID){ %>
                                                         <li>
-                                                            <input type="checkbox" id="<%=cats[index].ID %>" name="checkCat" value="<%=cats[index].ID %>">
-                                                            <label for="<%=cats[index].ID %>"><%=cats[index].CatName %></label>
-                                                            <ul>
-                                                                <% for(let j = 0; j < cats.length; j++){ %>
-                                                                    <% if(cats[j].SuperCatID == cats[index].ID){ %>
-                                                                       <li>
-                                                                            <input type="checkbox" id="<%=cats[j].ID %>" name="checkCat" value="<%=cats[j].ID %>">
-                                                                            <label for="<%=cats[j].ID %>"><%=cats[j].CatName %></label> 
-                                                                       </li>
-                                                                    <% } %>
-                                                                <% } %>
-                                                            </ul>
+                                                            <input type="checkbox" id="<%=cats[j].ID %>" name="checkCat"
+                                                                value="<%=cats[j].ID %>">
+                                                            <label for="<%=cats[j].ID %>"><%=cats[j].CatName %></label>
                                                         </li>
-                                                    <% } %>
+                                                        <% } %>
+                                                        <% } %>
+                                                    </ul>
+                                                </li>
+                                                <% } %>
                                                 <% } %>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-right">
-                                    <button type="button" class="btn btn-secondary btn-color mr-3" data-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-secondary btn-color mr-3"
+                                        data-dismiss="modal">Hủy</button>
                                     <button type="submit" class="btn btn-primary btn-color">Lưu</button>
                                 </div>
                             </form>
@@ -271,7 +289,7 @@
                             <div class="modal-footer">
                                 <div class="w-100 d-flex justify-content-around">
                                     <button type="button" class="btn btn-info" data-dismiss="modal">Hủy bỏ</button>
-                                    <button type="submit" class="btn btn-danger">Xác thực</button>                                
+                                    <button type="submit" class="btn btn-danger">Xác thực</button>
                                 </div>
                             </div>
                         </form>
@@ -280,7 +298,7 @@
             </div>
             <!-- End Delete Modal -->
         </div>
-               
+
     </div>
 
     <!--JQuery-->
@@ -295,19 +313,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
     <script>
         $(function () {
-            $('td').click(function() {
+            $('td').click(function () {
                 var $tr = $(this).closest('tr');
                 var chooseID = $tr.attr('id');
-                var finalActionDelete = "/admin/qlNguoiDung/editors/delete/"+chooseID;
+                var finalActionDelete = "/admin/qlNguoiDung/editors/delete/" + chooseID;
                 document.getElementById('deleteMember').action = finalActionDelete;
             });
             $('#input_birthday').datetimepicker({
                 format: 'd/m/Y',
                 timepicker: false,
-                mask: true
+                mask: true,
+                startDate:'1990/01/01'
             });
             $('#newMember').validate({
                 rules: {
+                    name: {
+                        required: true
+                    },
+                    birthday: {
+                        required: true
+                    },
                     email: {
                         required: true,
                         email: true,
@@ -321,6 +346,12 @@
                     }
                 },
                 messages: {
+                    name: {
+                        required: 'Vui lòng nhập tên đầy đủ của bạn.'
+                    },
+                    birthday: {
+                        required: 'Vui lòng nhập ngày sinh của bạn.'
+                    },
                     email: {
                         required: 'Vui lòng nhập email.',
                         email: 'Email không hợp lệ.',

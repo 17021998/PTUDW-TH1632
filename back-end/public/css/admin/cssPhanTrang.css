@@ -1,0 +1,27 @@
+.pagination.pagination-circle .page-item.active .page-link {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.pagination.pagination-circle .page-item .page-link {
+    margin-left: 2px;
+    margin-right: 2px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.hidden {
+    display: none;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #222326;
+    border-color: #222326;
+}
+.pg-color a {
+    color: #222326;
+}
+.pg-color a:hover {
+    color: #fff !important;
+    background: #222326;
+}

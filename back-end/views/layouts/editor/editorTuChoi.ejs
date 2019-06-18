@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Editor</title>
+    <!--Font-->
+    <link rel="stylesheet" href="../fonts/Open_Sans/open-sans.css">
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/datetime/bootstrap.min.css">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <!--StyleSheet-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <link rel="stylesheet" href="/css/editor/editor-style.css">
+    <link rel="stylesheet" href="/css/editor/edit-area-style.css">
+    <script src="/js/writer/ckeditor/ckeditor.js"></script>
+    <!-- date time picker -->
+    <link rel="stylesheet" href="/css/datetime/style.css">
+    <script src="/js/dateTime/bootstrapdateTime-picker.js"></script>
+    <style>
+        hr .style13 {
+            height: 10px;
+            border: 0;
+            box-shadow: 0 10px 10px -10px #8c8b8b inset;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page">
+            <%- include('../logout/editor/form.ejs') %>
+            <%- include('../header-footer/header-editor.ejs') %>
+            <section id="page-main-content">
+                <%- include('../logout/editor/header-hori.ejs') %>
+            <!--Main content-->
+            <div class="container">
+                <div class="row">
+                <!-- tên chuyên mục -->
+                    <div class="col-12">
+                        <div class="box">
+                            <h1>Các Bài Đã Từ Chối</h1>
+                        </div>
+                    </div>
+                    <!--mục hiển thị -->
+                    <div class="col-md-12">
+                        <div class="box row" id="draft-articles">
+                            <div class="row col-12">
+                                <div class="col-3">
+                                    
+                                </div>
+                                <div class="col-5 text-center">
+                                    Title
+                                </div>
+                                <div class="col-4 text-center">
+                                    Deny
+                                </div>
+                            </div>
+                            <hr class="col-12 style13">
+                            <ul class="article-list col-12">
+                            </ul>
+                            <div class="article-list col-12 row">
+                            <!-- hien thi danh sach tren database. -->
+                                <% for( let index = 0; index < post.length; index++ ) { %>
+                                    <a href="javascrip:;" class="a_href row item col-lg-12">
+                                        <div class="item-thumb col-3">
+                                        <!-- anh dai dien -->
+                                            <div class='imgMain'>
+                                                <%- post[index].ImageAbstract%>
+                                            </div>
+                                        </div>
+                                        <div class="item-detail col-5">
+                                            <h6 class="article-detail">
+                                                <!-- tiêu đề của bài viết -->
+                                                <span class="article-title"><%=post[index].Title%></span>
+                                            </h6>
+                                        </div>
+                                        <div class="item-detail col-4">
+                                            <h6 class="article-detail">
+                                                <span class="article-title"><%=post[index].Deny%></span>
+                                            </h6>
+                                        </div>
+                                    </a>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!--JQuery-->
+    <script src="/js/editor/jquery.min.js"></script>
+    
+    <!--ckeditor--> 
+    <script>
+        $(document).ready(function () {
+            $(".item").click(function(e) {
+                var str = $('.a_href').attr('href').split('id=');
+                var id = str[str.length-1];
+                $("#ID").val(id);
+                $("#idForm").val(id);
+                $.post('/editor/getContentPost',{id:id},(data,status)=>{ 
+                    CKEDITOR.instances.editor.setData(data, function () {
+                        this.checkDirty();  // true
+                    });
+                })
+            });
+        });
+    </script> 
+    <script src="/js/editor/main.js"></script>
+         
+   <script>
+       function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+   </script>
+
+</body>
+
+</html>

@@ -4,10 +4,10 @@ var editorModle = require('../../modles/editor/editor.modle');
 var passport = require('passport');
 var auth = require('../../middlewares/auth');
 var isLogin = require('../../middlewares/checkLogInOut');
+var split = require('string-split');
 
 // lay du lieu bai viet de dua ra cho editor xem va duyet
 router.post('/getContentPost', (req, res,next) => {
-
     editorModle.getContentPost(req.body.id)
         .then(rows => {
             var content = rows[0].Content;
@@ -19,14 +19,30 @@ router.post('/getContentPost', (req, res,next) => {
 router.post('/xetduyet', (req, res, next) => {
     req.body.PostStatus = 1;
     req.body.editorID = req.user.ID;
-    var id = req.body.ID;
+    var id = req.body.ID; // id post
 	if(req.body.ReleaseDay || 1){
         req.body.ReleaseDay = new Date();
     }
+
+    var tag = req.body.tagname;
+    var Arr = split(",", tag); // danh sach cac tag.
+    var arr = {"idP" : id, "idT": Arr};
+    delete req.body['tagname'];
+
     Promise.all([
         editorModle.xetDuyetPost(req.body),
-        editorModle.getIDcategoryByPostID(id)
-    ]).then(([id, CatID]) => {
+        editorModle.getIDcategoryByPostID(id),
+        editorModle.getTagIDByName(arr)
+    ]).then(([idP, CatID, rowsTag]) => {
+
+        var idT =[];
+            for (let index = 0; index < rowsTag.length; index++) {
+                idT[index] = rowsTag[index];
+            }
+            var arr1 = {"idP" : id, "idT": idT};
+            editorModle.addTagPost(arr1)
+            .then().catch();
+
         res.redirect('/editor/' + CatID[0].SuperCatID);
     }).catch(next);
 
@@ -111,6 +127,31 @@ router.post('/logout',auth , (req, res, next) => {
     req.session.retUrl = null;
     req.logOut();
     res.redirect('/editor/login');
+});
+
+
+router.get('/editorDaDuyet',(req,res,next)=>{
+    Promise.all([
+        editorModle.allcategory(req.user.ID),
+        editorModle.allPostXetDuyet(req.user.ID),
+    ])
+    .then(([rows, rowPost])=>{
+        var isActive = "bvdd";
+        res.render('editor/editorDaDuyet', { "isActive": isActive, categories: rows, post: rowPost });
+    })
+    .catch(next);
+});
+
+router.get('/editorTuChoi',(req,res,next)=>{
+    Promise.all([
+        editorModle.allcategory(req.user.ID),
+        editorModle.allPostTuChoi(req.user.ID),
+    ])
+    .then(([rows, rowPost])=>{
+        var isActive = "bvtc";
+        res.render('editor/EditorTuChoi', { "isActive": isActive, categories: rows, post: rowPost });
+    })
+    .catch(next);
 });
 
 // xu li nay sau cung` vi no co cung root nếu muốn đổi root thì bỏ đâu cũng đc

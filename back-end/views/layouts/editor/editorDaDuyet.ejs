@@ -36,19 +36,19 @@
                 <!-- tên chuyên mục -->
                     <div class="col-12">
                         <div class="box">
-                            <h1>Chuyên mục: <span id="cata-name"><%=chuyenmuc%></span></h1>
+                            <h1>Các Bài Đã Xét Duyệt</h1>
                         </div>
                     </div>
                     <!--mục hiển thị -->
                     <div class="col-md-12">
                         <div class="box row" id="draft-articles">
-                            <h4 class="article-list-header col-12">Danh sách các bài viết mới:</h4>
+                            <h4 class="article-list-header col-12">Danh sách các bài viết đã duyệt:</h4>
                             <ul class="article-list col-12">
                             </ul>
                             <div class="article-list col-12 row">
                             <!-- hien thi danh sach tren database. -->
                                 <% for( let index = 0; index < post.length; index++ ) { %>
-                                    <a href="#edit?id=<%= post[index].ID %>" class="a_href row item col-lg-6">
+                                    <a href="javascript;" class="a_href row item col-lg-6">
                                         <div class="item-thumb col-6">
                                         <!-- anh dai dien -->
                                             <div class='imgMain'>
@@ -60,70 +60,13 @@
                                             <!-- tiêu đề của bài viết -->
                                                 <span class="article-title"><%=post[index].Title%></span>
                                                 <!-- tên tac giả viết bài chưa đưa ra được. -->
-                                                <span class="article-author"><%=post[index].WriterName%></span>
+                                                <br>
+                                                <span class="article-author"><%=post[index].ReleaseDay%></span>
                                             </h6>
                                         </div>
                                     </a>
                                 <% } %>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-12">
-                        <div class="box row">
-                            <h3 id="edit" class="col-12">Nội dụng: </h3>
-                            <div class="col-12">
-                                <text-area name="editor" id="editor" rows="100" cols="80" readonly>
-                                </text-area>
-                                <script>
-                                    CKEDITOR.replace('editor');
-                                    CKEDITOR.config.height="300";
-                                </script>
-                            </div>
-                            <form class="col-12" method="POST" action="">
-                                <input type="text" id="ID" name="ID" value="" style="display: none;">
-                                <div class="card">
-                                    <div class="form-group row mt-2">
-                                        <label class="col-3 ml-3" for="">Ngày Xuất Bản</label>
-                                        <input class="form-control col-8" size="16" type="text" name="ReleaseDay" id="datetime" readonly>
-                                        
-                                        <script type="text/javascript">
-                                            var today = new Date();
-                                            $('#datetime').datetimepicker({
-                                                format: 'yyyy-mm-dd',
-                                                autoclose: true,
-                                                todayBtn: true,
-                                                startDate : today,
-                                                startView: 2,
-                                                minView: 2,
-                                                forceParse: 0
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                                <div class="d-flex mt-3 justify-content-around col-12">
-                                    <button class="btn btn-primary" role="submit" formaction="/editor/xetduyet">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-                                    Xét Duyệt</button>
-                                    <a class="btn btn-warning" role="button" onclick="openForm()">
-                                        <i class="fa fa-window-close" aria-hidden="true"></i>
-                                    Từ chối</a>
-                                </div>
-                            </form>
-
-                            <div class="form-popup" id="myForm">
-                                <form action="/editor/tuchoi" method="post" class="form-container">
-                                    <h1>Xác Nhận Từ Chối</h1>
-                                    <input type="hidden" placeholder="" id="idForm" name="ID">
-
-                                    <label ><b>Lý DO</b></label>
-                                    <textarea type="text" placeholder="Nhập Lý Do!" name="Deny" required></textarea>
-
-                                    <button type="submit" class="btn">Xác Nhận</button>
-                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                                </form>
-                            </div>
-
                         </div>
                     </div>
                 </div>

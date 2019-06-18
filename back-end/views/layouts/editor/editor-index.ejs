@@ -18,10 +18,24 @@
 
     <link rel="stylesheet" href="/css/editor/editor-style.css">
     <link rel="stylesheet" href="/css/editor/edit-area-style.css">
+    <link rel="stylesheet" href="/css/admin/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="/css/cssAutoComplete/cssAutoComplete.css">
     <script src="/js/writer/ckeditor/ckeditor.js"></script>
     <!-- date time picker -->
     <link rel="stylesheet" href="/css/datetime/style.css">
     <script src="/js/dateTime/bootstrapdateTime-picker.js"></script>
+    <script src="/js/admin/bootstrap-tagsinput.min.js"></script>
+    <style>
+        .bootstrap-tagsinput {
+            min-height: 0 !important;
+            margin-left: 16px !important;
+            margin-top: 16px !important;
+        }
+
+        .autocomplete-items{
+            top: auto !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -61,6 +75,7 @@
                                             <!-- tiêu đề của bài viết -->
                                                 <span class="article-title"><%=post[index].Title%></span>
                                                 <!-- tên tac giả viết bài chưa đưa ra được. -->
+                                                <br>
                                                 <span class="article-author"><%=post[index].WriterName%></span>
                                             </h6>
                                         </div>
@@ -83,6 +98,12 @@
                             </div>
                             <form class="col-12" method="POST" action="">
                                 <input type="text" id="idXD" name="ID" value="" style="display: none;">
+                                <%#  add tag %>
+                                    <div class="card body">
+                                    <center>
+                                        <input type="text" data-role="tagsinput" placeholder="Thêm tags" name="tagname" class="ml-3">
+                                    </center>
+                                    </div>
                                 <div class="card">
                                     <div class="form-group row mt-2">
                                         <label class="col-3 ml-3" for="">Ngày Xuất Bản</label>
@@ -167,6 +188,19 @@
             document.getElementById("myForm").style.display = "none";
         }
    </script>
+    <script src="/js/autoComplete/autoComplete.js"></script> 
+    <script>
+        $(document).ready(function() {
+            $("form").bind("keypress", function(e) {
+                if (e.keyCode == 13) {
+                    return false;
+                }
+            });
+        });
+        $(document).ready(function(){
+                $.getScript('/js/admin/load.js');
+        });
+    </script>
 
 </body>
 
