@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var guestModel = require('../modles/guest/guest.model');
+var userModel = require('../modles/subcriber/subcriber.modle');
 var bcrypt = require('bcrypt');
 module.exports = (app) => {
     app.use(passport.initialize());

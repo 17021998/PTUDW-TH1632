@@ -5,28 +5,42 @@ var passport = require('passport');
 var router = express.Router();
 var guestModel = require('../../modles/guest/guest.model');
 var subscriberModel = require('../../modles/subcriber/subcriber.modle');
+var handlePost =require('../../utils/processListPostData');
 var request = require('request');
 var mailTransporter = require('../../utils/email');
 var mailContent = require('../../utils/resetMail');
 var isLogin = require('../../middlewares/checkLogInOut');
 var moment = require('moment');
+var indexModel = require('../../modles/index/index.model');
 
-router.get('/chuyen-de', (req,res,next)=> {
+router.get('/chuyen-de/:id', (req,res,next)=> {
+    var catId = req.params.id;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
-        res.render('guest/chuyen-de',{
-            cats:cats
+        indexModel.allCat(),
+        indexModel.allByCat(catId),
+        indexModel.getCatById(catId)
+    ]).then(([cats, posts, cat]) => {
+        var posts1 = handlePost(posts); //Chuyển danh sách bài viết thành có hashtag
+        res.render('guest/chuyen-de.ejs',{
+            cats:cats,
+            posts: posts1,
+            cat: cat[0]
         });
     }).catch(next);
 })
 
-router.get('/hash-tag', (req,res,next)=>{ 
+router.get('/hash-tag/:id', (req,res,next)=>{ 
+    var TagId = req.params.id;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
+        guestModel.allCat(),
+        indexModel.allByTag(TagId),
+        indexModel.getTagByID(TagId)
+    ]).then(([cats,posts, tag]) => {
+        var posts1 = handlePost(posts);
         res.render('guest/hash-tag',{
-            cats:cats
+            cats:cats,
+            posts: posts1,
+            tag: tag[0]
         });
     }).catch(next);
 })
@@ -122,6 +136,23 @@ router.post('/login', (req, res, next) => {
             if (err) { 
                 return next(err); 
             }
+            subscriberModel.single(user.ID)
+            .then(rows => {
+                var end = rows[0].EndDay;
+                var status = 0;
+                today = new Date().toLocaleDateString();
+                var now = moment(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+                var endday = new moment(end).format('YYYY-MM-DD');
+                console.log(endday);
+                console.log(now);
+
+                if(end >= now){
+                    status = 1;
+                }
+                console.log(status);
+                user.EndDay = end;
+                user.Status = status;
+            }).catch(err => console.log(err));
             return res.redirect(retUrl);
         });
     })(req, res, next);
