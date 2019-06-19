@@ -5,28 +5,81 @@ var passport = require('passport');
 var router = express.Router();
 var guestModel = require('../../modles/guest/guest.model');
 var subscriberModel = require('../../modles/subcriber/subcriber.modle');
+var handlePost =require('../../utils/processListPostData');
 var request = require('request');
 var mailTransporter = require('../../utils/email');
 var mailContent = require('../../utils/resetMail');
 var isLogin = require('../../middlewares/checkLogInOut');
 var moment = require('moment');
+var indexModel = require('../../modles/index/index.model');
 
-router.get('/chuyen-de', (req,res,next)=> {
+router.get('/chuyen-de/:id', (req,res,next)=> {
+    var page = req.query.page || 1;
+    if(page < 1 || isNaN(page)){
+        page=1;
+    }
+    var limit = 5;
+    var offset = (page - 1) * limit;
+    var catId = req.params.id;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
-        res.render('guest/chuyen-de',{
-            cats:cats
+        indexModel.allCat(),
+        indexModel.allByCat(catId, limit, offset),
+        indexModel.getCatById(catId),
+        indexModel.getCountByCat(catId)
+        // thieu get count();
+    ]).then(([cats, posts, cat, count]) => {
+        var counts = count[0].totals;
+        var len = Math.floor(counts / limit);
+        if(counts % limit>0){
+            len++;
+        }
+
+        var lenPage=[];
+        if(len < 5){
+            lenPage.push({"begin": 0, "end": len-1});
+        }else {
+            if(page -2 <=1){
+                lenPage.push({"begin": 0, "end": 4});
+            } else if(page + 2>=len){
+                lenPage.push({"begin": len-5, "end": len-1});
+            }else {
+                lenPage.push({"begin": page -2, "end": +page + 2});
+            }
+        }
+
+        var pages = [];
+        if(len!=0){
+            for( i =0 ;i<len;i++){
+                pages.push({"value": i, "isActive": i===+page-1});
+            }
+        }else{
+            pages.push({"value": 0, "isActive": true});
+        }
+
+        var posts1 = handlePost(posts); //Chuyển danh sách bài viết thành có hashtag
+        res.render('guest/chuyen-de.ejs',{
+            cats:cats,
+            posts: posts1,
+            cat: cat[0],
+            "page": pages,
+            "p": page,
+            "lenPage": lenPage[0]
         });
     }).catch(next);
 })
 
-router.get('/hash-tag', (req,res,next)=>{ 
+router.get('/hash-tag/:id', (req,res,next)=>{ 
+    var TagId = req.params.id;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
+        guestModel.allCat(),
+        indexModel.allByTag(TagId),
+        indexModel.getTagByID(TagId)
+    ]).then(([cats,posts, tag]) => {
+        var posts1 = handlePost(posts);
         res.render('guest/hash-tag',{
-            cats:cats
+            cats:cats,
+            posts: posts1,
+            tag: tag[0]
         });
     }).catch(next);
 })
@@ -35,12 +88,16 @@ router.get('/login',isLogin, (req,res,next)=>{
     res.render('guest/login', {isNormalUser: true});
 })
 
-router.get('/search-result', (req,res,next)=>{
+router.post('/search-result', (req,res,next)=>{
+    var txtSearch = req.body.txtSearch;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
+        guestModel.allCat(),
+        guestModel.searchPost(txtSearch)
+    ]).then(([cats, rows]) => {
         res.render('guest/search-result',{
-            cats:cats
+            cats:cats,
+            rows,
+            "value": txtSearch
         });
     }).catch(next);
 })
@@ -139,6 +196,23 @@ router.post('/login', (req, res, next) => {
             if (err) { 
                 return next(err); 
             }
+            subscriberModel.single(user.ID)
+            .then(rows => {
+                var end = rows[0].EndDay;
+                var status = 0;
+                today = new Date().toLocaleDateString();
+                var now = moment(today, 'MM/DD/YYYY').format('YYYY-MM-DD');
+                var endday = new moment(end).format('YYYY-MM-DD');
+                console.log(endday);
+                console.log(now);
+
+                if(end >= now){
+                    status = 1;
+                }
+                console.log(status);
+                user.EndDay = end;
+                user.Status = status;
+            }).catch(err => console.log(err));
             return res.redirect(retUrl);
         });
     })(req, res, next);

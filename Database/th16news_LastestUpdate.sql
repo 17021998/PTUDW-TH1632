@@ -301,7 +301,7 @@ USE `th16news`;
 
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
-  `ID` varchar(50) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `PostID` int(11) NOT NULL,
   `UserID` varchar(50) DEFAULT NULL,
   `Content` text NOT NULL,

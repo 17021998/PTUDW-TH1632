@@ -5,7 +5,7 @@ module.exports = {
         return db.add("subscriber", entity);
     },
     single: id => {
-        return db.load(`select * from subscriber s, userprimary u where s.UserID = ${id} and s.UserID = u.ID and u.IsDelete is Null;`);
+        return db.load(`select * from subscriber s, userprimary u where s.UserID = '${id}' and s.UserID = u.ID and u.IsDelete is Null;`);
     },
     allSubcriber: () => {
         return db.load(`select * from subscriber s, userprimary u where s.UserID = u.ID and u.IsDelete is Null;`);

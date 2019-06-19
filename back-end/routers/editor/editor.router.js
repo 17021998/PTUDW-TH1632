@@ -20,14 +20,30 @@ router.post('/getContentPost', (req, res,next) => {
 router.post('/xetduyet', (req, res, next) => {
     req.body.PostStatus = 1;
     req.body.editorID = req.user.ID;
-    var id = req.body.ID;
+    var id = req.body.ID; // id post
 	if(req.body.ReleaseDay || 1){
         req.body.ReleaseDay = new Date();
     }
+
+    var tag = req.body.tagname;
+    var Arr = split(",", tag); // danh sach cac tag.
+    var arr = {"idP" : id, "idT": Arr};
+    delete req.body['tagname'];
+
     Promise.all([
         editorModle.xetDuyetPost(req.body),
-        editorModle.getIDcategoryByPostID(id)
-    ]).then(([id, CatID]) => {
+        editorModle.getIDcategoryByPostID(id),
+        editorModle.getTagIDByName(arr)
+    ]).then(([idP, CatID, rowsTag]) => {
+
+        var idT =[];
+            for (let index = 0; index < rowsTag.length; index++) {
+                idT[index] = rowsTag[index];
+            }
+            var arr1 = {"idP" : id, "idT": idT};
+            editorModle.addTagPost(arr1)
+            .then().catch();
+
         res.redirect('/editor/' + CatID[0].SuperCatID);
     }).catch(next);
 

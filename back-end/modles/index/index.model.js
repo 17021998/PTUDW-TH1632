@@ -35,5 +35,46 @@ module.exports = {
     },
     topTenCate: () => {
 
+    },
+    allByCat: (CatID, limit, offset) => {
+        return db.load(`SELECT p.ID, p.Title, p.Abstract, p.Content, p.ReleaseDay, p.ImageAbstract, p.Premium, t.TagName , t.ID as TagID
+                        FROM post p
+                        left join tagpost tp on p.ID = tp.PostID
+                            left join tag t on tp.TagID = t.ID
+                            join catpost c on c.PostID = p.ID
+                        WHERE p.IsDelete Is NULL
+                        AND c.CatID = ${CatID}
+                        AND p.ReleaseDay <= CURRENT_DATE 
+                        ORDER BY p.Premium DESC ,p.ID DESC 
+                        limit ${limit} offset ${offset} `)
+    },
+    getCountByCat: (CatID)=>{
+        return db.load(`SELECT count(*) as totals
+        FROM post p
+        left join tagpost tp on p.ID = tp.PostID
+            left	join tag t on tp.TagID = t.ID
+            join catpost c on c.PostID = p.ID
+        WHERE p.IsDelete Is NULL
+        AND c.CatID = ${CatID}
+        AND p.ReleaseDay <= CURRENT_DATE `)
+    },
+    getCatById: id => {
+        return db.load(`SELECT c1.ID, c1.CatName, c2.ID as FID, c2.CatName as FName 
+                        FROM category c1 left join category c2 on c1.SuperCatID = c2.ID 
+                        WHERE c1.IsDelete IS NULL AND c1.ID = ${id} ;`);
+    },
+    allByTag: (tagId) => {
+        return db.load(`SELECT p.ID, p.Title, p.Abstract, p.Content, p.ReleaseDay, p.ImageAbstract, p.Premium, t.TagName ,                t.ID as TagID
+                        FROM post p
+                        left join tagpost tp on p.ID = tp.PostID
+                        left	join tag t on tp.TagID = t.ID
+					    join tagpost c on c.PostID = p.ID
+                        WHERE p.IsDelete Is NULL
+						AND c.TagID = ${tagId}
+                        AND p.ReleaseDay <= CURRENT_DATE
+                        ORDER BY p.Premium DESC ,p.ID DESC`);
+    },
+    getTagByID: id => {
+        return db.load(`SELECT * from tag where ID = ${id} AND IsDelete Is NULL;`)
     }
 };

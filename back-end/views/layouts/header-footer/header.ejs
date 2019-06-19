@@ -22,16 +22,23 @@
                                                 aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
                                             <div class="dropdown-menu">
                                                 <% if(cats[i].subID != null){ %>
-                                                    <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                                    <a href="/guest/chuyen-de/<%=cats[i].subID %>" class="dropdown-item"><%=cats[i].subName %></a>
                                                 <% } %>
                                     <% } %>
                                     <% if(i != 0){ %>
                                         <% if(cats[i].ID == cats[i-1].ID && cats[i].subID != null){ %>
-                                                <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                                <a href="/guest/chuyen-de/<%=cats[i].subID%>" class="dropdown-item"><%=cats[i].subName %></a>
+                                                <% if((cats[i].subID != null) && (i == (cats.length-1))){ %>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="/guest/chuyen-de/<%=cats[i].ID %>" class="dropdown-item">
+                                                        Mọi bài viết chủ đề <%=cats[i].CatName %>
+                                                    </a>
+                                                </li>
+                                                <% } %>
                                         <% } %>
                                     <% if(cats[i].ID != cats[i-1].ID){ %>        
                                         <div class="dropdown-divider"></div>
-                                            <a href="/guest/chuyen-de" class="dropdown-item">
+                                            <a href="/guest/chuyen-de/<%=cats[i-1].ID %>" class="dropdown-item">
                                                 Mọi bài viết chủ đề <%=cats[i-1].CatName %>
                                             </a>
                                         </div>
@@ -42,16 +49,17 @@
                                             aria-haspopup="true" aria-expanded="false"><%=cats[i].CatName %></a>
                                         <div class="dropdown-menu">
                                             <% if(cats[i].subID != null){ %>
-                                                <a href="/guest/chuyen-de" class="dropdown-item"><%=cats[i].subName %></a>
+                                                <a href="/guest/chuyen-de/<%=cats[i].subID%>" class="dropdown-item"><%=cats[i].subName %></a>
+                                                <% if(cats[i].subID != null && i == (cats.length-1)){ %>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a href="/guest/chuyen-de/<%=cats[i].ID%>" class="dropdown-item">
+                                                        Mọi bài viết chủ đề <%=cats[i].CatName %>
+                                                    </a>
+                                                </li>
+                                                <% } %>
                                             <% }else{ %>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="/guest/chuyen-de" class="dropdown-item">
-                                                Mọi bài viết chủ đề <%=cats[i-1].CatName %>
-                                            </a>
-                                            <% } %>
-                                            <% if(cats[i].subID != null && i == (cats.length-1)){ %>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="/guest/chuyen-de" class="dropdown-item">
+                                                <a href="/guest/chuyen-de/<%=cats[i-1].ID%>" class="dropdown-item">
                                                     Mọi bài viết chủ đề <%=cats[i-1].CatName %>
                                                 </a>
                                             <% } %>
@@ -60,13 +68,13 @@
                                 <% } %>
                             </ul>
 
-                            <form class="searchDestop">
+                            <form class="searchDestop" method="post" action="/guest/search-result">
                                 <label for="search" class="button button--small button--less" title="Tìm kiếm">
                                     <i class="fas fa-search"></i>
                                 </label>
-                                <input type="text" id="search" placeholder="Tìm kiếm..." class="inputSearch">
+                                <input type="text" id="search" name="txtSearch" placeholder="Tìm kiếm..." class="inputSearch">
                             </form>
-                            <% if(!user){ %>
+                            <% if(!locals.user){ %>
                                 <div class="signInOutGr">
                                     <a href="javascript:;" class="button button--primary button--less mobile js-search btn-black">
                                                 <i class="fas fa-search"></i></a>

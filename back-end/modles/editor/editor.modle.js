@@ -28,6 +28,30 @@ module.exports = {
         return db.load(`select p.Content from post as p where p.ID = ${ID}`);
     },
 
+    getTagIDByName:(entity)=>{
+        var idT = entity.idT; //  mang ten tag
+
+        var sqlTag = `select t.ID from tag as t where `;
+        for (let index = 0; index < idT.length-1; index++) {
+            sqlTag+=`t.TagName = '${idT[index]}' or `
+        }
+        sqlTag += `t.TagName = '${idT[idT.length-1]}';`
+        return db.load(sqlTag);
+    },
+
+    addTagPost: entity=>{
+        var idP = entity.idP;
+        var idT = entity.idT; //  mang ten tag
+
+        var sql = `insert into tagpost (TagID, PostID) values `;
+        for(var i=0;i<idT.length-1;i++){
+            sql+=`('${idT[i].ID}', '${idP}'), `
+        }
+        sql+=`('${idT[idT.length-1].ID}', '${idP}')`;
+
+        return db.load(sql);
+    },
+
     getIDcategoryByPostID: Postid=>{
         return db.load(`select c.SuperCatID from catpost as cp, category as c where cp.PostID = ${Postid} and c.ID = cp.CatID`);
     },

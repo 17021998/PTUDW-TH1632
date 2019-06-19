@@ -14,11 +14,9 @@ var createConnection = () => {
     password: '2gwc9GcKjk',
     //BE9zYddj2X
     database: 'BE9zYddj2X',
-    // host: 'localhost',
-    // user: 'root',
-    // port: 3306,
-    // password: 'root',
-    // database: 'th16news',
+    // GTufblRE6g
+    //sCXDEp9AVO
+    //GTufblRE6g
     dateStrings: true
   });
 }

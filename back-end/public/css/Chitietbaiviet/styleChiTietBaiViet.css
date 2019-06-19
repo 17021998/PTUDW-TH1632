@@ -32,8 +32,8 @@
 }
 .backgroundcolor .image_main img{
 	
-    width: 1200px;
-	height: 700px;
+    width: 1200px !important;
+	height: 700px !important;
 	
 	display: block;
     margin-left: auto;

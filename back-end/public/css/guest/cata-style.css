@@ -99,6 +99,9 @@ a:hover, a:focus {
     color: #a6a6a6;
     font-size: 12px;
 }
+.post-meta .hashtag{
+    font-size: 10pt;
+}
 
 .post {
     padding-top: 10px;
@@ -121,14 +124,15 @@ a:hover, a:focus {
     margin: 10px 0 10px 0;
 }
 
-.post-thumbnail, .content-thumbnail {
-    overflow: hidden;
+
+
+.content-thumbnail a p img{
+    width: 100% !important;
 }
 
 .post-title {
     font-size: 20px;
 }
-
 .first {
     font-size: 30px;
 }
@@ -138,12 +142,50 @@ a:hover, a:focus {
         font-size:20px;
     }
 
-    .content-thumbnail img{
-        width: 100%;
-        height: 150px;
+    .content-thumbnail a p img{
+        width: 100% !important;
+        height: 150px !important;
     }
 }
 
 .page-item{
     margin:0 5px 0 5px;
+}
+
+/*Premium*/
+.post-thumbnail, .content-thumbnail {
+    overflow: hidden;
+    position: relative;
+}
+
+.content-thumbnail .premium-tag{
+    right: 1px;
+    top:1px;
+}
+
+.premium-tag{
+    position: absolute;
+    width: 30px;
+    font-size: 20px;
+    background: #f42c32;
+    color: #fff;
+    text-align: center;
+    right: -15px;
+    top:-10px;
+}
+
+.premium-tag:after{
+    position: absolute;
+    background: transparent;
+    content: "";
+    top: 29.5px;
+    right: 0;
+    width: 10px;
+    border-top: 15px solid #f42c32;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+}
+
+.post-content{
+    position: relative;
 }

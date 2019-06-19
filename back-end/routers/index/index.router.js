@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     Promise.all([
         indexModel.allCat()
     ]).then(([cats]) => {
-        res.render('index',{
+        return res.render('index',{
             cats:cats
         });
     }).catch(err => {
@@ -28,6 +28,6 @@ router.post('/searchAutoComplete',(req,res)=>{
         res.end(""+TagName);
     })
     .catch();
-})
+});
 
 module.exports = router;
