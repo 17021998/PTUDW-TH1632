@@ -146,19 +146,19 @@
                 </div>
                 <div class="col-lg-4">
 
-                    <% for( let i = 0; i < news.length; i++ ) { %>
+                    <% for( let i = 0; i < mosts.length; i++ ) { %>
                         <!--1 chuyen muc-->
                         <div class="cata-post col-md-12">
                             <div class="category">
-                                <a href="/guest/chuyen-de/<%=news[i].CatID%>" class="post-cata"><i class="fas fa-bookmark"> <%=news[i].CatName%></i></a>
+                                <a href="/guest/chuyen-de/<%=mosts[i].CatID%>" class="post-cata"><i class="fas fa-bookmark"> <%=mosts[i].CatName%></i></a>
                                 <hr>
                             </div>
                             <div class="post">
                                 <div class="post-thumbnail">
-                                    <a href="/chitietbaiviet/<%=news[i].ID%>"><%-news[i].ImageAbstract%></a>
+                                    <a href="/chitietbaiviet/<%=mosts[i].ID%>"><%-mosts[i].ImageAbstract%></a>
                                 </div>
                                 <div class="post-abstract">
-                                    <a href="/chitietbaiviet/<%=news[i].ID%>" class="post-title"><%=news[i].Title%></a>
+                                    <a href="/chitietbaiviet/<%=mosts[i].ID%>" class="post-title"><%=mosts[i].Title%></a>
                                 </div>
                             </div>
                         </div>

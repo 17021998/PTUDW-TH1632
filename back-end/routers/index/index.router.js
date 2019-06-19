@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
         //indexModel.topTenCate()
     ]).then(([cats, three, mosts,news]) => {
         SplitImage(three);
-        console.log(three);
+        //console.log(three);
         SplitImage(news);
         return res.render('index',{
             cats:cats,
@@ -45,6 +45,7 @@ const SplitImage = (rows) => {
     for(var i = 0;i<rows.length; i++){
         var imgStr = rows[i].ImageAbstract;
         var arr = imgStr.split(/[""]/);
-        rows[i].ImageAbstract = arr[1];
+        console.log(arr);
+        rows[i].ImageAbstract = arr[3];
     }
 }
