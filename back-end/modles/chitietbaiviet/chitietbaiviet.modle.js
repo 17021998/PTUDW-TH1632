@@ -20,7 +20,9 @@ module.exports = {
     getPostSame: id=>{
         return db.load(`select * from post as p, (select cp.CatID as cID from catpost as cp where cp.PostID = ${id}) as a, catpost as ct where a.cID =ct.CatID and p.ID = ct.PostID LIMIT 4`);
     },
-
+    getTenTag: id => {
+        return db.load(`select * from tagpost tp join tag t on t.ID = tp.TagID WHERE t.IsDelete IS NULL AND tp.PostID = ${id};`);
+    },
     getCat: id => {
         return db.load(`SELECT c.ID, c.CatName, c1.ID as FID, c1.CatName as FName 
                         FROM catpost ct 
