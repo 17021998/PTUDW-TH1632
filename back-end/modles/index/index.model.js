@@ -12,32 +12,35 @@ module.exports = {
         return db.load(`select t.TagName from ${entity.table} as t where MATCH(TagName) AGAINST ('${entity.value}')`);
     },
     topThreeWeek: () => {
-        return db.load(`SELECT * FROM post 
-                        WHERE IsDelete IS NULL 
+        return db.load(`SELECT * FROM post p join catpost cp on p.ID = cp.PostID
+                        join category c on cp.CatID = c.ID
                         AND PostStatus = 1 
+                        WHERE p.IsDelete IS NULL 
                         ORDER BY Viewed AND ABS( DATEDIFF( ReleaseDay, NOW() ) ) DESC
                         LIMIT 3`);
     },
     topMostTen: () => {
-        return db.load(`SELECT * FROM post 
-                        WHERE IsDelete IS NULL 
+        return db.load(`SELECT * FROM post p join catpost cp on p.ID = cp.PostID
+                        join category c on cp.CatID = c.ID
+                        WHERE p.IsDelete IS NULL 
                         AND PostStatus = 1 
                         ORDER BY Viewed DESC
                         LIMIT 10`);
     },
     topNewTen: () => {
         return db.load(`SELECT * 
-                        FROM post 
-                        WHERE IsDelete IS NULL
-                        AND PostStatus = 1
+                        FROM post p join catpost cp on p.ID = cp.PostID
+                        join category c on cp.CatID = c.ID
+                        WHERE p.IsDelete IS NULL
+                        AND p.PostStatus = 1
                         ORDER BY ABS( DATEDIFF( ReleaseDay, NOW() ) ) DESC
                         LIMIT 10 ;`);
     },
     topTenCate: () => {
-
+        
     },
     allByCat: (CatID, limit, offset) => {
-        return db.load(`SELECT p.ID, p.Title, p.Abstract, p.Content, p.ReleaseDay, p.ImageAbstract, p.Premium, t.TagName , t.ID as TagID
+        return db.load(`SELECT p.ID, p.Title, p.Abstract, p.Content, p.ReleaseDay, p.ImageAbstract, p.Premium, t.TagName ,                t.ID as TagID
                         FROM post p
                         left join tagpost tp on p.ID = tp.PostID
                             left join tag t on tp.TagID = t.ID

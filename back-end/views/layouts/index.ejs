@@ -24,15 +24,14 @@
             <div class="row">
                 <div class="col-12 col-lg-8 pr-lg-1">
                     <article class="post">
-                        <div class="hl-item feature-post" style="background-image: url(images/1.jpg);">
-                            <a href="/Chitietbaiviet" class="post-link"></a>
+                        <div class="hl-item feature-post" style="background-image: url(<%=three[0].ImageAbstract%>);">
+                            <a href="/chitietbaiviet/<%=three[0].ID%>" class="post-link"></a>
                             <div class="post-content">
-                                <a href="guest/chuyen-de.html" class="post-cata">Giải trí</a>
-                                <a href="/Chitietbaiviet" class="post-title">PewPew trải lòng: Tuổi trẻ đã sống tưng bừng, làm hết sức
-                                    chơi hết mình, về ngủ dậy lại quay cuồng, thế là đủ đam mê</a>
+                                <a href="/guest/chuyen-de/<%=three[0].CatID%>" class="post-cata"><%=three[0].CatName%></a>
+                                <a href="/Chitietbaiviet/<%=three[0].ID%>" class="post-title"><%=three[0].Title%></a>
                                 <div class="post-meta">
                                     <i class="fas fa-clock"></i>
-                                    <span>22/04/2019 20:30:44</span>
+                                    <span><%=three[0].ReleaseDay%></span>
                                 </div>
                             </div>
                         </div>
@@ -40,32 +39,30 @@
                 </div>
                 <div class="col-12 col-lg-4 pl-lg-1">
                     <article class="post">
-                        <div class="hl-item sub-post" style="background-image: url(images/1.jpg);">
-                            <a href="/Chitietbaiviet" class="post-link"></a>
+                        <div class="hl-item sub-post" style="background-image: url(<%=three[1].ImageAbstract%>);">
+                            <a href="/chitietbaiviet/<%=three[1].ID%>" class="post-link"></a>
                             <div class="post-content">
-                                <a href="guest/chuyen-de.html" class="post-cata">Giải trí</a>
-                                <a href="/Chitietbaiviet" class="post-title">BTS chính thức phá vỡ thành tích của Ariana Grande, lập
-                                    kỉ lục thế giới mới rồi đây!</a>
+                                <a href="/guest/chuyen-de/<%=three[1].CatID%>" class="post-cata"><%=three[0].CatName%></a>
+                                <a href="/Chitietbaiviet/<%=three[1].ID%>" class="post-title"><%=three[1].Title%></a>
                                 <div class="post-meta">
                                     <i class="fas fa-clock"></i>
-                                    <span>22/04/2019 20:30:44</span>
+                                    <span><%=three[1].ReleaseDay%></span>
                                 </div>
                             </div>
                         </div>
                     </article>
                     <article class="post">
-                        <div class="hl-item sub-post" style="background-image: url(images/1.jpg);">
-                            <a href="/Chitietbaiviet" class="post-link"></a>
-                            <div class="post-content">
-                                <a href="guest/chuyen-de.html" class="post-cata">Giải trí</a>
-                                <a href="/Chitietbaiviet" class="post-title">"Sao thị phi" đang chiếu đúng PewPew: Ồn ào bủa vây từ vụ
-                                    Khoa Pug "bóc phốt" Aroma đến nghi vấn một hotgirl lộ clip nóng</a>
-                                <div class="post-meta">
-                                    <i class="fas fa-clock"></i>
-                                    <span>22/04/2019 20:30:44</span>
+                            <div class="hl-item sub-post" style="background-image: url(<%=three[2].ImageAbstract%>);">
+                                <a href="/chitietbaiviet/<%=three[2].ID%>" class="post-link"></a>
+                                <div class="post-content">
+                                    <a href="/guest/chuyen-de/<%=three[2].CatID%>" class="post-cata"><%=three[2].CatName%></a>
+                                    <a href="/Chitietbaiviet/<%=three[2].ID%>" class="post-title"><%=three[2].Title%></a>
+                                    <div class="post-meta">
+                                        <i class="fas fa-clock"></i>
+                                        <span><%=three[2].ReleaseDay%></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </article>
                 </div>
             </div>
@@ -93,24 +90,24 @@
                             </div>
                         </div>
                         <div class="owl-carousel" id="most-view">
-                            <% for( var index = 0; index < 10; index++) { %>
+                            <% for( var i = 0; i < mosts.length; i++) { %>
                                 <div>
                                     <article class="post most-view-item">
                                         <div class="post-thumbnail">
-                                            <a href="/Chitietbaiviet">
-                                                <img src="images/1.jpg" alt="">
+                                            <a href="/chitietbaiviet/<%=mosts[i].ID%>">
+                                                <%-mosts[i].ImageAbstract%>
                                             </a>
                                         </div>
                                         <div class="post-content">
-                                            <a href="guest/chuyen-de.html" class="post-cata">
-                                                Thời sự
+                                            <a href="/guest/chuyen-de/<%=mosts[i].CatID%>" class="post-cata">
+                                                <%=mosts[i].CatName%>
                                             </a>
-                                            <a href="/Chitietbaiviet" class="post-title">
-                                                Thượng nghị sĩ Mỹ và 30 năm dọn hậu quả chiến tranh Việt Nam.
+                                            <a href="/Chitietbaiviet/<%=mosts[i].ID%>" class="post-title">
+                                                <%=mosts[i].Title%>
                                             </a>
                                             <div class="post-meta">
                                                 <i class="fas fa-clock"></i>
-                                                <span>22/04/2019 20:30:44</span>
+                                                <span><%=mosts[i].ReleaseDay%></span>
                                             </div>
                                         </div>
                                     </article>
@@ -127,20 +124,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <% for( let index = 0; index < 10; index++ ) { %>
+                            <% for( let i = 0; i < news.length; i++ ) { %>
                                 <!--single post-->
                                 <div class="col-12 col-md-6">
                                     <div class="card single-post">
-                                        <a href="/Chitietbaiviet"><img src="images/1.jpg" class="card-img-top" alt=""></a>
+                                        <a href="/chitietbaiviet/<%=news[i].ID%>"><img src="<%=news[i].ImageAbstract%>" class="card-img-top" alt="<%=news[i].Title%>"></a>
                                         <div class="card-body">
-                                            <a href="guest/chuyen-de.html" class="post-cata">Thời sự</a>
-                                            <a href="/Chitietbaiviet" class="post-title">
-                                                <h5 class="card-title">Ông Phạm Nhật Vũ bị bắt với cáo buộc đưa hối lộ</h5>
+                                            <a href="/guest/chuyen-de/<%=news[i].CatID%>" class="post-cata"><%=news[i].CatName%></a>
+                                            <a href="/chitietbaiviet/<%=news[i].ID%>" class="post-title">
+                                                <h5 class="card-title"><%=news[i].Title%></h5>
                                             </a>
-                                            <p><i class="far fa-clock"></i> 22/04/2019 20:30:44</p>
-                                            <p class="card-text">Bộ Công an khởi tố bị can, quyết định bắt ông Phạm Nhật Vũ
-                                                (Chủ
-                                                tịch Công ty Cổ phần Nghe Nhìn Toàn cầu – AVG).</p>
+                                            <p><i class="far fa-clock"></i> <%=news[i].ReleaseDay%></p>
+                                            <p class="card-text"><%=news[i].Abstract%></p>
                                         </div>
                                     </div>
                                 </div>
@@ -151,25 +146,23 @@
                 </div>
                 <div class="col-lg-4">
 
-                    <% for( let index = 0; index < 10; index++ ) { %>
+                    <% for( let i = 0; i < news.length; i++ ) { %>
                         <!--1 chuyen muc-->
                         <div class="cata-post col-md-12">
                             <div class="category">
-                                <a href="guest/cata-style.css" class="post-cata"><i class="fas fa-bookmark"> Thời sự</i></a>
+                                <a href="/guest/chuyen-de/<%=news[i].CatID%>" class="post-cata"><i class="fas fa-bookmark"> <%=news[i].CatName%></i></a>
                                 <hr>
                             </div>
                             <div class="post">
                                 <div class="post-thumbnail">
-                                    <a href="/Chitietbaiviet"><img src="images/1.jpg" alt=""></a>
+                                    <a href="/chitietbaiviet/<%=news[i].ID%>"><%-news[i].ImageAbstract%></a>
                                 </div>
                                 <div class="post-abstract">
-                                    <a href="/Chitietbaiviet" class="post-title">Thượng nghị sĩ Mỹ và 30 năm dọn hậu quả chiến tranh Việt
-                                        Nam.</a>
+                                    <a href="/chitietbaiviet/<%=news[i].ID%>" class="post-title"><%=news[i].Title%></a>
                                 </div>
                             </div>
                         </div>
                     <% } %>
-
                 </div>
             </div>
         </div>
