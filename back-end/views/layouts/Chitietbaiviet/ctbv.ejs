@@ -16,6 +16,12 @@
     <!--This page style-->
     <link rel="stylesheet" href="/css/guest/cata-style.css">
     <link rel="stylesheet" href="/css/Chitietbaiviet/styleChiTietBaiViet.css">
+    <style>
+        .image-main img{
+            width: 100% !important;
+            height: 200px !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -79,50 +85,18 @@
 
         <div class="center-block styleBaiLienQuan">
             <ul class="name">
-                <li style="display: inline-block;">
-                    <div class="card" style="width: 17rem;">
-                        <a href=""><img width="250" height="250" class="card-img-top" src="../images/1.jpg"
-                                alt="Card image cap"></a>
+            <% for( let index = 0; index < postSame.length; index++ ) { %>
+                <li style="display: inline-block; height: 100%;">
+                    <div class="card" style="width: 13rem; height: 100%;">
+                        <a class="image-main" href=""><%-postSame[index].ImageAbstract%></a>
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <a href="" class="card-text">Some quick example text to build on the card title and make
-                                up the bulk of the card's content.</a>
+                            <h5 class="card-title"><%=postSame[index].Title%></h5>
+                            <a href="" class="card-text"><%=postSame[index].Abstract%></a>
                         </div>
                     </div>
                 </li>
-                <li style="display: inline-block;">
-                    <div class="card" style="width: 17rem;">
-                        <a href=""><img width="250" height="250" class="card-img-top" src="../images/1.jpg"
-                                alt="Card image cap"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <a href="" class="card-text">Some quick example text to build on the card title and make
-                                up the bulk of the card's content.</a>
-                        </div>
-                    </div>
-                </li>
-                <li style="display: inline-block;">
-                    <div class="card" style="width: 17rem;">
-                        <a href=""><img width="250" height="250" class="card-img-top" src="../images/1.jpg"
-                                alt="Card image cap"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <a href="" class="card-text">Some quick example text to build on the card title and make
-                                up the bulk of the card's content.</a>
-                        </div>
-                    </div>
-                </li>
-                <li style="display: inline-block;">
-                    <div class="card" style="width: 17rem;">
-                        <a href=""><img width="250" height="250" class="card-img-top" src="../images/1.jpg"
-                                alt="Card image cap"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <a href="" class="card-text">Some quick example text to build on the card title and make
-                                up the bulk of the card's content.</a>
-                        </div>
-                    </div>
-                </li>
+            <% } %>
+                
             </ul>
         </div>
         <!-- nhận xét của người dùng. -->

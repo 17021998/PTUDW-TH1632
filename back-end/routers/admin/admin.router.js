@@ -643,6 +643,9 @@ router.post('/saveClose/baiviet',(req,res)=>{
         req.body.PostStatus = null;
         req.body.ReleaseDay = null;
     }
+    if(req.body.PostStatus == 1){
+        req.body.ReleaseDay = dateFormat(new Date(),"yyyy/mm/dd" );
+    }
     // id cua post can update.
     var ID = req.body.ID;
     var Arr = split(",", tag);
@@ -683,6 +686,9 @@ router.post('/saveNew/baiviet',(req,res)=>{
     if(req.body.PostStatus=="null"){
         req.body.PostStatus = null;
         req.body.ReleaseDay = null;
+    }
+    if(req.body.PostStatus == 1){
+        req.body.ReleaseDay = dateFormat(new Date(),"yyyy/mm/dd" );
     }
     // id cua post can update.
     var ID = req.body.ID;
