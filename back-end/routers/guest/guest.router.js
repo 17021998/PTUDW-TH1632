@@ -88,12 +88,16 @@ router.get('/login',isLogin, (req,res,next)=>{
     res.render('guest/login', {isNormalUser: true});
 })
 
-router.get('/search-result', (req,res,next)=>{
+router.post('/search-result', (req,res,next)=>{
+    var txtSearch = req.body.txtSearch;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
+        guestModel.allCat(),
+        guestModel.searchPost(txtSearch)
+    ]).then(([cats, rows]) => {
         res.render('guest/search-result',{
-            cats:cats
+            cats:cats,
+            rows,
+            "value": txtSearch
         });
     }).catch(next);
 })

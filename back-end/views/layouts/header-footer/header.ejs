@@ -68,11 +68,11 @@
                                 <% } %>
                             </ul>
 
-                            <form class="searchDestop">
+                            <form class="searchDestop" method="post" action="/guest/search-result">
                                 <label for="search" class="button button--small button--less" title="Tìm kiếm">
                                     <i class="fas fa-search"></i>
                                 </label>
-                                <input type="text" id="search" placeholder="Tìm kiếm..." class="inputSearch">
+                                <input type="text" id="search" name="txtSearch" placeholder="Tìm kiếm..." class="inputSearch">
                             </form>
                             <% if(!locals.user){ %>
                                 <div class="signInOutGr">
