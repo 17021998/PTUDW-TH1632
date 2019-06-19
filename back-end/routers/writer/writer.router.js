@@ -4,6 +4,8 @@ var passport = require('passport');
 var writerModle = require('../../modles/writer/writer.modle');
 var auth = require('../../middlewares/auth');
 var isLogin = require('../../middlewares/checkLogInOut');
+var bcrypt = require('bcrypt');
+var guestModel = require('../../modles/guest/guest.model');
 
 router.get('/',auth, (req, res, next) => { 
     Promise.all([
@@ -136,6 +138,18 @@ router.post('/updateW/profile-writer', (req,res, next)=>{
 router.get('/security',auth, (req, res) => {
     var isActive="s";
     res.render('writer/security',{"isActive":isActive}); 
+})
+router.post('/security',auth, (req, res) => {
+    var pw = req.body.newpassword;
+    console.log(pw);
+    var hash = bcrypt.hashSync(pw, 10);
+    guestModel.updatePassword(req.user.ID, hash)
+    .then(()=>{
+        res.redirect('/writer/profile-writer');
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
 })
 
 router.post('/add',auth, (req,res, next)=>{

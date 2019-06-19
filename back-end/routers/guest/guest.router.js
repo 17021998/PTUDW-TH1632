@@ -105,6 +105,23 @@ router.get('/is-available', (req, res, next) => {
         return res.json(true);
     }).catch(next);
 });
+//
+router.get('/password-available', (req, res, next)=>{
+    var pw = req.query.oldpassword;
+    var id = req.user.ID;
+    guestModel.singleByUserId(id).then(rows => {
+        if (rows.length > 0) {
+            var ret = bcrypt.compareSync(pw, rows[0].PassHash);
+            if(ret){
+                return res.json(true);
+            }else{
+                return res.json(false);
+            }
+        }
+        console.log("false 2");
+        return res.json(false);
+    }).catch(next);
+})
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', function (err, user, info) {

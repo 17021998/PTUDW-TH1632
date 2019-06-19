@@ -4,6 +4,8 @@ var editorModle = require('../../modles/editor/editor.modle');
 var passport = require('passport');
 var auth = require('../../middlewares/auth');
 var isLogin = require('../../middlewares/checkLogInOut');
+var bcrypt = require('bcrypt');
+var guestModel = require('../../modles/guest/guest.model');
 
 // lay du lieu bai viet de dua ra cho editor xem va duyet
 router.post('/getContentPost', (req, res,next) => {
@@ -68,6 +70,7 @@ router.post('/update/profile-editor', (req, res) => {
     
 });
 
+//Thay doi mat khau cua editor
 router.get('/security', (req, res,next) => {
     var isActive = "s";
     editorModle.allcategory(req.user.ID).then(rows => {
@@ -75,6 +78,18 @@ router.get('/security', (req, res,next) => {
     }).catch(next);
 });
 
+router.post('/security',auth, (req, res) => {
+    var pw = req.body.newpassword;
+    console.log(pw);
+    var hash = bcrypt.hashSync(pw, 10);
+    guestModel.updatePassword(req.user.ID, hash)
+    .then(()=>{
+        res.redirect('/editor/profile-editor');
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
+})
 
 //Đăng nhập cho editor
 router.get('/login',isLogin, (req, res) => {
