@@ -2,16 +2,24 @@ var express = require('express');
 var router = express.Router();
 var indexModel = require('../../modles/index/index.model');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     Promise.all([
-        indexModel.allCat()
-    ]).then(([cats]) => {
+        indexModel.allCat(),
+        indexModel.topThreeWeek(),
+        indexModel.topMostTen(),
+        indexModel.topNewTen(),
+        //indexModel.topTenCate()
+    ]).then(([cats, three, mosts,news]) => {
+        SplitImage(three);
+        //console.log(three);
+        SplitImage(news);
         return res.render('index',{
-            cats:cats
+            cats:cats,
+            three: three,
+            mosts : mosts,
+            news : news
         });
-    }).catch(err => {
-        console.log(err);
-    });
+    }).catch(next);
 })
 
 router.post('/searchAutoComplete',(req,res)=>{
@@ -31,3 +39,13 @@ router.post('/searchAutoComplete',(req,res)=>{
 });
 
 module.exports = router;
+
+
+const SplitImage = (rows) => {
+    for(var i = 0;i<rows.length; i++){
+        var imgStr = rows[i].ImageAbstract;
+        var arr = imgStr.split(/[""]/);
+        console.log(arr);
+        rows[i].ImageAbstract = arr[3];
+    }
+}

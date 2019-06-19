@@ -523,9 +523,22 @@ router.post('/qlNguoiDung/user-info/:id', (req, res, next) =>{
     }).catch(next);
 })
 
+//Thay doi mat khau cua admin
 router.get('/security',auth, (req, res) => {
     var isActive = "s";
     res.render('admin/security', { "isActive": isActive });
+})
+router.post('/security',auth, (req, res) => {
+    var pw = req.body.newpassword;
+    console.log(pw);
+    var hash = bcrypt.hashSync(pw, 10);
+    guestModel.updatePassword(req.user.ID, hash)
+    .then(()=>{
+        res.redirect('/admin/profile-admin');
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
 })
 
 // router post

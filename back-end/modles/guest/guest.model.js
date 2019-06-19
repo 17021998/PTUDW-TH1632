@@ -24,5 +24,8 @@ module.exports = {
     },
     update: entity => {
         return db.update('userprimary','ID',entity);
+    },
+    updatePassword: (id, phash) =>{
+        return db.load(`update userprimary set PassHash = '${phash}' where ID = '${id}';`);
     }
 }
