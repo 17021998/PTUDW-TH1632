@@ -16,7 +16,13 @@ module.exports = {
                     "FROM category c1 LEFT join ("+ supQuery + ") c2 on c1.ID = c2.SuperCatID " + 
                     "WHERE c1.IsDelete IS NULL AND c1.SuperCatID IS NULL ORDER BY c1.ID ;");
     },
+    searchPost: (value)=>{
+        return db.load(`select * from post where MATCH(Title, Content, Abstract) AGAINST ('${value}')`);
+    },
     update: entity => {
         return db.update('userprimary','ID',entity);
+    },
+    updatePassword: (id, phash) =>{
+        return db.load(`update userprimary set PassHash = '${phash}' where ID = '${id}';`);
     }
 }

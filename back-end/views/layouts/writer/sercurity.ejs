@@ -24,7 +24,7 @@
             <div id="content">
                 <h1>Bảo mật</h1>
                 <hr>
-                <form class="d-flex flex-row content-form-view">
+                <form class="d-flex flex-row content-form-view" novalidate id="managePassword" method="POST" action="">
                     <div class="col-md-9 ">
                         <div class="btn-gray">
                             <button type="button" class="btn" onclick="changePassword()">Thay đổi mật khẩu.</button>
@@ -32,7 +32,7 @@
                         <div id="change-pasword" class="class-disable">
                             <div class="form-group">
                                 <label for="oldPassword">Mật khẩu cũ:</label>
-                                <input type="password" class="form-control col-md-9" id="oldPassword">
+                                <input type="password" class="form-control col-md-9" id="oldPassword" name="oldpassword">
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
@@ -40,22 +40,20 @@
                                     <label class="form-check-label" for="cbShowP">Xem mật khẩu.</label>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-link btn_ls" id="btn_forgot_pass">Quên mật khẩu?</button>
                             <div class="form-group">
                                 <label for="new1Password">Mật khẩu mới:</label>
-                                <input type="password" class="form-control col-md-9" id="new1Password">
+                                <input type="password" class="form-control col-md-9" id="new1Password" name = "newpassword">
                             </div>
                             <div class="form-group">
                                 <label for="new2Password">Nhập lại:</label>
-                                <input type="password" class="form-control col-md-9" id="new2Password">
+                                <input type="password" class="form-control col-md-9" id="new2Password" name="newpasswordconfirm">
                             </div>
                             <div class="btn-gray">
-                                <button type="button" class="btn" id="change-btn" onclick="changePasswordSuccet()">Thay đổi mật khẩu</button>
-                                <button type="button" class="btn" id="cancel-btn" onclick="cancleChangePassword()">Hủy</button>
+                                <button class="btn" id="change-btn" type="submit">Thay đổi mật khẩu</button>
+                                <button class="btn" id="cancel-btn" type="reset" onclick="cancleChangePassword()">Hủy</button>
                             </div>                       
                         </div>
                     </div>              
-
                 </form>
             </div>
             
@@ -64,26 +62,66 @@
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!--Main Script-->
-    <script src="/css/editor/main.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script src="/js/editor/main.js"></script>
     <script type="text/javascript">
         function showPassword() {
-        var x = document.getElementById('oldPassword');
-        if (x.type === 'password') {
+            var x = document.getElementById('oldPassword');
+            if (x.type === 'password') {
             x.type = 'text';
-        } else {
+            } else {
             x.type = 'password';       
+            }
         }
-        }
+
+        $('#managePassword').validate({
+                rules: {
+                    oldpassword: {
+                        required: true,
+                        minlength: 6,
+                        remote: {
+							url: '/guest/password-available'
+						}
+                    },
+                    newpassword: {
+                        required: true,
+                        minlength: 6
+                    },
+                    newpasswordconfirm: {
+                        required: true,
+                        equalTo: $('[name="newpassword"]')
+                    }
+                },
+                messages: {
+                    oldpassword: {
+                        required: 'Mật khẩu phải có độ dài lớn hơn 6.',
+                        minlength: 'Mật khẩu phải có độ dài lớn hơn 6.',
+                        remote: 'Mật khẩu này không tồn tại, vui lòng nhập lại.'
+                    },
+                    newpassword: {
+                        required: 'Vui lòng nhập mật khẩu.',
+                        minlength: 'Mật khẩu phải có độ dài lớn hơn 6.'
+                    },
+                    newpasswordconfirm: {
+                        required: 'Vui lòng xác nhận lại mật khẩu.',
+                        equalTo: 'Xác nhận mật khẩu và mật khẩu phải trùng nhau.'
+                    }
+                },
+                errorElement: 'small',
+                errorClass: 'help-block text-danger',
+                highlight: function (e) {
+                    $(e).removeClass('is-valid').addClass('is-invalid');
+                },
+                unhighlight: function (e) {
+                    $(e).removeClass('is-invalid').addClass('is-valid');
+                }
+            });
+
         function changePassword(){
             $('#change-pasword').removeClass('class-disable');
         }
-
         function cancleChangePassword(){
-            $('#change-pasword').addClass('class-disable');
-        }
-        function changePasswordSuccet(){
-            $('#change-pasword').addClass('class-disable');
+            $("#managePassword").trigger('reset');
         }
     </script>
 </body>

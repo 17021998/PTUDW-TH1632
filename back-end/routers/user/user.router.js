@@ -15,6 +15,18 @@ router.get('/security',auth , (req, res) => {
         "isActive": isActive
     });
 });
+router.post('/security',auth, (req, res) => {
+    var pw = req.body.newpassword;
+    console.log(pw);
+    var hash = bcrypt.hashSync(pw, 10);
+    guestModel.updatePassword(req.user.ID, hash)
+    .then(()=>{
+        res.redirect('/user/profile-user');
+    }).catch(err => {
+        console.log(err);
+        res.end('error occured.')
+    });
+})
 
 //sử dụng POST cho logout vì sẽ thực sự logout, nếu dùng GET trình duyệt sẽ trước các trang mà nó nghĩ có thể vào
 //Như thế không thực sự là logout https://stackoverflow.com/questions/3521290/logout-get-or-post

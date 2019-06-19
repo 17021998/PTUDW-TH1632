@@ -88,12 +88,16 @@ router.get('/login',isLogin, (req,res,next)=>{
     res.render('guest/login', {isNormalUser: true});
 })
 
-router.get('/search-result', (req,res,next)=>{
+router.post('/search-result', (req,res,next)=>{
+    var txtSearch = req.body.txtSearch;
     Promise.all([
-        guestModel.allCat()
-    ]).then(([cats]) => {
+        guestModel.allCat(),
+        guestModel.searchPost(txtSearch)
+    ]).then(([cats, rows]) => {
         res.render('guest/search-result',{
-            cats:cats
+            cats:cats,
+            rows,
+            "value": txtSearch
         });
     }).catch(next);
 })
@@ -158,6 +162,23 @@ router.get('/is-available', (req, res, next) => {
         return res.json(true);
     }).catch(next);
 });
+//
+router.get('/password-available', (req, res, next)=>{
+    var pw = req.query.oldpassword;
+    var id = req.user.ID;
+    guestModel.singleByUserId(id).then(rows => {
+        if (rows.length > 0) {
+            var ret = bcrypt.compareSync(pw, rows[0].PassHash);
+            if(ret){
+                return res.json(true);
+            }else{
+                return res.json(false);
+            }
+        }
+        console.log("false 2");
+        return res.json(false);
+    }).catch(next);
+})
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', function (err, user, info) {
