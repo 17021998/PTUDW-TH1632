@@ -72,12 +72,9 @@
             </div>
 
             <div class="center-block hagtag w-100">
-                <h3><a href="" class="tagitem">#Bình An</a></h3>
-                <h3><a href="" class="tagitem">#Những cô gái trong thành phố</a></h3>
-                <h3><a href="" class="tagitem">#Ngọc Crystal</a></h3>
-                <h3><a href="" class="tagitem">#Phi công trẻ</a></h3>
-                <h3><a href="" class="tagitem">#Bình An đóng phi công trẻ</a></h3>
-                <h3><a href="" class="tagitem">#Phim việt nam</a></h3>
+                <% for(let i =0; i< tags.length;i++){ %>
+                    <a href="/guest/hash-tag/<%=tags[i].ID%>" class="badge badge-secondary"><%=tags[i].TagName%></a>
+                <% } %>
             </div>
 
         </div>
@@ -88,10 +85,10 @@
             <% for( let index = 0; index < postSame.length; index++ ) { %>
                 <li style="display: inline-block; height: 100%;">
                     <div class="card" style="width: 13rem; height: 100%;">
-                        <a class="image-main" href=""><%-postSame[index].ImageAbstract%></a>
+                        <a class="image-main" href="/chitietbaiviet/<%=postSame[index].ID%>"><%-postSame[index].ImageAbstract%></a>
                         <div class="card-body">
                             <h5 class="card-title"><%=postSame[index].Title%></h5>
-                            <a href="" class="card-text"><%=postSame[index].Abstract%></a>
+                            <a href="/chitietbaiviet/<%=postSame[index].ID%>" class="card-text"><%=postSame[index].Abstract%></a>
                         </div>
                     </div>
                 </li>
