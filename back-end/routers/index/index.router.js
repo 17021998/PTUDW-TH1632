@@ -45,7 +45,6 @@ const SplitImage = (rows) => {
     for(var i = 0;i<rows.length; i++){
         var imgStr = rows[i].ImageAbstract;
         var arr = imgStr.split(/[""]/);
-        console.log(arr);
         rows[i].ImageAbstract = arr[3];
     }
 }

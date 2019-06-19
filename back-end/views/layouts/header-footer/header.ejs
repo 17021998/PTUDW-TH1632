@@ -94,9 +94,11 @@
                                             </a>
                                             <div class="js-popover account-menu card shadow-sm d-none">
                                                 <ul role="menu">
-                                                    <li><a href="javascript:;" class="d-block">
-                                                        Upgrade</a></li>
-                                                        <% if(locals.user){ %>
+                                                    <% if(locals.user.role == 'user'){ %>
+                                                        <li><a href="javascript:;" class="d-block">
+                                                            Upgrade</a></li>
+                                                    <% } %>
+                                                    <% if(locals.user){ %>
                                                             <li><a href="/<%=user.role%>/profile-<%=user.role%>" class="d-block">
                                                                 Thông tin cá nhân</a>
                                                             </li>
