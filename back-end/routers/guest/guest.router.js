@@ -88,16 +88,56 @@ router.get('/login',isLogin, (req,res,next)=>{
     res.render('guest/login', {isNormalUser: true});
 })
 
-router.post('/search-result', (req,res,next)=>{
-    var txtSearch = req.body.txtSearch;
+router.get('/search-result', (req,res,next)=>{
+    var txtSearch = req.query.txtSearch;
+    console.log(txtSearch);
+    var page = req.query.page || 1;
+    if(page < 1 || isNaN(page)){
+        page=1;
+    }
+    var limit = 5;
+    var offset = (page - 1) * limit;
+
     Promise.all([
         guestModel.allCat(),
-        guestModel.searchPost(txtSearch)
-    ]).then(([cats, rows]) => {
+        guestModel.searchPost(txtSearch,limit,offset),
+        guestModel.getCountSearchPost(txtSearch)
+    ]).then(([cats, rows, count]) => {
+        var counts = count[0].totals;
+        var len = Math.floor(counts / limit);
+        if(counts % limit>0){
+            len++;
+        }
+
+        var lenPage=[];
+        if(len < 5){
+            lenPage.push({"begin": 0, "end": len-1});
+        }else {
+            if(page -2 <=1){
+                lenPage.push({"begin": 0, "end": 4});
+            } else if(page + 2>=len){
+                lenPage.push({"begin": len-5, "end": len-1});
+            }else {
+                lenPage.push({"begin": page -2, "end": +page + 2});
+            }
+        }
+
+        var pages = [];
+        if(len!=0){
+            for( i =0 ;i<len;i++){
+                pages.push({"value": i, "isActive": i===+page-1});
+            }
+        }else{
+            pages.push({"value": 0, "isActive": true});
+        }
+
         res.render('guest/search-result',{
             cats:cats,
             rows,
-            "value": txtSearch
+            "value": txtSearch,
+            "page": pages,
+            "p": page,
+            "lenPage": lenPage[0]
         });
     }).catch(next);
 })

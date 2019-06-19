@@ -30,13 +30,15 @@ router.get('/:id', (req, res, next) => {
     chitietbaiveitModel.getCat(idP),
     chitietbaiveitModel.single(idP),
     chitietbaiveitModel.getComment(idP),
+    chitietbaiveitModel.getPostSame(idP),
     chitietbaiveitModel.addViewed(idP)
-  ]).then(([cats,cat , rows, rowsComment]) => {
+  ]).then(([cats,cat , rows, rowsComment, postSame, idview]) => {
     res.render('Chitietbaiviet/ctbv', {
       cats: cats,
       cat: cat[0],
       chitietbaiviet: rows[0],
-      "comment": rowsComment
+      "comment": rowsComment,
+      "postSame": postSame
     });
   }).catch(next);
 })

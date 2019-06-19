@@ -17,6 +17,9 @@ module.exports = {
     getComment: (id)=>{
         return db.load(`SELECT * FROM comment as c LEFT JOIN userprimary as up on c.UserID = up.ID where c.PostID = ${id} and c.IsDelete is null`);
     },
+    getPostSame: id=>{
+        return db.load(`select * from post as p, (select cp.CatID as cID from catpost as cp where cp.PostID = ${id}) as a, catpost as ct where a.cID =ct.CatID and p.ID = ct.PostID LIMIT 4`);
+    },
 
     getCat: id => {
         return db.load(`SELECT c.ID, c.CatName, c1.ID as FID, c1.CatName as FName 
